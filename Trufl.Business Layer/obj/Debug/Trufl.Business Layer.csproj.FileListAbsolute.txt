@@ -3,3 +3,8 @@ C:\Users\Manohar\Desktop\Trufl\Trufl.Business Layer\bin\Debug\Trufl.Business Lay
 C:\Users\Manohar\Desktop\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.csproj.CoreCompileInputs.cache
 C:\Users\Manohar\Desktop\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.dll
 C:\Users\Manohar\Desktop\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.pdb
+E:\Manohar\BB_Trufl\Trufl\Trufl.Business Layer\bin\Debug\Trufl.Business Layer.dll
+E:\Manohar\BB_Trufl\Trufl\Trufl.Business Layer\bin\Debug\Trufl.Business Layer.pdb
+E:\Manohar\BB_Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.csproj.CoreCompileInputs.cache
+E:\Manohar\BB_Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.dll
+E:\Manohar\BB_Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.pdb

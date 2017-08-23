@@ -3,3 +3,8 @@ C:\Users\Manohar\Desktop\Trufl\Trufl.Logging\bin\Debug\Trufl.Logging.pdb
 C:\Users\Manohar\Desktop\Trufl\Trufl.Logging\obj\Debug\Trufl.Logging.csproj.CoreCompileInputs.cache
 C:\Users\Manohar\Desktop\Trufl\Trufl.Logging\obj\Debug\Trufl.Logging.dll
 C:\Users\Manohar\Desktop\Trufl\Trufl.Logging\obj\Debug\Trufl.Logging.pdb
+E:\Manohar\BB_Trufl\Trufl\Trufl.Logging\bin\Debug\Trufl.Logging.dll
+E:\Manohar\BB_Trufl\Trufl\Trufl.Logging\bin\Debug\Trufl.Logging.pdb
+E:\Manohar\BB_Trufl\Trufl\Trufl.Logging\obj\Debug\Trufl.Logging.csproj.CoreCompileInputs.cache
+E:\Manohar\BB_Trufl\Trufl\Trufl.Logging\obj\Debug\Trufl.Logging.dll
+E:\Manohar\BB_Trufl\Trufl\Trufl.Logging\obj\Debug\Trufl.Logging.pdb
