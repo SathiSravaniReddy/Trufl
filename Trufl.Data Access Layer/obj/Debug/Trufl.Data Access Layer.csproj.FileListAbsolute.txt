@@ -1,0 +1,5 @@
+C:\Users\Manohar\Desktop\Trufl\Trufl.Data Access Layer\bin\Debug\Trufl.Data Access Layer.dll
+C:\Users\Manohar\Desktop\Trufl\Trufl.Data Access Layer\bin\Debug\Trufl.Data Access Layer.pdb
+C:\Users\Manohar\Desktop\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
+C:\Users\Manohar\Desktop\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.dll
+C:\Users\Manohar\Desktop\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.pdb
