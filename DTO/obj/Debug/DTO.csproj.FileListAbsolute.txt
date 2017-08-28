@@ -3,3 +3,8 @@ C:\Users\Manohar\Desktop\Trufl\DTO\bin\Debug\DTO.pdb
 C:\Users\Manohar\Desktop\Trufl\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 C:\Users\Manohar\Desktop\Trufl\DTO\obj\Debug\DTO.dll
 C:\Users\Manohar\Desktop\Trufl\DTO\obj\Debug\DTO.pdb
+E:\Manohar\BB_Trufl\Trufl\DTO\bin\Debug\DTO.dll
+E:\Manohar\BB_Trufl\Trufl\DTO\bin\Debug\DTO.pdb
+E:\Manohar\BB_Trufl\Trufl\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+E:\Manohar\BB_Trufl\Trufl\DTO\obj\Debug\DTO.dll
+E:\Manohar\BB_Trufl\Trufl\DTO\obj\Debug\DTO.pdb
