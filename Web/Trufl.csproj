@@ -21,13 +21,20 @@
   <ItemGroup>
     <!-- Files not to show in IDE -->
     <None Remove="yarn.lock" />
+    <Compile Remove="ClientApp\images\**" />
     <Compile Remove="Data\**" />
+    <Compile Remove="wwwroot\assets\**" />
 
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
     <Content Remove="Data\**" />
+    <Content Remove="wwwroot\assets\**" />
+    <EmbeddedResource Remove="ClientApp\images\**" />
     <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="wwwroot\assets\**" />
+    <None Remove="ClientApp\images\**" />
     <None Remove="Data\**" />
+    <None Remove="wwwroot\assets\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="node_modules\.staging\%40angular\common-a5e79013445cdb981cc94239df433d6b\index.metadata.json" />
@@ -1137,9 +1144,6 @@
     <Content Include="node_modules\.staging\yargs-parser-7ac6da86ace66ea5bc0132a8ea3b86fd\package.json" />
     <Content Include="node_modules\.staging\yeast-ff6d4bacfb74a7395c09e07be07069ff\package.json" />
     <Content Include="node_modules\.staging\zone.js-3f84bfa210313aaefbb8438509c8a454\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\assets\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="node_modules\.staging\%40angular\common-a5e79013445cdb981cc94239df433d6b\bundles\common-testing.umd.js" />
@@ -7059,6 +7063,9 @@
     <None Include="node_modules\.staging\zone.js-3f84bfa210313aaefbb8438509c8a454\LICENSE" />
     <None Include="node_modules\.staging\zone.js-3f84bfa210313aaefbb8438509c8a454\LICENSE.wrapped" />
     <None Include="node_modules\.staging\zone.js-3f84bfa210313aaefbb8438509c8a454\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images\" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
