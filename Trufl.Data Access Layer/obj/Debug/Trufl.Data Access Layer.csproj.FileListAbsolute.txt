@@ -8,10 +8,10 @@ E:\Manohar\BB_Trufl\Trufl\Trufl.Data Access Layer\bin\Debug\Trufl.Data Access La
 E:\Manohar\BB_Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
 E:\Manohar\BB_Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.dll
 E:\Manohar\BB_Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.pdb
-E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
-E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csprojResolveAssemblyReference.cache
 E:\Trufl\Trufl\Trufl.Data Access Layer\bin\Debug\Trufl.Data Access Layer.dll.config
 E:\Trufl\Trufl\Trufl.Data Access Layer\bin\Debug\Trufl.Data Access Layer.dll
 E:\Trufl\Trufl\Trufl.Data Access Layer\bin\Debug\Trufl.Data Access Layer.pdb
+E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csprojResolveAssemblyReference.cache
+E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
 E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.dll
 E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.pdb

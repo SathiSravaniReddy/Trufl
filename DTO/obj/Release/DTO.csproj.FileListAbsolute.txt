@@ -1,0 +1,6 @@
+E:\Trufl\Trufl\DTO\bin\Release\DTO.dll
+E:\Trufl\Trufl\DTO\bin\Release\DTO.pdb
+E:\Trufl\Trufl\DTO\obj\Release\DTO.csprojResolveAssemblyReference.cache
+E:\Trufl\Trufl\DTO\obj\Release\DTO.csproj.CoreCompileInputs.cache
+E:\Trufl\Trufl\DTO\obj\Release\DTO.dll
+E:\Trufl\Trufl\DTO\obj\Release\DTO.pdb

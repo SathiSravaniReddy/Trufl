@@ -1,0 +1,9 @@
+E:\Trufl\Trufl\Trufl.Data Access Layer\bin\Release\Trufl.Data Access Layer.dll.config
+E:\Trufl\Trufl\Trufl.Data Access Layer\bin\Release\Trufl.Data Access Layer.dll
+E:\Trufl\Trufl\Trufl.Data Access Layer\bin\Release\Trufl.Data Access Layer.pdb
+E:\Trufl\Trufl\Trufl.Data Access Layer\bin\Release\DTO.dll
+E:\Trufl\Trufl\Trufl.Data Access Layer\bin\Release\Trufl.Logging.dll
+E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.csprojResolveAssemblyReference.cache
+E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
+E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.dll
+E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.pdb
