@@ -23,18 +23,14 @@
     <None Remove="yarn.lock" />
     <Compile Remove="ClientApp\images\**" />
     <Compile Remove="Data\**" />
-    <Compile Remove="wwwroot\assets\**" />
 
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
     <Content Remove="Data\**" />
-    <Content Remove="wwwroot\assets\**" />
     <EmbeddedResource Remove="ClientApp\images\**" />
     <EmbeddedResource Remove="Data\**" />
-    <EmbeddedResource Remove="wwwroot\assets\**" />
     <None Remove="ClientApp\images\**" />
     <None Remove="Data\**" />
-    <None Remove="wwwroot\assets\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="node_modules\.staging\%40angular\common-a5e79013445cdb981cc94239df433d6b\index.metadata.json" />
@@ -7066,6 +7062,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
+    <Folder Include="wwwroot\assets\NewFolder\" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->

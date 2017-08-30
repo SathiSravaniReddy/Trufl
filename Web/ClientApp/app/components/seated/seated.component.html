@@ -1,0 +1,83 @@
+﻿
+   
+
+
+
+
+  <div class="col-md-12 no-pad">
+        <div class="col-md-2 leftnav no-pad">
+            <h1>Bottique Louie </h1>
+            <ul>
+                <li>
+                    <a [routerLink]="['/home']">Waitlist </a>
+                </li>
+                <li>
+                    <a class="selected" [routerLink]="['/getseatedpage']">Seated </a>
+                </li>
+                <li>
+                    <a href="#">Settings </a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-md-10 no-pad">
+            <div class="header">
+
+            </div>
+
+            <div class="col-md-12 innermain">
+                <h2>Seated </h2>
+                <div class="col-md-12 tablemain">
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Trufl</th>
+                                <th>B.L</th>
+                                <th>Name</th>
+                                <th>Size</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Table no</th>
+                                <th>Seated</th>
+                                <th>App Served</th>
+                                <th>Menu Served</th>
+                                <th>Desert Served</th>
+                                <th>Check Received</th>
+                                <th>Buzzing</th>
+                                <th>Empty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr *ngFor="let seatsinfo of seatedinfo; let i = index">
+                               <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
+                               <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
+                              <td>{{seatsinfo.name}}</td>
+                               <td>{{seatsinfo.size}}</td>
+                               <td>{{seatsinfo.amount}}</td>
+                               <td>{{seatsinfo.status}}</td>
+                               <td>{{seatsinfo.tableno}}</td>
+                               <td><input type="checkbox" [(ngModel)]="person.is_adult" name="isAdult"  (change)="onCheckboxChange(i, $event)"></td>
+                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
+                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
+                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
+                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
+                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
+                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
+                             
+
+                           </tr>
+
+                      
+                    </table>
+                 
+                    <div class="sbtbtn">
+                        <button [disabled]="!isenabled">Submit</button>
+                    </div>
+
+            </div>
+
+        </div>
+    </div>
+  

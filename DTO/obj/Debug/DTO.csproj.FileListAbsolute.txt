@@ -8,3 +8,9 @@ E:\Manohar\BB_Trufl\Trufl\DTO\bin\Debug\DTO.pdb
 E:\Manohar\BB_Trufl\Trufl\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 E:\Manohar\BB_Trufl\Trufl\DTO\obj\Debug\DTO.dll
 E:\Manohar\BB_Trufl\Trufl\DTO\obj\Debug\DTO.pdb
+E:\Trufl\Trufl\DTO\bin\Debug\DTO.dll
+E:\Trufl\Trufl\DTO\bin\Debug\DTO.pdb
+E:\Trufl\Trufl\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+E:\Trufl\Trufl\DTO\obj\Debug\DTO.dll
+E:\Trufl\Trufl\DTO\obj\Debug\DTO.pdb
+E:\Trufl\Trufl\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache

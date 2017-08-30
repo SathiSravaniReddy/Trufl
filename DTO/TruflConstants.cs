@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Trufl.Data_Access_Layer
+namespace DTO
 {
-    public class Class1
+   public static class TruflConstants
     {
+        public const int DBResponseTime = 180;
     }
 }
