@@ -29,5 +29,6 @@ namespace DTO
         public int ModifiedBy { get; set; }
         public DateTime Waited { get; set; }
         public int LoggedInUser { get; set; }
+        public int test { get; set; }
     }
 }

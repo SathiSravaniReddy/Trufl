@@ -16,22 +16,22 @@ namespace Trufl.Data_Access_Layer
         #region Db Connection 
         SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["TraflConnection"]);
         #endregion
-
+       
         /// <summary>
         /// This method 'RetrieveUser' returns User details
         /// </summary>
         /// <returns>User List</returns>
         public List<UserProfile> RetrieveUser()
         {
-            
             List<UserProfile> sourceapilist = new List<UserProfile>();
             try
             {
+                
                 con.Open();
                 using (SqlCommand command1 = new SqlCommand("spGetTruflUser", con))
                 {
                     command1.CommandTimeout = TruflConstants.DBResponseTime;
-                   
+
                     SqlDataAdapter da = new SqlDataAdapter();
                     // command1.Parameters.AddWithValue("@SourceAPIName", "clever");
                     // command1.Parameters.AddWithValue("@IsWinService", false);
@@ -61,7 +61,7 @@ namespace Trufl.Data_Access_Layer
                         userprofile.ReferTruflUserID = Convert.ToInt32(ds.Tables[0].Rows[i]["ReferTruflUserID"].ToString());
                         userprofile.ModifiedDate = ds.Tables[0].Rows[i]["ModifiedDate"].ToString();
                         userprofile.ModifiedBy = Convert.ToInt32(ds.Tables[0].Rows[i]["ModifiedBy"].ToString());
-                        
+
                         sourceapilist.Add(userprofile);
                     }
                 }
@@ -77,6 +77,7 @@ namespace Trufl.Data_Access_Layer
             }
             return sourceapilist;
         }
+
 
 
         /// <summary>
