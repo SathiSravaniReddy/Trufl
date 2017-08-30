@@ -8,3 +8,15 @@ E:\Manohar\BB_Trufl\Trufl\Trufl.Business Layer\bin\Debug\Trufl.Business Layer.pd
 E:\Manohar\BB_Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.csproj.CoreCompileInputs.cache
 E:\Manohar\BB_Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.dll
 E:\Manohar\BB_Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.pdb
+E:\Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.csproj.CoreCompileInputs.cache
+E:\Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.csprojResolveAssemblyReference.cache
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Debug\Trufl.Business Layer.dll
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Debug\Trufl.Business Layer.pdb
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Debug\DTO.dll
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Debug\Trufl.Data Access Layer.dll
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Debug\Trufl.Logging.dll
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Debug\DTO.pdb
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Debug\Trufl.Data Access Layer.pdb
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Debug\Trufl.Data Access Layer.dll.config
+E:\Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.dll
+E:\Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.pdb
