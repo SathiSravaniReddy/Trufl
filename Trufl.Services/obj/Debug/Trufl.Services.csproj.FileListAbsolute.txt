@@ -291,3 +291,4 @@ E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Logging.dll
 E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Business Layer.pdb
 E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Data Access Layer.pdb
 E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Data Access Layer.dll.config
+E:\Trufl\Trufl\Trufl.Services\bin\DTO.pdb
