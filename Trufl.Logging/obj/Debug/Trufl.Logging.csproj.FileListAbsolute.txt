@@ -13,4 +13,3 @@ E:\Trufl\Trufl\Trufl.Logging\bin\Debug\Trufl.Logging.pdb
 E:\Trufl\Trufl\Trufl.Logging\obj\Debug\Trufl.Logging.csproj.CoreCompileInputs.cache
 E:\Trufl\Trufl\Trufl.Logging\obj\Debug\Trufl.Logging.dll
 E:\Trufl\Trufl\Trufl.Logging\obj\Debug\Trufl.Logging.pdb
-E:\Trufl\Trufl\Trufl.Logging\obj\Debug\Trufl.Logging.csprojResolveAssemblyReference.cache
