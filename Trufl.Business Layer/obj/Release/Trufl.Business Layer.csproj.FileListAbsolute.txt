@@ -1,0 +1,12 @@
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Release\Trufl.Business Layer.dll
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Release\Trufl.Business Layer.pdb
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Release\DTO.dll
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Release\Trufl.Data Access Layer.dll
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Release\Trufl.Logging.dll
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Release\DTO.pdb
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Release\Trufl.Data Access Layer.pdb
+E:\Trufl\Trufl\Trufl.Business Layer\bin\Release\Trufl.Data Access Layer.dll.config
+E:\Trufl\Trufl\Trufl.Business Layer\obj\Release\Trufl.Business Layer.csprojResolveAssemblyReference.cache
+E:\Trufl\Trufl\Trufl.Business Layer\obj\Release\Trufl.Business Layer.csproj.CoreCompileInputs.cache
+E:\Trufl\Trufl\Trufl.Business Layer\obj\Release\Trufl.Business Layer.dll
+E:\Trufl\Trufl\Trufl.Business Layer\obj\Release\Trufl.Business Layer.pdb

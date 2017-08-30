@@ -1,0 +1,6 @@
+E:\Trufl\Trufl\Trufl.Logging\bin\Release\Trufl.Logging.dll
+E:\Trufl\Trufl\Trufl.Logging\bin\Release\Trufl.Logging.pdb
+E:\Trufl\Trufl\Trufl.Logging\obj\Release\Trufl.Logging.csprojResolveAssemblyReference.cache
+E:\Trufl\Trufl\Trufl.Logging\obj\Release\Trufl.Logging.csproj.CoreCompileInputs.cache
+E:\Trufl\Trufl\Trufl.Logging\obj\Release\Trufl.Logging.dll
+E:\Trufl\Trufl\Trufl.Logging\obj\Release\Trufl.Logging.pdb

@@ -238,6 +238,7 @@ E:\Trufl\Trufl\Trufl.Services\bin\roslyn\vbc.exe.config
 E:\Trufl\Trufl\Trufl.Services\bin\roslyn\vbc.rsp
 E:\Trufl\Trufl\Trufl.Services\bin\roslyn\VBCSCompiler.exe.config
 E:\Trufl\Trufl\Trufl.Services\bin\Antlr3.Runtime.dll
+E:\Trufl\Trufl\Trufl.Services\bin\DTO.dll
 E:\Trufl\Trufl\Trufl.Services\bin\Microsoft.AI.Agent.Intercept.dll
 E:\Trufl\Trufl\Trufl.Services\bin\Microsoft.AI.DependencyCollector.dll
 E:\Trufl\Trufl\Trufl.Services\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -258,7 +259,11 @@ E:\Trufl\Trufl\Trufl.Services\bin\System.Web.Razor.dll
 E:\Trufl\Trufl\Trufl.Services\bin\System.Web.WebPages.Deployment.dll
 E:\Trufl\Trufl\Trufl.Services\bin\System.Web.WebPages.dll
 E:\Trufl\Trufl\Trufl.Services\bin\System.Web.WebPages.Razor.dll
+E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Business Layer.dll
+E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Data Access Layer.dll
 E:\Trufl\Trufl\Trufl.Services\bin\WebGrease.dll
+E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Logging.dll
+E:\Trufl\Trufl\Trufl.Services\bin\DTO.pdb
 E:\Trufl\Trufl\Trufl.Services\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\Trufl\Trufl\Trufl.Services\bin\Newtonsoft.Json.xml
 E:\Trufl\Trufl\Trufl.Services\bin\System.Net.Http.Formatting.xml
@@ -271,6 +276,9 @@ E:\Trufl\Trufl\Trufl.Services\bin\System.Web.Razor.xml
 E:\Trufl\Trufl\Trufl.Services\bin\System.Web.WebPages.xml
 E:\Trufl\Trufl\Trufl.Services\bin\System.Web.WebPages.Deployment.xml
 E:\Trufl\Trufl\Trufl.Services\bin\System.Web.WebPages.Razor.xml
+E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Business Layer.pdb
+E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Data Access Layer.pdb
+E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Data Access Layer.dll.config
 E:\Trufl\Trufl\Trufl.Services\bin\Antlr3.Runtime.pdb
 E:\Trufl\Trufl\Trufl.Services\bin\Microsoft.ApplicationInsights.xml
 E:\Trufl\Trufl\Trufl.Services\bin\Microsoft.AI.DependencyCollector.xml
@@ -284,11 +292,3 @@ E:\Trufl\Trufl\Trufl.Services\obj\Debug\Trufl.Services.pdb
 E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Services.dll.config
 E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Services.dll
 E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Services.pdb
-E:\Trufl\Trufl\Trufl.Services\bin\DTO.dll
-E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Business Layer.dll
-E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Data Access Layer.dll
-E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Logging.dll
-E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Business Layer.pdb
-E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Data Access Layer.pdb
-E:\Trufl\Trufl\Trufl.Services\bin\Trufl.Data Access Layer.dll.config
-E:\Trufl\Trufl\Trufl.Services\bin\DTO.pdb
