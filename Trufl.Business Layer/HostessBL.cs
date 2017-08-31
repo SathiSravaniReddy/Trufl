@@ -9,17 +9,23 @@ using DTO;
 
 namespace Trufl.Business_Layer
 {
-   public class HostessBL
+    public class HostessBL
     {
-        AdminDL _adminDL = new AdminDL();
+
+        HostessDL _hostessDL = new HostessDL();
         public List<UserProfile> RetrieveUser()
         {
-            return _adminDL.RetrieveUser();
+            return _hostessDL.RetrieveUser();
         }
 
         public bool SaveTruflUserInfromation(List<TruflUserInputDTO> truflUserInputDTO)
         {
-            return _adminDL.SaveTruflUserInfromation(truflUserInputDTO);
+            return _hostessDL.SaveTruflUserInfromation(truflUserInputDTO);
+        }
+      
+        public DataTable GetRestaurantSeatedUsers(int RestaurantID)
+        {
+            return _hostessDL.GetRestaurantSeatedUsers(RestaurantID);
         }
     }
 }

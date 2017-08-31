@@ -78,7 +78,23 @@ namespace Trufl.Services.Controllers
             }
         }
 
-       
-        
+        [Route("GetRestaurantSeatedUsers")]
+        [HttpGet]
+        public object GetRestaurantSeatedUsers(int RestaurantID)
+        {
+            DataTable res = new DataTable();
+            try
+            {
+                res = _hostessBL.GetRestaurantSeatedUsers(RestaurantID);
+                return Json(new JsonResponseResult { _ErrorCode = "0", _Data = res, _StatusCode = "200", _StatusMessage = "Success" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = "1", _Data = ex.ToString(), _StatusCode = "404", _StatusMessage = "Faild" });
+            }
+        }
+
+
+
     }
 }

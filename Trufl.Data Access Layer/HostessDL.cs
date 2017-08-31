@@ -164,10 +164,40 @@ namespace Trufl.Data_Access_Layer
             }
         }
 
-        //public IHttpActionResult GetCompanies()
-        //{
-        //    var companies = db.Companies.ToList();
-        //    return Ok(new { results = companies });
-        //}
+
+        /// <summary>
+        /// This method 'RetrieveUser ' returns User details
+        /// </summary>
+        /// <returns>User List</returns>
+        
+        public DataTable GetRestaurantSeatedUsers(int RestaurantID)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantUsers", sqlcon))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam5 = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+                // }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
     }
 }
