@@ -1,3 +1,34 @@
-﻿<div>
-    <h1 class="text-center">Welcome to Trufl Project..</h1>
+﻿<div class="header">
+    <div class="col-md-5 headerleft">
+        <h1><a href="#">Bottique Louie</a></h1>
+    </div>
+    <div class="headerright">
+        <a [routerLink]="['/settings']"><img alt="" src="../../../../../wwwroot/images/setting.png" /> </a>
+        <div class="profiledd dropdown">
+            <a class="" data-toggle="dropdown" href="#"> <label>Jeffy </label> <img width="32" alt="" src="../../../../../wwwroot/images/profile.png" /> </a>
+            <ul class="dropdown-menu pull-right">
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-12 innermain">
+
+    <div class="col-md-12 leftnav no-pad">
+        <ul>
+            <li>
+                <a [routerLink]="['/home']" class="selected">Waitlist </a>
+            </li>
+            <li>
+                <a [routerLink]="['/getseatedpage']">Seated </a>
+            </li>
+            <li>
+                <a [routerLink]="['/dashboard']">Dashboard </a>
+            </li>
+            <li>
+                <a [routerLink]="['/resturant']">Resturant </a>
+            </li>
+        </ul>
+    </div>
+
 </div>

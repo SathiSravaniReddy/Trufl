@@ -1,0 +1,52 @@
+﻿<div class="loginbg">
+    <div class="col-md-3 logincontiner">
+        <div class="loginmain">
+            <div class="login-top">
+                <img alt="" src="../../../../wwwroot/images/logo.png" />
+
+                <h1 class="text-center">Resturant App </h1>
+            </div>
+            <form class="logininner">
+                <div class="logcheck">
+                    <span class="pull-left">
+                        <input type="checkbox" checked> <label> Resturant Admin</label>
+                    </span> <span class="pull-right">
+                        <input type="checkbox"> <label>Trufl Admin</label>
+                    </span>
+                </div>
+                <div class="form-group ffw">
+                    <input type="text" class="form-control" id="username" name="username" value="" required="" placeholder="Enter your username or email" />
+                    <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+
+                    <input type="password" class="form-control" id="password" name="password" value="" required="" placeholder="Enter Password" />
+                    <span class="help-block"></span>
+                </div>
+
+                <div class="fp text-right">
+                    <a href="#">
+                        forgot password ?
+                    </a>
+
+                </div>
+                <div class="login-btn">
+                    <a href="#" class="secondary-btn">Clear</a>
+                    <a href="#" class="primary-btn pull-right">Sign In</a>
+                </div>
+
+                <div class="createaccount">
+                    <h2>
+                        No account ?
+                        <a [routerLink]="['/register']">Create One </a>
+                    </h2>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="terms">
+            By logging in, you agree to Trufl's Terms of Service, Cookie Policy, Privacy Policy and Content Policies
+        </div>
+    </div>
+</div>
