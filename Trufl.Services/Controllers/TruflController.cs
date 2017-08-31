@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using DTO;
-using Trufl.Data_Access_Layer;
+
 using Trufl.Business_Layer;
 using System.Data;
 using System.Web.Http.Results;
@@ -22,7 +22,9 @@ namespace Trufl.Services.Controllers
     public class TruflController : ApiController
     {
         AdminBL _adminBL = new AdminBL();
-        AdminDL _adminDL = new AdminDL();
+        HostessBL _hostessBL = new HostessBL();
+
+
         JsonResponseResult JsonResponseResult = new JsonResponseResult();
          
         
@@ -52,7 +54,7 @@ namespace Trufl.Services.Controllers
             List<UserProfile> res =new List<UserProfile>();
             try
             {               
-                res = _adminBL.RetrieveUser();
+                res = _hostessBL.RetrieveUser();
                 return Json(new JsonResponseResult{ _ErrorCode = "0",_Data = res,_StatusCode = "200",_StatusMessage = "Success" });
             }
             catch (Exception ex)
@@ -65,7 +67,7 @@ namespace Trufl.Services.Controllers
         [HttpPost]
         public object SaveTruflUserInfromation(List<TruflUserInputDTO> truflUserInputDTO)
         {
-            bool res= _adminBL.SaveTruflUserInfromation(truflUserInputDTO);
+            bool res= _hostessBL.SaveTruflUserInfromation(truflUserInputDTO);
             try
             {
                return Json(new JsonResponseResult { _ErrorCode = "0", _Data = res, _StatusCode = "200", _StatusMessage = "Success" });

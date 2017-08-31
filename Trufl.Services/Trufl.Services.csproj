@@ -116,12 +116,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Trufl.Business Layer">
-      <HintPath>..\Trufl.Business Layer\bin\Debug\Trufl.Business Layer.dll</HintPath>
-    </Reference>
-    <Reference Include="Trufl.Data Access Layer">
-      <HintPath>..\Trufl.Data Access Layer\bin\Debug\Trufl.Data Access Layer.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -263,6 +257,12 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Trufl.Business Layer\Trufl.Business Layer.csproj">
+      <Project>{dc1a68d6-e51e-4bef-ba84-7988f064f5b0}</Project>
+      <Name>Trufl.Business Layer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
