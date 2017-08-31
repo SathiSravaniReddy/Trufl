@@ -18,7 +18,7 @@ namespace Trufl.Data_Access_Layer
         #endregion
        
         /// <summary>
-        /// This method 'RetrieveUser' returns User details
+        /// This method 'RetrieveUser ' returns User details
         /// </summary>
         /// <returns>User List</returns>
         public List<UserProfile> RetrieveUser()
