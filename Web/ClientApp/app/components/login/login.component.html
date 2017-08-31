@@ -7,41 +7,76 @@
                 <h1 class="text-center">Resturant App </h1>
             </div>
             <form class="logininner">
-                <div class="logcheck">
-                    <span class="pull-left">
-                        <input type="checkbox" checked> <label> Resturant Admin</label>
-                    </span> <span class="pull-right">
-                        <input type="checkbox"> <label>Trufl Admin</label>
-                    </span>
-                </div>
-                <div class="form-group ffw">
-                    <input type="text" class="form-control" id="username" name="username" value="" required="" placeholder="Enter your username or email" />
-                    <span class="help-block"></span>
-                </div>
-                <div class="form-group">
+                <div id="login">
+                    <div class="logcheck">
+                        <span class="pull-left">
+                            <input type="radio" checked> <label> Resturant Admin</label>
+                        </span> <span class="pull-right">
+                            <input type="radio"> <label>Trufl Admin</label>
+                        </span>
+                    </div>
+                    <div class="form-group ffw">
+                        <input type="text" class="form-control" id="username" name="username" value="" required="" placeholder="Enter your username or email" />
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
 
-                    <input type="password" class="form-control" id="password" name="password" value="" required="" placeholder="Enter Password" />
-                    <span class="help-block"></span>
+                        <input type="password" class="form-control" id="password" name="password" value="" required="" placeholder="Enter password" />
+                        <span class="help-block"></span>
+                    </div>
+
+
+
+                    <div class="fp text-right">
+                        <a href="#">
+                            forgot password ?
+                        </a>
+
+                    </div>
+                    <div class="login-btn">
+                        <a href="#" class="secondary-btn">Clear</a>
+                        <a href="#" class="primary-btn pull-right">Sign In</a>
+                    </div>
+
+                    <div class="createaccount">
+                        <h2>
+                            No account ?
+                            <a [routerLink]="['/register']">Create One </a>
+                        </h2>
+                    </div>
+
                 </div>
 
-                <div class="fp text-right">
-                    <a href="#">
-                        forgot password ?
-                    </a>
+                <div id="ForgotPassword" [ngClass]="{ 'hide': !ngShowVal }">
 
-                </div>
-                <div class="login-btn">
-                    <a href="#" class="secondary-btn">Clear</a>
-                    <a href="#" class="primary-btn pull-right">Sign In</a>
-                </div>
+                    <h3>Forgot Password </h3>
 
-                <div class="createaccount">
-                    <h2>
-                        No account ?
-                        <a [routerLink]="['/register']">Create One </a>
-                    </h2>
-                </div>
+                    <div class="form-group ffw">
 
+                        <input type="text" class="form-control" id="email" name="email" value="" required="" placeholder="Enter email id" />
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="fp text-right">
+                        <a href="#">
+                            login?
+                        </a>
+                    </div>
+                    <div class="login-btn">
+                        <a href="#" class="secondary-btn">Clear</a>
+                        <a href="#" class="primary-btn pull-right">submit</a>
+                    </div>
+                </div>
+                <div id="ResetPassword" [ngClass]="{ 'hide': !ngShowVal }">
+
+                    <h3> Check your email</h3>  <p>
+                        You will receive an email containing instructions on how to create a new password.
+                    </p>
+                    <div class="fp text-right">
+                        <a href="#">
+                            login?
+                        </a>
+                    </div>
+                </div>
             </form>
         </div>
 
