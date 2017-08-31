@@ -23,29 +23,8 @@ namespace Trufl.Services.Controllers
     {
         AdminBL _adminBL = new AdminBL();
         HostessBL _hostessBL = new HostessBL();
-
-
         JsonResponseResult JsonResponseResult = new JsonResponseResult();
-         
-        
-       
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        //[Route("GetTruflUserList")]
-        //[HttpGet]
-        //public List<UserProfile> GetTruflUserList()
-        //{
-        //    return _adminBL.RetrieveUser();
-        //}
-        //[Route("GetTruflUserList")]
-        //[HttpGet]
-        //public  JsonResult GetTruflUserList()
-        //{
-        //    //return _adminBL.RetrieveUser();
-        //    return Json(_adminBL.RetrieveUser(), JsonRequestBehavior.AllowGet);
-        //}
+
 
         [Route("GetTruflUserList")]
         [HttpGet]
@@ -55,11 +34,11 @@ namespace Trufl.Services.Controllers
             try
             {               
                 res = _hostessBL.RetrieveUser();
-                return Json(new JsonResponseResult{ _ErrorCode = "0",_Data = res,_StatusCode = "200",_StatusMessage = "Success" });
+                return Json(new JsonResponseResult{ _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res,_StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
             }
             catch (Exception ex)
             {
-                return Json(new JsonResponseResult { _ErrorCode = "1", _Data = ex.ToString(), _StatusCode = "404", _StatusMessage = "Faild" });
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
  
@@ -70,11 +49,11 @@ namespace Trufl.Services.Controllers
             bool res= _hostessBL.SaveTruflUserInfromation(truflUserInputDTO);
             try
             {
-               return Json(new JsonResponseResult { _ErrorCode = "0", _Data = res, _StatusCode = "200", _StatusMessage = "Success" });
+               return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
             }
             catch (Exception ex)
             {
-                return Json(new JsonResponseResult { _ErrorCode = "1", _Data = ex.ToString(), _StatusCode = "404", _StatusMessage = "Faild" });
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
 
@@ -86,14 +65,27 @@ namespace Trufl.Services.Controllers
             try
             {
                 res = _hostessBL.GetRestaurantSeatedUsers(RestaurantID);
-                return Json(new JsonResponseResult { _ErrorCode = "0", _Data = res, _StatusCode = "200", _StatusMessage = "Success" });
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
             }
             catch (Exception ex)
             {
-                return Json(new JsonResponseResult { _ErrorCode = "1", _Data = ex.ToString(), _StatusCode = "404", _StatusMessage = "Faild" });
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
-
+        [Route("SaveSeatBooking")]
+        [HttpPost]
+        public object SaveSeatBooking(List<RestaurantSeatedUsersInputDTO> restaurantSeatedUsersInputDTO)
+        {
+            bool res = _hostessBL.SaveSeatBooking(restaurantSeatedUsersInputDTO);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
 
 
     }

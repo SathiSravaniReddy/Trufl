@@ -27,5 +27,10 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.GetRestaurantSeatedUsers(RestaurantID);
         }
+
+        public bool SaveSeatBooking(List<RestaurantSeatedUsersInputDTO> restaurantSeatedUsersInputDTO)
+        {
+            return _hostessDL.SaveSeatBooking(restaurantSeatedUsersInputDTO);
+        }
     }
 }

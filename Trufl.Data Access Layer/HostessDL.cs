@@ -199,5 +199,77 @@ namespace Trufl.Data_Access_Layer
             return sendResponse;
         }
 
+        /// <summary>
+        /// This method 'SaveSeatBooking' will save Seat data
+        /// </summary>
+        /// <param name="passParkingLots"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool SaveSeatBooking(List<RestaurantSeatedUsersInputDTO> restaurantSeatedUsersInputDTO)
+        {
+            try
+            {
+                var dtClient = new DataTable();
+
+                dtClient.Columns.Add("BookingID", typeof(Int64));
+                dtClient.Columns.Add("TruflUserID", typeof(Int64));
+                dtClient.Columns.Add("RestaurantID", typeof(Int64));
+                dtClient.Columns.Add("PartySize", typeof(Int64));
+                dtClient.Columns.Add("OfferType", typeof(Int64));
+                dtClient.Columns.Add("OfferAmount", typeof(Int64));
+                dtClient.Columns.Add("BookingStatus", typeof(Int64));
+                dtClient.Columns.Add("Points", typeof(Int64));
+                dtClient.Columns.Add("TruflUserCardDataID", typeof(Int64));
+                dtClient.Columns.Add("TruflTCID", typeof(Int64));
+                dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
+                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
+                dtClient.Columns.Add("Quoted", typeof(Int64));
+                dtClient.Columns.Add("LoggedInUser", typeof(Int64));
+
+                dtClient.Rows.Add(restaurantSeatedUsersInputDTO[0].BookingID,
+                                   restaurantSeatedUsersInputDTO[0].TruflUserID,
+                                   restaurantSeatedUsersInputDTO[0].RestaurantID,
+                                   restaurantSeatedUsersInputDTO[0].PartySize,
+                                   restaurantSeatedUsersInputDTO[0].OfferType,
+                                   restaurantSeatedUsersInputDTO[0].OfferAmount,
+                                   restaurantSeatedUsersInputDTO[0].BookingStatus,
+                                   restaurantSeatedUsersInputDTO[0].Points,
+                                   restaurantSeatedUsersInputDTO[0].TruflUserCardDataID,
+                                   restaurantSeatedUsersInputDTO[0].TruflTCID,
+                                   restaurantSeatedUsersInputDTO[0].ModifiedDate,
+                                   restaurantSeatedUsersInputDTO[0].ModifiedBy,
+                                   restaurantSeatedUsersInputDTO[0].Quoted,
+                                   restaurantSeatedUsersInputDTO[0].LoggedInUser
+                                   );
+
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveTruflUser", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserTY", dtClient);
+                        tvpParam.SqlDbType = SqlDbType.Structured;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@LoggedInUser", restaurantSeatedUsersInputDTO[0].LoggedInUser);
+                        tvparam1.SqlDbType = SqlDbType.Structured;
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
     }
 }
