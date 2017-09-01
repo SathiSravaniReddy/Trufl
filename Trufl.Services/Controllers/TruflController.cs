@@ -27,16 +27,16 @@ namespace Trufl.Services.Controllers
 
 
 
-#region Trufl_Hostess
+        #region Trufl_Hostess
         #region WaitList
         [Route("GetWaitListUsers")]
         [HttpGet]
         public object GetTruflUserList()
         {
-            List<UserProfile> res = new List<UserProfile>();
+            DataTable res = new DataTable();
             try
             {
-                res = _hostessBL.RetrieveUser();
+                res = _hostessBL.GetWaitListUsers();
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
             }
             catch (Exception ex)
@@ -44,6 +44,7 @@ namespace Trufl.Services.Controllers
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
+
 
         [Route("SaveWaitListUserInfromation")]
         [HttpPost]
@@ -98,11 +99,21 @@ namespace Trufl.Services.Controllers
         #region LoginUser
         [Route("GetUserTypes/{UserType}")]
         [HttpGet]
-        public DataTable GetUserTypes(string UserType)
+        public object GetUserTypes(string UserType)
         {
-            return _hostessBL.GetUserTypes(UserType);
+            DataTable res = new DataTable();
+            try
+            {
+                res = _hostessBL.GetUserTypes(UserType);
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+            
         }
-
+        
         [Route("SaveSignUpUserInfo")]
         [HttpPost]
         public bool SaveSignUpUserInfo(List<TruflUserInputDTO> registerUserInfo)
