@@ -26,30 +26,18 @@ namespace Trufl.Services.Controllers
         JsonResponseResult JsonResponseResult = new JsonResponseResult();
 
 
-        [Route("GetTruflUserList")]
+
+#region Trufl_Hostess
+        #region WaitList
+        [Route("GetWaitListUsers")]
         [HttpGet]
         public object GetTruflUserList()
         {
-            List<UserProfile> res =new List<UserProfile>();
+            List<UserProfile> res = new List<UserProfile>();
             try
-            {               
+            {
                 res = _hostessBL.RetrieveUser();
-                return Json(new JsonResponseResult{ _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res,_StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
- 
-        [Route("SaveTruflUserInfromation")]
-        [HttpPost]
-        public object SaveTruflUserInfromation(List<TruflUserInputDTO> truflUserInputDTO)
-        {
-            bool res= _hostessBL.SaveTruflUserInfromation(truflUserInputDTO);
-            try
-            {
-               return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
             }
             catch (Exception ex)
             {
@@ -57,7 +45,25 @@ namespace Trufl.Services.Controllers
             }
         }
 
-        [Route("GetRestaurantSeatedUsers")]
+        [Route("SaveWaitListUserInfromation")]
+        [HttpPost]
+        public object SaveTruflUserInfromation(List<TruflUserInputDTO> truflUserInputDTO)
+        {
+            bool res = _hostessBL.SaveTruflUserInfromation(truflUserInputDTO);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
+        #endregion
+
+        #region Seated User
+        [Route("GetSeatedUsersList/{RestaurantID}")]
         [HttpGet]
         public object GetRestaurantSeatedUsers(int RestaurantID)
         {
@@ -72,7 +78,8 @@ namespace Trufl.Services.Controllers
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
-        [Route("SaveSeatBooking")]
+
+        [Route("SaveSeatBookingUsersList")]
         [HttpPost]
         public object SaveSeatBooking(List<RestaurantSeatedUsersInputDTO> restaurantSeatedUsersInputDTO)
         {
@@ -86,7 +93,28 @@ namespace Trufl.Services.Controllers
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
+        #endregion
 
+        #region LoginUser
+        [Route("GetUserTypes/{UserType}")]
+        [HttpGet]
+        public DataTable GetUserTypes(string UserType)
+        {
+            return _hostessBL.GetUserTypes(UserType);
+        }
 
+        [Route("SaveSignUpUserInfo")]
+        [HttpPost]
+        public bool SaveSignUpUserInfo(List<TruflUserInputDTO> registerUserInfo)
+        {
+            return _hostessBL.SaveSignUpUserInfo(registerUserInfo);
+        }
+
+        #endregion
+ #endregion
+
+        #region Trufl_Admin
+
+        #endregion
     }
 }
