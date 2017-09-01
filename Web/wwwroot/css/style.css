@@ -196,6 +196,17 @@ ul {
         float: left;
     }
 
+    .btn-main button {
+        background: #0078d7;
+        color: #fff;
+        text-transform: uppercase;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 15px;
+        float: left;
+        border:0px;
+    }
+
 .btn-disable {
     background: #95989a !important;
 }
@@ -697,8 +708,7 @@ button.close {
 }
 
 .dashmain {
-    padding: 0;
-    margin: 0;
+      margin: 0;
     list-style: none;
     display: -webkit-box;
     display: -moz-box;
@@ -916,7 +926,7 @@ button.close {
 .logcheck {
     float: left;
     width: 100%;
-    margin: 0 0 50px 0;
+    margin: 0 0 20px 0;
 }
 
     .logcheck span {
