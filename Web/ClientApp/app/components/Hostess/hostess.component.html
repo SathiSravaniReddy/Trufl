@@ -21,14 +21,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let item of truflUserList">
                             <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
                             <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td>Jay Chanuu</td>
-                            <td>2</td>
-                            <td>45 min</td>
-                            <td>30 min</td>
-                            <td>$400</td>
+                            <td>{{item.UserName}}</td>
+                            <td>{{item.PartySize}}</td>
+                            <td>{{item.Quoted}}</td>
+                            <td>{{item.Waited}}</td>
+                            <td>${{item.OfferAmount}}</td>
                             <td width="350">
                                 <div class="wait-btn">
                                     <a id="rowclick" href="#">View </a>
@@ -38,56 +38,6 @@
                                     <a href="#">Remove</a>
                                 </div>
                             </td>
-                        </tr>
-                        <tr>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td>Jay Chanuu</td>
-                            <td>2</td>
-                            <td>45 min</td>
-                            <td>30 min</td>
-                            <td>$400</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td>Jay Chanuu</td>
-                            <td>2</td>
-                            <td>45 min</td>
-                            <td>30 min</td>
-                            <td>$400</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td>Jay Chanuu</td>
-                            <td>2</td>
-                            <td>45 min</td>
-                            <td>30 min</td>
-                            <td>$400</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td>Jay Chanuu</td>
-                            <td>2</td>
-                            <td>45 min</td>
-                            <td>30 min</td>
-                            <td>$400</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td>Jay Chanuu</td>
-                            <td>2</td>
-                            <td>45 min</td>
-                            <td>30 min</td>
-                            <td>$400</td>
-                            <td></td>
                         </tr>
 
                     </tbody>
