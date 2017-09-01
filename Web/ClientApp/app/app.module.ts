@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { SeatedComponent } from './components/seated/seated.component';
 import { SeatedService } from './components/seated/seated.service';
 import { HeaderComponent } from './components/shared/Header/header.Component';
+import { HostessService } from './components/Hostess/hostess.service';
 
 
 
@@ -31,7 +32,8 @@ import { HeaderComponent } from './components/shared/Header/header.Component';
         HeaderComponent
     ],
     providers: [
-        SeatedService
+        SeatedService,
+        HostessService
     ],
 
     imports: [
