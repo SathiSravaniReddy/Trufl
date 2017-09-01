@@ -17,6 +17,8 @@ namespace Trufl.Data_Access_Layer
         SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["TraflConnection"]);
         #endregion
 
+#region Trufl_Hostess
+        #region WaitList
         /// <summary>
         /// This method 'RetrieveUser ' returns User details
         /// </summary>
@@ -77,9 +79,7 @@ namespace Trufl.Data_Access_Layer
             }
             return sourceapilist;
         }
-
-
-
+        
         /// <summary>
         /// This method 'SaveParkingLots' will save Location data
         /// </summary>
@@ -163,13 +163,13 @@ namespace Trufl.Data_Access_Layer
                 return false;
             }
         }
+        #endregion
 
-
+        #region Seated User
         /// <summary>
         /// This method 'RetrieveUser ' returns User details
         /// </summary>
         /// <returns>User List</returns>
-        
         public DataTable GetRestaurantSeatedUsers(int RestaurantID)
         {
             DataTable sendResponse = new DataTable();
@@ -270,6 +270,136 @@ namespace Trufl.Data_Access_Layer
                 return false;
             }
         }
+        #endregion
+
+        #region LoginUser
+        /// <summary>
+        /// This method 'GetUserTypes ' returns User type details
+        /// </summary>
+        /// <returns>user type list</returns>
+        public DataTable GetUserTypes(string UserType)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("spGetUserTypes", sqlcon))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam5 = cmd.Parameters.AddWithValue("@TruflUserType", UserType);
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+                // }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+        /// <summary>
+        /// This method 'Save Register User' will save Register user data
+        /// </summary>
+        /// <param name="SaveSignUpUserInfo"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool SaveSignUpUserInfo(List<TruflUserInputDTO> registerUserInfo)
+        {
+            try
+            {
+                var dtClient = new DataTable();
+
+                dtClient.Columns.Add("TruflUserID", typeof(Int64));
+                dtClient.Columns.Add("RestaurantID", typeof(Int64));
+                dtClient.Columns.Add("FirstName", typeof(string));
+                dtClient.Columns.Add("MiddleName", typeof(string));
+                dtClient.Columns.Add("LastName", typeof(string));
+                dtClient.Columns.Add("Email", typeof(string));
+                dtClient.Columns.Add("pic", typeof(string));
+                dtClient.Columns.Add("Contact1", typeof(string));
+                dtClient.Columns.Add("Password", typeof(string));
+                dtClient.Columns.Add("Salt", typeof(string));
+                dtClient.Columns.Add("DOB", typeof(string));
+                dtClient.Columns.Add("ActiveInd", typeof(Int64));
+                dtClient.Columns.Add("RestaurantEmpInd", typeof(Int64));
+                dtClient.Columns.Add("TruflMemberType", typeof(Int64));
+                dtClient.Columns.Add("TruflRelationship", typeof(Int64));
+                dtClient.Columns.Add("TruflshareCode", typeof(string));
+                dtClient.Columns.Add("ReferTruflUserID", typeof(string));
+                dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
+                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
+                dtClient.Columns.Add("Waited", typeof(DateTime));
+               
+
+
+        dtClient.Rows.Add(         registerUserInfo[0].TruflUserID,
+                                   registerUserInfo[0].RestaurantID,
+                                   registerUserInfo[0].FirstName,
+                                   registerUserInfo[0].MiddleName,
+                                   registerUserInfo[0].LastName,
+                                   registerUserInfo[0].Email,
+                                   registerUserInfo[0].pic,
+                                   registerUserInfo[0].Contact1,
+                                   registerUserInfo[0].Password,
+                                   registerUserInfo[0].Salt,
+                                   registerUserInfo[0].DOB,
+                                   registerUserInfo[0].ActiveInd,
+                                   registerUserInfo[0].RestaurantEmpInd,
+                                   registerUserInfo[0].TruflMemberType,
+                                   registerUserInfo[0].TruflRelationship,
+                                   registerUserInfo[0].TruflshareCode,
+                                   registerUserInfo[0].ReferTruflUserID,
+                                   registerUserInfo[0].ModifiedDate,
+                                   registerUserInfo[0].ModifiedBy,
+                                   registerUserInfo[0].Waited
+                                  
+                                   );
+
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveTruflUser", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserTY", dtClient);
+                        tvpParam.SqlDbType = SqlDbType.Structured;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@LoggedInUser", registerUserInfo[0].LoggedInUser);
+                        tvparam1.SqlDbType = SqlDbType.Structured;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@LoggedInUserType", registerUserInfo[0].LoggedInUserType);
+                        tvparam2.SqlDbType = SqlDbType.Structured;
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+        #endregion
+
+        #region Trufl_Admin
+
+        #endregion
+
+#endregion
 
     }
 }
