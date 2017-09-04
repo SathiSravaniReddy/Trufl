@@ -8,30 +8,75 @@ import { SeatedService } from './seated.service'
 })
 export class SeatedComponent implements OnInit {
 
-    private seatedinfo: any;
-    isenabled = false;
-
-   // private isValid = true;
+   // private seatedinfo: any;
+    seatedinfo:any=[];
+    isenabled = false;   
+    private seatedinformation: any;
+    items: Array<any> = [];  
     constructor(private seatedService: SeatedService) {
-        //called first time before the ngOnInit()
+
     }
 
     ngOnInit() {
-      
         console.log("loadingcomponent");
-        //called after the constructor and called  after the first ngOnChanges() 
-       this.seatedService.getSeatedDetails().subscribe((res: any) => {
-            this.seatedinfo = res.data;           
-            console.log(this.seatedinfo);
-          
+        this.seatedService.getSeatedDetails().subscribe((res: any) => {
+            this.seatedinfo = res._Data;
+           // this.seatedinfo = "";
+            console.log(this.seatedinfo );
+
         }
-        ); 
+        );
 
     }
 
-    onCheckboxChange(index, event) {
+    public toggles = [
+        { value: 0 },
+        { value: 1 }
+    ];
 
+    change() {
+
+        console.log("coming");
+       // console.log(index);
         this.isenabled = true;
+
+     /*   for (var i = 0; i < this.items.length; i++) {
+            if (event.TruflUserID == this.items[i].TruflUserID) {
+                this.items.splice(i, 1);
+            }
+        }
+        this.items.push(event); */
+
     }
+    get(event) {
+        this.isenabled = true;
+        for (var i = 0; i < this.items.length; i++) {
+            if (event.TruflUserID == this.items[i].TruflUserID) {
+                this.items.splice(i, 1);
+            }
+        }
+        this.items.push(event);
+        console.log(event);
+
+    }
+    /*[disabled]="!isenabled"*/
+
+    postSeatedDetails() {
+        console.log(this.items);
+        this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {
+            console.log(res);
+           // this.seatedinfo = res.data;
+          //  console.log(this.seatedinfo);
+
+        }) 
+
+    }
+
+
+    public hasData(): boolean {
+        return (this.seatedinfo != null && this.seatedinfo.length > 0);
+    }
+
+
 
 }
