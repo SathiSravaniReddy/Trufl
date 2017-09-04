@@ -20,15 +20,15 @@
     <div class="col-md-12 leftnav no-pad">
         <div>
             <ul>
-                <li *ngFor="let header of header1 let i=index" (click)="header1TabFn(i)" [ngClass]="{selected:header.active}">
-                    <a *ngIf="this.userType=='TR'" id="{{i}}" [routerLink]="[header.route]">{{header.name}}</a>
+                <li *ngFor="let header of header1 let i=index">
+                    <a *ngIf="this.userType=='TR'"[routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
                 </li>
             </ul>
         </div>
         <div>
             <ul>
-                <li *ngFor="let header of header2 let i=index" (click)="header2TabFn(i)" [ngClass]="{selected:header.active}">
-                    <a *ngIf="this.userType=='TA'" id="{{i}}" [routerLink]="[header.route]">{{header.name}}</a>
+                <li *ngFor="let header of header2 let i=index" >
+                    <a *ngIf="this.userType=='TA'" [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
                 </li>
 
             </ul>

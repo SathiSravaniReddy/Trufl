@@ -1,7 +1,7 @@
 ﻿
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { LoginService } from '../login.service';
-
+import { Router, RouterLinkActive  } from '@angular/router';
 
 @Component({
     selector: 'shared-header',
@@ -36,22 +36,10 @@ export class HeaderComponent {
             "route": '/restaurant'
         }];
     
-    constructor(private loginService: LoginService) {
+    constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType(); 
         console.log(this.userType, "headerUserType");
-        //this.header1TabFn(0);
-        //this.header2TabFn(0);
     }
-
-    public header1TabFn(index: any) {
-        this.header1.map(function (obj: any, innerIndex: any) {
-            obj.active=(innerIndex === index) ? true : false;
-        });
-    }
-    public header2TabFn(index: any) {
-        this.header2.map(function (obj: any, innerIndex: any) {
-            obj.active = (innerIndex === index) ? true : false;
-        });
-    }
+ 
    
 }
