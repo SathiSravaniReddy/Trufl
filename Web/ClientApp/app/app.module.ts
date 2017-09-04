@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
 import { AppComponent } from './components/app/app.component';
@@ -14,6 +15,7 @@ import { SeatedComponent } from './components/seated/seated.component';
 import { SeatedService } from './components/seated/seated.service';
 import { HeaderComponent } from './components/shared/Header/header.Component';
 import { HostessService } from './components/Hostess/hostess.service';
+import { LoginService } from './components/shared/login.service';
 
 
 
@@ -33,21 +35,23 @@ import { HostessService } from './components/Hostess/hostess.service';
     ],
     providers: [
         SeatedService,
-        HostessService
+        HostessService,
+        LoginService
     ],
 
     imports: [
         UniversalModule, // Must be firsst import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         FormsModule,
+        CommonModule,
         RouterModule.forRoot([
-            { path: '', component: HostessComponent },    
+            { path: '', component: LoginComponent },    
             { path: 'getseatedpage', component: SeatedComponent },
             { path: 'home', component: HostessComponent },
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'settings', component: SettingsComponent },
             { path: 'dashboard', component: DashboardComponent },
-            { path: 'resturant', component: ResturantComponent },
+            { path: 'restaurant', component: ResturantComponent },
             { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
             { path: '**', redirectTo: 'home' },
         ])

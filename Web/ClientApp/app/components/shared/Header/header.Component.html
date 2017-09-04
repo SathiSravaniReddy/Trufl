@@ -1,6 +1,9 @@
 ﻿<div class="header">
     <div class="col-md-5 headerleft">
-        <h1><a href="#">Bottique Louie</a></h1>
+        <h1>
+            <a href="#" *ngIf="this.userType=='TR'">Bottique Louie</a>
+            <a href="#" *ngIf="this.userType=='TA'">Trufl Admin</a>
+        </h1>
     </div>
     <div class="headerright">
         <a [routerLink]="['/settings']"><img alt="" src="../../../../../wwwroot/images/setting.png" /> </a>
@@ -15,20 +18,21 @@
 <div class="col-md-12 innermain">
 
     <div class="col-md-12 leftnav no-pad">
-        <ul>
-            <li>
-                <a [routerLink]="['/home']" class="selected">Waitlist </a>
-            </li>
-            <li>
-                <a [routerLink]="['/getseatedpage']">Seated </a>
-            </li>
-            <li>
-                <a [routerLink]="['/dashboard']">Dashboard </a>
-            </li>
-            <li>
-                <a [routerLink]="['/resturant']">Resturant </a>
-            </li>
-        </ul>
+        <div>
+            <ul>
+                <li *ngFor="let header of header1 let i=index" (click)="header1TabFn(i)" [ngClass]="{selected:header.active}">
+                    <a *ngIf="this.userType=='TR'" id="{{i}}" [routerLink]="[header.route]">{{header.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li *ngFor="let header of header2 let i=index" (click)="header2TabFn(i)" [ngClass]="{selected:header.active}">
+                    <a *ngIf="this.userType=='TA'" id="{{i}}" [routerLink]="[header.route]">{{header.name}}</a>
+                </li>
+
+            </ul>
+        </div>
     </div>
 
 </div>
