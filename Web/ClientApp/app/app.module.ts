@@ -16,7 +16,7 @@ import { SeatedService } from './components/seated/seated.service';
 import { HeaderComponent } from './components/shared/Header/header.Component';
 import { HostessService } from './components/Hostess/hostess.service';
 import { LoginService } from './components/shared/login.service';
-
+import { TimerComponent } from './components/Hostess/timer.component';
 
 
 @NgModule({
@@ -31,7 +31,8 @@ import { LoginService } from './components/shared/login.service';
         DashboardComponent,
         ResturantComponent,
         EmployeeConfigurationComponent,
-        HeaderComponent
+        HeaderComponent,
+        TimerComponent
     ],
     providers: [
         SeatedService,
