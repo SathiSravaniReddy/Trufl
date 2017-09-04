@@ -63,6 +63,7 @@ namespace Trufl.Data_Access_Layer
                         userprofile.ReferTruflUserID = Convert.ToInt32(ds.Tables[0].Rows[i]["ReferTruflUserID"].ToString());
                         userprofile.ModifiedDate = ds.Tables[0].Rows[i]["ModifiedDate"].ToString();
                         userprofile.ModifiedBy = Convert.ToInt32(ds.Tables[0].Rows[i]["ModifiedBy"].ToString());
+                        
 
                         sourceapilist.Add(userprofile);
                     }
@@ -79,7 +80,35 @@ namespace Trufl.Data_Access_Layer
             }
             return sourceapilist;
         }
-        
+
+        public DataTable GetWaitListUsers()
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("spGetTruflUser", sqlcon))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                       
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+                // }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
         /// <summary>
         /// This method 'SaveParkingLots' will save Location data
         /// </summary>
