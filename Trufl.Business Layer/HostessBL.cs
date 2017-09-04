@@ -20,6 +20,10 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.RetrieveUser();
         }
+        public DataTable GetWaitListUsers()
+        {
+            return _hostessDL.GetWaitListUsers();
+        }
 
         public bool SaveTruflUserInfromation(List<TruflUserInputDTO> truflUserInputDTO)
         {

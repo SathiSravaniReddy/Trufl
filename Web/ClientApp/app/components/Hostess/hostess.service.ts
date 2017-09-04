@@ -1,5 +1,5 @@
 ﻿
-import { Http, Headers } from '@angular/http';
+import { Http, Headers,RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 
@@ -13,11 +13,9 @@ export class HostessService {
     }
     public getTruflUserList() {
         console.log("Am in hostess");
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8679/api/Trufl/GetTruflUserList', {
-            headers: headers
-        }).map(res => res.json() || {})
+   
+        return this.http.get('http://localhost:8679/api/Trufl/GetWaitListUsers')
+.map(res => res.json() || {})
             .catch(this.handleError);
     }
     private handleError(error: any) {
