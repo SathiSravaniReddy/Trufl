@@ -1,67 +1,73 @@
 ﻿<shared-header></shared-header>
-   
 
 
 
 
-  <div class="col-md-12 no-pad">
-      
-        <div class="col-md-10 no-pad">
-          
-          
-              
-                <div class="col-md-12 tablemain">
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Trufl</th>
-                                <th>B.L</th>
-                                <th>Name</th>
-                                <th>Size</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                                <th>Table no</th>
-                                <th>Seated</th>
-                                <th>App Served</th>
-                                <th>Menu Served</th>
-                                <th>Desert Served</th>
-                                <th>Check Received</th>
-                                <th>Buzzing</th>
-                                <th>Empty</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+<div class="col-md-12 no-pad">
 
-                          <tr *ngFor="let seatsinfo of seatedinfo; let i = index">
-                               <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                               <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                              <td>{{seatsinfo.name}}</td>
-                               <td>{{seatsinfo.size}}</td>
-                               <td>{{seatsinfo.amount}}</td>
-                               <td>{{seatsinfo.status}}</td>
-                               <td>{{seatsinfo.tableno}}</td>
-                               <td><input type="checkbox" [(ngModel)]="person.is_adult" name="isAdult"  (change)="onCheckboxChange(i, $event)"></td>
-                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
-                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
-                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
-                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
-                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
-                               <td><input type="checkbox" [(ngModel)]="person.is_adult"  (change)="onCheckboxChange(i, $event)"></td>
-                             
+    <div class="col-md-10 no-pad">
 
-                           </tr>
+        <div class="col-md-12 tablemain">   
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Trufl</th>
+                        <th>B.L</th>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Table no</th>
+                        <th>Seated</th>
+                        <th>App Served</th>
+                        <th>Menu Served</th>
+                        <th>Desert Served</th>
+                        <th>Check Received</th>
+                        <th>Buzzing</th>
+                        <th>Empty</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                      
-                    </table>
-                 
-                    <div class="btn-main">
-                        <button [disabled]="!isenabled">Submit</button>
-                    </div>
+                    <tr *ngFor="let seatsinfo of seatedinfo; let i = index">
+                        <td>{{seatsinfo.TruflUserID}}  </td>
+                        <td>{{seatsinfo.RestaurantID}}  </td>
+                        <td>{{seatsinfo.TUserName}}</td>
+                        <td>{{seatsinfo.PartySize}}</td>
+                        <td>{{seatsinfo.OfferAmount}}</td>
+                        <td>{{seatsinfo.Status}}</td>
+                        <td>{{seatsinfo.TableNumber}}</td>
+                        <td><input type="checkbox"   [checked]="seatsinfo.Seated === toggles[1].value"    name="seated" (change)="$event.target.checked?(seatsinfo.Seated = toggles[1].value) : (seatsinfo.Seated = toggles[0].value)"  (click)="get(seatsinfo)"  ></td>
+                        <td><input type="checkbox"   [checked]="seatsinfo.AppServed === toggles[1].value"    name="appserved" (change)="$event.target.checked?(seatsinfo.AppServed = toggles[1].value) : (seatsinfo.AppServed= toggles[0].value)" (click)="get(seatsinfo)"></td>
+                        <td><input type="checkbox"   [checked]="seatsinfo.MenuServed === toggles[1].value"    name="menuserved" (change)="$event.target.checked?(seatsinfo.MenuServed = toggles[1].value) : (seatsinfo.MenuServed = toggles[0].value)" (click)="get(seatsinfo)"></td>
+                        <td><input type="checkbox"   [checked]="seatsinfo.DesertServed === toggles[1].value"   name="dessertserved"  (change)="$event.target.checked?(seatsinfo.DesertServed = toggles[1].value) : (seatsinfo.DesertServed = toggles[0].value)" (click)="get(seatsinfo)"></td>
+                        <td><input type="checkbox"   [checked]="seatsinfo.CheckReceived === toggles[1].value"   name="checkreceived" (change)="$event.target.checked?(seatsinfo.CheckReceived = toggles[1].value) : (seatsinfo.CheckReceived = toggles[0].value)" (click)="get(seatsinfo)"></td>
+                        <td><input type="checkbox"   [checked]="seatsinfo.Boozing === toggles[1].value"   name="buzzing" (change)="$event.target.checked?(seatsinfo.Boozing = toggles[1].value) : (seatsinfo.Boozing = toggles[0].value)"></td>
+                        <td><input type="checkbox"   [checked]="seatsinfo.Empty === toggles[1].value"   name="empty" (change)="$event.target.checked?(seatsinfo.Empty = toggles[1].value) : (seatsinfo.Empty = toggles[0].value)"></td>
+                  
 
+
+                    </tr>
+
+                    
+
+
+            </table>
+
+           
+            <div *ngIf="!hasData()">No Data Found</div>
+
+
+            <div class="btn-main">
+                <button  [disabled]="!isenabled"   [ngClass] = "{'my-color': !isenabled}"  (click)="postSeatedDetails()">Submit</button>
             </div>
 
-       
+        </div>
+
+
+
     </div>
-  
+
 </div>
