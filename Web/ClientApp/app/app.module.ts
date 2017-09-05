@@ -19,6 +19,9 @@ import { LoginService } from './components/shared/login.service';
 import { TimerComponent } from './components/Hostess/timer.component';
 
 
+import { SettingsService } from './components/settings/settings.service';
+
+
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [
@@ -32,12 +35,14 @@ import { TimerComponent } from './components/Hostess/timer.component';
         ResturantComponent,
         EmployeeConfigurationComponent,
         HeaderComponent,
-        TimerComponent
+        TimerComponent,
+        
     ],
     providers: [
         SeatedService,
         HostessService,
-        LoginService
+        LoginService,
+        SettingsService
     ],
 
     imports: [
