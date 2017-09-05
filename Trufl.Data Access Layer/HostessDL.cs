@@ -273,13 +273,13 @@ namespace Trufl.Data_Access_Layer
 
                         int status = cmd.ExecuteNonQuery();
 
-                        if (status == 0 || status == -1)
+                        if (status == -1)
                         {
-                            return false;
+                            return true;
                         }
                         else
                         {
-                            return true;
+                            return false;
                         }
                     }
                 }
