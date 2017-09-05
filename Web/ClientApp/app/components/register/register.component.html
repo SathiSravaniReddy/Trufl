@@ -6,30 +6,44 @@
 
                 <h1 class="text-center">Resturant App </h1>
             </div>
-            <form class="logininner">
+            <form class="logininner" (ngSubmit)="onSubmit()" #registerForm="ngForm">
                 <div class="logcheck">
                     <span class="pull-left">
-                        <input type="radio" checked> <label> Resturant Admin</label>
+                        <input type="radio" checked name="userType" value="TR" [(ngModel)]="restaurantAdmin"> <label> Resturant Admin</label>
                     </span> <span class="pull-right">
-                        <input type="radio"> <label>Trufl Admin</label>
+                        <input type="radio" name="userType" value="TA" [(ngModel)]="truflAdmin"> <label>Trufl Admin</label>
                     </span>
                 </div>
                 <div class="form-group ffw">
-                    <input type="text" class="form-control" id="username" name="username" value="" required="" placeholder="Enter your full name" />
-                    <span class="help-block"></span>
-                </div>
-                <div class="form-group">
-
-                    <input type="password" class="form-control" id="password" name="password" value="" required="" placeholder="Enter your email address" />
+                    <input type="text" class="form-control" id="fullname"  required pattern="[a-zA-Z][a-zA-Z ]+" name="fullname" [(ngModel)]="person.fullname"  placeholder="Enter your full name" #name="ngModel"/>
+                    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                        <div [hidden]="!name.hasError('required')">Name is required</div>
+                        <div [hidden]="!name.hasError('pattern')">Only alphabets allowed</div>
+                    </div>
                     <span class="help-block"></span>
                 </div>
                 <div class="form-group ffw">
-                    <input type="text" class="form-control" id="username" name="username" value="" required="" placeholder="Enter password" />
+                    <input type="text" class="form-control" id="username" name="username" [(ngModel)]="person.username" required placeholder="Enter your email address" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  #email="ngModel"/>
+                    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                        <div [hidden]="!email.hasError('required')">Email is required</div>
+                        <div [hidden]="!email.hasError('pattern')">Email format should be <small><b>joe@abc.com</b></small></div>
+                    </div>
                     <span class="help-block"></span>
                 </div>
+                
                 <div class="form-group">
+                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="person.password" required placeholder="Enter password" #password="ngModel"/>
+                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                          Password is required
+                    </div>
+                    <span class="help-block"></span>
+               </div>
 
-                    <input type="password" class="form-control" id="password" name="password" value="" required="" placeholder="Re-enter password" />
+                <div class="form-group">
+                    <input type="password" class="form-control" id="confirmPassword" validateEqual="password" name="confirmPassword" [(ngModel)]="person.confirmPassword" required placeholder="Re-enter password" #confirmPassword="ngModel" />
+                    <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-danger">
+                        Passwords did not match
+                    </div>
                     <span class="help-block"></span>
                 </div>
                 <div class="logcheck no-mar">
@@ -38,8 +52,8 @@
                     </span>
                 </div>
                 <div class="login-btn">
-                    <a href="#" class="secondary-btn">Clear</a>
-                    <button class="primary-btn pull-right" (click)="signUp()">Register</button>
+                    <button type="reset" class="secondary-btn">Clear</button>
+                    <button type="submit" class="primary-btn pull-right" [disabled]="!registerForm.form.valid" (click)="signUp()">Register</button>
                 </div>
 
                 <div class="createaccount">

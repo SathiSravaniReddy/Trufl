@@ -47,6 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestaurantSeatedUsers.cs" />
     <Compile Include="RestaurantSeatedUsersInputDTO.cs" />
+    <Compile Include="SignDTO.cs" />
     <Compile Include="TruflConstants.cs" />
     <Compile Include="TruflUserInputDTO.cs" />
     <Compile Include="UserProfile.cs" />

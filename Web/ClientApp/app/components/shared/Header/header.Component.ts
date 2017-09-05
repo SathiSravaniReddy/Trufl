@@ -22,7 +22,7 @@ export class HeaderComponent {
         {
             "name": "Seated",
             "active": false,
-            "route": '/getseatedpage'
+            "route": '/seated'
         }];
     private header2 = [
         {

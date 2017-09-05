@@ -2,18 +2,18 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../shared/login.service';
-import { Observable } from 'rxjs';
-import { Subject } from 'rxjs/Subject';
+import { User } from './user';
 
 @Component({
     selector: 'login',
     templateUrl: './login.component.html'
 })
 export class LoginComponent {
-public logininfo:any;
-public restaurantAdmin;
-public truflAdmin;
-public userType;
+    private logininfo:any;
+    private restaurantAdmin;
+    private truflAdmin;
+    private userType;
+    private user = new User("", "");
 
 constructor(private loginService:LoginService, private router:Router ){
     
@@ -39,18 +39,17 @@ constructor(private loginService:LoginService, private router:Router ){
      this.loginService.setUserType(this.userType); 
      this.loginService.getLoginDetails(this.userType).subscribe((data: any) => {
          console.log(data, "response");
-         data.map((item: any) => {
+         data._Data.map((item: any) => {
              this.logininfo = item;
              console.log(this.logininfo, "Login Info");
          });
 
      }
-     ); 
-     
-       
-    
-        
+     );
+ }
+
+    onSubmit() {
+
+        this.loginService.loginAuthentication(this.user);
     }
-
-
 }
