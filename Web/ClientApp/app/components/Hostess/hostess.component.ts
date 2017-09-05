@@ -11,6 +11,8 @@ export class HostessComponent {
     private truflUserList;
     private priceOfTable;
     private sizeOfTable;
+    private count = 0;
+    showSeatedButton: boolean = false;
     properties: boolean = false;
     hideSeatedButton: boolean = false;
     showTurnSeats:boolean=false;
@@ -37,8 +39,17 @@ export class HostessComponent {
     }
 
     watlistUserDetails() {
+        if (this.count == 0) {
             this.showTurnSeats = true;
             this.hideSeatedButton = true;
+        }
+        if (this.showSeatedButton == true) {
+            this.hideSeatedButton = false;
+        } else {
+            this.showTurnSeats = true;
+            this.hideSeatedButton = true;
+        }
+            
     }
 
     trunGetSeatedNow(){
@@ -47,15 +58,25 @@ export class HostessComponent {
     }
 
     OnTableSizeSelection(item) {
-        this.properties = true;
-        this.ActiveSeats = true;
-        this.priceOfTable = item.price;
-        this.sizeOfTable = item.size;
+        if (this.showSeatedButton == true) {
+            this.ActiveSeats = false;
+        }
+        else {
+            this.properties = true;
+            this.ActiveSeats = true;
+            this.priceOfTable = item.price;
+            this.sizeOfTable = item.size;
+            this.hideSeatedButton = false;
+        }
     }
 
     accept(item) {
-        this.cancelSeats();
-        this.properties = true;
+        this.hideSeatedButton = false;
+        this.ActiveSeats = false;
+        this.showSeatedButton = true;
+        this.count++;
+        alert("Accepted");
+        event.stopPropagation();
     }
 
     cancelSeats() {

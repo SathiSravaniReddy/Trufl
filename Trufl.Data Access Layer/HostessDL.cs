@@ -207,7 +207,7 @@ namespace Trufl.Data_Access_Layer
                 string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
                 using (SqlConnection sqlcon = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantUsers", sqlcon))
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantUserAmenities", sqlcon))
                     {
                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
                         cmd.CommandType = CommandType.StoredProcedure;
