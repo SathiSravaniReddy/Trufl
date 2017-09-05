@@ -1,105 +1,77 @@
 ﻿<shared-header></shared-header>
 <div class="col-md-9">
-  
-    
 
-       
-           
-            <div class="col-md-12 tablemain">
+    <div class="col-md-12 tablemain">
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Trufl</th>
-                            <th>B.L</th>
-                            <th>Name</th>
-                            <th>Size</th>
-                            <th>Quoted</th>
-                            <th>Waited</th>
-                            <th>Offer</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of truflUserList">
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                            <td>{{item.UserName}}</td>
-                            <td>{{item.PartySize}}</td>
-                            <td>{{item.Quoted}}</td>
-                            <td>{{item.Waited}}</td>
-                            <td>${{item.OfferAmount}}</td>
-                            <td width="350">
-                                <div class="wait-btn">
-                                    <a id="rowclick" href="#">View </a>
-                                    <a class="success" href="#">Accepted</a>
-                                    <a class="success" href="#">Notified</a>
-                                    <a data-toggle="modal" data-target="#SelectSeat" class="selected" href="#">Seated</a>
-                                    <a href="#">Remove</a>
-                                </div>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-
-                <div class="btn-main">
-                    <a href="#">Add </a>
-
-                </div>
-
-
-            </div>
-            <div class="col-md-12 seatmain">
-                <div class="col-md-12">
-                    <div class="btn-main"> <a class="btn-disable" href="#">turn get seated now </a> </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-9 tableselect">
-                            <label>Table Size : </label>
-
-                            <ul>
-                                <li> <a href="#">1 </a> </li>
-                                <li> <a href="#">2 </a> </li>
-                                <li> <a href="#">3 </a> </li>
-                                <li> <a href="#">4 </a> </li>
-                                <li> <a class="selected" href="#">5 </a> </li>
-                                <li> <a href="#">6 </a> </li>
-                                <li> <a href="#">7 </a> </li>
-                                <li> <a href="#">8 </a> </li>
-                                <li> <a href="#">9 </a> </li>
-                                <li> <a href="#">10 </a> </li>
-                            </ul>
-
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Trufl</th>
+                    <th>B.L</th>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>Quoted</th>
+                    <th>Waited</th>
+                    <th>Offer</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of truflUserList" (click)="watlistUserDetails()">
+                    <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
+                    <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
+                    <td>{{item.UserName}}</td>
+                    <td>{{item.PartySize}}</td>
+                    <td>{{item.Quoted}}</td>
+                    <td>{{item.Waited}}</td>
+                    <td>${{item.OfferAmount}}</td>
+                    <td width="350">
+                        <div class="wait-btn" *ngIf="properties">
+                            <a id="rowclick" href="#">View </a>
+                            <a class="success" (click)="accept(item)">Accepted</a>
+                            <a data-toggle="modal" data-target="#SelectSeat" class="selected" href="#">Seated</a>
+                            <a href="#">Remove</a>
                         </div>
-                        <div class="col-md-3 price">
-                            <label>Price </label>
-                            <a href="#">-</a> <input value="$150" type="text" /> <a href="#">+</a>
+                    </td>
+                </tr>
 
-                        </div>
-                    </div>
+            </tbody>
+        </table>
 
-                    <div class="btn-main">
-                        <a href="#">submit </a>
+        <!--<div class="btn-main">
+            <a href="#">Add </a>
 
-                    </div>
+        </div>-->
 
+
+    </div>
+    <div class="col-md-12 seatmain" *ngIf="showTurnSeats">
+        <div class="col-md-12" *ngIf="hideSeatedButton">
+            <button class="btn-main" (click)="trunGetSeatedNow()">turn get seated now</button>
+        </div>
+        <div class="col-md-12" *ngIf="showSeated">
+            <div class="row">
+                <div class="col-md-9 tableselect">
+                    <label>Table Size : </label>
+
+                    <ul>
+                        <li *ngFor="let item of TableSize">
+                               <span (click)="OnTableSizeSelection(item)">{{item.size}}</span>
+                        </li>
+                    </ul>
 
                 </div>
-                <div class="col-md-12 booked">
-                    <p>Get Seated Active Now For </p> <b>3 Min 47 Sec </b> <span>4 </span> <span>150</span> <a class="secondary-btn" href="#">Cancel </a>
+                <div class="col-md-3 price">
+                    <label>Price </label>
+                    <span>{{priceOfTable}}</span>
 
                 </div>
-
-
-
             </div>
-
-
-        
-
-   
+        </div>
+        <div class="col-md-12 booked" *ngIf="ActiveSeats">
+            <p>Get Seated Active Now For </p> <b><timer></timer></b> <span>{{sizeOfTable}} </span> <span>{{priceOfTable}}</span> <a class="secondary-btn" (click)="cancelSeats()">Cancel </a>
+        </div>
+    </div>
     <div class="right-section col-md-2">
         <div class="print">
             <a href="#">Print </a>
