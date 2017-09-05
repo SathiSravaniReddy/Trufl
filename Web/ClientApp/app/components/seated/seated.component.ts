@@ -3,6 +3,7 @@ import { OnInit } from '@angular/core';
 import { SeatedService } from './seated.service'
 
 @Component({
+    selector:'seated',
     templateUrl: './seated.component.html',
     styleUrls: ['./seated.component.css']
 })
