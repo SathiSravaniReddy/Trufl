@@ -13,7 +13,7 @@ export class LoginComponent {
     private restaurantAdmin;
     private truflAdmin;
     private userType;
-    private user = new User("", "");
+    private user = new User();
 
 constructor(private loginService:LoginService, private router:Router ){
     
@@ -21,11 +21,32 @@ constructor(private loginService:LoginService, private router:Router ){
  signIn() {
      if (this.restaurantAdmin == 'TR') {
          this.userType = 'TR';
-         this.router.navigateByUrl('/home');
+         this.loginService.loginAuthentication(this.user).subscribe(
+             user => {
+                 if (user)
+                 {
+                    this.router.navigateByUrl('/home');
+                 }
+             },
+             err => {
+                       // Log errors if any
+                              console.log(err);
+             });
+
      }
      else if (this.truflAdmin == 'TA') {
          this.userType = 'TA';
-         this.router.navigateByUrl('/dashboard');
+         //console.log(this.user);
+         this.loginService.loginAuthentication(this.user).subscribe(
+             user => {
+                 if (user) {
+                     this.router.navigateByUrl('/dashboard');
+                 }
+             },
+             err => {
+                 // Log errors if any
+                 console.log(err);
+             });
 
      }
      this.loginService.setUserType(this.userType); 
@@ -38,8 +59,5 @@ constructor(private loginService:LoginService, private router:Router ){
      );
  }
 
-    onSubmit() {
-
-        this.loginService.loginAuthentication(this.user);
-    }
+   
 }

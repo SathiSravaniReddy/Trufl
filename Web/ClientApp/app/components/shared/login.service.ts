@@ -30,8 +30,35 @@ export class LoginService {
     }
 
 
-    loginAuthentication(user: User) {
-        
+    loginAuthentication(user: User): Observable<User> {
+        return this.http.get('assets/login.json')
+                        // ...and calling .json() on the response to return data
+               .map((res: Response) => res.json().data.filter(data => data.userName === user.userName && data.password === user.password)[0])
+                        //...errors if any
+               .catch(this.handleError);
+           }
+
+    create(user: User): Observable < User > {
+        return this.http.get('assets/login.json')
+                // ...and calling .json() on the response to return data
+                .map((res: Response) => res.json().data.filter(data => data.userName === user.userName && data.password === user.password)[0])
+               //...errors if any
+                .catch(this.handleError);
     }
+
+    public handleError(error: any) {
+           console.error('handleError', error);
+           let response = {
+                status: error.status,
+                message: error.statusText
+           };
+           try {
+                response.message = error.json()._statusMessage;
+           } catch (e) {
+                    console.log('could not parse body', e);
+           }
+       return Observable.throw(response);
+     }
+
 
 }
