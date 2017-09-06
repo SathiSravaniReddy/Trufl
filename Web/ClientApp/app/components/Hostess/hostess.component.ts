@@ -92,6 +92,8 @@ export class HostessComponent {
         this.ActiveSeats = false;
         this.showSeatedButton = true;
     }
-  
+    closeProile() {
+        this.showProfile = false;
+    }
 
 }
