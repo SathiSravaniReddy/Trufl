@@ -15,10 +15,8 @@ export class SettingsComponent implements OnInit{
     }
 
     ngOnInit() {
-        console.log("loadingcomponent");
         this.settingsService.getUserDetails().subscribe((res: any) => {
             this.user_Profile = res.data;
-            console.log(this.user_Profile);
 
         }
         );
@@ -32,7 +30,6 @@ export class SettingsComponent implements OnInit{
 
         this.settingsService.getTruflCustomers().subscribe((res: any) => {
             this.trufl_customers = res.data;
-            console.log(this.trufl_customers);
 
         }
         );

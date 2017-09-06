@@ -9,7 +9,6 @@ export class SettingsService {
     }
 
     getUserDetails() {
-        console.log("into service");
         return this.http.get('assets/settings.json').map(
             (res) => res.json())
 
@@ -17,7 +16,6 @@ export class SettingsService {
 
 
     getTruflCustomers() {
-        console.log("into service");
         return this.http.get('assets/Trufl_customers.json').map(
             (res) => res.json())
 
