@@ -39,17 +39,18 @@ export class HostessComponent {
     }
 
     watlistUserDetails() {
+        if (this.showSeatedButton == true) {
+            this.hideSeatedButton = false;
+            this.showSeatedButton = false;
+        }
         if (this.count == 0) {
             this.showTurnSeats = true;
             this.hideSeatedButton = true;
-        }
-        if (this.showSeatedButton == true) {
-            this.hideSeatedButton = false;
         } else {
-            this.showTurnSeats = true;
+            this.showSeated = false;
             this.hideSeatedButton = true;
         }
-            
+          
     }
 
     trunGetSeatedNow(){
@@ -67,6 +68,7 @@ export class HostessComponent {
             this.priceOfTable = item.price;
             this.sizeOfTable = item.size;
             this.hideSeatedButton = false;
+            event.stopPropagation();
         }
     }
 
@@ -84,6 +86,7 @@ export class HostessComponent {
         this.hideSeatedButton = false;
         this.properties = false;
         this.ActiveSeats = false;
+        this.showSeatedButton = true;
     }
 
 }
