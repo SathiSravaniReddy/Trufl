@@ -61,7 +61,7 @@ import { SettingsService } from './components/settings/settings.service';
             { path: 'dashboard', component: DashboardComponent },
             { path: 'restaurant', component: ResturantComponent },
             { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
-            { path: '**', redirectTo: 'home' },
+            { path: '**', redirectTo: 'login' },
         ])
     ],
 })
