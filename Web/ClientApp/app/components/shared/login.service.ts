@@ -45,6 +45,10 @@ export class LoginService {
                //...errors if any
                 .catch(this.handleError);
     }
+    logout() {
+        localStorage.removeItem("userType");
+        
+    }
 
     public handleError(error: any) {
            console.error('handleError', error);

@@ -10,54 +10,51 @@ import { User } from './user';
 })
 export class LoginComponent {
     private logininfo:any;
-    private restaurantAdmin;
-    private truflAdmin;
     private userType;
     private user = new User();
-
+    private errorMsg;
+    private ngShowVal = false;
 constructor(private loginService:LoginService, private router:Router ){
     
 }
- signIn() {
-     if (this.restaurantAdmin == 'TR') {
-         this.userType = 'TR';
+signIn() {
+         this.loginService.setUserType(this.userType); 
          this.loginService.loginAuthentication(this.user).subscribe(
              user => {
-                 if (user)
+                 if (user && (this.userType == 'TR'))
                  {
                     this.router.navigateByUrl('/home');
+                 }
+                 else if (user && (this.userType == 'TA')){
+                     this.router.navigateByUrl('/dashboard');
+                 }
+                 else if (user) {
+                     this.errorMsg = "Please Select User Type";
+                 }
+                     
+                 else {
+                     this.errorMsg = "Please enter valid username and password";
                  }
              },
              err => {
                        // Log errors if any
+                
                               console.log(err);
              });
 
-     }
-     else if (this.truflAdmin == 'TA') {
-         this.userType = 'TA';
-         //console.log(this.user);
-         this.loginService.loginAuthentication(this.user).subscribe(
-             user => {
-                 if (user) {
-                     this.router.navigateByUrl('/dashboard');
-                 }
-             },
-             err => {
-                 // Log errors if any
-                 console.log(err);
-             });
-
-     }
-     this.loginService.setUserType(this.userType); 
-     this.loginService.getLoginDetails(this.userType).subscribe((data: any) => {
-         data._Data.map((item: any) => {
-             this.logininfo = item;
-         });
+     
+     
+        this.loginService.getLoginDetails(this.userType).subscribe((data: any) => {
+            data._Data.map((item: any) => {
+                this.logininfo = item;
+        });
 
      }
      );
- }
+}
+forgotPassword() {
+    this.ngShowVal = true;
+    }
 
    
 }

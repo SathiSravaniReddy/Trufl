@@ -18,7 +18,7 @@ export class RegisterComponent {
     }
     signUp() {
       
-        alert("Succesfully Registered");
+        alert("Registration Successfull");
         this.router.navigateByUrl("/login");
         /*this.loginService.create(this.user)
             .subscribe(
