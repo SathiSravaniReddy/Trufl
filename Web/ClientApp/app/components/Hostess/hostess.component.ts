@@ -4,7 +4,8 @@ import { HostessService } from './hostess.service';
 
 @Component({
     selector: 'hostess',
-    templateUrl: './hostess.component.html'
+    templateUrl: './hostess.component.html',
+    styleUrls: ['./hostess.component.css']
 })
 export class HostessComponent {
 
@@ -12,6 +13,8 @@ export class HostessComponent {
     private priceOfTable;
     private sizeOfTable;
     private count = 0;
+    private showProfile: boolean = false;
+    private profileData: any = [];
     showSeatedButton: boolean = false;
     properties: boolean = false;
     hideSeatedButton: boolean = false;
@@ -34,22 +37,24 @@ export class HostessComponent {
     constructor(private hostessService: HostessService) {
         this.hostessService.getTruflUserList().subscribe((res: any) => {
             this.truflUserList = res._Data;
-            console.log(this.truflUserList);
         });
     }
 
-    watlistUserDetails() {
+    watlistUserDetails(data) {
+        this.showProfile = true;
+        this.profileData = data;
+        if (this.showSeatedButton == true) {
+            this.hideSeatedButton = false;
+            this.showSeatedButton = false;
+        }
         if (this.count == 0) {
             this.showTurnSeats = true;
             this.hideSeatedButton = true;
-        }
-        if (this.showSeatedButton == true) {
-            this.hideSeatedButton = false;
         } else {
-            this.showTurnSeats = true;
+            this.showSeated = false;
             this.hideSeatedButton = true;
         }
-            
+          
     }
 
     trunGetSeatedNow(){
@@ -67,6 +72,7 @@ export class HostessComponent {
             this.priceOfTable = item.price;
             this.sizeOfTable = item.size;
             this.hideSeatedButton = false;
+            event.stopPropagation();
         }
     }
 
@@ -84,6 +90,8 @@ export class HostessComponent {
         this.hideSeatedButton = false;
         this.properties = false;
         this.ActiveSeats = false;
+        this.showSeatedButton = true;
     }
+  
 
 }

@@ -18,14 +18,6 @@ export class LoginComponent {
 constructor(private loginService:LoginService, private router:Router ){
     
 }
- ngOnInit() {
-      
-        console.log("loadingcomponent");
-        //called after the constructor and called  after the first ngOnChanges() 
-      
-      
-
-    }
  signIn() {
      if (this.restaurantAdmin == 'TR') {
          this.userType = 'TR';
@@ -38,10 +30,8 @@ constructor(private loginService:LoginService, private router:Router ){
      }
      this.loginService.setUserType(this.userType); 
      this.loginService.getLoginDetails(this.userType).subscribe((data: any) => {
-         console.log(data, "response");
          data._Data.map((item: any) => {
              this.logininfo = item;
-             console.log(this.logininfo, "Login Info");
          });
 
      }

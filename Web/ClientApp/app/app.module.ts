@@ -36,14 +36,13 @@ import { SettingsService } from './components/settings/settings.service';
         ResturantComponent,
         EmployeeConfigurationComponent,
         HeaderComponent,
-        TimerComponent,
+        TimerComponent
         
     ],
     providers: [
         SeatedService,
         HostessService,
-       
-        SettingsService
+        SettingsService,
         LoginService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
@@ -62,7 +61,7 @@ import { SettingsService } from './components/settings/settings.service';
             { path: 'dashboard', component: DashboardComponent },
             { path: 'restaurant', component: ResturantComponent },
             { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
-            { path: '**', redirectTo: 'home' },
+            { path: '**', redirectTo: 'login' },
         ])
     ],
 })

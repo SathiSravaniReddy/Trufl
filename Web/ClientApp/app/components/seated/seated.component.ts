@@ -19,11 +19,8 @@ export class SeatedComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("loadingcomponent");
         this.seatedService.getSeatedDetails().subscribe((res: any) => {
            this.seatedinfo = res._Data;
-           //  this.seatedinfo = "";
-            console.log(this.seatedinfo);
 
         }
         );
@@ -36,8 +33,7 @@ export class SeatedComponent implements OnInit {
     ];
 
     change() {
-
-        console.log("coming");
+        
         // console.log(index);
         this.isenabled = true;
 
@@ -57,15 +53,12 @@ export class SeatedComponent implements OnInit {
             }
         }
         this.items.push(event);
-        console.log(event);
         
     }
 
 
     postSeatedDetails() {
-        console.log(this.items);
         this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {
-            console.log(res);
             // this.seatedinfo = res.data;
             //  console.log(this.seatedinfo);
 
