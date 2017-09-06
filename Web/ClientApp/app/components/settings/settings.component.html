@@ -46,36 +46,41 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Jeff</td>
-                    <td>4/6/17</td>
-                    <td><a href="#">Reset</a></td>
+                <tr *ngFor="let truflcustomers of trufl_customers; let i = index">
+                    <td>{{truflcustomers.name}}</td>
+                    <td>{{truflcustomers.Lastvisited}}</td>
+                    <td>Reset</td>
                 </tr>
-                <tr>
-                    <td>Jeff</td>
-                    <td>4/6/17</td>
-                    <td><a href="#">Reset</a></td>
-                </tr>
-                <tr>
-                    <td>Jeff</td>
-                    <td>4/6/17</td>
-                    <td><a href="#">Reset</a></td>
-                </tr>
-                <tr>
-                    <td>Jeff</td>
-                    <td>4/6/17</td>
-                    <td><a href="#">Reset</a></td>
-                </tr>
-                <tr>
-                    <td>Jeff</td>
-                    <td>4/6/17</td>
-                    <td><a href="#">Reset</a></td>
-                </tr>
-                <tr>
-                    <td>Jeff</td>
-                    <td>4/6/17</td>
-                    <td><a href="#">Reset</a></td>
-                </tr>
+                <!--  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>
+                  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>
+                  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>
+                  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>
+                  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>
+                  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>-->
             </tbody>
         </table>
     </div>
@@ -89,30 +94,33 @@
             <a class="pull-right" href="#"><!--<img alt="" src="../images/edit.png" />--></a>
         </h3>
 
-        <div class="col-md-12 textborder">
-            <div class="col-md-3">
-                <p class="text-muted">Username:</p>
-            </div>
-            <div class="col-md-4">
-                <p>Jeff</p>
-            </div>
+        <div *ngFor="let userprofile of user_Profile; let i = index">
+            <div class="col-md-12 textborder">
+                <div class="col-md-3">
+                    <p class="text-muted">Username:</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userprofile.username}}</p>
+                </div>
 
-        </div>
-        <div class="col-md-12 textborder">
-            <div class="col-md-3">
-                <p class="text-muted">Email Id:</p>
             </div>
-            <div class="col-md-4">
-                <p>Jeff124resw@outlook.com</p>
-            </div>
+            <div class="col-md-12 textborder">
+                <div class="col-md-3">
+                    <p class="text-muted">Email Id:</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userprofile.emailId}}</p>
+                </div>
 
-        </div>
-        <div class="col-md-12 textborder">
-            <div class="col-md-3">
-                <p class="text-muted">Password:</p>
             </div>
-            <div class="col-md-4">
-                <p>xxxxxx7890</p>
+            <div class="col-md-12 textborder">
+                <div class="col-md-3">
+                    <p class="text-muted">Password:</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userprofile.password}}</p>
+                </div>
+
             </div>
 
         </div>

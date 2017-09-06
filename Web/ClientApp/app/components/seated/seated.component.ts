@@ -3,16 +3,17 @@ import { OnInit } from '@angular/core';
 import { SeatedService } from './seated.service'
 
 @Component({
+    selector:'seated',
     templateUrl: './seated.component.html',
     styleUrls: ['./seated.component.css']
 })
 export class SeatedComponent implements OnInit {
 
-   // private seatedinfo: any;
-    seatedinfo:any=[];
-    isenabled = false;   
+    // private seatedinfo: any;
+    seatedinfo: any = [];
+    isenabled = false;
     private seatedinformation: any;
-    items: Array<any> = [];  
+    items: Array<any> = [];
     constructor(private seatedService: SeatedService) {
 
     }
@@ -20,9 +21,9 @@ export class SeatedComponent implements OnInit {
     ngOnInit() {
         console.log("loadingcomponent");
         this.seatedService.getSeatedDetails().subscribe((res: any) => {
-            this.seatedinfo = res._Data;
-           // this.seatedinfo = "";
-            console.log(this.seatedinfo );
+           this.seatedinfo = res._Data;
+           //  this.seatedinfo = "";
+            console.log(this.seatedinfo);
 
         }
         );
@@ -37,15 +38,15 @@ export class SeatedComponent implements OnInit {
     change() {
 
         console.log("coming");
-       // console.log(index);
+        // console.log(index);
         this.isenabled = true;
 
-     /*   for (var i = 0; i < this.items.length; i++) {
-            if (event.TruflUserID == this.items[i].TruflUserID) {
-                this.items.splice(i, 1);
-            }
-        }
-        this.items.push(event); */
+        /*   for (var i = 0; i < this.items.length; i++) {
+               if (event.TruflUserID == this.items[i].TruflUserID) {
+                   this.items.splice(i, 1);
+               }
+           }
+           this.items.push(event); */
 
     }
     get(event) {
@@ -57,18 +58,18 @@ export class SeatedComponent implements OnInit {
         }
         this.items.push(event);
         console.log(event);
-
+        
     }
-    /*[disabled]="!isenabled"*/
+
 
     postSeatedDetails() {
         console.log(this.items);
         this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {
             console.log(res);
-           // this.seatedinfo = res.data;
-          //  console.log(this.seatedinfo);
+            // this.seatedinfo = res.data;
+            //  console.log(this.seatedinfo);
 
-        }) 
+        })
 
     }
 

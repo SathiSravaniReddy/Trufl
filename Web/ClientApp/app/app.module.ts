@@ -17,6 +17,10 @@ import { HeaderComponent } from './components/shared/Header/header.Component';
 import { HostessService } from './components/Hostess/hostess.service';
 import { LoginService } from './components/shared/login.service';
 import { TimerComponent } from './components/Hostess/timer.component';
+import { HashLocationStrategy, Location, LocationStrategy } from '@angular/common'
+
+
+import { SettingsService } from './components/settings/settings.service';
 
 
 @NgModule({
@@ -32,12 +36,16 @@ import { TimerComponent } from './components/Hostess/timer.component';
         ResturantComponent,
         EmployeeConfigurationComponent,
         HeaderComponent,
-        TimerComponent
+        TimerComponent,
+        
     ],
     providers: [
         SeatedService,
         HostessService,
-        LoginService
+       
+        SettingsService
+        LoginService,
+        [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
 
     imports: [
@@ -46,7 +54,7 @@ import { TimerComponent } from './components/Hostess/timer.component';
         CommonModule,
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
-            { path: 'getseatedpage', component: SeatedComponent },
+            { path: 'seated', component: SeatedComponent },
             { path: 'home', component: HostessComponent },
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
