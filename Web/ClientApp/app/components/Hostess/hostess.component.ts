@@ -44,7 +44,7 @@ export class HostessComponent {
 
     watlistUserDetails(data) {
         console.log(data, "data");
-
+        var _that = this;
         this.currentSelectedUser = data.Email;
 
         this.showProfile = true;
@@ -59,10 +59,19 @@ export class HostessComponent {
         } else {
             this.showSeated = false;
             this.hideSeatedButton = true;
-            this.showTurnSeats = true;
-        }    
-    }
+        }
 
+        this.truflUserList.map(function (obj) {
+            console.log(_that);
+            if (obj.Email != data.Email) {
+                obj.isShowLinks = false;
+            }
+        })
+
+
+
+
+    }
     trunGetSeatedNow(){
         this.showSeated = true;
         this.hideSeatedButton = false;
