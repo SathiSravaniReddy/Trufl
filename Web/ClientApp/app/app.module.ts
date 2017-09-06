@@ -43,7 +43,7 @@ import { SettingsService } from './components/settings/settings.service';
         SeatedService,
         HostessService,
        
-        SettingsService,
+        SettingsService
         LoginService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],

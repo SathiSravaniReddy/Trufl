@@ -1,16 +1,14 @@
 ﻿
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../shared/login.service';
-import { User } from '../login/user';
 
 @Component({
     selector: 'register',
     templateUrl: './register.component.html'
 })
 export class RegisterComponent {
-    private user = new User();
-    constructor(private router: Router, private loginService: LoginService) {
+    private person: any = {};
+    constructor(private router: Router) {
        
 
     }
@@ -18,16 +16,15 @@ export class RegisterComponent {
       
         alert("Succesfully Registered");
         this.router.navigateByUrl("/login");
-      /*  console.log(this.user);
-        this.loginService.create(this.user)
+       /* this.userService.create(this.person)
             .subscribe(
             data => {
-                
-                this.router.navigateByUrl("/login");
+                this.alertService.success('Registration successful', true);
+                this.router.navigate(['/login']);
             },
-            err => {
-                // Log errors if any
-                console.log(err);
+            error => {
+                this.alertService.error(error);
+                this.loading = false;
             });*/
     }
 
