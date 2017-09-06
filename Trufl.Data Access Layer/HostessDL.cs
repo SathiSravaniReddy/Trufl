@@ -15,9 +15,10 @@ namespace Trufl.Data_Access_Layer
     {
         #region Db Connection 
         SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["TraflConnection"]);
+        string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
         #endregion
 
-#region Trufl_Hostess
+        #region Trufl_Hostess
         #region WaitList
         /// <summary>
         /// This method 'RetrieveUser ' returns User details
@@ -192,6 +193,78 @@ namespace Trufl.Data_Access_Layer
                 return false;
             }
         }
+
+        /// <summary>
+        /// This method 'AcceptedWaitedUser' will update the waited user info
+        /// </summary>
+        /// <param name="AcceptedWaitedUser"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public DataTable AcceptedWaitedUser(int BookingID,int BookinStatus)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spUpdateBookingStatus", con))
+                    {
+                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@BookingID", BookingID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@BookingStatus", BookinStatus);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+        /// <summary>
+        /// This method 'GetRestaurantTables' will Get Restaurant Tables info
+        /// </summary>
+        /// <param name="spGetRestaurantTables"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public DataTable GetRestaurantTables(int RestaurantID, int UserID)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantTables", con))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@UserID", UserID);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
         #endregion
 
         #region Seated User
@@ -214,7 +287,6 @@ namespace Trufl.Data_Access_Layer
                         SqlParameter tvpParam5 = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
-
                             da.Fill(sendResponse);
                         }
                     }

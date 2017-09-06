@@ -29,10 +29,18 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.SaveTruflUserInfromation(truflUserInputDTO);
         }
-        #endregion
+        public DataTable AcceptedWaitedUser(int BookingID, int BookinStatus)
+        {
+            return _hostessDL.AcceptedWaitedUser(BookingID, BookinStatus);
+        }
+        public DataTable GetRestaurantTables(int RestaurantID, int UserID)
+        {
+            return _hostessDL.GetRestaurantTables(RestaurantID, UserID);
+        }
+            #endregion
 
-        #region Seated User
-        public DataTable GetRestaurantSeatedUsers(int RestaurantID)
+            #region Seated User
+            public DataTable GetRestaurantSeatedUsers(int RestaurantID)
         {
             return _hostessDL.GetRestaurantSeatedUsers(RestaurantID);
         }
