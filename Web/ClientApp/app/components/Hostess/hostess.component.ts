@@ -59,10 +59,8 @@ export class HostessComponent {
         } else {
             this.showSeated = false;
             this.hideSeatedButton = true;
-        }
-
-        
-          
+            this.showTurnSeats = true;
+        }    
     }
 
     trunGetSeatedNow(){
@@ -110,6 +108,7 @@ export class HostessComponent {
             console.log(_that);
             obj.isShowLinks = false;
         })
+        this.count++;
 
     }
     closeProile() {
