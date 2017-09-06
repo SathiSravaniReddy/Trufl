@@ -4,8 +4,7 @@ import { HostessService } from './hostess.service';
 
 @Component({
     selector: 'hostess',
-    templateUrl: './hostess.component.html',
-    styleUrls: ['./hostess.component.css']
+    templateUrl: './hostess.component.html'
 })
 export class HostessComponent {
 
@@ -13,8 +12,6 @@ export class HostessComponent {
     private priceOfTable;
     private sizeOfTable;
     private count = 0;
-    private showProfile: boolean = false;
-    private profileData: any = [];
     showSeatedButton: boolean = false;
     properties: boolean = false;
     hideSeatedButton: boolean = false;
@@ -41,9 +38,7 @@ export class HostessComponent {
         });
     }
 
-    watlistUserDetails(data) {
-        this.showProfile = true;
-        this.profileData = data;
+    watlistUserDetails() {
         if (this.showSeatedButton == true) {
             this.hideSeatedButton = false;
             this.showSeatedButton = false;
@@ -93,6 +88,5 @@ export class HostessComponent {
         this.ActiveSeats = false;
         this.showSeatedButton = true;
     }
-  
 
 }

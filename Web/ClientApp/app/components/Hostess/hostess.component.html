@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of truflUserList" (click)="watlistUserDetails(item)">
+                <tr *ngFor="let item of truflUserList" (click)="watlistUserDetails()">
                     <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
                     <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
                     <td>{{item.UserName}}</td>
@@ -72,7 +72,7 @@
             <p>Get Seated Active Now For </p> <b><timer></timer></b> <span>{{sizeOfTable}} </span> <span>{{priceOfTable}}</span> <a class="secondary-btn" (click)="cancelSeats()">Cancel </a>
         </div>
     </div>
-    <div class="col-md-2 animated fadeInRight" id="right-section" *ngIf="showProfile" >
+    <div class="right-section col-md-2">
         <div class="print">
             <a href="#">Print </a>
 
@@ -80,7 +80,7 @@
 
         <div class="right-top">
             <img alt="" src="../../../../wwwroot/images/no-img.png" />
-            <h4>{{profileData.UserName}}</h4>
+            <h4> Jay Chanuu </h4>
             <p> Trufl Premier Member</p>
             <p>Bottique Premier Member</p>
 
