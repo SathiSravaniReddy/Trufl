@@ -16,11 +16,11 @@ export class HostessComponent {
     private showProfile: boolean = false;
     private profileData: any = [];
     showSeatedButton: boolean = false;
-    properties: boolean = false;
     hideSeatedButton: boolean = false;
     showTurnSeats:boolean=false;
     showSeated:boolean=false;
     ActiveSeats: boolean = false;
+    public currentSelectedUser: string;
     TableSize = [
         { 'size': 2, 'price': '$100' },
         { 'size': 4, 'price': '$150' },
@@ -37,10 +37,16 @@ export class HostessComponent {
     constructor(private hostessService: HostessService) {
         this.hostessService.getTruflUserList().subscribe((res: any) => {
             this.truflUserList = res._Data;
+            console.log(this.truflUserList, "edaffsd");
+
         });
     }
 
     watlistUserDetails(data) {
+        console.log(data, "data");
+
+        this.currentSelectedUser = data.Email;
+
         this.showProfile = true;
         this.profileData = data;
         if (this.showSeatedButton == true) {
@@ -54,6 +60,8 @@ export class HostessComponent {
             this.showSeated = false;
             this.hideSeatedButton = true;
         }
+
+        
           
     }
 
@@ -63,17 +71,24 @@ export class HostessComponent {
     }
 
     OnTableSizeSelection(item) {
+
+        var _that = this;
         if (this.showSeatedButton == true) {
             this.ActiveSeats = false;
         }
         else {
-            this.properties = true;
             this.ActiveSeats = true;
             this.priceOfTable = item.price;
             this.sizeOfTable = item.size;
             this.hideSeatedButton = false;
             event.stopPropagation();
         }
+
+        this.truflUserList.map(function (obj) {
+            console.log(_that);
+            obj.isShowLinks = obj.Email == _that.currentSelectedUser;
+        })
+
     }
 
     accept(item) {
@@ -86,11 +101,16 @@ export class HostessComponent {
     }
 
     cancelSeats() {
+        var _that = this;
         this.showTurnSeats = false;
         this.hideSeatedButton = false;
-        this.properties = false;
         this.ActiveSeats = false;
         this.showSeatedButton = true;
+        this.truflUserList.map(function (obj) {
+            console.log(_that);
+            obj.isShowLinks = false;
+        })
+
     }
     closeProile() {
         this.showProfile = false;
