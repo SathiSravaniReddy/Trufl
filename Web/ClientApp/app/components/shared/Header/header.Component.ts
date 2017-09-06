@@ -38,7 +38,6 @@ export class HeaderComponent {
     
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType(); 
-        console.log(this.userType, "headerUserType");
     }
  
    

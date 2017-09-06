@@ -13,7 +13,6 @@ export class SeatedService {
     }
 
     getSeatedDetails() {
-        console.log("into service");
         return this.http.get('http://localhost:8679/api/Trufl/GetSeatedUsersList/1').map(
             (res) => res.json())
 
@@ -21,7 +20,6 @@ export class SeatedService {
 
     postSeatedDetails(seatedInfo: any) {
         this.seatsdetails = seatedInfo;
-        console.log(this.seatsdetails);   
       
         return this.http.post('http://localhost:8679/api/Trufl/SaveSeatBookingUsersList', this.seatsdetails).map(
             (res) => res.json()

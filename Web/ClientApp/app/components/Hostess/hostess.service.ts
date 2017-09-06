@@ -12,7 +12,6 @@ export class HostessService {
 
     }
     public getTruflUserList() {
-        console.log("Am in hostess");
    
         return this.http.get('http://localhost:8679/api/Trufl/GetWaitListUsers')
 .map(res => res.json() || {})
