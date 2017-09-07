@@ -27,8 +27,8 @@
                     <td>${{item.OfferAmount}}</td>
                     <td width="350">
                         <div class="wait-btn" *ngIf="item.isShowLinks">
-                            <a class="success" (click)="accept(item)">Accepted</a>
-                            <a data-toggle="modal" data-target="#SelectSeat" class="selected" href="#">Seated</a>
+                            <a [class]=classForAccept (click)="accept(item)">Accepted</a>
+                            <a data-toggle="modal" data-target="#SelectSeat" [class]=classForSeated href="#">Seated</a>
                             <a href="#">Remove</a>
                         </div>
                     </td>
