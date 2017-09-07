@@ -8,10 +8,9 @@ import { SeatedService } from './seated.service'
     styleUrls: ['./seated.component.css']
 })
 export class SeatedComponent implements OnInit {
-
-    // private seatedinfo: any;
-    seatedinfo: any = [];
-    isenabled = false;
+    
+    public seatedinfo: any = [];
+    public isenabled = false;
     private seatedinformation: any;
     public items: any = [];
     constructor(private seatedService: SeatedService) {
@@ -19,16 +18,7 @@ export class SeatedComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getSeatedDetails();
-        /* console.log("loadingcomponent");
-         this.seatedService.getSeatedDetails().subscribe((res: any) => {
-            this.seatedinfo = res._Data;
-            //  this.seatedinfo = "";
-             console.log(this.seatedinfo);
- 
-         }
-         ); */
-
+        this.getSeatedDetails();       
     }
     getSeatedDetails() {
         this.seatedService.getSeatedDetails().subscribe((res: any) => {
@@ -45,25 +35,10 @@ export class SeatedComponent implements OnInit {
         { value: 1 }
     ];
 
-    change() {
-
-        console.log("coming");
-        // console.log(index);
+    change() {      
         this.isenabled = true;
-
-        /*   for (var i = 0; i < this.items.length; i++) {
-               if (event.TruflUserID == this.items[i].TruflUserID) {
-                   this.items.splice(i, 1);
-               }
-           }
-           this.items.push(event); */
-
     }
-    public get(data: any, type: any, event: any) {
-
-        console.log(data);
-        console.log(type);
-        console.log(event);
+    public get(data: any, type: any, event: any) {        
 
         var details = {
             "RestaurantID": data['RestaurantID'],
@@ -72,24 +47,14 @@ export class SeatedComponent implements OnInit {
             "AmenitiChecked": data[type]
         }
         this.isenabled = true;
-        if (event.target.checked) {
-            //data[type] = true;
+        if (event.target.checked) {          
             details.AmenitiChecked = true;
-            console.log(data);
-            //if (this.items.length <= 0) {
+          
             this.items.push(details);
-            //
-
-            //else {
-            //    if (this.items.indexOf(details) == -1) {
-            //        this.items.push(details);
-            //    }
-            //}
-
+           
         }
         else {
-            console.log(data);
-            //data[type] = false;
+           
             if (details.AmenitiChecked == 1) {
                 details.AmenitiChecked = false
                 this.items.push(details);
@@ -104,29 +69,7 @@ export class SeatedComponent implements OnInit {
             }
 
 
-
-
-        }
-
-        //if (this.items.length <= 0) {
-        //    this.items.push(details);
-        //}
-
-        //else {
-        //this.items.map(item => {
-        //    if (item['AmenitiName'] === type) {
-        //        item['AmenitiChecked'] = data[type];
-
-
-        //    }
-        //    else {
-        //        this.items.push(details);
-        //    }
-        //});
-
-        //}
-
-
+        }      
 
 
     }

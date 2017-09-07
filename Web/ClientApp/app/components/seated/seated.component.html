@@ -47,7 +47,6 @@
 
                         <td><input type="checkbox" [checked]="seatsinfo.Boozing === toggles[1].value" name="boozing" (change)="$event.target.checked?(seatsinfo.Boozing = toggles[1].value) : (seatsinfo.Boozing = toggles[0].value)" (click)="get(seatsinfo,'Boozing',$event)"></td>
 
-                       <!-- <td><input type="checkbox"  [checked]="seatsinfo.Boozing === toggles[1].value" name="boozing" (change)="$event.target.checked?(seatsinfo.Boozing = toggles[1].value) : (seatsinfo.Boozing = toggles[0].value)" (click)="get(seatsinfo,'Boozing',$event)"></td> -->
                         <td><input type="checkbox"  [checked]="seatsinfo.Empty === toggles[1].value" name="empty" (change)="$event.target.checked?(seatsinfo.Empty = toggles[1].value) : (seatsinfo.Empty = toggles[0].value)" (click)="get(seatsinfo,'Empty',$event)"></td>
 
 
