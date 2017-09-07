@@ -43,8 +43,6 @@ export class HostessComponent {
         this.classForSeated = "";
         this.hostessService.getTruflUserList().subscribe((res: any) => {
             this.truflUserList = res._Data;
-            console.log(this.truflUserList, "edaffsd");
-
         });
     }
 
@@ -115,6 +113,16 @@ export class HostessComponent {
         });
         this.classForAccept = "success";
         this.classForSeated = "selected";
+    }
+
+    remove(item) {
+        this.accepted = 5;
+        this.hostessService.acceptedandremovedwaiteduser(item.RestaurantID, this.accepted).subscribe((res: any) => {
+            alert(res._Data[0].NotificationMsg);
+        });
+        this.hostessService.getTruflUserList().subscribe((res: any) => {
+            this.truflUserList = res._Data;
+        });
     }
 
     cancelSeats() {
