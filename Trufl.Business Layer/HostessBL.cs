@@ -13,7 +13,7 @@ namespace Trufl.Business_Layer
     {
 
         HostessDL _hostessDL = new HostessDL();
-#region Trufl_Hostess
+        #region Trufl_Hostess
         
         #region WaitList
         public List<UserProfile> RetrieveUser()
@@ -47,7 +47,7 @@ namespace Trufl.Business_Layer
         }
             #endregion
 
-            #region Seated User
+        #region Seated User
             public DataTable GetRestaurantSeatedUsers(int RestaurantID)
         {
             return _hostessDL.GetRestaurantSeatedUsers(RestaurantID);
@@ -76,13 +76,7 @@ namespace Trufl.Business_Layer
         }
         #endregion
 
-        #region Trufl_Admin
-            public DashBoardDetailsOutputDTO GetDashBoardDetails(DashBoardInputDTO dashboardInput)
-            {
-                return _hostessDL.GetDashBoardDetails(dashboardInput);
-            }
-        #endregion
 
-            #endregion
-        }
+        #endregion
+    }
 }

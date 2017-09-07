@@ -24,7 +24,7 @@ namespace Trufl.Services.Controllers
         AdminBL _adminBL = new AdminBL();
         HostessBL _hostessBL = new HostessBL();
         JsonResponseResult JsonResponseResult = new JsonResponseResult();
-
+        
 
 
         #region Trufl_Hostess
@@ -198,12 +198,12 @@ namespace Trufl.Services.Controllers
 
 
         #region Trufl_Admin
-        [Route("GetDashBoardDetails")]
+        [Route("Admin/GetDashBoardDetails")]
         [HttpPost]
         public object GetDashBoardDetails(DashBoardInputDTO dashboardInput)
         {
             DashBoardDetailsOutputDTO res = new DashBoardDetailsOutputDTO();
-            res = _hostessBL.GetDashBoardDetails(dashboardInput);
+            res = _adminBL.GetDashBoardDetails(dashboardInput);
             try
             {
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });

@@ -10,6 +10,12 @@ namespace Trufl.Business_Layer
 {
     public class AdminBL
     {
-        
+        AdminDL _adminDL = new AdminDL();
+        #region Trufl_Admin
+        public DashBoardDetailsOutputDTO GetDashBoardDetails(DashBoardInputDTO dashboardInput)
+        {
+            return _adminDL.GetDashBoardDetails(dashboardInput);
+        }
+        #endregion
     }
 }
