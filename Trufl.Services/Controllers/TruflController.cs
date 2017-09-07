@@ -63,7 +63,7 @@ namespace Trufl.Services.Controllers
 
 
         [Route("AcceptedandRemovedWaitedUser/{BookingID}/{BookinStatus}")]
-        [HttpGet]
+        [HttpPost]
         public object AcceptedWaitedUser(int BookingID,int BookinStatus)
         {
             DataTable res = new DataTable(); 

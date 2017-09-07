@@ -13,11 +13,13 @@ export class LoginComponent {
     private userType;
     private user = new User();
     private errorMsg;
-    private ngShowVal = false;
-constructor(private loginService:LoginService, private router:Router ){
+    private showForgotPassword = false;
+    private showResetPassword = false;
+    private showlogin = true;
+    constructor(private loginService:LoginService, private router:Router ){
     
-}
-signIn() {
+    }
+    signIn() {
          this.loginService.setUserType(this.userType); 
          this.loginService.loginAuthentication(this.user).subscribe(
              user => {
@@ -51,10 +53,22 @@ signIn() {
 
      }
      );
-}
-forgotPassword() {
-    this.ngShowVal = true;
     }
-
+    showLogin() { 
+        this.showResetPassword = false;
+        this.showForgotPassword = false;
+        this.showlogin = true;
+    }
+    forgotPassword() {
+        this.showlogin = false;
+        this.showResetPassword = false;
+        this.showForgotPassword = true;
+       
+    }
+    resetPassword() {
+        this.showlogin = false;
+        this.showForgotPassword = false;
+        this.showResetPassword = true;  
+    }
    
 }
