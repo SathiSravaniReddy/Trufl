@@ -6,7 +6,7 @@
         </h1>
     </div>
     <div class="headerright">
-        <a [routerLink]="['/settings']"><img alt="" src="../../../../../wwwroot/images/setting.png" /> </a>
+        <a (click)="settings()"><img alt="" src="../../../../../wwwroot/images/setting.png" /> </a>
         <div class="profiledd dropdown">
             <a (click)="logoutShow()"><label>Jeffy </label> <img width="32" alt="" src="../../../../../wwwroot/images/profile.png" /> </a>
            
@@ -17,7 +17,7 @@
 <div class="col-md-12 innermain">
     <button class="secondary-btn pull-right" *ngIf="profileVisible" [routerLink]="['/login']"> Logout</button>
     
-    <div class="col-md-12 leftnav no-pad">
+    <div class="col-md-12 leftnav no-pad" *ngIf="showHeadings">
         <div *ngIf="this.userType=='TR'">
             <ul>
                 <li *ngFor="let header of header1 let i=index">
@@ -27,12 +27,18 @@
         </div>
         <div *ngIf="this.userType=='TA'">
             <ul>
-                <li *ngFor="let header of header2 let i=index" >
+                <li *ngFor="let header of header2 let i=index" class="settingheader" >
                     <a [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
                 </li>
 
             </ul>
         </div>
     </div>
+
+    <div class="col-md-12 leftnav no-pad" *ngIf="showSettings">
+        <div class="settingheader"> <ul><li>Settings</li></ul>  </div>
+
+    </div>
+
 
 </div>
