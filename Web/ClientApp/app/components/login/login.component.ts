@@ -10,46 +10,51 @@ import { User } from './user';
 })
 export class LoginComponent {
     private logininfo:any;
-    private restaurantAdmin;
-    private truflAdmin;
     private userType;
-    private user = new User("", "");
-
+    private user = new User();
+    private errorMsg;
+    private ngShowVal = false;
 constructor(private loginService:LoginService, private router:Router ){
     
 }
- ngOnInit() {
-      
-        console.log("loadingcomponent");
-        //called after the constructor and called  after the first ngOnChanges() 
-      
-      
+signIn() {
+         this.loginService.setUserType(this.userType); 
+         this.loginService.loginAuthentication(this.user).subscribe(
+             user => {
+                 if (user && (this.userType == 'TR'))
+                 {
+                    this.router.navigateByUrl('/home');
+                 }
+                 else if (user && (this.userType == 'TA')){
+                     this.router.navigateByUrl('/dashboard');
+                 }
+                 else if (user) {
+                     this.errorMsg = "Please Select User Type";
+                 }
+                     
+                 else {
+                     this.errorMsg = "Please enter valid username and password";
+                 }
+             },
+             err => {
+                       // Log errors if any
+                
+                              console.log(err);
+             });
 
-    }
- signIn() {
-     if (this.restaurantAdmin == 'TR') {
-         this.userType = 'TR';
-         this.router.navigateByUrl('/home');
-     }
-     else if (this.truflAdmin == 'TA') {
-         this.userType = 'TA';
-         this.router.navigateByUrl('/dashboard');
-
-     }
-     this.loginService.setUserType(this.userType); 
-     this.loginService.getLoginDetails(this.userType).subscribe((data: any) => {
-         console.log(data, "response");
-         data._Data.map((item: any) => {
-             this.logininfo = item;
-             console.log(this.logininfo, "Login Info");
-         });
+     
+     
+        this.loginService.getLoginDetails(this.userType).subscribe((data: any) => {
+            data._Data.map((item: any) => {
+                this.logininfo = item;
+        });
 
      }
      );
- }
-
-    onSubmit() {
-
-        this.loginService.loginAuthentication(this.user);
+}
+forgotPassword() {
+    this.ngShowVal = true;
     }
+
+   
 }

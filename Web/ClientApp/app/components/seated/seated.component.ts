@@ -3,7 +3,7 @@ import { OnInit } from '@angular/core';
 import { SeatedService } from './seated.service'
 
 @Component({
-    selector:'seated',
+    selector: 'seated',
     templateUrl: './seated.component.html',
     styleUrls: ['./seated.component.css']
 })
@@ -20,27 +20,25 @@ export class SeatedComponent implements OnInit {
 
     ngOnInit() {
         this.getSeatedDetails();
-       /* console.log("loadingcomponent");
-        this.seatedService.getSeatedDetails().subscribe((res: any) => {
-           this.seatedinfo = res._Data;
-           //  this.seatedinfo = "";
-            console.log(this.seatedinfo);
-
-        }
-        ); */
+        /* console.log("loadingcomponent");
+         this.seatedService.getSeatedDetails().subscribe((res: any) => {
+            this.seatedinfo = res._Data;
+            //  this.seatedinfo = "";
+             console.log(this.seatedinfo);
+ 
+         }
+         ); */
 
     }
     getSeatedDetails() {
         this.seatedService.getSeatedDetails().subscribe((res: any) => {
-            this.seatedinfo = res._Data;           
+            this.seatedinfo = res._Data;
             console.log(this.seatedinfo);
 
         }
         );
 
     }
-
-
 
     public toggles = [
         { value: 0 },
@@ -74,12 +72,12 @@ export class SeatedComponent implements OnInit {
             "AmenitiChecked": data[type]
         }
         this.isenabled = true;
-        if (event.target.checked) {   
+        if (event.target.checked) {
             //data[type] = true;
             details.AmenitiChecked = true;
             console.log(data);
             //if (this.items.length <= 0) {
-                this.items.push(details);
+            this.items.push(details);
             //
 
             //else {
@@ -87,8 +85,8 @@ export class SeatedComponent implements OnInit {
             //        this.items.push(details);
             //    }
             //}
-            
-       }
+
+        }
         else {
             console.log(data);
             //data[type] = false;
@@ -104,33 +102,33 @@ export class SeatedComponent implements OnInit {
                     }
                 })
             }
-           
-            
-            
-            
+
+
+
+
         }
-        
+
         //if (this.items.length <= 0) {
         //    this.items.push(details);
         //}
-    
+
         //else {
-            //this.items.map(item => {
-            //    if (item['AmenitiName'] === type) {
-            //        item['AmenitiChecked'] = data[type];
+        //this.items.map(item => {
+        //    if (item['AmenitiName'] === type) {
+        //        item['AmenitiChecked'] = data[type];
 
 
-            //    }
-            //    else {
-            //        this.items.push(details);
-            //    }
-            //});
+        //    }
+        //    else {
+        //        this.items.push(details);
+        //    }
+        //});
 
         //}
-      
 
 
-        
+
+
     }
 
 
@@ -138,9 +136,9 @@ export class SeatedComponent implements OnInit {
         console.log(this.items);
         this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {
             console.log(res);
-            this.getSeatedDetails(); 
-        }) 
-       
+            this.getSeatedDetails();
+        })
+
     }
 
 

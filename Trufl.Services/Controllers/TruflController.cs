@@ -61,6 +61,39 @@ namespace Trufl.Services.Controllers
             }
         }
 
+
+        [Route("AcceptedandRemovedWaitedUser/{BookingID}/{BookinStatus}")]
+        [HttpGet]
+        public object AcceptedWaitedUser(int BookingID,int BookinStatus)
+        {
+            DataTable res = new DataTable(); 
+            try
+            {
+                res = _hostessBL.AcceptedWaitedUser(BookingID, BookinStatus);
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
+        [Route("GetRestaurantTables/{RestaurantID}/{UserID}")]
+        [HttpGet]
+        public object GetRestaurantTables(int RestaurantID, int UserID)
+        {
+            DataTable res = new DataTable();
+            try
+            {
+                res = _hostessBL.GetRestaurantTables(RestaurantID, UserID);
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
         #endregion
 
         #region Seated User

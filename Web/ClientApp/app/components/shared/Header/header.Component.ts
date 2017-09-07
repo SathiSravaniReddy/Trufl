@@ -10,6 +10,7 @@ import { Router, RouterLinkActive  } from '@angular/router';
 })
 export class HeaderComponent {
     private userType;
+    private profileVisible=false;
     private header1 = [
         {
 
@@ -38,8 +39,9 @@ export class HeaderComponent {
     
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType(); 
-        console.log(this.userType, "headerUserType");
     }
  
-   
+    logout() {
+        this.profileVisible = true;
+    }
 }

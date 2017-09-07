@@ -4,7 +4,8 @@ import { HostessService } from './hostess.service';
 
 @Component({
     selector: 'hostess',
-    templateUrl: './hostess.component.html'
+    templateUrl: './hostess.component.html',
+    styleUrls: ['./hostess.component.css']
 })
 export class HostessComponent {
 
@@ -12,12 +13,14 @@ export class HostessComponent {
     private priceOfTable;
     private sizeOfTable;
     private count = 0;
+    private showProfile: boolean = false;
+    private profileData: any = [];
     showSeatedButton: boolean = false;
-    properties: boolean = false;
     hideSeatedButton: boolean = false;
     showTurnSeats:boolean=false;
     showSeated:boolean=false;
     ActiveSeats: boolean = false;
+    public currentSelectedUser: string;
     TableSize = [
         { 'size': 2, 'price': '$100' },
         { 'size': 4, 'price': '$150' },
@@ -34,11 +37,20 @@ export class HostessComponent {
     constructor(private hostessService: HostessService) {
         this.hostessService.getTruflUserList().subscribe((res: any) => {
             this.truflUserList = res._Data;
-            console.log(this.truflUserList);
+            console.log(this.truflUserList, "edaffsd");
+
         });
     }
 
-    watlistUserDetails() {
+    watlistUserDetails(data) {
+        console.log(data, "data");
+        var _that = this;
+        this.currentSelectedUser = data.Email;
+        this.showTurnSeats = true;
+        this.showSeated = false;
+        this.ActiveSeats = false;
+        this.showProfile = true;
+        this.profileData = data;
         if (this.showSeatedButton == true) {
             this.hideSeatedButton = false;
             this.showSeatedButton = false;
@@ -50,26 +62,39 @@ export class HostessComponent {
             this.showSeated = false;
             this.hideSeatedButton = true;
         }
-          
-    }
 
+        this.truflUserList.map(function (obj) {
+            console.log(_that);
+            if (obj.Email != data.Email) {
+                obj.isShowLinks = false;
+            }
+        })
+
+    }
     trunGetSeatedNow(){
         this.showSeated = true;
         this.hideSeatedButton = false;
     }
 
     OnTableSizeSelection(item) {
+
+        var _that = this;
         if (this.showSeatedButton == true) {
             this.ActiveSeats = false;
         }
         else {
-            this.properties = true;
             this.ActiveSeats = true;
             this.priceOfTable = item.price;
             this.sizeOfTable = item.size;
             this.hideSeatedButton = false;
             event.stopPropagation();
         }
+
+        this.truflUserList.map(function (obj) {
+            console.log(_that);
+            obj.isShowLinks = obj.Email == _that.currentSelectedUser;
+        })
+
     }
 
     accept(item) {
@@ -82,11 +107,20 @@ export class HostessComponent {
     }
 
     cancelSeats() {
+        var _that = this;
         this.showTurnSeats = false;
         this.hideSeatedButton = false;
-        this.properties = false;
         this.ActiveSeats = false;
         this.showSeatedButton = true;
+        this.truflUserList.map(function (obj) {
+            console.log(_that);
+            obj.isShowLinks = false;
+        })
+        this.count++;
+        this.showProfile = false;
+    }
+    closeProile() {
+        this.showProfile = false;
     }
 
 }

@@ -21,24 +21,24 @@ export class SeatedService {
 
     postSeatedDetails(seatedInfo: any) {
         this.seatsdetails = seatedInfo;
-        console.log(this.seatsdetails);  
+        console.log(this.seatsdetails);
 
-      /*  let body = JSON.stringify(
-            seatedInfo
-        )
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-
-       
-
-        return this.http.post(
-            'http://localhost:8679/api/Trufl/SaveSeatBookingUsersList', body, {
-                headers: headers
-            }).map(res => res.json()).subscribe(
-            data => { console.log(data); },
-            err => { console.log(err); }
-            );
-        */      
+        /*  let body = JSON.stringify(
+              seatedInfo
+          )
+          let headers = new Headers();
+          headers.append('Content-Type', 'application/json');
+  
+         
+  
+          return this.http.post(
+              'http://localhost:8679/api/Trufl/SaveSeatBookingUsersList', body, {
+                  headers: headers
+              }).map(res => res.json()).subscribe(
+              data => { console.log(data); },
+              err => { console.log(err); }
+              );
+          */
         return this.http.post('http://localhost:8679/api/Trufl/SaveSeatBookingUsersList', this.seatsdetails).map(
             (res) => res.json()
         )

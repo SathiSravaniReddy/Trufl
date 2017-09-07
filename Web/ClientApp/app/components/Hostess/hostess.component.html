@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of truflUserList" (click)="watlistUserDetails()">
+                <tr *ngFor="let item of truflUserList;let i=index;" (click)="watlistUserDetails(item)">
                     <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
                     <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
                     <td>{{item.UserName}}</td>
@@ -26,8 +26,7 @@
                     <td>{{item.Waited}}</td>
                     <td>${{item.OfferAmount}}</td>
                     <td width="350">
-                        <div class="wait-btn" *ngIf="properties">
-                            <a id="rowclick" href="#">View </a>
+                        <div class="wait-btn" *ngIf="item.isShowLinks">
                             <a class="success" (click)="accept(item)">Accepted</a>
                             <a data-toggle="modal" data-target="#SelectSeat" class="selected" href="#">Seated</a>
                             <a href="#">Remove</a>
@@ -72,15 +71,16 @@
             <p>Get Seated Active Now For </p> <b><timer></timer></b> <span>{{sizeOfTable}} </span> <span>{{priceOfTable}}</span> <a class="secondary-btn" (click)="cancelSeats()">Cancel </a>
         </div>
     </div>
-    <div class="right-section col-md-2">
+    <div class="col-md-2 animated fadeInRight" id="right-section" *ngIf="showProfile" >
         <div class="print">
+            <a id="close" (click)="closeProile()">X</a>
             <a href="#">Print </a>
 
         </div>
 
         <div class="right-top">
             <img alt="" src="../../../../wwwroot/images/no-img.png" />
-            <h4> Jay Chanuu </h4>
+            <h4>{{profileData.UserName}}</h4>
             <p> Trufl Premier Member</p>
             <p>Bottique Premier Member</p>
 
