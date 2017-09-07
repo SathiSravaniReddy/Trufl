@@ -1,6 +1,7 @@
 ﻿
 import { Component, ViewEncapsulation } from '@angular/core';
 import { HostessService } from './hostess.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'hostess',
@@ -11,7 +12,10 @@ export class HostessComponent {
 
     private truflUserList;
     private priceOfTable;
+    private classForAccept;
     private sizeOfTable;
+    private accepted;
+    private classForSeated;
     private count = 0;
     private showProfile: boolean = false;
     private profileData: any = [];
@@ -35,10 +39,10 @@ export class HostessComponent {
     ];
 
     constructor(private hostessService: HostessService) {
+        this.classForAccept = "selected";
+        this.classForSeated = "";
         this.hostessService.getTruflUserList().subscribe((res: any) => {
             this.truflUserList = res._Data;
-            console.log(this.truflUserList, "edaffsd");
-
         });
     }
 
@@ -102,8 +106,23 @@ export class HostessComponent {
         this.ActiveSeats = false;
         this.showSeatedButton = true;
         this.count++;
-        alert("Accepted");
+        this.accepted = 2;
         event.stopPropagation();
+        this.hostessService.acceptedandremovedwaiteduser(item.RestaurantID,this.accepted).subscribe((res: any) => {
+            alert(res._Data[0].NotificationMsg);
+        });
+        this.classForAccept = "success";
+        this.classForSeated = "selected";
+    }
+
+    remove(item) {
+        this.accepted = 5;
+        this.hostessService.acceptedandremovedwaiteduser(item.RestaurantID, this.accepted).subscribe((res: any) => {
+            alert(res._Data[0].NotificationMsg);
+        });
+        this.hostessService.getTruflUserList().subscribe((res: any) => {
+            this.truflUserList = res._Data;
+        });
     }
 
     cancelSeats() {

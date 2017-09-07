@@ -41,7 +41,11 @@ export class HeaderComponent {
         this.userType = this.loginService.getUserType(); 
     }
  
-    logout() {
+    logoutShow() {
         this.profileVisible = true;
+
+    }
+    logouthide() {
+        this.profileVisible = false;
     }
 }

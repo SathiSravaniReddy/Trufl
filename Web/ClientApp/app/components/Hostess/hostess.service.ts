@@ -17,6 +17,12 @@ export class HostessService {
 .map(res => res.json() || {})
             .catch(this.handleError);
     }
+    public acceptedandremovedwaiteduser(bookingid, bookinstatus) {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:8679/api/Trufl/AcceptedandRemovedWaitedUser/' + bookingid + '/' + bookinstatus, { headers: headers })
+            .map(res => res.json() || {})
+    }
     private handleError(error: any) {
         return 'Error';
     }
