@@ -20,6 +20,7 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.RetrieveUser();
         }
+
         public DataTable GetWaitListUsers()
         {
             return _hostessDL.GetWaitListUsers();
@@ -29,13 +30,20 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.SaveTruflUserInfromation(truflUserInputDTO);
         }
+
         public DataTable AcceptedWaitedUser(int BookingID, int BookinStatus)
         {
             return _hostessDL.AcceptedWaitedUser(BookingID, BookinStatus);
         }
+
         public DataTable GetRestaurantTables(int RestaurantID, int UserID)
         {
             return _hostessDL.GetRestaurantTables(RestaurantID, UserID);
+        }
+
+        public bool SaveWaitedlistBooking(BookingTableInputDTO bookingTableInput)
+        {
+            return _hostessDL.SaveWaitedlistBooking(bookingTableInput);
         }
             #endregion
 
@@ -45,7 +53,7 @@ namespace Trufl.Business_Layer
             return _hostessDL.GetRestaurantSeatedUsers(RestaurantID);
         }
 
-        public bool SaveSeatBooking(List<RestaurantSeatedUsersInputDTO> restaurantSeatedUsersInputDTO)
+         public bool SaveSeatBooking(List<RestaurantSeatedUsersInputDTO> restaurantSeatedUsersInputDTO)
         {
             return _hostessDL.SaveSeatBooking(restaurantSeatedUsersInputDTO);
         }
@@ -65,7 +73,7 @@ namespace Trufl.Business_Layer
 
         #region Trufl_Admin
 
-            #endregion
+        #endregion
 
 #endregion
         }
