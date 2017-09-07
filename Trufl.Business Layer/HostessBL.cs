@@ -69,12 +69,20 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.SaveSignUpUserInfo(registerUserInfo);
         }
+
+        public DataTable LoginAuthentication(LoginInputDTO loginInput)
+        {
+            return _hostessDL.LoginAuthentication(loginInput);
+        }
         #endregion
 
         #region Trufl_Admin
-
+            public DashBoardDetailsOutputDTO GetDashBoardDetails(DashBoardInputDTO dashboardInput)
+            {
+                return _hostessDL.GetDashBoardDetails(dashboardInput);
+            }
         #endregion
 
-#endregion
+            #endregion
         }
 }

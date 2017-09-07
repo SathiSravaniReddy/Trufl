@@ -56,7 +56,7 @@ ul {
 }
 
     .leftnav ul {
-        margin: 20px 0;
+        margin: 20px 0 20px 0;
         float: left;
         width: 100%;
     }
@@ -116,6 +116,7 @@ ul {
 
     .headerright a {
         float: left;
+        cursor:pointer;
     }
 
 .profiledd {
@@ -323,7 +324,7 @@ ul {
         height: 40px;
     }
 
-        .tableselect li a {
+        .tableselect li span {
             border: #b1b4b5 solid 1px;
             float: left;
             width: 30px;
@@ -331,9 +332,10 @@ ul {
             text-align: center;
             line-height: 30px;
             font-size: 14px;
+            cursor:pointer;
         }
 
-            .tableselect li a:hover {
+            .tableselect li span:hover {
                 border: #0078d7 solid 1px;
             }
 
@@ -432,6 +434,8 @@ ul {
     font-size: 15px;
     text-transform: uppercase;
     //margin: 0 10px 0 0;
+    cursor:pointer;
+    background:#fff;
 }
 
 button.close {
@@ -527,8 +531,13 @@ button.close {
         margin: 5px 60px 0 0;
         font-size: 18px;
     }
+    .booked b h3{
+        margin:0px;
+        font-weight:bold;
+        font-size:18px;
+    }
 
-    .booked span {
+        .booked span {
         float: left;
         width: auto;
         margin: 0 40px 0 0;
@@ -685,7 +694,7 @@ button.close {
 }
 
 .settingmain {
-    padding: 0;
+  
     margin: 0;
     list-style: none;
     display: -webkit-box;
@@ -917,6 +926,8 @@ button.close {
     margin-bottom: 20px;
     padding: 15px 15px 15px 15px;
     display:inline-block;
+    float:left;
+    width:100%;
 }
 
 .logininner {
@@ -984,6 +995,7 @@ button.close {
 .logincontiner {
     margin: 0 auto;
     float: none;
+    width:450px;
 }
 
 .loginmain .form-control {
@@ -998,4 +1010,71 @@ button.close {
 }
 .fw{
     width:100% !important;
+}
+
+        .customcheckbox {
+   
+        position: relative;
+        }
+
+
+        .customcheckbox label {
+        cursor: pointer;
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        top: 5px;
+        left: 10px;
+        background: #fff;
+        border: 1px solid #0078d7;
+        }
+
+
+        .customcheckbox label:after {
+        opacity: 0;
+        content: '';
+        position: absolute;
+        width: 9px;
+        height: 6px;
+        background: transparent;
+        top: 7px;
+        left: 7px;
+        border: 3px solid #333;
+        border-top: none;
+        border-right: none;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        }
+
+        .customcheckbox label:hover::after {
+        opacity: 0;
+        }
+        .customcheckbox input[type="checkbox"] {
+        margin:4px 0 0 4px;
+        }
+
+        .customcheckbox input[type=checkbox]:checked + label:after {
+        opacity: 1;
+        }
+
+
+        .tablemain tr {
+        cursor: pointer;
+        }
+.logout {
+    background: #fff;
+    padding: 8px 25px 8px 50px;
+    font-size: 16px;
+    position: absolute;
+    top: 46px;
+    right: 0px;
+    z-index: 9999;
+    border: #0078d7 1px solid;
+}
+
+.lgbtn{
+    width:48%;
 }

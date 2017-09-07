@@ -63,7 +63,7 @@ namespace Trufl.Services.Controllers
 
 
         [Route("AcceptedandRemovedWaitedUser/{BookingID}/{BookinStatus}")]
-        [HttpGet]
+        [HttpPost]
         public object AcceptedWaitedUser(int BookingID,int BookinStatus)
         {
             DataTable res = new DataTable(); 
@@ -178,11 +178,42 @@ namespace Trufl.Services.Controllers
              
         }
 
+        [Route("LoginAuthentication")]
+        [HttpPost]
+        public object LoginAuthentication(LoginInputDTO loginInput)
+        {
+            DataTable res = new DataTable();
+             res = _hostessBL.LoginAuthentication(loginInput);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
         #endregion
- #endregion
+
 
         #region Trufl_Admin
-
+        [Route("GetDashBoardDetails")]
+        [HttpPost]
+        public object GetDashBoardDetails(DashBoardInputDTO dashboardInput)
+        {
+            DashBoardDetailsOutputDTO res = new DashBoardDetailsOutputDTO();
+            res = _hostessBL.GetDashBoardDetails(dashboardInput);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
         #endregion
+     #endregion
     }
 }

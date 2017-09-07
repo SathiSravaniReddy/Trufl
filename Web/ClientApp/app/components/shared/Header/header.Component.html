@@ -8,14 +8,15 @@
     <div class="headerright">
         <a (click)="settings()"><img alt="" src="../../../../../wwwroot/images/setting.png" /> </a>
         <div class="profiledd dropdown">
-            <a (click)="logoutShow()"><label>Jeffy </label> <img width="32" alt="" src="../../../../../wwwroot/images/profile.png" /> </a>
-           
+            <a (click)="logoutShow()"> <label>Jeffy </label> <img width="32" alt="" src="../../../../../wwwroot/images/profile.png" /> </a>
+          
+            <a class="logout" *ngIf="profileVisible" [routerLink]="['/login']"> Logout</a>
         </div>
     </div>
 
 </div>
 <div class="col-md-12 innermain">
-    <button class="secondary-btn pull-right" *ngIf="profileVisible" [routerLink]="['/login']"> Logout</button>
+   
     
     <div class="col-md-12 leftnav no-pad" *ngIf="showHeadings">
         <div *ngIf="this.userType=='TR'">

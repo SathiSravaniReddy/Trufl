@@ -43,8 +43,8 @@
 
                     </div>
                     <div class="login-btn">
-                        <button type="reset" class="secondary-btn">Clear</button>
-                        <button type="submit" class="primary-btn pull-right" [disabled]="!loginForm.form.valid">Sign In</button>
+                        <button type="reset" class="secondary-btn lgbtn">Clear</button>
+                        <button type="submit" class="primary-btn lgbtn pull-right" [disabled]="!loginForm.form.valid">Sign In</button>
                     </div>
 
                     <div class="createaccount">
@@ -77,8 +77,8 @@
                         </a>
                     </div>
                     <div class="login-btn">
-                        <button type="reset" class="secondary-btn">Clear</button>
-                        <button type="submit" (click)="resetPassword()" [disabled]="!forgotForm.form.valid" class="primary-btn pull-right">submit</button>
+                        <button type="reset" class="secondary-btn lgbtn">Clear</button>
+                        <button type="submit" (click)="resetPassword()" [disabled]="!forgotForm.form.valid" class="primary-btn pull-right lgbtn">submit</button>
                     </div>
                 </div>
             </form>
