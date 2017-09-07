@@ -588,13 +588,103 @@ namespace Trufl.Data_Access_Layer
                 return false;
             }
         }
+
+        /// <summary>
+        /// This method 'LoginAuthentication' will check the login authentication
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public DataTable LoginAuthentication(LoginInputDTO loginInput)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spLoginAuthentication", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@EMAIL_ID", loginInput.emailid);
+                        tvpParam.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@PASSWORD", loginInput.password);
+                        tvparam1.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@UserType", loginInput.usertype);
+                        tvparam2.SqlDbType = SqlDbType.Text;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
         #endregion
 
         #region Trufl_Admin
 
+        public DashBoardDetailsOutputDTO GetDashBoardDetails(DashBoardInputDTO dashboardInput)
+        {
+            DataTable sendResponse = new DataTable();
+            DashBoardDetailsOutputDTO response = new DashBoardDetailsOutputDTO();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetDashBoardDetails", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        
+                        if (dashboardInput != null)
+                        {
+                            SqlParameter tvpParam = cmd.Parameters.AddWithValue("@FromDate", dashboardInput.FromDate);
+                            tvpParam.SqlDbType = SqlDbType.DateTime;
+                            SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@ToDate", dashboardInput.ToDate);
+                            tvparam1.SqlDbType = SqlDbType.DateTime;
+                        }
+                        else {
+                            SqlParameter tvpParam = cmd.Parameters.AddWithValue("@FromDate", DBNull.Value);
+                            tvpParam.SqlDbType = SqlDbType.DateTime;
+                            SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@ToDate", DBNull.Value);
+                            tvparam1.SqlDbType = SqlDbType.DateTime;
+                        }
+                        
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            DataSet ds = new DataSet();
+                            da.Fill(ds);
+
+                            //sendResponse = ds.Tables[0];  // Create
+                            //sendResponse.Merge(ds.Tables[1]);
+                            response.OffersRaised = ds.Tables[0];
+                            response.OffersAccepted = ds.Tables[1];
+                            response.OffersRemoved = ds.Tables[2];
+                            response.VisitedCustomers = ds.Tables[3];
+                            response.TotalNumberOfCustomers = ds.Tables[4];
+                            response.NumberOfTruflRestaurants = ds.Tables[5];
+                            response.RestaurantDetails = ds.Tables[6];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            //return sendResponse;
+            return response;
+        }
+
         #endregion
 
-#endregion
+        #endregion
 
     }
 }
