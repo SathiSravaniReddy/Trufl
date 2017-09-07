@@ -15,9 +15,10 @@ namespace Trufl.Data_Access_Layer
     {
         #region Db Connection 
         SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["TraflConnection"]);
+        string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
         #endregion
 
-#region Trufl_Hostess
+        #region Trufl_Hostess
         #region WaitList
         /// <summary>
         /// This method 'RetrieveUser ' returns User details
@@ -192,6 +193,160 @@ namespace Trufl.Data_Access_Layer
                 return false;
             }
         }
+
+        /// <summary>
+        /// This method 'AcceptedWaitedUser' will update the waited user info
+        /// </summary>
+        /// <param name="AcceptedWaitedUser"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public DataTable AcceptedWaitedUser(int BookingID,int BookinStatus)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spUpdateBookingStatus", con))
+                    {
+                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@BookingID", BookingID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@BookingStatus", BookinStatus);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+        /// <summary>
+        /// This method 'GetRestaurantTables' will Get Restaurant Tables info
+        /// </summary>
+        /// <param name="spGetRestaurantTables"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public DataTable GetRestaurantTables(int RestaurantID, int UserID)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantTables", con))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@UserID", UserID);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+        /// <summary>
+        /// This method 'SaveWaitedlistBooking' will save all the waited list users
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool SaveWaitedlistBooking(BookingTableInputDTO bookingTableInput)
+        {
+            try
+            {
+                var dtClient = new DataTable();
+
+                dtClient.Columns.Add("BookingID", typeof(Int64));
+                dtClient.Columns.Add("TruflUserID", typeof(Int64));
+                dtClient.Columns.Add("RestaurantID", typeof(Int64));
+                dtClient.Columns.Add("PartySize", typeof(Int64));
+                dtClient.Columns.Add("OfferType", typeof(Int64));
+                dtClient.Columns.Add("OfferAmount", typeof(Int64));
+                dtClient.Columns.Add("BookingStatus", typeof(Int64));
+                dtClient.Columns.Add("Points", typeof(Int64));
+                dtClient.Columns.Add("TruflUserCardDataID", typeof(Int64));
+                dtClient.Columns.Add("TruflTCID", typeof(Int64));
+                dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
+                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
+                dtClient.Columns.Add("Quoted", typeof(DateTime));
+                dtClient.Columns.Add("PaymentStatus", typeof(string));
+                dtClient.Columns.Add("TableNumbers", typeof(string));
+                
+                
+                dtClient.Rows.Add(bookingTableInput.BookingID,
+                                   bookingTableInput.TruflUserID,
+                                   bookingTableInput.RestaurantID,
+                                   bookingTableInput.PartySize,
+                                   bookingTableInput.OfferType,
+                                   bookingTableInput.OfferAmount,
+                                   bookingTableInput.BookingStatus,
+                                   bookingTableInput.Points,
+                                   bookingTableInput.TruflUserCardDataID,
+                                   bookingTableInput.TruflTCID,
+                                   bookingTableInput.ModifiedDate,
+                                   bookingTableInput.ModifiedBy,
+                                   bookingTableInput.Quoted,
+                                   bookingTableInput.PaymentStatus,
+                                   bookingTableInput.TableNumbers                                   
+                                   );
+
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveBooking", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@BookingTY", dtClient);
+                        tvpParam.SqlDbType = SqlDbType.Structured;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@LoggedInUser", bookingTableInput.LoggedInUser);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
         #endregion
 
         #region Seated User
@@ -214,7 +369,6 @@ namespace Trufl.Data_Access_Layer
                         SqlParameter tvpParam5 = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
-
                             da.Fill(sendResponse);
                         }
                     }

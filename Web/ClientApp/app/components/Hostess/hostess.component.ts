@@ -46,7 +46,9 @@ export class HostessComponent {
         console.log(data, "data");
         var _that = this;
         this.currentSelectedUser = data.Email;
-
+        this.showTurnSeats = true;
+        this.showSeated = false;
+        this.ActiveSeats = false;
         this.showProfile = true;
         this.profileData = data;
         if (this.showSeatedButton == true) {
@@ -67,9 +69,6 @@ export class HostessComponent {
                 obj.isShowLinks = false;
             }
         })
-
-
-
 
     }
     trunGetSeatedNow(){
@@ -118,7 +117,7 @@ export class HostessComponent {
             obj.isShowLinks = false;
         })
         this.count++;
-
+        this.showProfile = false;
     }
     closeProile() {
         this.showProfile = false;

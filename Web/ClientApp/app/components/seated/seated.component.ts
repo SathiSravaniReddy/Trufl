@@ -3,24 +3,27 @@ import { OnInit } from '@angular/core';
 import { SeatedService } from './seated.service'
 
 @Component({
-    selector:'seated',
+    selector: 'seated',
     templateUrl: './seated.component.html',
     styleUrls: ['./seated.component.css']
 })
 export class SeatedComponent implements OnInit {
-
-    // private seatedinfo: any;
-    seatedinfo: any = [];
-    isenabled = false;
+    
+    public seatedinfo: any = [];
+    public isenabled = false;
     private seatedinformation: any;
-    items: Array<any> = [];
+    public items: any = [];
     constructor(private seatedService: SeatedService) {
 
     }
 
     ngOnInit() {
+        this.getSeatedDetails();       
+    }
+    getSeatedDetails() {
         this.seatedService.getSeatedDetails().subscribe((res: any) => {
-           this.seatedinfo = res._Data;
+            this.seatedinfo = res._Data;
+            console.log(this.seatedinfo);
 
         }
         );
@@ -32,36 +35,51 @@ export class SeatedComponent implements OnInit {
         { value: 1 }
     ];
 
-    change() {
-        
-        // console.log(index);
+    change() {      
         this.isenabled = true;
-
-        /*   for (var i = 0; i < this.items.length; i++) {
-               if (event.TruflUserID == this.items[i].TruflUserID) {
-                   this.items.splice(i, 1);
-               }
-           }
-           this.items.push(event); */
-
     }
-    get(event) {
-        this.isenabled = true;
-        for (var i = 0; i < this.items.length; i++) {
-            if (event.TruflUserID == this.items[i].TruflUserID) {
-                this.items.splice(i, 1);
-            }
+    public get(data: any, type: any, event: any) {        
+
+        var details = {
+            "RestaurantID": data['RestaurantID'],
+            "TruflUserID": data['TruflUserID'],
+            "AmenitiName": type,
+            "AmenitiChecked": data[type]
         }
-        this.items.push(event);
-        
+        this.isenabled = true;
+        if (event.target.checked) {          
+            details.AmenitiChecked = true;
+          
+            this.items.push(details);
+           
+        }
+        else {
+           
+            if (details.AmenitiChecked == 1) {
+                details.AmenitiChecked = false
+                this.items.push(details);
+            }
+            else {
+                details.AmenitiChecked = false
+                this.items.map((item, index) => {
+                    if (item.TruflUserID == data['TruflUserID']) {
+                        this.items.splice(index, 1);
+                    }
+                })
+            }
+
+
+        }      
+
+
     }
 
 
     postSeatedDetails() {
+        console.log(this.items);
         this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {
-            // this.seatedinfo = res.data;
-            //  console.log(this.seatedinfo);
-
+            console.log(res);
+            this.getSeatedDetails();
         })
 
     }

@@ -12,7 +12,7 @@ export class SeatedService {
     constructor(private http: Http) {
     }
 
-    getSeatedDetails() {
+    getSeatedDetails() {       
         return this.http.get('http://localhost:8679/api/Trufl/GetSeatedUsersList/1').map(
             (res) => res.json())
 
@@ -20,7 +20,7 @@ export class SeatedService {
 
     postSeatedDetails(seatedInfo: any) {
         this.seatsdetails = seatedInfo;
-      
+       
         return this.http.post('http://localhost:8679/api/Trufl/SaveSeatBookingUsersList', this.seatsdetails).map(
             (res) => res.json()
         )
