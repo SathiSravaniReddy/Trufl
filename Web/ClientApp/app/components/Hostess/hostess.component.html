@@ -45,8 +45,8 @@
 
     </div>
     <div class="col-md-12 seatmain" *ngIf="showTurnSeats">
-        <div class="col-md-12" *ngIf="hideSeatedButton">
-            <button class="btn-main" (click)="trunGetSeatedNow()">turn get seated now</button>
+        <div class="col-md-3 btn-main" *ngIf="hideSeatedButton">
+            <button class="" (click)="trunGetSeatedNow()">turn get seated now</button>
         </div>
         <div class="col-md-12" *ngIf="showSeated">
             <div class="row">
@@ -73,8 +73,8 @@
     </div>
     <div class="col-md-2 animated fadeInRight" id="right-section" *ngIf="showProfile" >
         <div class="print">
-            <a id="close" (click)="closeProile()">X</a>
-            <a href="#">Print </a>
+            <a id="close" (click)="closeProile()"><span aria-hidden="true">&times;</span></a>
+         
 
         </div>
 
@@ -83,7 +83,7 @@
             <h4>{{profileData.UserName}}</h4>
             <p> Trufl Premier Member</p>
             <p>Bottique Premier Member</p>
-
+            <p><a href="#">Print </a> </p>
         </div>
 
         <div class="right-btn">
@@ -184,8 +184,8 @@
             <div class="modal-body">
                 <div class="row modal-items">
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Category</label>
+                        <div class="form-group ffw">
+                            <label class="text-left">Category</label>
                             <select class="form-items">
                                 <option>Option1</option>
                                 <option>Option1</option>
@@ -193,7 +193,7 @@
                         </div>
 
 
-                        <div class="form-group">
+                        <div class="form-group ffw">
                             <label>Description</label>
                             <textarea class="form-control" rows="4" cols="30"></textarea>
                         </div>
