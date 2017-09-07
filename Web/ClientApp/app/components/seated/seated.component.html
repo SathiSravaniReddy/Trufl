@@ -39,13 +39,16 @@
                         <td>{{seatsinfo.OfferAmount}}</td>
                         <td>{{seatsinfo.Status}}</td>
                         <td>{{seatsinfo.TableNumber}}</td>
-                        <td><input type="checkbox" [checked]="seatsinfo.Seated === toggles[1].value" name="seated" (change)="$event.target.checked?(seatsinfo.Seated = toggles[1].value) : (seatsinfo.Seated = toggles[0].value)" (click)="get(seatsinfo)"></td>
-                        <td><input type="checkbox" [checked]="seatsinfo.AppServed === toggles[1].value" name="appserved" (change)="$event.target.checked?(seatsinfo.AppServed = toggles[1].value) : (seatsinfo.AppServed= toggles[0].value)" (click)="get(seatsinfo)"></td>
-                        <td><input type="checkbox" [checked]="seatsinfo.MenuServed === toggles[1].value" name="menuserved" (change)="$event.target.checked?(seatsinfo.MenuServed = toggles[1].value) : (seatsinfo.MenuServed = toggles[0].value)" (click)="get(seatsinfo)"></td>
-                        <td><input type="checkbox" [checked]="seatsinfo.DesertServed === toggles[1].value" name="dessertserved" (change)="$event.target.checked?(seatsinfo.DesertServed = toggles[1].value) : (seatsinfo.DesertServed = toggles[0].value)" (click)="get(seatsinfo)"></td>
-                        <td><input type="checkbox" [checked]="seatsinfo.CheckReceived === toggles[1].value" name="checkreceived" (change)="$event.target.checked?(seatsinfo.CheckReceived = toggles[1].value) : (seatsinfo.CheckReceived = toggles[0].value)" (click)="get(seatsinfo)"></td>
-                        <td><input type="checkbox" [checked]="seatsinfo.Boozing === toggles[1].value" name="buzzing" (change)="$event.target.checked?(seatsinfo.Boozing = toggles[1].value) : (seatsinfo.Boozing = toggles[0].value)"></td>
-                        <td><input type="checkbox" [checked]="seatsinfo.Empty === toggles[1].value" name="empty" (change)="$event.target.checked?(seatsinfo.Empty = toggles[1].value) : (seatsinfo.Empty = toggles[0].value)"></td>
+                        <td><input type="checkbox"   [checked]="seatsinfo.Seated === toggles[1].value" name="seated" (change)="$event.target.checked?(seatsinfo.Seated = toggles[1].value) : (seatsinfo.Seated = toggles[0].value)" (click)="get(seatsinfo,'Seated',$event)"></td>
+                        <td><input type="checkbox"  [checked]="seatsinfo.AppServed === toggles[1].value" name="appserved" (change)="$event.target.checked?(seatsinfo.AppServed = toggles[1].value) : (seatsinfo.AppServed= toggles[0].value)" (click)="get(seatsinfo,'AppServed',$event)"></td>
+                        <td><input type="checkbox"  [checked]="seatsinfo.MenuServed === toggles[1].value" name="menuserved" (change)="$event.target.checked?(seatsinfo.MenuServed = toggles[1].value) : (seatsinfo.MenuServed = toggles[0].value)" (click)="get(seatsinfo,'MenuServed',$event)"></td>
+                        <td><input type="checkbox"  [checked]="seatsinfo.DesertServed === toggles[1].value" name="dessertserved" (change)="$event.target.checked?(seatsinfo.DesertServed = toggles[1].value) : (seatsinfo.DesertServed = toggles[0].value)" (click)="get(seatsinfo,'DesertServed',$event)"></td>
+                        <td><input type="checkbox"  [checked]="seatsinfo.CheckReceived === toggles[1].value" name="checkreceived" (change)="$event.target.checked?(seatsinfo.CheckReceived = toggles[1].value) : (seatsinfo.CheckReceived = toggles[0].value)" (click)="get(seatsinfo,'CheckReceived',$event)"></td>
+
+                        <td><input type="checkbox" [checked]="seatsinfo.Boozing === toggles[1].value" name="boozing" (change)="$event.target.checked?(seatsinfo.Boozing = toggles[1].value) : (seatsinfo.Boozing = toggles[0].value)" (click)="get(seatsinfo,'Boozing',$event)"></td>
+
+                       <!-- <td><input type="checkbox"  [checked]="seatsinfo.Boozing === toggles[1].value" name="boozing" (change)="$event.target.checked?(seatsinfo.Boozing = toggles[1].value) : (seatsinfo.Boozing = toggles[0].value)" (click)="get(seatsinfo,'Boozing',$event)"></td> -->
+                        <td><input type="checkbox"  [checked]="seatsinfo.Empty === toggles[1].value" name="empty" (change)="$event.target.checked?(seatsinfo.Empty = toggles[1].value) : (seatsinfo.Empty = toggles[0].value)" (click)="get(seatsinfo,'Empty',$event)"></td>
 
 
 

@@ -13,22 +13,34 @@ export class SeatedComponent implements OnInit {
     seatedinfo: any = [];
     isenabled = false;
     private seatedinformation: any;
-    items: Array<any> = [];
+    public items: any = [];
     constructor(private seatedService: SeatedService) {
 
     }
 
     ngOnInit() {
-        console.log("loadingcomponent");
+        this.getSeatedDetails();
+       /* console.log("loadingcomponent");
         this.seatedService.getSeatedDetails().subscribe((res: any) => {
            this.seatedinfo = res._Data;
            //  this.seatedinfo = "";
             console.log(this.seatedinfo);
 
         }
+        ); */
+
+    }
+    getSeatedDetails() {
+        this.seatedService.getSeatedDetails().subscribe((res: any) => {
+            this.seatedinfo = res._Data;           
+            console.log(this.seatedinfo);
+
+        }
         );
 
     }
+
+
 
     public toggles = [
         { value: 0 },
@@ -49,15 +61,75 @@ export class SeatedComponent implements OnInit {
            this.items.push(event); */
 
     }
-    get(event) {
-        this.isenabled = true;
-        for (var i = 0; i < this.items.length; i++) {
-            if (event.TruflUserID == this.items[i].TruflUserID) {
-                this.items.splice(i, 1);
-            }
-        }
-        this.items.push(event);
+    public get(data: any, type: any, event: any) {
+
+        console.log(data);
+        console.log(type);
         console.log(event);
+
+        var details = {
+            "RestaurantID": data['RestaurantID'],
+            "TruflUserID": data['TruflUserID'],
+            "AmenitiName": type,
+            "AmenitiChecked": data[type]
+        }
+        this.isenabled = true;
+        if (event.target.checked) {   
+            //data[type] = true;
+            details.AmenitiChecked = true;
+            console.log(data);
+            //if (this.items.length <= 0) {
+                this.items.push(details);
+            //
+
+            //else {
+            //    if (this.items.indexOf(details) == -1) {
+            //        this.items.push(details);
+            //    }
+            //}
+            
+       }
+        else {
+            console.log(data);
+            //data[type] = false;
+            if (details.AmenitiChecked == 1) {
+                details.AmenitiChecked = false
+                this.items.push(details);
+            }
+            else {
+                details.AmenitiChecked = false
+                this.items.map((item, index) => {
+                    if (item.TruflUserID == data['TruflUserID']) {
+                        this.items.splice(index, 1);
+                    }
+                })
+            }
+           
+            
+            
+            
+        }
+        
+        //if (this.items.length <= 0) {
+        //    this.items.push(details);
+        //}
+    
+        //else {
+            //this.items.map(item => {
+            //    if (item['AmenitiName'] === type) {
+            //        item['AmenitiChecked'] = data[type];
+
+
+            //    }
+            //    else {
+            //        this.items.push(details);
+            //    }
+            //});
+
+        //}
+      
+
+
         
     }
 
@@ -66,11 +138,9 @@ export class SeatedComponent implements OnInit {
         console.log(this.items);
         this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {
             console.log(res);
-            // this.seatedinfo = res.data;
-            //  console.log(this.seatedinfo);
-
-        })
-
+            this.getSeatedDetails(); 
+        }) 
+       
     }
 
 
