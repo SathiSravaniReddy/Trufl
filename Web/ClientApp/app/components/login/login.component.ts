@@ -4,49 +4,55 @@ import { Router } from '@angular/router';
 import { LoginService } from '../shared/login.service';
 import { User } from './user';
 
+
 @Component({
     selector: 'login',
     templateUrl: './login.component.html'
 })
 export class LoginComponent {
     private logininfo:any;
-    private userType;
     private user = new User();
     private errorMsg;
     private showForgotPassword = false;
     private showResetPassword = false;
     private showlogin = true;
+
+    private loginDetails: any;
     constructor(private loginService:LoginService, private router:Router ){
     
     }
+    ngOnInit() {
+      
+    }
+   
+
     signIn() {
-         this.loginService.setUserType(this.userType); 
-         this.loginService.loginAuthentication(this.user).subscribe(
-             user => {
-                 if (user && (this.userType == 'TR'))
-                 {
-                    this.router.navigateByUrl('/home');
+        console.log(this.user);
+         this.loginService.setUserType(this.user.usertype); 
+        
+         this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
+             res._Data.map((item: any) => {
+                 this.loginDetails = item;
+             });
+
+             if (this.loginDetails) {
+                 if (this.loginDetails.TruflUSERID==11){
+                     this.router.navigateByUrl('/home');
                  }
-                 else if (user && (this.userType == 'TA')){
+                 else if (this.loginDetails.TruflUSERID == 1) {
                      this.router.navigateByUrl('/dashboard');
                  }
-                 else if (user) {
-                     this.errorMsg = "Please Select User Type";
-                 }
-                     
-                 else {
-                     this.errorMsg = "Please enter valid username and password";
-                 }
-             },
-             err => {
-                       // Log errors if any
-                
-                              console.log(err);
-             });
+             }
+             else {
+                 this.errorMsg = "Please select usertype and enter valid username and password";
+             }
+
+         } );
+       
 
      
      
-        this.loginService.getLoginDetails(this.userType).subscribe((data: any) => {
+        this.loginService.getLoginDetails(this.user.usertype).subscribe((data: any) => {
             data._Data.map((item: any) => {
                 this.logininfo = item;
         });
