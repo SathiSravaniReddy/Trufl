@@ -109,6 +109,23 @@ namespace Trufl.Services.Controllers
             }
         }
 
+
+        [Route("GetRestaurantTableAmount/{RestaurantID}/{TableNumber}")]
+        [HttpGet]
+        public object GetRestaurantTableAmount(int RestaurantID, int TableNumber)
+        {
+            DataTable res = new DataTable();
+            try
+            {
+                res = _hostessBL.GetRestaurantTableAmount(RestaurantID, TableNumber);
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+       
         #endregion
 
         #region Seated User

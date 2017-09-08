@@ -45,9 +45,14 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.SaveWaitedlistBooking(bookingTableInput);
         }
+
+        public DataTable GetRestaurantTableAmount(int RestaurantID, int TableNumber)
+        {
+            return _hostessDL.GetRestaurantTableAmount(RestaurantID, TableNumber);
+        }
             #endregion
 
-        #region Seated User
+            #region Seated User
             public DataTable GetRestaurantSeatedUsers(int RestaurantID)
         {
             return _hostessDL.GetRestaurantSeatedUsers(RestaurantID);
