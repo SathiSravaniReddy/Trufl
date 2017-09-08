@@ -444,32 +444,50 @@ namespace Trufl.Data_Access_Layer
             {
                 var dtClient = new DataTable();
 
-               
+                dtClient.Columns.Add("TruflUserID", typeof(Int32));
+                dtClient.Columns.Add("RestaurantID", typeof(Int32));
                 dtClient.Columns.Add("FullName", typeof(string));
                 dtClient.Columns.Add("Email", typeof(string));
-                dtClient.Columns.Add("Password", typeof(string));
+                dtClient.Columns.Add("pic", typeof(Byte[]));
                 dtClient.Columns.Add("PhoneNumber", typeof(string));
-                dtClient.Columns.Add("LoggedInUserType", typeof(string));
-                dtClient.Columns.Add("TruflUserID", typeof(Int64));
-                dtClient.Columns.Add("RestaurantID", typeof(Int64));
-                dtClient.Columns.Add("pic", typeof(string));
-                dtClient.Columns.Add("Salt", typeof(string));
+                dtClient.Columns.Add("Password", typeof(string));
+                //dtClient.Columns.Add("Salt", typeof(string));
                 dtClient.Columns.Add("DOB", typeof(DateTime));
                 dtClient.Columns.Add("ActiveInd", typeof(char));
-                dtClient.Columns.Add("RestaurantEmpInd", typeof(Int64));
-                dtClient.Columns.Add("TruflMemberType", typeof(Int64));
+                dtClient.Columns.Add("RestaurantEmpInd", typeof(Int32));
+                dtClient.Columns.Add("TruflMemberType", typeof(string));
+                dtClient.Columns.Add("TruflRelationship", typeof(Int32));
                 dtClient.Columns.Add("TruflshareCode", typeof(string));
-                dtClient.Columns.Add("ReferTruflUserID", typeof(Int64));
+                dtClient.Columns.Add("ReferTruflUserID", typeof(Int32));
                 dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
-                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
-                dtClient.Columns.Add("Waited", typeof(string));
+                dtClient.Columns.Add("ModifiedBy", typeof(Int32));
+                dtClient.Columns.Add("Waited", typeof(TimeSpan));
+
+                //dtClient.Columns.Add("LoggedInUserType", typeof(string));
+                
+               
+                
+                
 
                 dtClient.Rows.Add(
+                                  DBNull.Value,
+                                  DBNull.Value,
                                   registerUserInfo.FullName,
-                                  registerUserInfo.Email,                                 
-                                  registerUserInfo.Password,
+                                  registerUserInfo.Email,
+                                  DBNull.Value,
                                   registerUserInfo.PhoneNumber,
-                                  registerUserInfo.LoggedInUserType
+                                  registerUserInfo.Password,
+                                  //DBNull.Value,
+                                  DBNull.Value,
+                                  DBNull.Value,
+                                  DBNull.Value,
+                                  DBNull.Value,
+                                  DBNull.Value,
+                                  DBNull.Value,
+                                  DBNull.Value,
+                                  DBNull.Value,
+                                  DBNull.Value,
+                                  DBNull.Value
                                   );
 
                 string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
@@ -546,8 +564,6 @@ namespace Trufl.Data_Access_Layer
             return sendResponse;
         }
 
-
-
         /// <summary>
         /// This method 'GetForgetPassword' will ForgetPassword 
         /// </summary>
@@ -580,8 +596,6 @@ namespace Trufl.Data_Access_Layer
             }
             return sendResponse;
         }
-
-
 
         /// <summary>
         /// This method 'SaveRestPassword' will RestPassword 
@@ -616,7 +630,6 @@ namespace Trufl.Data_Access_Layer
             return sendResponse;
         }
 
-
         /// <summary>
         /// This method 'spGetTruflUserDetails' will TruflUserDetails 
         /// </summary>
@@ -649,9 +662,6 @@ namespace Trufl.Data_Access_Layer
             }
             return sendResponse;
         }
-
-
-
 
         /// <summary>
         /// This method 'spGetRestaurantDetails' will RestaurantDetails 

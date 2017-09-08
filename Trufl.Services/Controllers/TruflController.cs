@@ -163,7 +163,7 @@ namespace Trufl.Services.Controllers
             
         }
         
-        [Route("SaveSignUp")]
+        [Route("SignUp")]
         [HttpPost]
         public object SaveSignUpUserInfo(TruflUserInputDTO registerUserInfo)
         {
