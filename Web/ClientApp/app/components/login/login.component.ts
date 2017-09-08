@@ -29,7 +29,7 @@ export class LoginComponent {
 
 
     signIn() {
-        console.log(this.user);
+        //console.log(this.user);
         this.loginService.setUserType(this.user.usertype);
 
         this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
@@ -81,7 +81,7 @@ export class LoginComponent {
             res._Data.map((item: any) => {
                 this.emailDetails = item;
             });
-            console.log(this.emailDetails);
+           
         });
    
     }

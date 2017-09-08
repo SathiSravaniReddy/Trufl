@@ -21,6 +21,7 @@ import { TimerComponent } from './components/Hostess/timer.component';
 import { HashLocationStrategy, Location, LocationStrategy } from '@angular/common'
 import { SettingsService } from './components/settings/settings.service';
 import { SearchPipe } from './components/resturant/resturant.component';
+import { EqualValidator } from './components/Register/password-match.directive';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { SearchPipe } from './components/resturant/resturant.component';
         EmployeeConfigurationComponent,
         HeaderComponent,
         TimerComponent,
-        SearchPipe
+        SearchPipe,
+        EqualValidator
         
     ],
     providers: [

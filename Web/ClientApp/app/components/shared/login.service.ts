@@ -30,7 +30,6 @@ export class LoginService {
     }
 
     loginAuthentication(user: any) {
-        console.log(user);
         return this.http.post('http://localhost:8679/api/Trufl/LoginAuthentication',user ).map(
             (res: Response) => res.json());
 
@@ -44,12 +43,10 @@ export class LoginService {
     }
     
 
-    create(user: User): Observable < User > {
-        return this.http.get('assets/login.json')
-                // ...and calling .json() on the response to return data
-                .map((res: Response) => res.json().data.filter(data => data.userName === user.emailid && data.password === user.password)[0])
-               //...errors if any
-                .catch(this.handleError);
+    create(user: User): Observable<User> {
+        return this.http.post('http://localhost:8679/Api/Trufl/SignUp' , user).map(
+            (res: Response) => res.json());
+
     }
     logout() {
         localStorage.removeItem("userType");

@@ -2,9 +2,9 @@
 
     userId?: number;
     usertype: string;
-    fullName?: string;
+    FullName?: string;
     emailid: string;
     password: string;
-    confirmPassword?: string;
+    confirmPassword: string;
     constructor() { }
 }

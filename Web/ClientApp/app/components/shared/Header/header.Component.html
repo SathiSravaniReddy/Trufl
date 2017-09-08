@@ -28,7 +28,7 @@
         </div>
         <div *ngIf="this.userType=='TA'">
             <ul>
-                <li *ngFor="let header of header2 let i=index" class="settingheader" >
+                <li *ngFor="let header of header2 let i=index">
                     <a [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
                 </li>
 
