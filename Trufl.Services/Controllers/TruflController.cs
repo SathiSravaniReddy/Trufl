@@ -227,11 +227,44 @@ namespace Trufl.Services.Controllers
             }
         }
 
+        [Route("GetTruflUserDetails")]
+        [HttpGet]
+        public object GetTruflUserDetails(int TruflUserID)
+        {
+            DataTable res = new DataTable();
+            res = _hostessBL.GetTruflUserDetails(TruflUserID);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
+        [Route("GetTruflUserDetails")]
+        [HttpGet]
+        public object GetRestaurantDetails(int RestaurantID)
+        {
+            DataTable res = new DataTable();
+            res = _hostessBL.GetRestaurantDetails(RestaurantID);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
+
 
         #endregion
 
 
-        #region Trufl_Admin
+            #region Trufl_Admin
         [Route("Admin/GetDashBoardDetails")]
         [HttpPost]
         public object GetDashBoardDetails(DashBoardInputDTO dashboardInput)

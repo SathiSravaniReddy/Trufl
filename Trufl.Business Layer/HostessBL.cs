@@ -84,6 +84,15 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.SaveRestPassword(LoginEmail);
         }
+
+        public DataTable GetTruflUserDetails(int TruflUserID)
+        {
+            return _hostessDL.GetTruflUserDetails(TruflUserID);
+        }
+        public DataTable GetRestaurantDetails(int RestaurantID)
+        {
+            return _hostessDL.GetRestaurantDetails(RestaurantID);
+        }
             #endregion
 
 
