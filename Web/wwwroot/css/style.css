@@ -984,13 +984,6 @@ button.close {
     color: #fff;
 }
 
-.loginbg {
-    background: url(../images/loginbg.jpeg) no-repeat center center;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    float: left;
-}
 
 .logincontiner {
     margin: 0 auto;

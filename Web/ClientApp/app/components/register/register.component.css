@@ -1,0 +1,7 @@
+
+.loginbg {
+    background: url(../../../../wwwroot/images/loginbg.jpg) no-repeat center center;
+    display: table;
+    width: 100%;
+    min-height: 100%;
+}
