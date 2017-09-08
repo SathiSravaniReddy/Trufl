@@ -26,11 +26,6 @@ namespace Trufl.Business_Layer
             return _hostessDL.GetWaitListUsers();
         }
 
-        public bool SaveTruflUserInfromation(List<TruflUserInputDTO> truflUserInputDTO)
-        {
-            return _hostessDL.SaveTruflUserInfromation(truflUserInputDTO);
-        }
-
         public DataTable AcceptedWaitedUser(int BookingID, int BookinStatus)
         {
             return _hostessDL.AcceptedWaitedUser(BookingID, BookinStatus);
@@ -70,7 +65,7 @@ namespace Trufl.Business_Layer
             return _hostessDL.GetUserTypes(UserType);
         }
 
-        public bool SaveSignUpUserInfo(List<TruflUserInputDTO> registerUserInfo)
+        public bool SaveSignUpUserInfo(TruflUserInputDTO registerUserInfo)
         {
             return _hostessDL.SaveSignUpUserInfo(registerUserInfo);
         }
@@ -79,9 +74,19 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.LoginAuthentication(loginInput);
         }
-        #endregion
+
+        public DataTable ForgetPassword(string LoginEmail)
+        {
+            return _hostessDL.ForgetPassword(LoginEmail);
+        }
+
+        public DataTable SaveRestPassword(string LoginEmail)
+        {
+            return _hostessDL.SaveRestPassword(LoginEmail);
+        }
+            #endregion
 
 
-        #endregion
-    }
+            #endregion
+        }
 }

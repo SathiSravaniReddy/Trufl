@@ -111,90 +111,6 @@ namespace Trufl.Data_Access_Layer
         }
 
         /// <summary>
-        /// This method 'SaveParkingLots' will save Location data
-        /// </summary>
-        /// <param name="passParkingLots"></param>
-        /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveTruflUserInfromation(List<TruflUserInputDTO> truflUserInputDTO)
-        {
-            try
-            {
-                var dtClient = new DataTable();
-
-                dtClient.Columns.Add("TruflUserID", typeof(Int64));
-                dtClient.Columns.Add("RestaurantID", typeof(Int64));
-                dtClient.Columns.Add("FirstName", typeof(string));
-                dtClient.Columns.Add("MiddleName", typeof(string));
-                dtClient.Columns.Add("LastName", typeof(string));
-                dtClient.Columns.Add("Email", typeof(string));
-                dtClient.Columns.Add("pic", typeof(string));
-                dtClient.Columns.Add("Contact1", typeof(string));
-                dtClient.Columns.Add("Password", typeof(string));
-                dtClient.Columns.Add("Salt", typeof(string));
-                dtClient.Columns.Add("DOB", typeof(DateTime));
-                dtClient.Columns.Add("ActiveInd", typeof(char));
-                dtClient.Columns.Add("RestaurantEmpInd", typeof(Int64));
-                dtClient.Columns.Add("TruflMemberType", typeof(Int64));
-                dtClient.Columns.Add("TruflRelationship", typeof(Int64));
-                dtClient.Columns.Add("TruflshareCode", typeof(string));
-                dtClient.Columns.Add("ReferTruflUserID", typeof(Int64));
-                dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
-                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
-                dtClient.Columns.Add("Waited", typeof(string));
-
-                dtClient.Rows.Add(truflUserInputDTO[0].TruflUserID,
-                                   truflUserInputDTO[0].RestaurantID,
-                                   truflUserInputDTO[0].FirstName,
-                                   truflUserInputDTO[0].MiddleName,
-                                   truflUserInputDTO[0].LastName,
-                                   truflUserInputDTO[0].Email,
-                                   truflUserInputDTO[0].pic,
-                                   truflUserInputDTO[0].Contact1,
-                                   truflUserInputDTO[0].Password,
-                                   truflUserInputDTO[0].Salt,
-                                   truflUserInputDTO[0].DOB,
-                                   truflUserInputDTO[0].ActiveInd,
-                                   truflUserInputDTO[0].RestaurantEmpInd,
-                                   truflUserInputDTO[0].TruflMemberType,
-                                   truflUserInputDTO[0].TruflRelationship,
-                                   truflUserInputDTO[0].TruflshareCode,
-                                   truflUserInputDTO[0].ReferTruflUserID,
-                                   truflUserInputDTO[0].ModifiedDate,
-                                   truflUserInputDTO[0].ModifiedBy,
-                                   truflUserInputDTO[0].Waited
-                                   );
-
-                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("spSaveTruflUser", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserTY", dtClient);
-                        tvpParam.SqlDbType = SqlDbType.Structured;
-                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@LoggedInUser", truflUserInputDTO[0].LoggedInUser);
-                        tvparam1.SqlDbType = SqlDbType.Structured;
-                        int status = cmd.ExecuteNonQuery();
-                        if (status == 0)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLogger.WriteToErrorLogFile(ex);
-                return false;
-            }
-        }
-
-        /// <summary>
         /// This method 'AcceptedWaitedUser' will update the waited user info
         /// </summary>
         /// <param name="AcceptedWaitedUser"></param>
@@ -522,75 +438,38 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="SaveSignUpUserInfo"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveSignUpUserInfo(List<TruflUserInputDTO> registerUserInfo)
+        public bool SaveSignUpUserInfo(TruflUserInputDTO registerUserInfo)
         {
             try
             {
                 var dtClient = new DataTable();
 
-                //dtClient.Columns.Add("TruflUserID", typeof(Int64));
-                //dtClient.Columns.Add("RestaurantID", typeof(Int64));
-                //dtClient.Columns.Add("FirstName", typeof(string));
-                //dtClient.Columns.Add("MiddleName", typeof(string));
-                //dtClient.Columns.Add("LastName", typeof(string));
-                //dtClient.Columns.Add("Email", typeof(string));
-                //dtClient.Columns.Add("pic", typeof(string));
-                //dtClient.Columns.Add("Contact1", typeof(string));
-                //dtClient.Columns.Add("Password", typeof(string));
-                //dtClient.Columns.Add("Salt", typeof(string));
-                //dtClient.Columns.Add("DOB", typeof(string));
-                //dtClient.Columns.Add("ActiveInd", typeof(Int64));
-                //dtClient.Columns.Add("RestaurantEmpInd", typeof(Int64));
-                //dtClient.Columns.Add("TruflMemberType", typeof(Int64));
-                //dtClient.Columns.Add("TruflRelationship", typeof(Int64));
-                //dtClient.Columns.Add("TruflshareCode", typeof(string));
-                //dtClient.Columns.Add("ReferTruflUserID", typeof(string));
-                //dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
-                //dtClient.Columns.Add("ModifiedBy", typeof(Int64));
-                //dtClient.Columns.Add("Waited", typeof(DateTime));
-
                
-                dtClient.Columns.Add("FirstName", typeof(string));
-                dtClient.Columns.Add("MiddleName", typeof(string));
-                dtClient.Columns.Add("LastName", typeof(string));
+                dtClient.Columns.Add("FullName", typeof(string));
                 dtClient.Columns.Add("Email", typeof(string));
                 dtClient.Columns.Add("Password", typeof(string));
+                dtClient.Columns.Add("PhoneNumber", typeof(string));
                 dtClient.Columns.Add("LoggedInUserType", typeof(string));
-
-
-
-                //dtClient.Rows.Add(         registerUserInfo[0].TruflUserID,
-                //                   registerUserInfo[0].RestaurantID,
-                //                   registerUserInfo[0].FirstName,
-                //                   registerUserInfo[0].MiddleName,
-                //                   registerUserInfo[0].LastName,
-                //                   registerUserInfo[0].Email,
-                //                   registerUserInfo[0].pic,
-                //                   registerUserInfo[0].Contact1,
-                //                   registerUserInfo[0].Password,
-                //                   registerUserInfo[0].Salt,
-                //                   registerUserInfo[0].DOB,
-                //                   registerUserInfo[0].ActiveInd,
-                //                   registerUserInfo[0].RestaurantEmpInd,
-                //                   registerUserInfo[0].TruflMemberType,
-                //                   registerUserInfo[0].TruflRelationship,
-                //                   registerUserInfo[0].TruflshareCode,
-                //                   registerUserInfo[0].ReferTruflUserID,
-                //                   registerUserInfo[0].ModifiedDate,
-                //                   registerUserInfo[0].ModifiedBy,
-                //                   registerUserInfo[0].Waited
-
-                //                   );
+                dtClient.Columns.Add("TruflUserID", typeof(Int64));
+                dtClient.Columns.Add("RestaurantID", typeof(Int64));
+                dtClient.Columns.Add("pic", typeof(string));
+                dtClient.Columns.Add("Salt", typeof(string));
+                dtClient.Columns.Add("DOB", typeof(DateTime));
+                dtClient.Columns.Add("ActiveInd", typeof(char));
+                dtClient.Columns.Add("RestaurantEmpInd", typeof(Int64));
+                dtClient.Columns.Add("TruflMemberType", typeof(Int64));
+                dtClient.Columns.Add("TruflshareCode", typeof(string));
+                dtClient.Columns.Add("ReferTruflUserID", typeof(Int64));
+                dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
+                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
+                dtClient.Columns.Add("Waited", typeof(string));
 
                 dtClient.Rows.Add(
-                                  registerUserInfo[0].FirstName,
-                                  registerUserInfo[0].MiddleName,
-                                  registerUserInfo[0].LastName,
-                                  registerUserInfo[0].Email,                                 
-                                  registerUserInfo[0].Password
-                                  
-
-
+                                  registerUserInfo.FullName,
+                                  registerUserInfo.Email,                                 
+                                  registerUserInfo.Password,
+                                  registerUserInfo.PhoneNumber,
+                                  registerUserInfo.LoggedInUserType
                                   );
 
                 string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
@@ -602,10 +481,14 @@ namespace Trufl.Data_Access_Layer
                         cmd.CommandType = CommandType.StoredProcedure;
                         SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserTY", dtClient);
                         tvpParam.SqlDbType = SqlDbType.Structured;
-                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@LoggedInUser", registerUserInfo[0].LoggedInUser);
-                        tvparam1.SqlDbType = SqlDbType.Structured;
-                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@LoggedInUserType", registerUserInfo[0].LoggedInUserType);
-                        tvparam2.SqlDbType = SqlDbType.Structured;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@LoggedInUserType", registerUserInfo.LoggedInUserType);
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
                         int status = cmd.ExecuteNonQuery();
                         if (status == 0)
                         {
@@ -662,9 +545,80 @@ namespace Trufl.Data_Access_Layer
             }
             return sendResponse;
         }
+
+
+
+        /// <summary>
+        /// This method 'GetForgetPassword' will ForgetPassword 
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns ForgetPassword Details </returns>
+        public DataTable ForgetPassword(string LoginEmail)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetForgetPassword", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@LoginEmail", LoginEmail);
+                        tvpParam.SqlDbType = SqlDbType.Text;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+
+
+        /// <summary>
+        /// This method 'SaveRestPassword' will RestPassword 
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns RestPassword  </returns>
+        public DataTable SaveRestPassword(string LoginEmail)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("SaveRestPassword", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@LoginEmail", LoginEmail);
+                        tvpParam.SqlDbType = SqlDbType.Text;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
         #endregion
 
-        
+
 
         #endregion
 
