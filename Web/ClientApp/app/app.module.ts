@@ -9,8 +9,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ResturantComponent } from './components/resturant/resturant.component';
+import { RestaurenService } from './components/resturant/restaurent.service';
 import { EmployeeConfigurationComponent } from './components/employeeconfiguration/employeeconfiguration.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SeatedComponent } from './components/seated/seated.component';
 import { SeatedService } from './components/seated/seated.service';
 import { HeaderComponent } from './components/shared/Header/header.Component';
@@ -18,9 +19,8 @@ import { HostessService } from './components/Hostess/hostess.service';
 import { LoginService } from './components/shared/login.service';
 import { TimerComponent } from './components/Hostess/timer.component';
 import { HashLocationStrategy, Location, LocationStrategy } from '@angular/common'
-
-
 import { SettingsService } from './components/settings/settings.service';
+import { SearchPipe } from './components/resturant/resturant.component';
 
 
 @NgModule({
@@ -36,7 +36,8 @@ import { SettingsService } from './components/settings/settings.service';
         ResturantComponent,
         EmployeeConfigurationComponent,
         HeaderComponent,
-        TimerComponent
+        TimerComponent,
+        SearchPipe
         
     ],
     providers: [
@@ -44,6 +45,7 @@ import { SettingsService } from './components/settings/settings.service';
         HostessService,
         SettingsService,
         LoginService,
+        RestaurenService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
 
@@ -51,6 +53,7 @@ import { SettingsService } from './components/settings/settings.service';
         UniversalModule, // Must be firsst import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         FormsModule,
         CommonModule,
+        ReactiveFormsModule,
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
             { path: 'seated', component: SeatedComponent },
