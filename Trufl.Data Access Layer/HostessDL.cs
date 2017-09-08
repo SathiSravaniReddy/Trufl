@@ -265,6 +265,88 @@ namespace Trufl.Data_Access_Layer
             }
             return sendResponse;
         }
+
+        /// <summary>
+        /// This method 'SaveWaitedlistBooking' will save all the waited list users
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool SaveWaitedlistBooking(BookingTableInputDTO bookingTableInput)
+        {
+            try
+            {
+                var dtClient = new DataTable();
+
+                dtClient.Columns.Add("BookingID", typeof(Int64));
+                dtClient.Columns.Add("TruflUserID", typeof(Int64));
+                dtClient.Columns.Add("RestaurantID", typeof(Int64));
+                dtClient.Columns.Add("PartySize", typeof(Int64));
+                dtClient.Columns.Add("OfferType", typeof(Int64));
+                dtClient.Columns.Add("OfferAmount", typeof(Int64));
+                dtClient.Columns.Add("BookingStatus", typeof(Int64));
+                dtClient.Columns.Add("Points", typeof(Int64));
+                dtClient.Columns.Add("TruflUserCardDataID", typeof(Int64));
+                dtClient.Columns.Add("TruflTCID", typeof(Int64));
+                dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
+                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
+                dtClient.Columns.Add("Quoted", typeof(DateTime));
+                dtClient.Columns.Add("PaymentStatus", typeof(string));
+                dtClient.Columns.Add("TableNumbers", typeof(string));
+                
+                
+                dtClient.Rows.Add(bookingTableInput.BookingID,
+                                   bookingTableInput.TruflUserID,
+                                   bookingTableInput.RestaurantID,
+                                   bookingTableInput.PartySize,
+                                   bookingTableInput.OfferType,
+                                   bookingTableInput.OfferAmount,
+                                   bookingTableInput.BookingStatus,
+                                   bookingTableInput.Points,
+                                   bookingTableInput.TruflUserCardDataID,
+                                   bookingTableInput.TruflTCID,
+                                   bookingTableInput.ModifiedDate,
+                                   bookingTableInput.ModifiedBy,
+                                   bookingTableInput.Quoted,
+                                   bookingTableInput.PaymentStatus,
+                                   bookingTableInput.TableNumbers                                   
+                                   );
+
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveBooking", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@BookingTY", dtClient);
+                        tvpParam.SqlDbType = SqlDbType.Structured;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@LoggedInUser", bookingTableInput.LoggedInUser);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
         #endregion
 
         #region Seated User
@@ -506,13 +588,48 @@ namespace Trufl.Data_Access_Layer
                 return false;
             }
         }
+
+        /// <summary>
+        /// This method 'LoginAuthentication' will check the login authentication
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public DataTable LoginAuthentication(LoginInputDTO loginInput)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spLoginAuthentication", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@EMAIL_ID", loginInput.emailid);
+                        tvpParam.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@PASSWORD", loginInput.password);
+                        tvparam1.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@UserType", loginInput.usertype);
+                        tvparam2.SqlDbType = SqlDbType.Text;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
         #endregion
 
-        #region Trufl_Admin
+        
 
         #endregion
-
-#endregion
 
     }
 }
