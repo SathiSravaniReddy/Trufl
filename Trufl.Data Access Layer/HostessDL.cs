@@ -347,6 +347,43 @@ namespace Trufl.Data_Access_Layer
                 return false;
             }
         }
+
+        /// <summary>
+        /// This method 'GetRestaurantTableAmount' will Get Restaurant Tables amount info
+        /// </summary>
+        /// <param name="spGetRestaurantTables"></param>
+        /// <returns>Returns amount</returns>
+        public DataTable GetRestaurantTableAmount(int RestaurantID, int TableNumber)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantTableAmount", con))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@TableNumber", TableNumber);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+        
         #endregion
 
         #region Seated User
@@ -588,13 +625,48 @@ namespace Trufl.Data_Access_Layer
                 return false;
             }
         }
+
+        /// <summary>
+        /// This method 'LoginAuthentication' will check the login authentication
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public DataTable LoginAuthentication(LoginInputDTO loginInput)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spLoginAuthentication", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@EMAIL_ID", loginInput.emailid);
+                        tvpParam.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@PASSWORD", loginInput.password);
+                        tvparam1.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@UserType", loginInput.usertype);
+                        tvparam2.SqlDbType = SqlDbType.Text;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
         #endregion
 
-        #region Trufl_Admin
+        
 
         #endregion
-
-#endregion
 
     }
 }

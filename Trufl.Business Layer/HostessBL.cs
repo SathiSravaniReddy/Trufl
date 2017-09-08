@@ -13,7 +13,7 @@ namespace Trufl.Business_Layer
     {
 
         HostessDL _hostessDL = new HostessDL();
-#region Trufl_Hostess
+        #region Trufl_Hostess
         
         #region WaitList
         public List<UserProfile> RetrieveUser()
@@ -45,6 +45,11 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.SaveWaitedlistBooking(bookingTableInput);
         }
+
+        public DataTable GetRestaurantTableAmount(int RestaurantID, int TableNumber)
+        {
+            return _hostessDL.GetRestaurantTableAmount(RestaurantID, TableNumber);
+        }
             #endregion
 
             #region Seated User
@@ -69,12 +74,14 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.SaveSignUpUserInfo(registerUserInfo);
         }
-        #endregion
 
-        #region Trufl_Admin
-
-        #endregion
-
-#endregion
+        public DataTable LoginAuthentication(LoginInputDTO loginInput)
+        {
+            return _hostessDL.LoginAuthentication(loginInput);
         }
+        #endregion
+
+
+        #endregion
+    }
 }

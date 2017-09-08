@@ -8,7 +8,7 @@ import { SeatedService } from './seated.service'
     styleUrls: ['./seated.component.css']
 })
 export class SeatedComponent implements OnInit {
-    
+
     public seatedinfo: any = [];
     public isenabled = false;
     private seatedinformation: any;
@@ -18,7 +18,7 @@ export class SeatedComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getSeatedDetails();       
+        this.getSeatedDetails();
     }
     getSeatedDetails() {
         this.seatedService.getSeatedDetails().subscribe((res: any) => {
@@ -35,10 +35,10 @@ export class SeatedComponent implements OnInit {
         { value: 1 }
     ];
 
-    change() {      
+    change() {
         this.isenabled = true;
     }
-    public get(data: any, type: any, event: any) {        
+    public get(data: any, type: any, event: any) {
 
         var details = {
             "RestaurantID": data['RestaurantID'],
@@ -47,29 +47,31 @@ export class SeatedComponent implements OnInit {
             "AmenitiChecked": data[type]
         }
         this.isenabled = true;
-        if (event.target.checked) {          
+        if (event.target.checked) {
             details.AmenitiChecked = true;
-          
+
             this.items.push(details);
-           
+
         }
         else {
-           
+
             if (details.AmenitiChecked == 1) {
                 details.AmenitiChecked = false
+
+
                 this.items.push(details);
             }
             else {
                 details.AmenitiChecked = false
                 this.items.map((item, index) => {
-                    if (item.TruflUserID == data['TruflUserID']) {
+                    if (item.TruflUserID == data['TruflUserID'] && item.AmenitiName == type) {
                         this.items.splice(index, 1);
                     }
                 })
             }
 
 
-        }      
+        }
 
 
     }
@@ -77,9 +79,9 @@ export class SeatedComponent implements OnInit {
 
     postSeatedDetails() {
         console.log(this.items);
-        this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {
-            console.log(res);
+        this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {           
             this.getSeatedDetails();
+              this.items = [];
         })
 
     }
@@ -92,3 +94,5 @@ export class SeatedComponent implements OnInit {
 
 
 }
+
+

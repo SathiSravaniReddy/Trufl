@@ -10,7 +10,9 @@ import { Router, RouterLinkActive  } from '@angular/router';
 })
 export class HeaderComponent {
     private userType;
-    private profileVisible=false;
+    private profileVisible = false;
+    private showHeadings = true;
+    private showSettings = false;
     private header1 = [
         {
 
@@ -45,7 +47,16 @@ export class HeaderComponent {
         this.profileVisible = true;
 
     }
-    logouthide() {
-        this.profileVisible = false;
+    
+    settings() {
+        
+        
+        
+        this.router.navigateByUrl('/settings');
+        this.showHeadings = false;
+        this.showSettings = true;
+        
     }
+
+    
 }
