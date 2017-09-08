@@ -37,7 +37,7 @@
                         <span class="help-block"></span>
                     </div>
 
-                    <div class="fp text-right" (click)="forgotPassword()">
+                    <div class="fp text-right" (click)="forgotPasswordShow()">
                         <a href="#">
                             forgot password ?
                         </a>
@@ -65,7 +65,7 @@
 
                     <div class="form-group ffw">
 
-                        <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="user.userName" required placeholder="Enter your username or email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #userName="ngModel" />
+                        <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="email" required placeholder="Enter your username or email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #userName="ngModel" />
                         <div [hidden]="userName.valid || userName.pristine" class="alert alert-danger">
                             <div [hidden]="!userName.hasError('required')">Email is required</div>
                             <div [hidden]="!userName.hasError('pattern')">Email format should be <small><b>joe@abc.com</b></small></div>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="login-btn">
                         <button type="reset" class="secondary-btn lgbtn">Clear</button>
-                        <button type="submit" (click)="resetPassword()" [disabled]="!forgotForm.form.valid" class="primary-btn pull-right lgbtn">submit</button>
+                        <button type="submit" (click)="forgotPasswordImpl()" [disabled]="!forgotForm.form.valid" class="primary-btn pull-right lgbtn">submit</button>
                     </div>
                 </div>
             </form>

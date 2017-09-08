@@ -36,7 +36,12 @@ export class LoginService {
 
     }
 
+    forgotpassword(email: any) {
 
+        return this.http.get('http://localhost:8679/api/Trufl/ForgetPassword?LoginEmail=' + email).map(
+            (res: Response) => res.json());
+
+    }
     
 
     create(user: User): Observable < User > {
