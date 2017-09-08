@@ -1,6 +1,7 @@
 
 .loginbg {
     background: url(../../../../wwwroot/images/loginbg.jpg) no-repeat center center;
+    background-size:cover;
     display: table;
     width: 100%;
     min-height: 100%;
