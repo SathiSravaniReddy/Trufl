@@ -22,7 +22,8 @@ import { HashLocationStrategy, Location, LocationStrategy } from '@angular/commo
 import { SettingsService } from './components/settings/settings.service';
 import { SearchPipe } from './components/resturant/resturant.component';
 import { EqualValidator } from './components/Register/password-match.directive';
-
+import { DashboardService } from './components/dashboard/dashboard.service';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -47,6 +48,7 @@ import { EqualValidator } from './components/Register/password-match.directive';
         HostessService,
         SettingsService,
         LoginService,
+        DashboardService,
         RestaurenService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
@@ -56,6 +58,7 @@ import { EqualValidator } from './components/Register/password-match.directive';
         FormsModule,
         CommonModule,
         ReactiveFormsModule,
+        MyDateRangePickerModule,
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
             { path: 'seated', component: SeatedComponent },
