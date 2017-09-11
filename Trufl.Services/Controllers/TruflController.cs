@@ -263,8 +263,7 @@ namespace Trufl.Services.Controllers
 
         #endregion
 
-
-            #region Trufl_Admin
+    #region Trufl_Admin
         [Route("Admin/GetDashBoardDetails")]
         [HttpPost]
         public object GetDashBoardDetails(DashBoardInputDTO dashboardInput)
@@ -280,7 +279,25 @@ namespace Trufl.Services.Controllers
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
+
+        
+        [Route("Admin/GetNotifications")]
+        [HttpGet]
+        public object GetNotifications()
+        {
+            DataTable res = new DataTable();
+            res = _adminBL.GetNotifications();
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
         #endregion
-     #endregion
+        #endregion
     }
 }
