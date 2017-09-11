@@ -1,26 +1,62 @@
 ﻿
-import { Component } from '@angular/core';
-import { Router} from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import { LoginService } from '../login.service';
+import { Router, RouterLinkActive  } from '@angular/router';
 
 @Component({
     selector: 'shared-header',
-    templateUrl:'./header.Component.html'
+    templateUrl: './header.Component.html',
+    styleUrls:['./header.component.css']
 })
 export class HeaderComponent {
-    private router: Router;
+    private userType;
+    private profileVisible = false;
+    private showHeadings = true;
+    private showSettings = false;
+    private header1 = [
+        {
 
-    constructor(router: Router) {
-        this.router = router;
-    }
-    ChangeRouteTo(route)
-    {
-        if (route == 'Course')
+            "name": "Waitlist",
+            "active": true,
+            "route": '/home'
+
+
+        },
         {
-            this.router.navigate(["course"]);
-        }
-        if (route == 'Person')
+            "name": "Seated",
+            "active": false,
+            "route": '/seated'
+        }];
+    private header2 = [
         {
-            this.router.navigate(["personDetails","123"]);
-        }
+            "name": "Dashboard",
+            "active": true,
+            "route": '/dashboard'
+        },
+        {
+            "name": "Restaurant",
+            "active": false,
+            "route": '/restaurant'
+        }];
+    
+    constructor(private loginService: LoginService, private router: Router) {
+        this.userType = this.loginService.getUserType(); 
     }
+ 
+    logoutShow() {
+        this.profileVisible = true;
+
+    }
+    
+    settings() {
+        
+        
+        
+        this.router.navigateByUrl('/settings');
+        this.showHeadings = false;
+        this.showSettings = true;
+        
+    }
+
+    
 }

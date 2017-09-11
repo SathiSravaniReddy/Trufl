@@ -11,14 +11,16 @@ namespace Trufl.Business_Layer
     public class AdminBL
     {
         AdminDL _adminDL = new AdminDL();
-        public List<UserProfile> RetrieveUser()
+        #region Trufl_Admin
+        public DashBoardDetailsOutputDTO GetDashBoardDetails(DashBoardInputDTO dashboardInput)
         {
-           return _adminDL.RetrieveUser();
+            return _adminDL.GetDashBoardDetails(dashboardInput);
         }
 
-        public bool SaveTruflUserInfromation(List<TruflUserInputDTO> truflUserInputDTO)
+        public DataTable GetNotifications()
         {
-            return _adminDL.SaveTruflUserInfromation(truflUserInputDTO);
+            return _adminDL.GetNotifications();
         }
+        #endregion
     }
 }

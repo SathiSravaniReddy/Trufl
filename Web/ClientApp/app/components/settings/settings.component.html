@@ -1,0 +1,137 @@
+﻿<shared-header></shared-header>
+
+<div class="col-md-12 settingmain">
+    <div class="col-md-5 settingtop setgap dn">
+        <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" placeholder="Search" /></h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="200">Resturant Name</th>
+                    <th width="100">Last Visited</th>
+                    <th width="150">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="250">Jeff</td>
+                    <td width="100">4/6/17</td>
+                    <td width="100"> <a id="rowclick" href="#">View Details</a></td>
+                </tr>
+                <tr>
+                    <td>Jeff</td>
+                    <td>4/6/17</td>
+                    <td><a href="#">View Details</a></td>
+                </tr>
+                <tr>
+                    <td>Jeff</td>
+                    <td>4/6/17</td>
+                    <td><a href="#">View Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div class="col-md-5 settingtop setgap">
+        <h3 class="nb">Reset Password</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="150">User Name</th>
+                    <th width="200">Email Id</th>
+                    <th width="150">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let truflcustomers of trufl_customers; let i = index">
+                    <td>{{truflcustomers.name}}</td>
+                    <td>{{truflcustomers.Lastvisited}}</td>
+                    <td>Reset</td>
+                </tr>
+                <!--  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>
+                  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>
+                  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>
+                  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>
+                  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>
+                  <tr>
+                      <td>Jeff</td>
+                      <td>4/6/17</td>
+                      <td><a href="#">Reset</a></td>
+                  </tr>-->
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="col-md-5 settingtop">
+
+
+        <h3>
+            Profile
+            <a class="pull-right" href="#"><!--<img alt="" src="../images/edit.png" />--></a>
+        </h3>
+
+        <div *ngFor="let userprofile of user_Profile; let i = index">
+            <div class="col-md-12 textborder">
+                <div class="col-md-3">
+                    <p class="text-muted">Username:</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userprofile.username}}</p>
+                </div>
+
+            </div>
+            <div class="col-md-12 textborder">
+                <div class="col-md-3">
+                    <p class="text-muted">Email Id:</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userprofile.emailId}}</p>
+                </div>
+
+            </div>
+            <div class="col-md-12 textborder">
+                <div class="col-md-3">
+                    <p class="text-muted">Password:</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userprofile.password}}</p>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-12 popup-btn dn">
+
+
+            <a href="#" class="primary-btn">Submit</a>
+            <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a>
+        </div>
+
+    </div>
+
+
+</div>

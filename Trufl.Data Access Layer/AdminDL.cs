@@ -15,159 +15,145 @@ namespace Trufl.Data_Access_Layer
     {
         #region Db Connection 
         SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["TraflConnection"]);
+        string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
         #endregion
-       
-        /// <summary>
-        /// This method 'RetrieveUser' returns User details
-        /// </summary>
-        /// <returns>User List</returns>
-        public List<UserProfile> RetrieveUser()
+
+        #region Trufl_Admin
+
+        public DashBoardDetailsOutputDTO GetDashBoardDetails(DashBoardInputDTO dashboardInput)
         {
-            List<UserProfile> sourceapilist = new List<UserProfile>();
+            DataTable sendResponse = new DataTable();
+            DashBoardDetailsOutputDTO response = new DashBoardDetailsOutputDTO();
             try
             {
-                
-                con.Open();
-                using (SqlCommand command1 = new SqlCommand("spGetTruflUser", con))
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    command1.CommandTimeout = TruflConstants.DBResponseTime;
-
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    // command1.Parameters.AddWithValue("@SourceAPIName", "clever");
-                    // command1.Parameters.AddWithValue("@IsWinService", false);
-
-                    da.SelectCommand = command1;
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
-                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetDashBoardDetails", con))
                     {
-                        UserProfile userprofile = new UserProfile();
-                        userprofile.RestaurantID = ds.Tables[0].Rows[i]["RestaurantID"].ToString();
-                        userprofile.UserName = ds.Tables[0].Rows[i]["UserName"].ToString();
-                        userprofile.PartySize = ds.Tables[0].Rows[i]["PartySize"].ToString();
-                        userprofile.Quoted = ds.Tables[0].Rows[i]["Quoted"].ToString();
-                        userprofile.Waited = ds.Tables[0].Rows[i]["Waited"].ToString();
-                        userprofile.OfferAmount = ds.Tables[0].Rows[i]["OfferAmount"].ToString();
-                        userprofile.Email = ds.Tables[0].Rows[i]["Email"].ToString();
-                        userprofile.pic = ds.Tables[0].Rows[i]["pic"].ToString();
-                        userprofile.Contact1 = ds.Tables[0].Rows[i]["Contact1"].ToString();
-                        userprofile.Password = ds.Tables[0].Rows[i]["Password"].ToString();
-                        userprofile.DOB = ds.Tables[0].Rows[i]["DOB"].ToString();
-                        userprofile.ActiveInd = ds.Tables[0].Rows[i]["ActiveInd"].ToString();
-                        userprofile.ResauranEmpInd = Convert.ToInt32(ds.Tables[0].Rows[i]["RestaurantEmpInd"].ToString());
-                        userprofile.TruffMemberType = Convert.ToInt32(ds.Tables[0].Rows[i]["TruflMemberType"].ToString());
-                        userprofile.TruflRelationship = Convert.ToInt32(ds.Tables[0].Rows[i]["TruflRelationship"].ToString());
-                        userprofile.TruflshareCode = ds.Tables[0].Rows[i]["TruflshareCode"].ToString();
-                        userprofile.ReferTruflUserID = Convert.ToInt32(ds.Tables[0].Rows[i]["ReferTruflUserID"].ToString());
-                        userprofile.ModifiedDate = ds.Tables[0].Rows[i]["ModifiedDate"].ToString();
-                        userprofile.ModifiedBy = Convert.ToInt32(ds.Tables[0].Rows[i]["ModifiedBy"].ToString());
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                        sourceapilist.Add(userprofile);
+                        if (dashboardInput != null)
+                        {
+                            SqlParameter tvpParam = cmd.Parameters.AddWithValue("@FromDate", dashboardInput.FromDate);
+                            tvpParam.SqlDbType = SqlDbType.DateTime;
+                            SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@ToDate", dashboardInput.ToDate);
+                            tvparam1.SqlDbType = SqlDbType.DateTime;
+                        }
+                        else
+                        {
+                            SqlParameter tvpParam = cmd.Parameters.AddWithValue("@FromDate", DBNull.Value);
+                            tvpParam.SqlDbType = SqlDbType.DateTime;
+                            SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@ToDate", DBNull.Value);
+                            tvparam1.SqlDbType = SqlDbType.DateTime;
+                        }
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            DataSet ds = new DataSet();
+                            da.Fill(ds);
+
+                            //sendResponse = ds.Tables[0];  // Create
+                            //sendResponse.Merge(ds.Tables[1]);
+                            response.OffersRaised = ds.Tables[0];
+                            response.OffersAccepted = ds.Tables[1];
+                            response.OffersRemoved = ds.Tables[2];
+                            response.VisitedCustomers = ds.Tables[3];
+                            response.TotalNumberOfCustomers = ds.Tables[4];
+                            response.NumberOfTruflRestaurants = ds.Tables[5];
+                            response.RestaurantDetails = ds.Tables[6];
+                        }
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 ExceptionLogger.WriteToErrorLogFile(ex);
             }
-            finally
+            //return sendResponse;
+            return response;
+        }
+
+        /// <summary>
+        /// This method 'GetNotifications ' returns Notifications details
+        /// </summary>
+        /// <returns>Notifications List</returns>
+        public DataTable GetNotifications()
+        {
+            DataTable sendResponse = new DataTable();
+            try
             {
-                con.Close();
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("spGetNotifications", sqlcon))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+                // }
             }
-            return sourceapilist;
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
         }
 
 
-
         /// <summary>
-        /// This method 'SaveParkingLots' will save Location data
+        /// This method 'SaveNotifications' will save Notifcation data
         /// </summary>
-        /// <param name="passParkingLots"></param>
+        /// <param name="SaveNotifications"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveTruflUserInfromation(List<TruflUserInputDTO> truflUserInputDTO)
+        public bool SaveNotifications(NotificationsInputDTO notifications)
         {
             try
             {
-                var dtClient = new DataTable();
-
-                dtClient.Columns.Add("TruflUserID", typeof(Int64));
-                dtClient.Columns.Add("RestaurantID", typeof(Int64));
-                dtClient.Columns.Add("FirstName", typeof(string));
-                dtClient.Columns.Add("MiddleName", typeof(string));
-                dtClient.Columns.Add("LastName", typeof(string));
-                dtClient.Columns.Add("Email", typeof(string));
-                dtClient.Columns.Add("pic", typeof(string));
-                dtClient.Columns.Add("Contact1", typeof(string));
-                dtClient.Columns.Add("Password", typeof(string));
-                dtClient.Columns.Add("Salt", typeof(string));
-                dtClient.Columns.Add("DOB", typeof(DateTime));
-                dtClient.Columns.Add("ActiveInd", typeof(char));
-                dtClient.Columns.Add("RestaurantEmpInd", typeof(Int64));
-                dtClient.Columns.Add("TruflMemberType", typeof(Int64));
-                dtClient.Columns.Add("TruflRelationship", typeof(Int64));
-                dtClient.Columns.Add("TruflshareCode", typeof(string));
-                dtClient.Columns.Add("ReferTruflUserID", typeof(Int64));
-                dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
-                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
-                dtClient.Columns.Add("Waited", typeof(string));
-
-                dtClient.Rows.Add(truflUserInputDTO[0].TruflUserID,
-                                   truflUserInputDTO[0].RestaurantID,
-                                   truflUserInputDTO[0].FirstName,
-                                   truflUserInputDTO[0].MiddleName,
-                                   truflUserInputDTO[0].LastName,
-                                   truflUserInputDTO[0].Email,
-                                   truflUserInputDTO[0].pic,
-                                   truflUserInputDTO[0].Contact1,
-                                   truflUserInputDTO[0].Password,
-                                   truflUserInputDTO[0].Salt,
-                                   truflUserInputDTO[0].DOB,
-                                   truflUserInputDTO[0].ActiveInd,
-                                   truflUserInputDTO[0].RestaurantEmpInd,
-                                   truflUserInputDTO[0].TruflMemberType,
-                                   truflUserInputDTO[0].TruflRelationship,
-                                   truflUserInputDTO[0].TruflshareCode,
-                                   truflUserInputDTO[0].ReferTruflUserID,
-                                   truflUserInputDTO[0].ModifiedDate,
-                                   truflUserInputDTO[0].ModifiedBy,
-                                   truflUserInputDTO[0].Waited
-                                   );
-
-                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    using (SqlCommand cmd = new SqlCommand("spSaveTruflUser", con))
+                    using (SqlCommand cmd = new SqlCommand("spSaveNotifications", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserTY", dtClient);
-                        tvpParam.SqlDbType = SqlDbType.Structured;
-                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@LoggedInUser", truflUserInputDTO[0].LoggedInUser);
-                        tvparam1.SqlDbType = SqlDbType.Structured;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@Description", notifications.Description);
+                        tvpParam.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@ExpiryDate ", notifications.ExpiryDate);
+                        tvpParam1.SqlDbType = SqlDbType.DateTime;
+
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
                         int status = cmd.ExecuteNonQuery();
-                        if (status == 0)
+
+                        if (status == -1)
                         {
-                            return false;
+                            return true;
                         }
                         else
                         {
-                            return true;
+                            return false;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
+                string s = ex.ToString();
                 ExceptionLogger.WriteToErrorLogFile(ex);
                 return false;
             }
         }
-
-        //public IHttpActionResult GetCompanies()
-        //{
-        //    var companies = db.Companies.ToList();
-        //    return Ok(new { results = companies });
-        //}
+        #endregion
     }
 }

@@ -1,0 +1,18 @@
+﻿{
+  "data": [
+    {
+      "userId": 1,
+      "fullname": "Nirupama Bommireddy",
+      "userName": "admin@trufl.com",
+      "password": "admin",
+      "conformPassword": "admin"
+    },
+    {
+      "userId": 2,
+      "fullname": "Nirupama Bommireddy",
+      "userName": "host@trufl.com",
+      "password": "host",
+      "conformPassword": "host"
+    }
+  ]
+}
