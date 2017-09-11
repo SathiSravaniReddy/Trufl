@@ -16,6 +16,11 @@ namespace Trufl.Business_Layer
         {
             return _adminDL.GetDashBoardDetails(dashboardInput);
         }
+
+        public DataTable GetNotifications()
+        {
+            return _adminDL.GetNotifications();
+        }
         #endregion
     }
 }

@@ -1,8 +1,9 @@
 ﻿export class User {
 
     userId?: number;
-    fullName: string;
-    userName: string;
+    usertype: string;
+    FullName?: string;
+    emailid: string;
     password: string;
     confirmPassword: string;
     constructor() { }

@@ -1,7 +1,7 @@
 ﻿<div class="header">
     <div class="col-md-5 headerleft">
         <h1>
-            <a href="#" *ngIf="this.userType=='TR'">Bottique Louie</a>
+            <a href="#" *ngIf="this.userType=='RA'">Bottique Louie</a>
             <a href="#" *ngIf="this.userType=='TA'">Trufl Admin</a>
         </h1>
     </div>
@@ -19,7 +19,7 @@
    
     
     <div class="col-md-12 leftnav no-pad" *ngIf="showHeadings">
-        <div *ngIf="this.userType=='TR'">
+        <div *ngIf="this.userType=='RA'">
             <ul>
                 <li *ngFor="let header of header1 let i=index">
                     <a [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
@@ -28,7 +28,7 @@
         </div>
         <div *ngIf="this.userType=='TA'">
             <ul>
-                <li *ngFor="let header of header2 let i=index" class="settingheader" >
+                <li *ngFor="let header of header2 let i=index">
                     <a [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
                 </li>
 
