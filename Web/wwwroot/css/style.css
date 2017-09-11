@@ -1071,3 +1071,8 @@ button.close {
 .lgbtn{
     width:48%;
 }
+
+.settingheader {
+    color: #0078d7 !important;
+    font-weight: 700;
+}

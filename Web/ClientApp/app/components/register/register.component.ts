@@ -18,10 +18,9 @@ export class RegisterComponent {
 
     }
     signUp() {
-      
+        console.log(this.user);
         alert("Registration Successfull");
-        this.router.navigateByUrl("/login");
-        /*this.loginService.create(this.user)
+        this.loginService.create(this.user)
             .subscribe(
             data => {
                    this.router.navigateByUrl("/login");
@@ -29,7 +28,7 @@ export class RegisterComponent {
             err => {
                             // Log errors if any
                console.log(err);
-        });*/
+        });
       
     }
 
