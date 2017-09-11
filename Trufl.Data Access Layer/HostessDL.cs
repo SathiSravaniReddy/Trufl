@@ -193,18 +193,18 @@ namespace Trufl.Data_Access_Layer
             {
                 var dtClient = new DataTable();
 
-                dtClient.Columns.Add("BookingID", typeof(Int64));
-                dtClient.Columns.Add("TruflUserID", typeof(Int64));
-                dtClient.Columns.Add("RestaurantID", typeof(Int64));
-                dtClient.Columns.Add("PartySize", typeof(Int64));
-                dtClient.Columns.Add("OfferType", typeof(Int64));
-                dtClient.Columns.Add("OfferAmount", typeof(Int64));
-                dtClient.Columns.Add("BookingStatus", typeof(Int64));
-                dtClient.Columns.Add("Points", typeof(Int64));
-                dtClient.Columns.Add("TruflUserCardDataID", typeof(Int64));
-                dtClient.Columns.Add("TruflTCID", typeof(Int64));
+                dtClient.Columns.Add("BookingID", typeof(Int32));
+                dtClient.Columns.Add("TruflUserID", typeof(Int32));
+                dtClient.Columns.Add("RestaurantID", typeof(Int32));
+                dtClient.Columns.Add("PartySize", typeof(Int32));
+                dtClient.Columns.Add("OfferType", typeof(Int32));
+                dtClient.Columns.Add("OfferAmount", typeof(Int32));
+                dtClient.Columns.Add("BookingStatus", typeof(Int32));
+                dtClient.Columns.Add("Points", typeof(Int32));
+                dtClient.Columns.Add("TruflUserCardDataID", typeof(Int32));
+                dtClient.Columns.Add("TruflTCID", typeof(Int32));
                 dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
-                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
+                dtClient.Columns.Add("ModifiedBy", typeof(Int32));
                 dtClient.Columns.Add("Quoted", typeof(DateTime));
                 dtClient.Columns.Add("PaymentStatus", typeof(string));
                 dtClient.Columns.Add("TableNumbers", typeof(string));
@@ -346,8 +346,8 @@ namespace Trufl.Data_Access_Layer
             {
                 var dtClient = new DataTable();
 
-                dtClient.Columns.Add("RestaurantID", typeof(Int64));
-                dtClient.Columns.Add("TruflUserID", typeof(Int64));
+                dtClient.Columns.Add("RestaurantID", typeof(Int32));
+                dtClient.Columns.Add("TruflUserID", typeof(Int32));
                 dtClient.Columns.Add("AmenitiName", typeof(string));
                 dtClient.Columns.Add("AmenitiChecked", typeof(bool));
 
