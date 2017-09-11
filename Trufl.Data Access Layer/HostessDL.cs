@@ -697,8 +697,60 @@ namespace Trufl.Data_Access_Layer
         }
         #endregion
 
+        /// <summary>
+        /// This method 'Save User Bio Events' will save User Bio Events data
+        /// </summary>
+        /// <param name="SaveSignUpUserInfo"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool SaveUserBioEvents(SaveUserBioEventsInputDTO saveUserBioEvents)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveUserBioEvents", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", saveUserBioEvents.RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@TruflUserID", saveUserBioEvents.TruflUserID);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@BioID", saveUserBioEvents.BioID);
+                        tvparam2.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam3 = cmd.Parameters.AddWithValue("@BioEventID", saveUserBioEvents.BioEventID);
+                        tvparam3.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam4 = cmd.Parameters.AddWithValue("@BioDesc", saveUserBioEvents.BioDesc);
+                        tvparam4.SqlDbType = SqlDbType.Text;
+                        
 
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
 
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+        
         #endregion
 
     }
