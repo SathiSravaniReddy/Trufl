@@ -10,7 +10,7 @@
 
 
             <h3 class="nb">
-                Resturant Info <input type="text" class="settingsearch" placeholder="Search" />
+                Resturant Info <input type="text" class="settingsearch" placeholder="Search" [(ngModel)]="search" />
                 <a data-toggle="modal" data-target="#AddRes" class="pull-right addres" href="#"><img width="24" alt="" src="../../../../wwwroot/images/add.png" /></a>
             </h3>
             <table class="table">
@@ -24,21 +24,29 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td width="250">Botique Louie</td>
-                        <td width="100">4/6/17</td>
-                        <td width="100"> <a id="rowclick" href="#">View Details</a></td>
+
+                    <tr *ngFor="let restaurentinfo of restaurent_info|searchPipe:'restaurentname':search">
+                        <td>{{restaurentinfo.restaurentname}}</td>
+                        <td>{{restaurentinfo.Lastvisited}}</td>
+                        <td>View Details</td>
+
                     </tr>
-                    <tr>
-                        <td>Glasses</td>
-                        <td>4/6/17</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Juices</td>
-                        <td>4/6/17</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
+
+                    <!-- <tr>
+                         <td width="250">Botique Louie</td>
+                         <td width="100">4/6/17</td>
+                         <td width="100"> <a id="rowclick" href="#">View Details</a></td>
+                     </tr>
+                     <tr>
+                         <td>Glasses</td>
+                         <td>4/6/17</td>
+                         <td><a href="#">View Details</a></td>
+                     </tr>
+                     <tr>
+                         <td>Juices</td>
+                         <td>4/6/17</td>
+                         <td><a href="#">View Details</a></td>
+                     </tr> -->
                 </tbody>
             </table>
 
@@ -46,11 +54,16 @@
         <div class="col-md-6 settingtop pull-right">
             <h3 class="nb">
                 Notifications
-                <a class="pull-right addres" data-toggle="modal" data-target="#Notification" href="#"><img width="24" alt="" src="../../../../wwwroot/images/add.png"/></a>
+                <a class="pull-right addres" data-toggle="modal" data-target="#Notification" href="#"><img width="24" alt="" src="../../../../wwwroot/images/add.png" /></a>
             </h3>
             <div class="notify-main col-md-12">
 
-                <div class="not-rep">
+                <div class="not-rep"  *ngFor="let notificationsinfo of notifications_info">
+                    <p>01/02/2017 </p>
+                    <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
+
+                </div>
+              <!--  <div class="not-rep">
                     <p>01/02/2017 </p>
                     <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
 
@@ -59,12 +72,7 @@
                     <p>01/02/2017 </p>
                     <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
 
-                </div>
-                <div class="not-rep">
-                    <p>01/02/2017 </p>
-                    <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
-
-                </div>
+                </div> -->
 
 
             </div>
@@ -85,93 +93,144 @@
             </div>
             <div class="modal-body">
                 <div class="row modal-items">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Resturant Name</label>
-                            <input type="text" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Email Id</label>
-                            <input type="text" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Contact Number 1</label>
-                            <input type="text" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Contact Number 2</label>
-                            <input type="text" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Address 1</label>
-                            <textarea rows="4" cols="4"> </textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Address 2</label>
-                            <textarea rows="4" cols="4"> </textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>State</label>
-                            <input type="text" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Zip/Pin Code</label>
-                            <input type="text" />
-                        </div>
-                    </div>
-                    <hr class="popsep" />
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Owner Name</label>
-                            <input type="text" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Owner Email</label>
-                            <input type="text" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Owner Contact Number 1</label>
-                            <input type="text" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Owner Contact Number 2</label>
-                            <input type="text" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea rows="4" cols="4"> </textarea>
-                        </div>
-                    </div>
+
+                    <form novalidate (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm">
+
+                        <div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Resturant Name</label>
+                                    <input type="text" formControlName="restaurentname"  />  
+                                    <span  *ngIf="!myForm.controls['restaurentname'].valid && myForm.controls['restaurentname'].touched"></span>
+                                </div>
+                               
+                            </div>
+                           <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email Id</label>
+                                    <input type="email" formControlName="emailid" />
+                                    <span *ngIf="{'has-error':!myForm.controls['emailid'].valid && myForm.controls['emailid'].touched}"></span>
+                                </div>
+                            </div>
 
 
-                    <div class="col-md-12">
-                        <div class="popup-btn">
-                            <a href="#" class="primary-btn">Submit</a>
-                            <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a>
+                            
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Contact Number 1</label>
+                                    <input type="text" formControlName="contact1" />
+                                    <span *ngIf="!myForm.controls['contact1'].valid"></span>
+                                </div>
+                            </div>
+
+
+ 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Contact Number 2</label>
+                                    <input type="text" formControlName="contact2" />
+                                    <span *ngIf="!myForm.controls['contact2'].valid"></span>
+                                </div>
+                            </div>
+                  
+               
+                           <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address 1</label>
+                                    <textarea rows="4" cols="4"   formControlName="address1"> </textarea>
+                                    <span *ngIf="!myForm.controls['address1'].valid"></span>
+                                </div>
+                            </div>
+
+                           
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address 2</label>
+                                    <textarea rows="4" cols="4" formControlName="address2"> </textarea>
+                                    <span *ngIf="!myForm.controls['address2'].valid"></span>
+                                </div>
+                            </div> 
+
+
+                   <!--
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>State</label>
+
+                                    <select formControlName="state">
+                                        <option *ngFor="let statename of states" [ngValue]="statevalue">{{statename.name}}</option>
+                                    </select>
+
+                                  <!--  <input type="text" formControlName="state" /> -->
+                         <!--       </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Zip/Pin Code</label>
+                                    <input type="text" formControlName="zipcode" />
+                                </div>
+                            </div>
+
+
+
+                            <hr class="popsep" />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Name</label>
+                                    <input type="text" formControlName="ownername" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Email</label>
+                                    <input type="text" formControlName="owneremail" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Contact Number 1</label>
+                                    <input type="text" formControlName="ownercontact1" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Contact Number 2</label>
+                                    <input type="text" formControlName="ownercontact2" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea rows="4" cols="4" formControlName="description"> </textarea>
+                                </div>
+                            </div> -->
+
+
+                            <div class="col-md-12">
+                                <div class="popup-btn">
+                                 <!--   <a href="#" class="primary-btn" >Submit</a> -->
+                                    <button type="submit" class="primary-btn" [disabled]="myForm.invalid" >Submit</button>
+                                    <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
 
                 </div>
 

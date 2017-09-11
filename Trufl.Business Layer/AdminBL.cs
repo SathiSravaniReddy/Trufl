@@ -16,6 +16,21 @@ namespace Trufl.Business_Layer
         {
             return _adminDL.GetDashBoardDetails(dashboardInput);
         }
-        #endregion
-    }
+
+        public DataTable GetNotifications()
+        {
+            return _adminDL.GetNotifications();
+        }
+
+        public bool SaveNotifications(NotificationsInputDTO notifications)
+        {
+            return _adminDL.SaveNotifications(notifications);
+        }
+
+        public bool SaveRestaurant(SaveRestaurantInputDTO restaurant)
+        {
+            return _adminDL.SaveRestaurant(restaurant);
+        }
+            #endregion
+        }
 }

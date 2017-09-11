@@ -984,13 +984,6 @@ button.close {
     color: #fff;
 }
 
-.loginbg {
-    background: url(../images/loginbg.jpeg) no-repeat center center;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    float: left;
-}
 
 .logincontiner {
     margin: 0 auto;
@@ -1077,4 +1070,9 @@ button.close {
 
 .lgbtn{
     width:48%;
+}
+
+.settingheader {
+    color: #0078d7 !important;
+    font-weight: 700;
 }
