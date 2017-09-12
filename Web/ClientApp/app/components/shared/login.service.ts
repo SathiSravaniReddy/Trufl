@@ -10,6 +10,7 @@ export class LoginService {
     private results: any;
     private userType;
     private settingStatus;
+    private logindetails;
 
     constructor(private http: Http) {
     }
@@ -23,8 +24,10 @@ export class LoginService {
         return this.userType;
     }   
 
-    getLoginDetails(userstype:any) {
-   
+    getLoginDetails(userstype: any) {
+       //this.http.get('http://localhost:8679/api/Trufl/GetUserTypes/' + userstype).map(
+       //    (res: Response) => this.logindetails = res.json());
+       // console.log(this.logindetails._Data);
         return this.http.get('http://localhost:8679/api/Trufl/GetUserTypes/' + userstype).map(
             (res:Response) => res.json());
 

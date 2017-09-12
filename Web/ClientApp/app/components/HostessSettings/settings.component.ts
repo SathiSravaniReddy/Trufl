@@ -8,8 +8,8 @@ import { HostessSettingsService } from './settings.service'
     styleUrls: ['./settings.component.css']
 })
 export class HostessSettingsComponent implements OnInit {
-    private user_Profile: any;
-    private trufl_customers: any;
+    private userProfile: any;
+    private truflCustomers: any;
     private showProfile: boolean = false;
     private showbio: boolean = true;
     private profileData: any = [];
@@ -20,22 +20,33 @@ export class HostessSettingsComponent implements OnInit {
     }
 
     ngOnInit() {
+        
+       this.getUserProfile();
+       this.getTruflCustomers();
+       
+
+    }
+
+    getUserProfile() {
+
         this.settingsService.getUserDetails().subscribe((res: any) => {
-            this.user_Profile = res.data;
+            res._Data.UserLoginInformation.map((item: any) => {
+                this.userProfile = item;
+
+            });
+            console.log(this.userProfile);
 
         }
         );
-
-        this.getTruflCustomers();
-
 
     }
 
     getTruflCustomers() {
 
-        this.settingsService.getTruflCustomers().subscribe((res: any) => {
-            this.trufl_customers = res.data;
-
+        this.settingsService.getUserDetails().subscribe((res: any) => {
+            this.truflCustomers = res._Data.RestaurantUserDetailswithHistory
+            
+            console.log(this.truflCustomers);
         }
         );
 
