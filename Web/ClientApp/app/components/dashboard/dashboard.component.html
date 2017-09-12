@@ -9,16 +9,16 @@
         <h3>Date and Time</h3>
         <div class="col-md-6 checkbox">
             <label class="checkbox-inline">
-                <input id="checkbox1" type="checkbox" [(ngModel)]="today" (ngModelChange)="setDate()" >Today
+                <input id="checkbox1" type="checkbox" [(ngModel)]="today" (ngModelChange)="setDate()">Today
             </label>
             <label class="checkbox-inline">
                 <input id="checkbox2" type="checkbox" [(ngModel)]="otherday" (ngModelChange)="setRange()">OtherDate
             </label>
         </div>
         <div class="col-md-6 date">
-            <!--<input type="text" value="5/6/17 - 7/8/17" [(ngModel)]="date" />-->
+       
             <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions" (dateRangeChanged)="onDateRangeChanged($event)"
-                                  [(ngModel)]="date" required></my-date-range-picker>
+                                  [(ngModel)]="date" required *ngIf="showDatePicker"></my-date-range-picker>
         </div>
 
         <div class="col-md-12 noofcustomers" >
@@ -54,7 +54,7 @@
             Notifications
 
         </h3>
-        <div class="notify-main col-md-12" *ngFor="let _notifications of notifications;">
+        <div class="notify-main col-md-12" *ngFor="let _notifications of notifications | paginate: { itemsPerPage: 5, currentPage: p }">
 
             <div class="not-rep">
                 <p>{{_notifications.ExpiresOn|date:'dd/MM/yyyy'}}</p>
@@ -62,14 +62,17 @@
 
             </div>
            
+            
 
 
 
         </div>
-
+        <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
 
 
     </div>
-
+    
+    
 
 </div>
+

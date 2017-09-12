@@ -24,9 +24,9 @@ import { SearchPipe } from './components/resturant/resturant.component';
 import { EqualValidator } from './components/Register/password-match.directive';
 import { HostessSettingsComponent } from './components/HostessSettings/settings.component';
 import { HostessSettingsService } from './components/HostessSettings/settings.service'
-
 import { DashboardService } from './components/dashboard/dashboard.service';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -64,6 +64,7 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
         CommonModule,
         ReactiveFormsModule,
         MyDateRangePickerModule,
+        NgxPaginationModule,
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
             { path: 'seated', component: SeatedComponent },

@@ -8,13 +8,13 @@
                 Profile
             </h3>
 
-            <div *ngFor="let userprofile of user_Profile; let i = index">
+          <div *ngIf="userProfile">
                 <div class="col-md-12 textborder">
                     <div class="col-md-3">
                         <p class="text-muted">Username:</p>
                     </div>
                     <div class="col-md-5">
-                        <p class="textdata">{{userprofile.username}}</p>
+                        <p class="textdata">{{userProfile.FullName}}</p>
                     </div>
                     <div class="col-md-2 pull-right">
                         <a><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
@@ -26,7 +26,7 @@
                         <p class="text-muted">Email Id:</p>
                     </div>
                     <div class="col-md-4">
-                        <p class="textdata">{{userprofile.emailId}}</p>
+                        <p class="textdata"><input type="text" [(ngModel)]="userProfile.Email" /></p>
                     </div>
                     <div class="col-md-2 pull-right">
                         <a><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
@@ -38,7 +38,7 @@
                         <p class="text-muted">Password:</p>
                     </div>
                     <div class="col-md-4">
-                        <p class="textdata">{{userprofile.password}}</p>
+                        <p class="textdata">{{userProfile.Password}}</p>
                     </div>
                     <div class="col-md-2 pull-right">
                         <a><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
@@ -68,12 +68,12 @@
                     </tr>
                 </thead>-->
                 <tbody>
-                    <tr>
-                        <td width="100">Jeff</td>
-                        <td width="200">Last Visited: 4/6/17</td>
+                    <tr *ngFor="let customers of truflCustomers let i=index">
+                        <td width="100">{{customers.FullName}}</td>
+                        <td width="200">Last Visited: {{customers.BookingDate}}</td>
                         <td width="150"> <a id="rowclick" (click)="profile()">View Details</a></td>
                     </tr>
-                    <tr>
+                    <!--<tr>
                         <td>Jeff</td>
                         <td>Last Visited: 4/6/17</td>
                         <td><a (click)="profile()">View Details</a></td>
@@ -82,7 +82,7 @@
                         <td>Jeff</td>
                         <td>Last Visited: 4/6/17</td>
                         <td><a (click)="profile()">View Details</a></td>
-                    </tr>
+                    </tr>-->
                 </tbody>
             </table>
         </div>
@@ -141,7 +141,13 @@
 
         </div>
 
-
+        <div *ngIf="showhistory">
+            <div>
+                <h5>History(60)</h5>
+                <p>Dates:</p>
+                <p>Total Coins Earned:</p>
+            </div>
+        </div>
 
     </div>
 
