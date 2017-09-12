@@ -7,7 +7,7 @@
     min-height: 100%;
 }
 .errormsg {
-    color: #a94442;
+    color: red;
 }
 a {
     cursor: pointer;

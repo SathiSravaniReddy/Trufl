@@ -1,8 +1,6 @@
-﻿
-import { Http, Headers,RequestOptions } from '@angular/http';
-import { Injectable } from '@angular/core';
-import 'rxjs/Rx';
-
+﻿import { Injectable } from "@angular/core";
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 
@@ -43,6 +41,13 @@ export class HostessService {
         return this.http.get('http://localhost:8679/api/Trufl/GetRestaurantTables/' + restaurantId + '/' + tableNo, { headers: headers })
             .map(res => res.json() || {})
     } 
+
+    //Service for updating booking
+    public updateBooking(seatedInfo) {
+        return this.http.post('http://localhost:8679/api/Trufl/UpdateBooking', seatedInfo).map(
+            (res) => res.json()
+        )
+    }
 
     //Handling errors
     private handleError(error: any) {
