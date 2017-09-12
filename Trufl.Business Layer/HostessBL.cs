@@ -45,6 +45,16 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.GetRestaurantTableAmount(RestaurantID, TableNumber);
         }
+
+        public bool UpdateBooking(UpdateBookingTableNumberInputDTO updateBookingTableNumber)
+        {
+            return _hostessDL.UpdateBooking(updateBookingTableNumber);
+        }
+
+        public bool UpdateRestaurantHostStatus(UpdateRestaurantHostStatusInputDTO UpdateRestaurantHost)
+        {
+            return _hostessDL.UpdateRestaurantHostStatus(UpdateRestaurantHost);
+        }
             #endregion
 
             #region Seated User

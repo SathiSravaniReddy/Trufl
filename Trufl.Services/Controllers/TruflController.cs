@@ -45,6 +45,36 @@ namespace Trufl.Services.Controllers
             }
         }
 
+        
+        [Route("UpdateBooking")]
+        [HttpPost]
+        public object UpdateBooking(UpdateBookingTableNumberInputDTO updateBookingTableNumber)
+        {
+            bool res = _hostessBL.UpdateBooking(updateBookingTableNumber);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
+        [Route("UpdateRestaurantHostStatus")]
+        [HttpPost]
+        public object UpdateRestaurantHostStatus(UpdateRestaurantHostStatusInputDTO UpdateRestaurantHost)
+        {
+            bool res = _hostessBL.UpdateRestaurantHostStatus(UpdateRestaurantHost);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
 
         [Route("AcceptedandRemovedWaitedUser/{BookingID}/{BookinStatus}")]
         [HttpPost]
