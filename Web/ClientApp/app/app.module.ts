@@ -22,7 +22,11 @@ import { HashLocationStrategy, Location, LocationStrategy } from '@angular/commo
 import { SettingsService } from './components/settings/settings.service';
 import { SearchPipe } from './components/resturant/resturant.component';
 import { EqualValidator } from './components/Register/password-match.directive';
+import { HostessSettingsComponent } from './components/HostessSettings/settings.component';
+import { HostessSettingsService } from './components/HostessSettings/settings.service'
 
+import { DashboardService } from './components/dashboard/dashboard.service';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -39,7 +43,8 @@ import { EqualValidator } from './components/Register/password-match.directive';
         HeaderComponent,
         TimerComponent,
         SearchPipe,
-        EqualValidator
+        EqualValidator,
+        HostessSettingsComponent
         
     ],
     providers: [
@@ -47,7 +52,9 @@ import { EqualValidator } from './components/Register/password-match.directive';
         HostessService,
         SettingsService,
         LoginService,
+        DashboardService,
         RestaurenService,
+        HostessSettingsService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
 
@@ -56,6 +63,7 @@ import { EqualValidator } from './components/Register/password-match.directive';
         FormsModule,
         CommonModule,
         ReactiveFormsModule,
+        MyDateRangePickerModule,
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
             { path: 'seated', component: SeatedComponent },
@@ -63,6 +71,7 @@ import { EqualValidator } from './components/Register/password-match.directive';
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'settings', component: SettingsComponent },
+            { path: 'hostesssettings', component: HostessSettingsComponent},
             { path: 'dashboard', component: DashboardComponent },
             { path: 'restaurant', component: ResturantComponent },
             { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },

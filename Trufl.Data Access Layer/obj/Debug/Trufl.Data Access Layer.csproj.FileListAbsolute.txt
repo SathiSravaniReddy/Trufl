@@ -15,3 +15,7 @@ E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csprojR
 E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
 E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.dll
 E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.pdb
+E:\Trufl_Dev\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csprojResolveAssemblyReference.cache
+E:\Trufl_Dev\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
+E:\Trufl_Dev\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.dll
+E:\Trufl_Dev\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.pdb

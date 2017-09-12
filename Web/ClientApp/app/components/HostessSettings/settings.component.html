@@ -1,0 +1,149 @@
+﻿<shared-header></shared-header>
+
+<div>
+
+    <div class="col-md-12 settingmain">
+        <div class="col-md-5 settingtop">
+            <h3>
+                Profile
+            </h3>
+
+            <div *ngFor="let userprofile of user_Profile; let i = index">
+                <div class="col-md-12 textborder">
+                    <div class="col-md-3">
+                        <p class="text-muted">Username:</p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="textdata">{{userprofile.username}}</p>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <a><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
+                    </div>
+
+                </div>
+                <div class="col-md-12 textborder">
+                    <div class="col-md-3">
+                        <p class="text-muted">Email Id:</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="textdata">{{userprofile.emailId}}</p>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <a><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
+                    </div>
+
+                </div>
+                <div class="col-md-12 textborder">
+                    <div class="col-md-3">
+                        <p class="text-muted">Password:</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="textdata">{{userprofile.password}}</p>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <a><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-12 popup-btn">
+                <button type="submit" class="primary-btn">Done</button>
+                <button type="submit" data-dismiss="modal" class="secondary-btn">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-12 settingmain">
+        <div class="col-md-5 settingtop setgap">
+            <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" placeholder="Search by Name or day" /></h3>
+
+            <table class="table">
+               <!-- <thead>
+                    <tr>
+                        <th width="200">Resturant Name</th>
+                        <th width="100">Last Visited</th>
+                        <th width="150">Actions</th>
+                    </tr>
+                </thead>-->
+                <tbody>
+                    <tr>
+                        <td width="100">Jeff</td>
+                        <td width="200">Last Visited: 4/6/17</td>
+                        <td width="150"> <a id="rowclick" (click)="profile()">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Jeff</td>
+                        <td>Last Visited: 4/6/17</td>
+                        <td><a (click)="profile()">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Jeff</td>
+                        <td>Last Visited: 4/6/17</td>
+                        <td><a (click)="profile()">View Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <div class="col-md-2 animated fadeInRight" id="right-section" *ngIf="showProfile">
+        <a class="print pull-right">Print </a>
+        <a id="close" (click)="closeProile()"><span aria-hidden="true">&times;</span></a>
+
+        <div class="right-top">
+            <img alt="" src="../../../../wwwroot/images/no-img.png" />
+            <h5 class="nameheader">{{profileData.UserName}} Sarrah Statuss</h5>
+            <p class="defaulttext"> Trufl Premier Member</p>
+            <p class="defaulttext">Bottique Louie Member</p>
+           
+        </div>
+
+        <div class="col-md-12 leftnav no-pad">
+            <div>
+                <ul>
+                    <li>
+                        <a (click)="showBio()" [ngClass]="{selected: showbio}">Bio</a>
+                        <a (click)="showHistory()" [ngClass]="{selected: showhistory}">History & Coins</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div *ngIf="showbio">
+            <div class="right-btn">
+                <h6> Trufl Bio </h6>
+                <a data-toggle="modal" class="bioprimary-btn pull-right" data-target="#AddBio" href="#">ADD </a>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+
+            </div>
+
+
+            <div class="right-rep">
+                <h5> This Visit </h5>
+                <div class="row">
+                    <div class="col-md-5"> <a href="#">Birthday </a> </div>
+                    <div class="col-md-7">Jay Chanuu Turning to 32 </div>
+                </div>
+
+            </div>
+            <div class="right-rep">
+                <h5> Relationship </h5>
+                <div class="row">
+                    <div class="col-md-5"> <a href="#">VIP </a> <a href="#">Friend of owner </a> </div>
+                    <div class="col-md-7">Jay Chanuu Turning to 32 </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
