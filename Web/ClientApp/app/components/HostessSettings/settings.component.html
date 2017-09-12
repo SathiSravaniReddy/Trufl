@@ -63,7 +63,7 @@
                 <tbody>
                     <tr *ngFor="let customers of truflCustomers|filter:term">
                         <td width="100">{{customers.FullName}}</td>
-                        <td width="200">Last Visited: {{customers.BookingDate|date:'d/M/yy'}}</td>
+                        <td width="200">Last Visited: {{customers.LastVisited|date:'d/M/yy'}}</td>
                         <td width="150"> <a id="rowclick" (click)="profile()">View Details</a></td>
                     </tr>
                 </tbody>
@@ -79,7 +79,7 @@
 
         <div class="right-top">
             <img alt="" src="../../../../wwwroot/images/no-img.png" />
-            <h5 class="nameheader">{{userProfile.FullName}}</h5>
+            <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
             <p class="defaulttext"> Trufl Premier Member</p>
             <p class="defaulttext">Bottique Louie Member</p>
            

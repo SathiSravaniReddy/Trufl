@@ -54,13 +54,13 @@ export class LoginComponent {
 
 
 
-        this.loginService.getLoginDetails(this.user.usertype).subscribe((data: any) => {
-            data._Data.map((item: any) => {
-                this.logininfo = item;
-            });
+        //this.loginService.getLoginDetails(this.user.usertype).subscribe((data: any) => {
+        //    data._Data.map((item: any) => {
+        //        this.logininfo = item;
+        //    });
 
-        }
-        );
+        //}
+        //);
     }
     showLogin() {
         this.showResetPassword = false;

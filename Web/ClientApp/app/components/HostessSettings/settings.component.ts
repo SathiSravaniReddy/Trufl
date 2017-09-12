@@ -24,7 +24,7 @@ export class HostessSettingsComponent implements OnInit {
         
        this.getUserProfile();
        this.getTruflCustomers();
-       
+       this.getProfile();
 
     }
 
@@ -51,6 +51,17 @@ export class HostessSettingsComponent implements OnInit {
         }
         );
 
+    }
+    getProfile() {
+        this.settingsService.getUserDetails().subscribe((res: any) => {
+            res._Data.BookingHistory.map((item: any) => {
+                this.profileData = item;
+
+            });
+            console.log(this.profileData);
+
+        }
+        );
     }
     profile() {
         this.showProfile = true;
