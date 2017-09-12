@@ -14,6 +14,7 @@ export class HostessSettingsComponent implements OnInit {
     private showbio: boolean = true;
     private profileData: any = [];
     private showhistory: boolean = false;
+    private email: boolean = true;
 
     constructor(private settingsService: HostessSettingsService) {
 

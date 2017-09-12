@@ -27,6 +27,8 @@ import { HostessSettingsService } from './components/HostessSettings/settings.se
 
 import { DashboardService } from './components/dashboard/dashboard.service';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
+import { ResetPasswordComponent } from './components/Login/ResetPassword/resetPassword.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -44,7 +46,8 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
         TimerComponent,
         SearchPipe,
         EqualValidator,
-        HostessSettingsComponent
+        HostessSettingsComponent,
+        ResetPasswordComponent
         
     ],
     providers: [
@@ -64,6 +67,7 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
         CommonModule,
         ReactiveFormsModule,
         MyDateRangePickerModule,
+       Ng2SearchPipeModule,
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
             { path: 'seated', component: SeatedComponent },
@@ -75,7 +79,9 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
             { path: 'dashboard', component: DashboardComponent },
             { path: 'restaurant', component: ResturantComponent },
             { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
+            { path: 'reset', component: ResetPasswordComponent },
             { path: '**', redirectTo: 'login' },
+           
         ])
     ],
 })

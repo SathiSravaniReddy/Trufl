@@ -26,7 +26,7 @@
                         <p class="text-muted">Email Id:</p>
                     </div>
                     <div class="col-md-4">
-                        <p class="textdata"><input type="text" [(ngModel)]="userProfile.Email" /></p>
+                        <p class="textdata"><input type="text" [hidden]="emailDisabled" [(ngModel)]="userProfile.Email" /></p>
                     </div>
                     <div class="col-md-2 pull-right">
                         <a><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
@@ -57,32 +57,15 @@
 
     <div class="col-md-12 settingmain">
         <div class="col-md-5 settingtop setgap">
-            <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" placeholder="Search by Name or day" /></h3>
+            <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" [(ngModel)]="term" placeholder="Search by Name or day" /></h3>
 
             <table class="table">
-               <!-- <thead>
-                    <tr>
-                        <th width="200">Resturant Name</th>
-                        <th width="100">Last Visited</th>
-                        <th width="150">Actions</th>
-                    </tr>
-                </thead>-->
                 <tbody>
-                    <tr *ngFor="let customers of truflCustomers let i=index">
+                    <tr *ngFor="let customers of truflCustomers|filter:term">
                         <td width="100">{{customers.FullName}}</td>
-                        <td width="200">Last Visited: {{customers.BookingDate}}</td>
+                        <td width="200">Last Visited: {{customers.BookingDate|date:'d/M/yy'}}</td>
                         <td width="150"> <a id="rowclick" (click)="profile()">View Details</a></td>
                     </tr>
-                    <!--<tr>
-                        <td>Jeff</td>
-                        <td>Last Visited: 4/6/17</td>
-                        <td><a (click)="profile()">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Jeff</td>
-                        <td>Last Visited: 4/6/17</td>
-                        <td><a (click)="profile()">View Details</a></td>
-                    </tr>-->
                 </tbody>
             </table>
         </div>
@@ -96,7 +79,7 @@
 
         <div class="right-top">
             <img alt="" src="../../../../wwwroot/images/no-img.png" />
-            <h5 class="nameheader">{{profileData.UserName}} Sarrah Statuss</h5>
+            <h5 class="nameheader">{{userProfile.FullName}}</h5>
             <p class="defaulttext"> Trufl Premier Member</p>
             <p class="defaulttext">Bottique Louie Member</p>
            
@@ -116,7 +99,7 @@
         <div *ngIf="showbio">
             <div class="right-btn">
                 <h6> Trufl Bio </h6>
-                <a data-toggle="modal" class="bioprimary-btn pull-right" data-target="#AddBio" href="#">ADD </a>
+                <a type="button"  data-toggle="modal" data-target="#myModal" class="bioprimary-btn pull-right" href="#">ADD </a>
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
 
             </div>
@@ -152,4 +135,50 @@
     </div>
 
 
+</div>
+
+<div class="container">
+    
+
+    <!-- Modal -->
+    <div class="modal addBio-modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog addBio-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">close</button>
+                    <h4 class="modal-title">Add Bio</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-12">Select the category</label>
+                            <div class="col-md-12">
+                                <select>
+                                    <option></option>
+                                    <option>Bio-data</option>
+                                    <option>Bio-data</option>
+                                    <option>Bio-data</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Enter the description</label>
+                            <div class="col-md-12">
+                                <textarea name="message" rows="8" cols="60"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer addBio-footer">
+                    <form>
+                        <button type="button" class="btn btn-default bluebtn">ADD</button>
+                        <button type="button" class="btn btn-default cancelbtn" data-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
