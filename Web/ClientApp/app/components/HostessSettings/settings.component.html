@@ -100,35 +100,29 @@
             <div class="right-btn">
                 <h6> Trufl Bio </h6>
                 <a type="button"  data-toggle="modal" data-target="#myModal" class="bioprimary-btn pull-right" href="#">ADD </a>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+                <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
 
             </div>
 
 
-            <div class="right-rep">
-                <h5> This Visit </h5>
+            <div class="right-rep" *ngFor="let bio of bioData">
+                <h5> {{bio.BioName}} </h5>
                 <div class="row">
-                    <div class="col-md-5"> <a href="#">Birthday </a> </div>
-                    <div class="col-md-7">Jay Chanuu Turning to 32 </div>
-                </div>
-
-            </div>
-            <div class="right-rep">
-                <h5> Relationship </h5>
-                <div class="row">
-                    <div class="col-md-5"> <a href="#">VIP </a> <a href="#">Friend of owner </a> </div>
-                    <div class="col-md-7">Jay Chanuu Turning to 32 </div>
+                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                    <div class="col-md-7">{{bio.Description}} </div>
                 </div>
 
             </div>
 
         </div>
 
-        <div *ngIf="showhistory">
-            <div>
-                <h5>History(60)</h5>
-                <p>Dates:</p>
-                <p>Total Coins Earned:</p>
+        
+
+        <div *ngIf="showhistory" class="right-btn">
+            <div *ngFor="let history of historyData">
+                <h5 class="historycount">History (60)</h5>
+                <p>Dates: {{history.BookingHistoryDates|date:'d/M/yy'}}</p>
+                <p>Total Coins Earned:500</p>
             </div>
         </div>
 

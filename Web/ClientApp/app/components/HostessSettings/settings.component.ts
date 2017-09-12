@@ -13,6 +13,8 @@ export class HostessSettingsComponent implements OnInit {
     private showProfile: boolean = false;
     private showbio: boolean = true;
     private profileData: any = [];
+    private bioData: any = [];
+    private historyData;
     private showhistory: boolean = false;
     private email: boolean = true;
 
@@ -25,6 +27,8 @@ export class HostessSettingsComponent implements OnInit {
        this.getUserProfile();
        this.getTruflCustomers();
        this.getProfile();
+       this.getBioData();
+       this.getHistoryData();
 
     }
 
@@ -45,8 +49,7 @@ export class HostessSettingsComponent implements OnInit {
     getTruflCustomers() {
 
         this.settingsService.getUserDetails().subscribe((res: any) => {
-            this.truflCustomers = res._Data.RestaurantUserDetailswithHistory
-            
+            this.truflCustomers = res._Data.RestaurantUserDetailswithHistory 
             console.log(this.truflCustomers);
         }
         );
@@ -59,6 +62,22 @@ export class HostessSettingsComponent implements OnInit {
 
             });
             console.log(this.profileData);
+
+        }
+        );
+    }
+    getBioData() {
+        this.settingsService.getUserDetails().subscribe((res: any) => {
+            this.bioData = res._Data.BioData;
+            console.log(this.bioData);
+
+        }
+        );
+    }
+    getHistoryData() {
+        this.settingsService.getUserDetails().subscribe((res: any) => {
+            this.historyData = res._Data.BookingHistory;
+            console.log(this.historyData);
 
         }
         );
