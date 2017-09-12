@@ -25,6 +25,8 @@ import { EqualValidator } from './components/Register/password-match.directive';
 import { HostessSettingsComponent } from './components/HostessSettings/settings.component';
 import { HostessSettingsService } from './components/HostessSettings/settings.service'
 
+import { DashboardService } from './components/dashboard/dashboard.service';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -50,6 +52,7 @@ import { HostessSettingsService } from './components/HostessSettings/settings.se
         HostessService,
         SettingsService,
         LoginService,
+        DashboardService,
         RestaurenService,
         HostessSettingsService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
@@ -60,6 +63,7 @@ import { HostessSettingsService } from './components/HostessSettings/settings.se
         FormsModule,
         CommonModule,
         ReactiveFormsModule,
+        MyDateRangePickerModule,
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
             { path: 'seated', component: SeatedComponent },
