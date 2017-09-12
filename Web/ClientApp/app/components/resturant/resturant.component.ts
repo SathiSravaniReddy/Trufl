@@ -22,32 +22,40 @@ export class ResturantComponent implements OnInit {
 
     constructor(private restaurenService: RestaurenService, private fb: FormBuilder) {
 
-     /*   this.myForm = new FormGroup({
-            restaurentname: new FormControl('', [Validators.required, Validators.minLength(2)]),
-            emailid: new FormControl('', [Validators.required]),
-            contact1: new FormControl('', Validators.required),
-            contact2: new FormControl('', Validators.required),
-            address1: new FormControl('', Validators.required),
-            address2: new FormControl('', Validators.required),
-            state: new FormControl('', Validators.required),
-            zipcode: new FormControl('', Validators.required),
-            ownername: new FormControl('', Validators.required),
-            owneremail: new FormControl('', Validators.required),
-            ownercontact1: new FormControl('', Validators.required),
-            ownercontact2: new FormControl('', Validators.required),
-            description: new FormControl('', Validators.required)
-
-
-        }); */
+        /*   this.myForm = new FormGroup({
+               restaurentname: new FormControl('', [Validators.required, Validators.minLength(2)]),
+               emailid: new FormControl('', [Validators.required]),
+               contact1: new FormControl('', Validators.required),
+               contact2: new FormControl('', Validators.required),
+               address1: new FormControl('', Validators.required),
+               address2: new FormControl('', Validators.required),
+               state: new FormControl('', Validators.required),
+               zipcode: new FormControl('', Validators.required),
+               ownername: new FormControl('', Validators.required),
+               owneremail: new FormControl('', Validators.required),
+               ownercontact1: new FormControl('', Validators.required),
+               ownercontact2: new FormControl('', Validators.required),
+               description: new FormControl('', Validators.required)
+   
+   
+           }); */
         this.myForm = fb.group({
             'restaurentname': [null, Validators.required],
-            'emailid': [null, Validators.required],
+            'emailid': [null, Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')])],
             'contact1': [null, Validators.required],
-            'contact2': [null, Validators.required],
+            'contact2': [null],
             'address1': [null, Validators.required],
-            'address2': [null, Validators.required]
+            'address2': [null],
+            'state': [null],
+            'zipcode': [null, Validators.required],
+            'ownername': [null, Validators.required],
+            'owneremail': [null, Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')])],
+            'ownercontact1': [null, Validators.required],
+            'ownercontact2': [null],
+            'description': [null, Validators.required]
+
         })
-        
+
 
     }
     ngOnInit() {
@@ -56,13 +64,13 @@ export class ResturantComponent implements OnInit {
         this.getnotifications();
 
         this.states = [{ name: 'Telangane', value: 0 },
-                       { name: 'AP', value: 0 },
-                       { name: 'Kerala', value: 0 },
-                       { name: 'Tamilnadu', value: 0 },
+        { name: 'AP', value: 0 },
+        { name: 'Kerala', value: 0 },
+        { name: 'Tamilnadu', value: 0 },
 
         ];
 
-        
+
     }
 
 
@@ -79,7 +87,7 @@ export class ResturantComponent implements OnInit {
 
         this.restaurenService.getnotifications().subscribe((res: any) => {
 
-            this.notifications_info = res.data;
+            this.notifications_info = res._Data;
             console.log(this.notifications_info);
         })
 
@@ -91,7 +99,7 @@ export class ResturantComponent implements OnInit {
 
         })
 
-       
+
     }
 
 }

@@ -93,8 +93,11 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.GetRestaurantDetails(RestaurantID);
         }
-            #endregion
-
+        #endregion
+        public bool SaveUserBioEvents(SaveUserBioEventsInputDTO saveUserBioEvents)
+        {
+            return _hostessDL.SaveUserBioEvents(saveUserBioEvents);
+        }
 
             #endregion
         }

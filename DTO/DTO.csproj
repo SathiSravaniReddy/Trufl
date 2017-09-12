@@ -61,6 +61,8 @@
     <Compile Include="RestaurantSeatedUsers.cs" />
     <Compile Include="RestaurantSeatedUsersInputDTO.cs" />
     <Compile Include="SaveRestaurantInputDTO.cs" />
+    <Compile Include="SaveUserBioEventsInputDTO.cs" />
+    <Compile Include="SettingsOutputDTO.cs" />
     <Compile Include="SignDTO.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="TruflConstants.cs" />

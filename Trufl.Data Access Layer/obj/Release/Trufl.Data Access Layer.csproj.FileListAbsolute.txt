@@ -7,3 +7,13 @@ E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.cspro
 E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
 E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.dll
 E:\Trufl\Trufl\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.pdb
+E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\bin\Release\Trufl.Data Access Layer.dll.config
+E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\bin\Release\Trufl.Data Access Layer.dll
+E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\bin\Release\Trufl.Data Access Layer.pdb
+E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\bin\Release\DTO.dll
+E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\bin\Release\Trufl.Logging.dll
+E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\bin\Release\DTO.pdb
+E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.csprojResolveAssemblyReference.cache
+E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
+E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.dll
+E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.pdb

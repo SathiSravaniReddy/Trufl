@@ -1,0 +1,246 @@
+﻿
+.settingtop {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+ .settingtop h3 {
+        margin-top: 10px !important;
+        font-size: 14px;
+        border-bottom: 1px solid #cacaca;
+        padding: 0 15px 10px 15px;
+        font-weight: bold;
+        color: black;
+    }
+    .settingtop table {
+        font-size: 15px;
+    }
+
+        .settingtop table tr td {
+            line-height: 30px;
+            font-size: 14px;
+        }
+            .settingtop table tr td:nth-child(even) {
+                color: #777;
+                font-size: 14px;
+                font-weight: 500;
+            }
+            .settingtop table tr td:nth-child(odd) {
+                color: Black;
+                font-size: 14px;
+                font-weight: 600;
+                padding-left:16px;
+            }
+a{
+    cursor:pointer;
+}
+.bioprimary-btn {
+    margin-top: 15px;
+    float: left;
+    width: auto;
+    padding: 3px 10px;
+    background: #0b7dd9;
+    border: 1px solid #0b7dd9;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #fff;
+    border-radius: 2px;
+    margin: 15px 10px 0 0;
+}
+.primary-btn {
+    float: left;
+    width: auto;
+    padding: 3px 10px;
+    background: #0b7dd9;
+    border: 1px solid #0b7dd9;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #fff;
+    border-radius: 2px;
+    margin: 0 10px 0 0;
+}
+
+    .primary-btn:hover,
+    .primary-btn:focus {
+        color: #fff;
+    }
+
+.secondary-btn {
+    float: left;
+    width: auto;
+    padding: 3px 10px;
+    border: 1px solid #0b7dd9;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    cursor: pointer;
+    background: #fff;
+    color: #0b7dd9;
+}
+.text-muted {
+    color: #777;
+    font-size: 14px;
+    font-weight: 500;
+}
+.textdata {
+    font-size: 14px;
+    font-weight: 600;
+}
+.textborder {
+    border-bottom: 1px solid #cacaca;
+    line-height: 31px;
+}
+.right-top {
+    text-align: center;
+    margin: 0; 
+    float: left;
+    width: 100%;
+}
+
+
+
+.print {
+    text-align: right;
+    font-weight:600;
+    font-size:14px;
+}
+.alert {
+    margin-top: 10px;
+}
+
+@charset "UTF-8";
+
+/*!
+ * animate.css -http://daneden.me/animate
+ * Version - 3.5.1
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2016 Daniel Eden
+ */
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+
+@-webkit-keyframes fadeInRight {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+.fadeInRight {
+    -webkit-animation-name: fadeInRight;
+    animation-name: fadeInRight;
+}
+
+@-webkit-keyframes fadeInRightBig {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(2000px, 0, 0);
+        transform: translate3d(2000px, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInRightBig {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(2000px, 0, 0);
+        transform: translate3d(2000px, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+.fadeInRightBig {
+    -webkit-animation-name: fadeInRightBig;
+    animation-name: fadeInRightBig;
+}
+
+#right-section {
+    height: 99vh;
+    background: #fff;
+    position: fixed;
+    right: 3px;
+    top: 65px;
+    overflow-y: auto;
+    width: 300px;
+}
+
+#close {
+    cursor: pointer;
+}
+
+.nameheader{
+    font-weight:bold;
+}
+.defaulttext {
+    font-size: 12px;
+    margin: 0 0 2px;
+    font-weight:500
+}
+.leftnav ul {
+     margin: 0px; 
+    width: 100%;
+}
+.leftnav li a {
+    padding: 0 30px;
+    height: 32px;
+    line-height: 40px;
+    float: left;
+    color: #0b7dd9;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: none;
+    width:auto;
+    text-align:center;
+}
+.leftnav li {
+    border-bottom: #e8edf1 2px solid;
+    width: 120%;
+}
+.selected {
+    color: black !important;
+    border-bottom: black 2px solid !important;
+}
+h6, .h6 {
+    padding-top: 20px;
+    font-size: 12px;
+    display: inline-flex;
+}

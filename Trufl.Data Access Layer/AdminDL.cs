@@ -22,7 +22,6 @@ namespace Trufl.Data_Access_Layer
 
         public DashBoardDetailsOutputDTO GetDashBoardDetails(DashBoardInputDTO dashboardInput)
         {
-            DataTable sendResponse = new DataTable();
             DashBoardDetailsOutputDTO response = new DashBoardDetailsOutputDTO();
             try
             {
@@ -258,6 +257,52 @@ namespace Trufl.Data_Access_Layer
                 return false;
             }
         }
+
+        /// <summary>
+        /// This method 'GetRestaurantUserDetails ' returns Restaurant User details
+        /// </summary>
+        /// <returns>Notifications List</returns>
+        public SettingsOutputDTO GetRestaurantUserDetails(int RestaurantID,int TruflUserID,string UserType)
+        {
+            SettingsOutputDTO sendResponse = new SettingsOutputDTO();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantUserDetails", sqlcon))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@TruflUserID", TruflUserID);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@UserType", UserType);
+                        tvparam2.SqlDbType = SqlDbType.Char;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            DataSet ds = new DataSet();
+                            da.Fill(ds);
+
+                            sendResponse.UserLoginInformation = ds.Tables[0];
+                            sendResponse.UsersInformation = ds.Tables[1];
+                            sendResponse.RestaurantUserDetailswithHistory = ds.Tables[2];
+                            sendResponse.BookingHistory = ds.Tables[3];
+                        }
+                    }
+                }
+                // }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+        
         #endregion
     }
 }
