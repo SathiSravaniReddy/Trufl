@@ -750,7 +750,120 @@ namespace Trufl.Data_Access_Layer
                 return false;
             }
         }
-        
+
+
+
+
+
+        /// <summary>
+        /// This method 'Update Booking' will Update Booking data.
+        /// </summary>
+        /// <param name="SaveSignUpUserInfo"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool UpdateBooking(UpdateBookingTableNumberInputDTO updateBookingTableNumber)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spUpdateBooking", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@BookingID", updateBookingTableNumber.BookingID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@UserID", updateBookingTableNumber.UserID);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@RestaurantID", updateBookingTableNumber.RestaurantID);
+                        tvparam2.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam3 = cmd.Parameters.AddWithValue("@BStatus", updateBookingTableNumber.BStatus);
+                        tvparam3.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam4 = cmd.Parameters.AddWithValue("@TableNumbers", updateBookingTableNumber.TableNumbers);
+                        tvparam4.SqlDbType = SqlDbType.Text;
+
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// This method 'Update Restaurant Host Status' will Update Restaurant Host Status data.
+        /// </summary>
+        /// <param name="UpdateRestaurantHostStatus"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool UpdateRestaurantHostStatus(UpdateRestaurantHostStatusInputDTO UpdateRestaurantHost)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spUpdateRestaurantHostStatus", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserType", UpdateRestaurantHost.TruflUserType);
+                        tvpParam.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@RestaurantID", UpdateRestaurantHost.RestaurantID);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@UserID", UpdateRestaurantHost.UserID);
+                        tvparam2.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam3 = cmd.Parameters.AddWithValue("@ActiveStatus", UpdateRestaurantHost.ActiveStatus);
+                        tvparam3.SqlDbType = SqlDbType.Bit;
+                       
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
+
         #endregion
 
     }

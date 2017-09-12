@@ -66,6 +66,8 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="TruflConstants.cs" />
     <Compile Include="TruflUserInputDTO.cs" />
+    <Compile Include="UpdateBookingTableNumberInputDTO.cs" />
+    <Compile Include="UpdateRestaurantHostStatusInputDTO.cs" />
     <Compile Include="UserProfile.cs" />
   </ItemGroup>
   <ItemGroup>
