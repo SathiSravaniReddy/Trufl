@@ -2,9 +2,11 @@
 import { OnInit } from '@angular/core';
 import { DashboardService } from './dashboard.service'
 import { IMyDrpOptions, IMyDateRangeModel } from 'mydaterangepicker';
+import{PaginationControlsComponent} from 'ngx-pagination'
 @Component({
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css']
+    styleUrls: ['./dashboard.component.css'],
+   
 })
 export class DashboardComponent implements OnInit {
 
@@ -21,7 +23,12 @@ export class DashboardComponent implements OnInit {
     private customersNames: any = [];
     private notifications: any;
     private customersNamesIndex: any;
-  
+    private showDatePicker: boolean =false;
+
+    private p: number = 1;
+    private collection: any=[]; 
+
+
     // private isValid = true;
     constructor(private dashboardService: DashboardService) {
         //called first time before the ngOnInit()
@@ -52,7 +59,7 @@ export class DashboardComponent implements OnInit {
                 endDate: { year: dateformater.getFullYear(), month: dateformater.getMonth() + 1, day: dateformater.getDate() }
             }
             this.getDetails(date);
-        console.log("loadingcomponent");
+      
         //called after the constructor and called  after the first ngOnChanges() 
         
 
@@ -82,7 +89,6 @@ export class DashboardComponent implements OnInit {
             "Number of Trufl Restaurents"
         ];
         this.dashboardService.getDashboardDetails(input).subscribe((res: any) => {
-            console.log(this.date, "this.datehjhkhkhkh");
             that.dashboardinfo = res._Data;
             that.keys = Object.keys(that.dashboardinfo);
             this.notifications = that.dashboardinfo[that.keys[that.keys.length - 1]];
@@ -108,45 +114,29 @@ export class DashboardComponent implements OnInit {
                     that.customers.push(obj);
                 }
             });
-
-
-
-
-
-
-
         }
         );
     }
 
 
     onDateRangeChanged(event: IMyDateRangeModel) {
-        console.log(event.beginDate, event.endDate);
         this.getDetails({ beginDate: event.beginDate, endDate: event.endDate });
     }
 
     setRange() {
+        this.showDatePicker = true;
         this.today = !this.otherday;
         this.date = '';
     }
     setDate() {
-
-
-
-
-
         let dateformater = new Date();
-
-        
-        
         if (this.today) {
-            this.otherday = false;
-            
+            this.otherday = false; 
             this.date = {
-                beginDate: { year: dateformater.getFullYear(), month: dateformater.getMonth() + 1, day: dateformater.getDate() },
-                endDate: { year: dateformater.getFullYear(), month: dateformater.getMonth() + 1, day: dateformater.getDate() }
+               beginDate: { year: dateformater.getFullYear(), month: dateformater.getMonth() + 1, day: dateformater.getDate() },
+               endDate: { year: dateformater.getFullYear(), month: dateformater.getMonth() + 1, day: dateformater.getDate() }
             }
-            console.log(this.date, "this.date");
+         
             this.getDetails(this.date);
         } else {
             this.date = '';

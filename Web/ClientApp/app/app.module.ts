@@ -24,9 +24,9 @@ import { SearchPipe } from './components/resturant/resturant.component';
 import { EqualValidator } from './components/Register/password-match.directive';
 import { HostessSettingsComponent } from './components/HostessSettings/settings.component';
 import { HostessSettingsService } from './components/HostessSettings/settings.service'
-
 import { DashboardService } from './components/dashboard/dashboard.service';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ResetPasswordComponent } from './components/Login/ResetPassword/resetPassword.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
 
@@ -67,6 +67,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         CommonModule,
         ReactiveFormsModule,
         MyDateRangePickerModule,
+        NgxPaginationModule,
        Ng2SearchPipeModule,
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
