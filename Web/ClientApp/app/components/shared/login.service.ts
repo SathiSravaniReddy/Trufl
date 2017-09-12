@@ -9,6 +9,8 @@ import { User } from '../Login/user';
 export class LoginService {
     private results: any;
     private userType;
+    private settingStatus;
+
     constructor(private http: Http) {
     }
     public setUserType(value) {
@@ -19,8 +21,7 @@ export class LoginService {
     public getUserType() {
         this.userType = localStorage.getItem('userType');
         return this.userType;
-    }
-    
+    }   
 
     getLoginDetails(userstype:any) {
    

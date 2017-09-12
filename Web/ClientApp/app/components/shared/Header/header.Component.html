@@ -1,45 +1,28 @@
 ﻿<div class="header">
     <div class="col-md-5 headerleft">
         <h1>
-            <a href="#" *ngIf="this.userType=='RA'">Bottique Louie</a>
-            <a href="#" *ngIf="this.userType=='TA'">Trufl Admin</a>
+            <a (click)="showHeaders()" *ngIf="this.userType=='RA'">Bottique Louie</a>
+            <a (click)="showHeaders()" *ngIf="this.userType=='TA'">Trufl Admin</a>
         </h1>
     </div>
     <div class="headerright">
-        <a (click)="settings()"><img alt="" src="../../../../../wwwroot/images/setting.png" /> </a>
+        <a [routerLink]="['/hostesssettings']"><img alt="" src="../../../../../wwwroot/images/setting.png" /> </a>
         <div class="profiledd dropdown">
             <a (click)="logoutShow()"> <label>Jeffy </label> <img width="32" alt="" src="../../../../../wwwroot/images/profile.png" /> </a>
           
             <a class="logout" *ngIf="profileVisible" [routerLink]="['/login']"> Logout</a>
         </div>
     </div>
-
 </div>
-<div class="col-md-12 innermain">
-   
-    
+
+<div class="col-md-12 innermain">     
     <div class="col-md-12 leftnav no-pad" *ngIf="showHeadings">
-        <div *ngIf="this.userType=='RA'">
+        <div>
             <ul>
-                <li *ngFor="let header of header1 let i=index">
-                    <a [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
+                <li *ngFor="let header of headers let i=index">
+                    <a *ngIf="header.isSettings" [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
                 </li>
             </ul>
-        </div>
-        <div *ngIf="this.userType=='TA'">
-            <ul>
-                <li *ngFor="let header of header2 let i=index">
-                    <a [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
-                </li>
-
-            </ul>
-        </div>
+        </div>      
     </div>
-
-    <div class="col-md-12 leftnav no-pad" *ngIf="showSettings">
-        <div class="settingheader"> <ul><li>Settings</li></ul>  </div>
-
-    </div>
-
-
 </div>

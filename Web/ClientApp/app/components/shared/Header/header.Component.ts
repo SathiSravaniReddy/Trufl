@@ -12,51 +12,75 @@ export class HeaderComponent {
     private userType;
     private profileVisible = false;
     private showHeadings = true;
-    private showSettings = false;
-    private header1 = [
-        {
+    public isSettings = false;
+    public loadHeaders = {};
+    public headers = [];
 
-            "name": "Waitlist",
-            "active": true,
-            "route": '/home'
-
-
-        },
-        {
-            "name": "Seated",
-            "active": false,
-            "route": '/seated'
-        }];
-    private header2 = [
-        {
-            "name": "Dashboard",
-            "active": true,
-            "route": '/dashboard'
-        },
-        {
-            "name": "Restaurant",
-            "active": false,
-            "route": '/restaurant'
-        }];
-    
+      
     constructor(private loginService: LoginService, private router: Router) {
-        this.userType = this.loginService.getUserType(); 
+        this.userType = this.loginService.getUserType();
+        if ((router.url != "/hostesssettings") && (router.url != "/settings")) {
+            this.isSettings = true;
+        }  
+
+        //Keep these load headers in a service-----
+        this.loadHeaders = {"RA":[
+            {
+                "isSettings": this.isSettings,
+                "name": "Waitlist",
+                "active": true,
+                "route": '/home'
+            },
+            {
+                "isSettings": this.isSettings,
+                "name": "Seated",
+                "active": false,
+                "route": '/seated'
+            },
+            {
+                "isSettings": !this.isSettings,
+                "name": "Settings",
+                "active": true,
+                "route": '/hostesssettings'
+            }
+        ],
+           "TA": [
+               {
+                "isSettings": this.isSettings,
+                "name": "Dashboard",
+                "active": true,
+                "route": '/dashboard'
+                },
+               {
+                "isSettings": this.isSettings,
+                "name": "Restaurant",
+                "active": false,
+                "route": '/restaurant'
+               },
+               {
+                   "isSettings": !this.isSettings,
+                   "name": "Settings",
+                   "active": true,
+                   "route": '/settings'
+               }
+           ]
+
+        };
+
+        this.headers = this.loadHeaders[this.userType];
+
     }
  
     logoutShow() {
         this.profileVisible = true;
-
-    }
-    
-    settings() {
-        
-        
-        
-        this.router.navigateByUrl('/settings');
-        this.showHeadings = false;
-        this.showSettings = true;
-        
     }
 
-    
+    showHeaders() {
+        if (this.userType == "RA") {
+            this.router.navigateByUrl('/home');
+        }
+        else if (this.userType == "TA"){
+            this.router.navigateByUrl('/dashboard');
+        }
+    }
 }
