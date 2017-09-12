@@ -70,9 +70,9 @@ namespace Trufl.Business_Layer
         #endregion
 
         #region LoginUser
-        public DataTable GetUserTypes(string UserType)
+        public DataTable GetUserTypes(string UserType,int RestaurantID)
         {
-            return _hostessDL.GetUserTypes(UserType);
+            return _hostessDL.GetUserTypes(UserType,RestaurantID);
         }
 
         public bool SaveSignUpUserInfo(TruflUserInputDTO registerUserInfo)

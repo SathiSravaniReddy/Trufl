@@ -302,7 +302,37 @@ namespace Trufl.Data_Access_Layer
             return sendResponse;
         }
 
-        
+
+        /// <summary>
+        /// This method 'GetAllRestaurants ' returns AllRestaurants details
+        /// </summary>
+        /// <returns>Notifications List</returns>
+        public DataTable GetAllRestaurants()
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("spGetAllRestaurants", sqlcon))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+                // }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
         #endregion
     }
 }
