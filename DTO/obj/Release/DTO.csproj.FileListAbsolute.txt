@@ -4,3 +4,16 @@ E:\Trufl\Trufl\DTO\obj\Release\DTO.csprojResolveAssemblyReference.cache
 E:\Trufl\Trufl\DTO\obj\Release\DTO.csproj.CoreCompileInputs.cache
 E:\Trufl\Trufl\DTO\obj\Release\DTO.dll
 E:\Trufl\Trufl\DTO\obj\Release\DTO.pdb
+E:\Manohar\Trufl_8-31-2017\DTO\bin\Release\DTO.dll
+E:\Manohar\Trufl_8-31-2017\DTO\bin\Release\DTO.pdb
+E:\Manohar\Trufl_8-31-2017\DTO\obj\Release\DTO.csproj.CoreCompileInputs.cache
+E:\Manohar\Trufl_8-31-2017\DTO\obj\Release\DTO.dll
+E:\Manohar\Trufl_8-31-2017\DTO\obj\Release\DTO.pdb
+E:\Manohar\Trufl_8-31-2017\DTO\obj\Release\DTO.csprojResolveAssemblyReference.cache
+E:\Manohar\Trufl_8-31-2017\DTO\bin\Release\SqlServerTypes\x64\msvcr120.dll
+E:\Manohar\Trufl_8-31-2017\DTO\bin\Release\SqlServerTypes\x64\SqlServerSpatial140.dll
+E:\Manohar\Trufl_8-31-2017\DTO\bin\Release\SqlServerTypes\x86\msvcr120.dll
+E:\Manohar\Trufl_8-31-2017\DTO\bin\Release\SqlServerTypes\x86\SqlServerSpatial140.dll
+E:\Manohar\Trufl_8-31-2017\DTO\bin\Release\Microsoft.SqlServer.Types.dll
+E:\Manohar\Trufl_8-31-2017\DTO\bin\Release\System.Spatial.dll
+E:\Manohar\Trufl_8-31-2017\DTO\bin\Release\System.Spatial.xml

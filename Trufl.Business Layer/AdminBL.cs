@@ -21,6 +21,22 @@ namespace Trufl.Business_Layer
         {
             return _adminDL.GetNotifications();
         }
-        #endregion
-    }
+
+        public bool SaveNotifications(NotificationsInputDTO notifications)
+        {
+            return _adminDL.SaveNotifications(notifications);
+        }
+
+        public bool SaveRestaurant(SaveRestaurantInputDTO restaurant)
+        {
+            return _adminDL.SaveRestaurant(restaurant);
+        }
+
+        public SettingsOutputDTO GetRestaurantUserDetails(int RestaurantID, int TruflUserID, string UserType)
+        {
+            return _adminDL.GetRestaurantUserDetails(RestaurantID,TruflUserID,UserType);
+        }
+
+            #endregion
+        }
 }

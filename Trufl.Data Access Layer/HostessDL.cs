@@ -193,18 +193,18 @@ namespace Trufl.Data_Access_Layer
             {
                 var dtClient = new DataTable();
 
-                dtClient.Columns.Add("BookingID", typeof(Int64));
-                dtClient.Columns.Add("TruflUserID", typeof(Int64));
-                dtClient.Columns.Add("RestaurantID", typeof(Int64));
-                dtClient.Columns.Add("PartySize", typeof(Int64));
-                dtClient.Columns.Add("OfferType", typeof(Int64));
-                dtClient.Columns.Add("OfferAmount", typeof(Int64));
-                dtClient.Columns.Add("BookingStatus", typeof(Int64));
-                dtClient.Columns.Add("Points", typeof(Int64));
-                dtClient.Columns.Add("TruflUserCardDataID", typeof(Int64));
-                dtClient.Columns.Add("TruflTCID", typeof(Int64));
+                dtClient.Columns.Add("BookingID", typeof(Int32));
+                dtClient.Columns.Add("TruflUserID", typeof(Int32));
+                dtClient.Columns.Add("RestaurantID", typeof(Int32));
+                dtClient.Columns.Add("PartySize", typeof(Int32));
+                dtClient.Columns.Add("OfferType", typeof(Int32));
+                dtClient.Columns.Add("OfferAmount", typeof(Int32));
+                dtClient.Columns.Add("BookingStatus", typeof(Int32));
+                dtClient.Columns.Add("Points", typeof(Int32));
+                dtClient.Columns.Add("TruflUserCardDataID", typeof(Int32));
+                dtClient.Columns.Add("TruflTCID", typeof(Int32));
                 dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
-                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
+                dtClient.Columns.Add("ModifiedBy", typeof(Int32));
                 dtClient.Columns.Add("Quoted", typeof(DateTime));
                 dtClient.Columns.Add("PaymentStatus", typeof(string));
                 dtClient.Columns.Add("TableNumbers", typeof(string));
@@ -346,8 +346,8 @@ namespace Trufl.Data_Access_Layer
             {
                 var dtClient = new DataTable();
 
-                dtClient.Columns.Add("RestaurantID", typeof(Int64));
-                dtClient.Columns.Add("TruflUserID", typeof(Int64));
+                dtClient.Columns.Add("RestaurantID", typeof(Int32));
+                dtClient.Columns.Add("TruflUserID", typeof(Int32));
                 dtClient.Columns.Add("AmenitiName", typeof(string));
                 dtClient.Columns.Add("AmenitiChecked", typeof(bool));
 
@@ -697,8 +697,60 @@ namespace Trufl.Data_Access_Layer
         }
         #endregion
 
+        /// <summary>
+        /// This method 'Save User Bio Events' will save User Bio Events data
+        /// </summary>
+        /// <param name="SaveSignUpUserInfo"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool SaveUserBioEvents(SaveUserBioEventsInputDTO saveUserBioEvents)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveUserBioEvents", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", saveUserBioEvents.RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@TruflUserID", saveUserBioEvents.TruflUserID);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@BioID", saveUserBioEvents.BioID);
+                        tvparam2.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam3 = cmd.Parameters.AddWithValue("@BioEventID", saveUserBioEvents.BioEventID);
+                        tvparam3.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam4 = cmd.Parameters.AddWithValue("@BioDesc", saveUserBioEvents.BioDesc);
+                        tvparam4.SqlDbType = SqlDbType.Text;
+                        
 
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
 
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+        
         #endregion
 
     }

@@ -28,7 +28,7 @@
                     <td width="350">
                         <div class="wait-btn" *ngIf="item.isShowLinks">
                             <a [class]=classForAccept (click)="accept(item)">Accepted</a>
-                            <a data-toggle="modal" data-target="#SelectSeat" [class]=classForSeated href="#">Seated</a>
+                            <a data-toggle="modal" data-target="#SelectSeat" [class]=classForSeated (click)="seated(item)">Seated</a>
                             <a (click)="remove(item)">Remove</a>
                         </div>
                     </td>
@@ -129,15 +129,14 @@
             </div>
             <div class="modal-body" style="display:inline-block;">
                 <div class="seatselection">
-                    <ul>
-                        <li><a href="#">1 </a> </li>
+                    <ul *ngFor="let item of tableData">
+                        <li (click)="selectTable(item)"><a>{{item.TableNo}}</a></li>
                         <!--<li><a class="hold" href="#">2 </a> </li>-->
 
                     </ul>
                     <div class="popup-btn">
-
-                        <a href="#" class="primary-btn">Submit</a>
-                        <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a>
+                        <a class="primary-btn" (click)="submitRestaurantTable()">Submit</a>
+                        <a data-dismiss="modal" class="secondary-btn" (click)="closeRestaurantTable()">Cancel</a>
                     </div>
                 </div>
                 <div class="success-content" style="display:none;">
