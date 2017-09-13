@@ -73,9 +73,9 @@
     </div>
 
 
-    <div class="col-md-2 animated fadeInRight" id="right-section" *ngIf="showProfile">
-        <a class="print pull-right">Print </a>
-        <a id="close" (click)="closeProile()"><span aria-hidden="true">&times;</span></a>
+    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+        <a class="print pull-right" (click)="print()">Print </a>
+        <a id="close" (click)="closeProile('right-section')"><span aria-hidden="true">&times;</span></a>
 
         <div class="right-top">
             <img alt="" src="../../../../wwwroot/images/no-img.png" />
