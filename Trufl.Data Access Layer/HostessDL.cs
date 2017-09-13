@@ -616,8 +616,8 @@ namespace Trufl.Data_Access_Layer
                     using (SqlCommand cmd = new SqlCommand("SavePassword", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@UserID", DBNull.Value);
-                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserName", DBNull.Value);
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@UserID", restPasswordInput.UserID);
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserName", restPasswordInput.UserName);
                         SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@UserEmail", restPasswordInput.UserEmail);
                         tvpParam2.SqlDbType = SqlDbType.Text;
                         SqlParameter tvpParam3 = cmd.Parameters.AddWithValue("@LoginPassword", restPasswordInput.LoginPassword);
