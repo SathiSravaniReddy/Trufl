@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
     templateUrl: './resetPassword.component.html',
 })
 export class ResetPasswordComponent {
-    private mailPassword:string;
-    private confirmPassword:string;
+    private mailPassword:string="";
+    private newPassword:string="";
+   // private passwords: {};
     constructor(private router: Router) {
 
     }
@@ -21,8 +22,9 @@ export class ResetPasswordComponent {
 
    
     resetPasswordImpl() {
-        
-
+        console.log(this.mailPassword);
+        console.log(this.newPassword);
+        this.router.navigateByUrl('./login');
     }
 
 }

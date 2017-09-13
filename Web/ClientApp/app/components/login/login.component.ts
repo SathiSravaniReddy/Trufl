@@ -21,7 +21,7 @@ export class LoginComponent {
     private loginDetails: any;
     private emailDetails;
     constructor(private loginService: LoginService, private router: Router) {
-
+        
     }
     ngOnInit() {
 
@@ -36,14 +36,22 @@ export class LoginComponent {
             res._Data.map((item: any) => {
                 this.loginDetails = item;
             });
-
             if (this.loginDetails) {
-                if (this.loginDetails.TruflUSERID == 11) {
-                    this.router.navigateByUrl('/home');
-                }
-                else if (this.loginDetails.TruflUSERID == 1) {
-                    this.router.navigateByUrl('/dashboard');
-                }
+
+                //if (this.loginDetails.ForgetPasswordStatus) {
+                //    this.router.navigate(['./reset']);
+                //}
+                //else if (!this.loginDetails.ForgetPasswordStatus) {
+                //}
+                    if (this.loginDetails.TruflUSERID == 11) {
+                        this.router.navigateByUrl('/home');
+                    }
+                    else if (this.loginDetails.TruflUSERID == 1) {
+                        this.router.navigateByUrl('/dashboard');
+                    }
+                
+            
+               
             }
             else {
                 this.errorMsg = "Please select usertype and enter valid username and password";
@@ -85,5 +93,6 @@ export class LoginComponent {
         });
    
     }
+   
     
 }
