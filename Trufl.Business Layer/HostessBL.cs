@@ -90,9 +90,9 @@ namespace Trufl.Business_Layer
             return _hostessDL.ForgetPassword(LoginEmail);
         }
 
-        public DataTable SaveRestPassword(string LoginEmail)
+        public DataTable SaveRestPassword(RestPasswordInputDTO restPasswordInput)
         {
-            return _hostessDL.SaveRestPassword(LoginEmail);
+            return _hostessDL.SaveRestPassword(restPasswordInput);
         }
 
         public DataTable GetTruflUserDetails(int TruflUserID)
@@ -109,6 +109,20 @@ namespace Trufl.Business_Layer
             return _hostessDL.SaveUserBioEvents(saveUserBioEvents);
         }
 
+        public DataTable GetBioCategories()
+        {
+            return _hostessDL.GetBioCategories();
+        }
+
+        public DataTable GetBioEvents(int BioID)
+        {
+            return _hostessDL.GetBioEvents(BioID);
+        }
+
+        public DataTable GetEmployeConfiguration(string TruflUserType, int RestaurantID)
+        {
+            return _hostessDL.GetEmployeConfiguration(TruflUserType, RestaurantID);
+        }
             #endregion
         }
 }

@@ -59,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestaurantSeatedUsers.cs" />
     <Compile Include="RestaurantSeatedUsersInputDTO.cs" />
+    <Compile Include="RestPasswordInputDTO.cs" />
     <Compile Include="SaveRestaurantInputDTO.cs" />
     <Compile Include="SaveUserBioEventsInputDTO.cs" />
     <Compile Include="SettingsOutputDTO.cs" />
