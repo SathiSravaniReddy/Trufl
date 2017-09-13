@@ -6,11 +6,11 @@
 
 
 
-    <div class="col-md-9">
+    <div class="col-md-12">
 
         <div class="col-md-12 tablemain">
 
-            <table class="table">
+            <table class="table" >
                 <thead>
                     <tr>
                         <th>Trufl</th>
@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
 
-                    <tr *ngFor="let seatsinfo of seatedinfo; let i = index">
+                    <tr  *ngFor="let seatsinfo of seatedinfo|paginate:{ itemsPerPage: 5, currentPage: p }; let i = index">
                         
 
                         <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td>
@@ -59,12 +59,16 @@
             </table>
 
 
-            <div *ngIf="!hasData()">No Data Found</div>
+            <!--<div *ngIf="!hasData()">No Data Found</div> -->
 
 
             <div class="btn-main">
                 <button [disabled]="!isenabled" (click)="postSeatedDetails()">Submit</button>
             </div>
+
+            <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
+
+
 
         </div>
 
