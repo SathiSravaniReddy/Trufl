@@ -15,6 +15,6 @@ namespace DTO
         public DataTable BookingHistory   { get; set; }
         public DataTable UserProfielFullName { get; set; }
         public DataTable BioData { get; set; }
-
+        public DataTable RegisteredRestaurants { get; set; }
     }
 }

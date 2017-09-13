@@ -288,11 +288,12 @@ namespace Trufl.Data_Access_Layer
 
                             sendResponse.UserLoginInformation = ds.Tables[0];
                             sendResponse.UsersInformation = ds.Tables[1];
-                            sendResponse.RestaurantUserDetailswithHistory = ds.Tables[2];
+                            sendResponse.RegisteredRestaurants = ds.Tables[2];
+                            sendResponse.RestaurantUserDetailswithHistory = ds.Tables[3];
                             //sendResponse.BookingHistory = ds.Tables[3];
-                            sendResponse.UserProfielFullName = ds.Tables[3];
-                            sendResponse.BioData = ds.Tables[4];
-                            sendResponse.BookingHistory = ds.Tables[5];
+                            sendResponse.UserProfielFullName = ds.Tables[4];
+                            sendResponse.BioData = ds.Tables[5];
+                            sendResponse.BookingHistory = ds.Tables[6];
                         }
                     }
                 }
