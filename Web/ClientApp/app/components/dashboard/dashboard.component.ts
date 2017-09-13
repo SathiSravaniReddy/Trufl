@@ -24,7 +24,6 @@ export class DashboardComponent implements OnInit {
     private notifications: any;
     private customersNamesIndex: any;
     private showDatePicker: boolean =false;
-
     private p: number = 1;
     private collection: any=[]; 
 

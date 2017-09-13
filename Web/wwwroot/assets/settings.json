@@ -1,12 +1,57 @@
 {
-  "data": [
-    {
-      
-      "username": "jeff",
-      "emailId": "jeff124res@outlook.com",
-      "password": "1234"     
+  "_Data": {
+    "UserLoginInformation": [
+      {
 
-    }
-  
-  ]
+        "username": "jeff",
+        "emailId": "jeff124res@outlook.com",
+        "password": "1234"
+
+      }
+    ],
+    "usersInformation": [
+      {
+        "name": "jeff",
+        "email": "jeff124res@outlook.com",
+        "Lastvisited": "4/6/17"
+
+      },
+      {
+
+        "name": "jeff",
+        "email": "jeff124res@outlook.com",
+        "Lastvisited": "4/6/17"
+
+      },
+      {
+
+        "name": "jeff",
+        "email": "jeff124res@outlook.com",
+        "Lastvisited": "4/6/17"
+
+      },
+      {
+        "name": "jeff",
+        "email": "jeff124res@outlook.com",
+        "Lastvisited": "4/6/17"
+
+      },
+      {
+
+        "name": "jeff",
+        "email": "jeff124res@outlook.com",
+        "Lastvisited": "4/6/17"
+
+      },
+      {
+
+        "name": "jeff",
+        "email": "jeff124res@outlook.com",
+        "Lastvisited": "4/6/17"
+
+      }
+    ]
+
+    
+  }
 }
