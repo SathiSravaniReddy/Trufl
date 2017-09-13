@@ -29,6 +29,8 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ResetPasswordComponent } from './components/Login/ResetPassword/resetPassword.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
+import {ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -58,6 +60,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         DashboardService,
         RestaurenService,
         HostessSettingsService,
+        ToastsManager,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
 
@@ -69,6 +72,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         MyDateRangePickerModule,
         NgxPaginationModule,
         Ng2SearchPipeModule,
+        ToastModule,
+        
      
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
