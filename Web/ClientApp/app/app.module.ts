@@ -27,6 +27,8 @@ import { HostessSettingsService } from './components/HostessSettings/settings.se
 import { DashboardService } from './components/dashboard/dashboard.service';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ResetPasswordComponent } from './components/Login/ResetPassword/resetPassword.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -44,7 +46,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
         TimerComponent,
         SearchPipe,
         EqualValidator,
-        HostessSettingsComponent
+        HostessSettingsComponent,
+        ResetPasswordComponent
         
     ],
     providers: [
@@ -65,6 +68,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
         ReactiveFormsModule,
         MyDateRangePickerModule,
         NgxPaginationModule,
+       Ng2SearchPipeModule,
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
             { path: 'seated', component: SeatedComponent },
@@ -76,7 +80,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
             { path: 'dashboard', component: DashboardComponent },
             { path: 'restaurant', component: ResturantComponent },
             { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
+            { path: 'reset', component: ResetPasswordComponent },
             { path: '**', redirectTo: 'login' },
+           
         ])
     ],
 })

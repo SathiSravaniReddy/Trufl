@@ -1,4 +1,6 @@
-﻿import { Injectable } from "@angular/core";
+﻿
+import { Injectable } from "@angular/core";
+
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -15,11 +17,7 @@ export class SettingsService {
     }
 
 
-    getTruflCustomers() {
-        return this.http.get('assets/Trufl_customers.json').map(
-            (res) => res.json())
-
-    }
+   
 
    
 

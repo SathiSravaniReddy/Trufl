@@ -36,7 +36,10 @@ namespace Trufl.Business_Layer
         {
             return _adminDL.GetRestaurantUserDetails(RestaurantID,TruflUserID,UserType);
         }
-
+        public DataTable GetAllRestaurants()
+        {
+            return _adminDL.GetAllRestaurants();
+        }
             #endregion
         }
 }

@@ -1,0 +1,63 @@
+﻿.settings {
+    color: #0078d7;
+    margin-left: 20px;
+}
+
+.secondary-btn {
+    float: right !important;
+}
+
+.reset {
+    color: #0078d7;
+    cursor: pointer;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: none !important;
+    border-bottom: 1px solid #ddd;
+}
+
+.settingsdata {
+    color: black;
+    font-weight: bolder;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td:last-child {
+    border-bottom: none !important;
+}
+
+.text p {
+    /* other styles goes here... */
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+.settingmains {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    top: 0px;
+}
+
+#secondsettingtop {
+    width: 41.66666667% !important;
+    height: 41.66% !important;
+}
+
+.edit {
+    cursor: pointer;
+}
+#done {
+    width: 16% !important;
+}
+#cancel {
+    margin-right: 62% !important;
+    width: 16% !important;
+}

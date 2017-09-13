@@ -1,137 +1,46 @@
-﻿<shared-header></shared-header>
-
+﻿
+<shared-header></shared-header>
 <div class="col-md-12 settingmain">
-    <div class="col-md-5 settingtop setgap dn">
-        <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" placeholder="Search" /></h3>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th width="200">Resturant Name</th>
-                    <th width="100">Last Visited</th>
-                    <th width="150">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td width="250">Jeff</td>
-                    <td width="100">4/6/17</td>
-                    <td width="100"> <a id="rowclick" href="#">View Details</a></td>
-                </tr>
-                <tr>
-                    <td>Jeff</td>
-                    <td>4/6/17</td>
-                    <td><a href="#">View Details</a></td>
-                </tr>
-                <tr>
-                    <td>Jeff</td>
-                    <td>4/6/17</td>
-                    <td><a href="#">View Details</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-
-
     <div class="col-md-5 settingtop setgap">
-        <h3 class="nb">Reset Password</h3>
+        <h3>Reset Password</h3>
 
         <table class="table">
-            <thead>
+            <tbody *ngFor="let truflcustomers of UsersInformation; let i = index">
                 <tr>
-                    <th width="150">User Name</th>
-                    <th width="200">Email Id</th>
-                    <th width="150">Actions</th>
+                    <td class="text"><p>Username:</p><p class="settingsdata">{{truflcustomers.name}}</p></td>
+                    <td class="text"><p>Email Id:</p><p class="settingsdata">{{truflcustomers.email}}</p></td>
+                    <td><a class="reset">Reset</a></td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let truflcustomers of trufl_customers; let i = index">
-                    <td>{{truflcustomers.name}}</td>
-                    <td>{{truflcustomers.Lastvisited}}</td>
-                    <td>Reset</td>
-                </tr>
-                <!--  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>
-                  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>
-                  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>
-                  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>
-                  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>
-                  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>-->
             </tbody>
         </table>
     </div>
-
-
-    <div class="col-md-5 settingtop">
-
-
+    <div class="col-md-5 settingtop" id="secondsettingtop">
         <h3>
             Profile
-            <a class="pull-right" href="#"><!--<img alt="" src="../images/edit.png" />--></a>
+            <a class="pull-right" href="#"></a>
         </h3>
+        <table class="table">
 
-        <div *ngFor="let userprofile of user_Profile; let i = index">
-            <div class="col-md-12 textborder">
-                <div class="col-md-3">
-                    <p class="text-muted">Username:</p>
-                </div>
-                <div class="col-md-4">
-                    <p>{{userprofile.username}}</p>
-                </div>
+            <tbody>
 
-            </div>
-            <div class="col-md-12 textborder">
-                <div class="col-md-3">
-                    <p class="text-muted">Email Id:</p>
-                </div>
-                <div class="col-md-4">
-                    <p>{{userprofile.emailId}}</p>
-                </div>
+                <tr *ngFor="let obj of user; let i = index">
+                    <td *ngIf="!obj.isEdit"  class="text"><p>{{obj.key}}:</p><p class="settingsdata">{{obj.value}}</p></td>
+                    <td *ngIf="!obj.isEdit">
+                        <a (click)="editDetails(obj, i)">
+                            <img alt="" src="../../../../wwwroot/images/edit.png" />
+                        </a>
+                    </td>
+                    <td *ngIf="obj.isEdit"><label>{{obj.key}}:</label><input type="text" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
+                </tr>
 
-            </div>
-            <div class="col-md-12 textborder">
-                <div class="col-md-3">
-                    <p class="text-muted">Password:</p>
-                </div>
-                <div class="col-md-4">
-                    <p>{{userprofile.password}}</p>
-                </div>
-
-            </div>
-
-        </div>
-        <div class="col-md-12 popup-btn dn">
-
-
-            <a href="#" class="primary-btn">Submit</a>
-            <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a>
-        </div>
-
+                <tr *ngIf="isShow">
+                    <td>
+                        <button type="submit" class="primary-btn lgbtn pull-left" (click)="Done()" id="done">Done</button>
+                        <button (click)="cancel()" class="secondary-btn lgbtn" id="cancel">Cancel</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-
-</div>
+    </div>

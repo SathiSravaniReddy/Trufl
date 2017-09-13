@@ -289,7 +289,10 @@ namespace Trufl.Data_Access_Layer
                             sendResponse.UserLoginInformation = ds.Tables[0];
                             sendResponse.UsersInformation = ds.Tables[1];
                             sendResponse.RestaurantUserDetailswithHistory = ds.Tables[2];
-                            sendResponse.BookingHistory = ds.Tables[3];
+                            //sendResponse.BookingHistory = ds.Tables[3];
+                            sendResponse.UserProfielFullName = ds.Tables[3];
+                            sendResponse.BioData = ds.Tables[4];
+                            sendResponse.BookingHistory = ds.Tables[5];
                         }
                     }
                 }
@@ -302,7 +305,37 @@ namespace Trufl.Data_Access_Layer
             return sendResponse;
         }
 
-        
+
+        /// <summary>
+        /// This method 'GetAllRestaurants ' returns AllRestaurants details
+        /// </summary>
+        /// <returns>Notifications List</returns>
+        public DataTable GetAllRestaurants()
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("spGetAllRestaurants", sqlcon))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+                // }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
         #endregion
     }
 }
