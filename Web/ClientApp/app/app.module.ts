@@ -68,7 +68,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         ReactiveFormsModule,
         MyDateRangePickerModule,
         NgxPaginationModule,
-       Ng2SearchPipeModule,
+        Ng2SearchPipeModule,
+     
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
             { path: 'seated', component: SeatedComponent },
