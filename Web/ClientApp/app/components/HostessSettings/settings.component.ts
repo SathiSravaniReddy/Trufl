@@ -49,7 +49,7 @@ export class HostessSettingsComponent implements OnInit {
     getTruflCustomers() {
 
         this.settingsService.getUserDetails().subscribe((res: any) => {
-            this.truflCustomers = res._Data.UsersInformation 
+            this.truflCustomers = res._Data.RestaurantUserDetailswithHistory 
             console.log(this.truflCustomers);
         }
         );
