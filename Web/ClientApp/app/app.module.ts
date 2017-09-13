@@ -78,7 +78,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
             { path: 'seated', component: SeatedComponent },
-            { path: 'home', component: HostessComponent },
+            { path: 'waitlist', component: HostessComponent },
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'settings', component: SettingsComponent },
