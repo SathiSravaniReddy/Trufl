@@ -34,10 +34,13 @@ export class LoginComponent {
     signIn() {
         //console.log(this.user);
         this.loginService.setUserType(this.user.usertype);
-
+        
         this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
             res._Data.map((item: any) => {
                 this.loginDetails = item;
+                console.log(this.loginDetails.TruflUSERID, this.loginDetails.RestaurantID, "RestaurantID");
+                this.loginService.setTrufluserID(this.loginDetails.TruflUSERID);
+                this.loginService.setRestaruantId(this.loginDetails.RestaurantID);
             });
             if (this.loginDetails) {
 
@@ -66,13 +69,15 @@ export class LoginComponent {
 
 
 
-        //this.loginService.getLoginDetails(this.user.usertype).subscribe((data: any) => {
-        //    data._Data.map((item: any) => {
-        //        this.logininfo = item;
-        //    });
+    //    this.loginService.getLoginDetails(this.user.usertype).subscribe((data: any) => {
+    //       data._Data.map((item: any) => {
+    //          this.logininfo = item;
+    //        });
 
-        //}
-        //);
+    //       console.log("data", "datausertype");
+
+    //    }
+    //    );
     }
     showLogin() {
         this.user = new User();
