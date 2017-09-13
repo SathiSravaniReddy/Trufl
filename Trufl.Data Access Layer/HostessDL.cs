@@ -874,6 +874,73 @@ namespace Trufl.Data_Access_Layer
         }
 
 
+
+        /// <summary>
+        /// This method 'GetBioCategories' will Get BioCategories  list
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns Get Bio Categories Details  </returns>
+        public DataTable GetBioCategories()
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetBioCategories", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                       
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+
+
+        /// <summary>
+        /// This method 'GetBioEvents' will Get Bio Events  details
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns Get Bio Events Details  </returns>
+        public DataTable GetBioEvents(int BioID)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetBioEvents", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@BioID", BioID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
         #endregion
 
     }

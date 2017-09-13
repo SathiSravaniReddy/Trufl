@@ -109,6 +109,15 @@ namespace Trufl.Business_Layer
             return _hostessDL.SaveUserBioEvents(saveUserBioEvents);
         }
 
+        public DataTable GetBioCategories()
+        {
+            return _hostessDL.GetBioCategories();
+        }
+
+        public DataTable GetBioEvents(int BioID)
+        {
+            return _hostessDL.GetBioEvents(BioID);
+        }
             #endregion
         }
 }
