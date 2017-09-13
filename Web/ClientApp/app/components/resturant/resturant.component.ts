@@ -87,6 +87,8 @@ export class ResturantComponent implements OnInit {
 
         this.restaurenService.getnotifications().subscribe((res: any) => {
 
+            console.log(res);
+
             this.notifications_info = res._Data;
             console.log(this.notifications_info);
         })
