@@ -32,6 +32,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
+
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [
