@@ -405,7 +405,7 @@ namespace Trufl.Data_Access_Layer
         /// This method 'GetUserTypes ' returns User type details
         /// </summary>
         /// <returns>user type list</returns>
-        public DataTable GetUserTypes(string UserType)
+        public DataTable GetUserTypes(string UserType,int RestaurantID)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -417,7 +417,10 @@ namespace Trufl.Data_Access_Layer
                     {
                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
                         cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter tvpParam5 = cmd.Parameters.AddWithValue("@TruflUserType", UserType);
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@TruflUserType", UserType);
+                        tvpParam1.SqlDbType = SqlDbType.Char;
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(sendResponse);

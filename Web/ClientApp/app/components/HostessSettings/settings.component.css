@@ -193,7 +193,7 @@ a{
     animation-name: fadeInRightBig;
 }
 
-#right-section {
+#profileSection {
     height: 99vh;
     background: #fff;
     position: fixed;
@@ -243,4 +243,103 @@ h6, .h6 {
     padding-top: 20px;
     font-size: 12px;
     display: inline-flex;
+}
+.historycount {
+    color: black;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.right-btn p {
+    margin: 10px 0 0 0;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: left;
+}
+
+/*addbio css*/
+
+.addBio-modal h4 {
+    color: #4d4d4d;
+    font-weight: 600;
+}
+
+.addBio-modal {
+    text-align: center;
+    padding: 0 !important;
+    border: 1px;
+}
+
+    .addBio-modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px;
+    }
+
+.addBio-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.addBio-modal label {
+    color: #4c4c4c;
+    font-weight: 100;
+}
+
+.addBio-modal .close {
+    font-size: 12px;
+}
+
+.addBio-modal select {
+    width: 20%;
+}
+
+.addBio-modal select, .addBio-modal textarea {
+    border: 1px solid #b8babc;
+}
+
+.addBio-footer {
+    text-align: left;
+    border-top: none;
+}
+
+.bluebtn, .bluebtn:hover, .bluebtn:visited, .bluebtn:active {
+    color: #fff;
+    background: #0078d7;
+    border-radius: 1px;
+    outline: none;
+}
+
+button.btn.btn-default.bluebtn {
+    color: #fff;
+    background: #0078d7;
+    border-radius: 1px;
+    outline: none;
+}
+
+.cancelbtn, .cancelbtn:hover, .cancelbtn:visited {
+    color: #0078d7;
+    background: #fff;
+    border: 2px solid #0078d7;
+    border-radius: 1px;
+    outline: none;
+}
+
+button.btn.btn-default.cancelbtn {
+    color: #0078d7;
+    background: #fff;
+    border: 2px solid #0078d7;
+    border-radius: 1px;
+    outline: none;
+}
+
+.form-group label {
+    font-size: 14px;
+    float: left;
+    width: 40%;
+    text-align: left; 
+    margin: 5px 10px 0 0;
 }

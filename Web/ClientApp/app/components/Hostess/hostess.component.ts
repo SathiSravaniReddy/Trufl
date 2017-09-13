@@ -22,6 +22,7 @@ export class HostessComponent {
     private restaurantTableData;
     private dataOfTable;
     private selectedTableNumber;
+    private multipleTables;
     private showProfile: boolean = false;
     private profileData: any = [];
     private tablesSelected: any = [];
@@ -145,29 +146,19 @@ export class HostessComponent {
 
     //Functionality for submitting reastuarnt table
     submitRestaurantTable() {
-        this.restaurantTableData = {
-            "BookingID": 1,
-            "TruflUserID": 1,
-            "RestaurantID": 1,
-            "PartySize": 2,
-            "OfferType": 3,
-            "OfferAmount": 1500,
-            "BookingStatus": 3,
-            "Points": 1,
-            "TruflUserCardDataID": 1,
-            "TruflTCID": 1,
-            "ModifiedDate": "2017-09-07T11:18:40.5642008+05:30",
-            "ModifiedBy": 1,
-            "Quoted": "2017-09-07T11:18:40.5652011+05:30",
-            "PaymentStatus": "Paid",
-            "TableNumbers": "1",
-            "LoggedInUser": 1
-        }
+        this.restaurantTableData = { "BookingID": this.dataOfTable.BookingID, "UserID": this.dataOfTable.TruflUserID, "RestaurantID": this.dataOfTable.RestaurantID, "BStatus": 3, "TableNumbers": this.multipleTables }
+        this.hostessService.updateBooking(this.restaurantTableData).subscribe((res: any) => {
+            console.log(res);
+        })
     }
 
     //Selecting table
     selectTable(item) {
-        this.tablesSelected.push(item);
+        this.tablesSelected.push(item.TableNo);
+        var uniq = this.tablesSelected.filter(function (elem, index, self) {
+            return index == self.indexOf(elem);
+        });
+        this.multipleTables = uniq.join(',');
     }
 
     //Functinality for closing restaurant table
