@@ -118,6 +118,11 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.GetBioEvents(BioID);
         }
+
+        public DataTable GetEmployeConfiguration(string TruflUserType, int RestaurantID)
+        {
+            return _hostessDL.GetEmployeConfiguration(TruflUserType, RestaurantID);
+        }
             #endregion
         }
 }
