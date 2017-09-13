@@ -90,9 +90,9 @@ namespace Trufl.Business_Layer
             return _hostessDL.ForgetPassword(LoginEmail);
         }
 
-        public DataTable SaveRestPassword(string LoginEmail)
+        public DataTable SaveRestPassword(RestPasswordInputDTO restPasswordInput)
         {
-            return _hostessDL.SaveRestPassword(LoginEmail);
+            return _hostessDL.SaveRestPassword(restPasswordInput);
         }
 
         public DataTable GetTruflUserDetails(int TruflUserID)

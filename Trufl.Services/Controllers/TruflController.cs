@@ -242,11 +242,11 @@ namespace Trufl.Services.Controllers
         }
 
         [Route("RestPassword")]
-        [HttpGet]
-        public object SaveRestPassword(string LoginEmail)
+        [HttpPost]
+        public object SaveRestPassword(RestPasswordInputDTO restPasswordInput)
         {
             DataTable res = new DataTable();
-            res = _hostessBL.SaveRestPassword(LoginEmail);
+            res = _hostessBL.SaveRestPassword(restPasswordInput);
             try
             {
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
