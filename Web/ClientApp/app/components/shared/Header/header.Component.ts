@@ -29,7 +29,7 @@ export class HeaderComponent {
                 "isSettings": this.isSettings,
                 "name": "Waitlist",
                 "active": true,
-                "route": '/home'
+                "route": '/waitlist'
             },
             {
                 "isSettings": this.isSettings,
@@ -77,7 +77,7 @@ export class HeaderComponent {
 
     showHeaders() {
         if (this.userType == "RA") {
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/waitlist');
         }
         else if (this.userType == "TA"){
             this.router.navigateByUrl('/dashboard');

@@ -8,6 +8,8 @@ namespace DTO
 {
    public class RestPasswordInputDTO
     {
+        public int UserID { get; set; }
+        public string UserName { get; set; }
         public string UserEmail { get; set; }
         public string LoginPassword { get; set; }
         public string NewLoginPassword { get; set; }

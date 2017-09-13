@@ -1,11 +1,17 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, ViewContainerRef } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { SeatedService } from './seated.service'
+import { SeatedService } from './seated.service';
+import { PaginationControlsComponent } from 'ngx-pagination';
+import { Router } from '@angular/router';
+
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'seated',
     templateUrl: './seated.component.html',
-    styleUrls: ['./seated.component.css']
+    styleUrls: ['./seated.component.css'],
+    providers: [ToastsManager, ToastOptions]
 })
 export class SeatedComponent implements OnInit {
 
@@ -13,15 +19,15 @@ export class SeatedComponent implements OnInit {
     public isenabled = false;
     private seatedinformation: any;
     public items: any = [];
-    load: boolean = false;
-
-
-   // loading: boolean = false;
+    load: boolean = false;   
 
 
     private arr = ['Seated', 'AppServed', 'MenuServed', 'DesertServed', 'CheckReceived', 'Boozing', 'Empty'];
 
-    constructor(private seatedService: SeatedService) {
+    constructor(private seatedService: SeatedService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+
+        this._toastr.setRootViewContainerRef(vRef);
+        //called first time before the ngOnInit()
 
     }
 
@@ -39,22 +45,17 @@ export class SeatedComponent implements OnInit {
                         obj[keyName] = (obj[keyName] == 1) ? true : false;
                     }
                 })
-            });
+            });          
 
            this.seatedinfo = this.seatedinfo.filter(function (obj) {
                 return !obj['Empty']
-            }) 
+            })
 
-            console.log(this.seatedinfo);
-            /*.seatedinfo.map((item, index) => {
-                if (item.Empty == '1') {
-                    this.seatedinfo.splice(index,1)
-                }
-            })*/
+          
 
         })
-        
-        
+
+
 
     }
 
@@ -62,10 +63,7 @@ export class SeatedComponent implements OnInit {
         { value: 0 },
         { value: 1 }
     ];
-
-    change() {
-        this.isenabled = true;
-    }
+   
     public get(data: any, type: any) {
 
         var details = {
@@ -89,76 +87,47 @@ export class SeatedComponent implements OnInit {
 
         } else {
             this.items.push(details);
-        }
-
-        console.log(this.items);
-        //if (event.target.checked) {
-        //    details.AmenitiChecked = true;
-
-        //    this.items.push(details);
-
-        //}
-        //else {
-
-        //    if (details.AmenitiChecked == 1) {
-        //        details.AmenitiChecked = false;
-        //        this.items.push(details);
-        //    }
-        //    else {
-        //        details.AmenitiChecked = false
-        //        this.items.map((item, index) => {
-        //            if (item.TruflUserID == data['TruflUserID'] && item.AmenitiName == type) {
-        //                this.items.splice(index, 1);
-        //            }
-        //        })
-        //    }
-
-
-        //}
+        }            
 
 
     }
 
 
-    postSeatedDetails() {
-        console.log(this.items);
+    postSeatedDetails() {      
 
-        //this.loading = true;
+        
         this.load = true;
 
-        this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {  
-
-            if (res['_StatusMessage'] ==
-                "Success") {
+        this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {
+           
+            
+            if (res['_StatusMessage'] =="Success") {               
+                setInterval(() => {                 
+                    this.load = false;                
+                  
+                }, 2000); 
              
 
-                setInterval(() => { this.load = false; }, 3000);
-
+                this.seatedinfo = [];
+                this.getSeatedDetails();
+               
             }
 
-            this.getSeatedDetails();
 
-          /*  this.seatedinfo.map((item, index) => {
-                if (item.Empty == '1') {
-                    this.seatedinfo.splice(index, 1);
-
-                    this.getSeatedDetails();
-                }
-            }) */
-
-
-
-            this.items = [];
-         
            
-        })
+            window.setTimeout(() => {
+                this._toastr.success("data saved successfully");
+            }, 200);
+           
+
+        })      
+      
 
     }
-
-
+   
     public hasData(): boolean {
         return (this.seatedinfo != null && this.seatedinfo.length > 0);
-    }
+    } 
 
 
 

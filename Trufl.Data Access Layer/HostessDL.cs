@@ -616,8 +616,8 @@ namespace Trufl.Data_Access_Layer
                     using (SqlCommand cmd = new SqlCommand("SavePassword", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@UserID", DBNull.Value);
-                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserName", DBNull.Value);
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@UserID", restPasswordInput.UserID);
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserName", restPasswordInput.UserName);
                         SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@UserEmail", restPasswordInput.UserEmail);
                         tvpParam2.SqlDbType = SqlDbType.Text;
                         SqlParameter tvpParam3 = cmd.Parameters.AddWithValue("@LoginPassword", restPasswordInput.LoginPassword);
@@ -940,6 +940,43 @@ namespace Trufl.Data_Access_Layer
             }
             return sendResponse;
         }
+
+
+        /// <summary>
+        /// This method 'spGetEmployeConfigration' will Get Employe Configration details
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns Get EmployeConfigration Details  </returns>
+        public DataTable GetEmployeConfiguration(string TruflUserType, int RestaurantID)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetEmployeConfigration", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserType", TruflUserType);
+                        tvpParam.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam1.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
 
         #endregion
 

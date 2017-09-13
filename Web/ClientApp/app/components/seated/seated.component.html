@@ -6,11 +6,11 @@
 
 
 
-    <div class="col-md-9">
+    <div class="col-md-12">
 
         <div class="col-md-12 tablemain">
 
-            <table class="table">
+            <table class="table" >
                 <thead>
                     <tr>
                         <th>Trufl</th>
@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
 
-                    <tr *ngFor="let seatsinfo of seatedinfo; let i = index">
+                    <tr  *ngFor="let seatsinfo of seatedinfo|paginate:{ itemsPerPage: 5, currentPage: p }; let i = index">
                         
 
                         <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td>
@@ -41,13 +41,13 @@
                         <td>{{seatsinfo.OfferAmount}}</td>
                         <td>{{seatsinfo.Status}}</td>
                         <td>{{seatsinfo.TableNumber}}</td>
-                        <td class="customcheckbox"><input type="checkbox"   [(ngModel)]="seatsinfo.Seated" name="seated"  (click)="get(seatsinfo,'Seated',$event,seatsinfo.Seated)" id="seat{{i}}" > <label for="seat{{i}}"></label> </td>
-                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.AppServed" name="appserved"  (click)="get(seatsinfo,'AppServed',$event)" id="app{{i}}"><label for="app{{i}}"></label> </td>
-                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.MenuServed" name="menuserved" (click)="get(seatsinfo,'MenuServed',$event)" id="menu{{i}}"><label for="menu{{i}}"></label></td>
-                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.DesertServed" name="dessertserved" (click)="get(seatsinfo,'DesertServed',$event)" id="desert{{i}}"><label for="desert{{i}}"></label></td>
-                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.CheckReceived" name="checkreceived"(click)="get(seatsinfo,'CheckReceived',$event)" id="check{{i}}"><label for="check{{i}}"></label></td>
-                        <td class="customcheckbox"><input type="checkbox" [(ngModel)]="seatsinfo.Boozing" name="boozing" (click)="get(seatsinfo,'Boozing',$event)" id="buzz{{i}}"><label for="buzz{{i}}"></label></td>
-                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.Empty" name="empty" (click)="get(seatsinfo,'Empty',$event)" id="empty{{i}}"><label for="empty{{i}}"></label></td>
+                        <td class="customcheckbox"><input type="checkbox"   [(ngModel)]="seatsinfo.Seated" name="seated"  (click)="get(seatsinfo,'Seated')" id="seat{{i}}" > <label for="seat{{i}}"></label> </td>
+                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.AppServed" name="appserved"  (click)="get(seatsinfo,'AppServed')" id="app{{i}}"><label for="app{{i}}"></label> </td>
+                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.MenuServed" name="menuserved" (click)="get(seatsinfo,'MenuServed')" id="menu{{i}}"><label for="menu{{i}}"></label></td>
+                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.DesertServed" name="dessertserved" (click)="get(seatsinfo,'DesertServed')" id="desert{{i}}"><label for="desert{{i}}"></label></td>
+                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.CheckReceived" name="checkreceived"(click)="get(seatsinfo,'CheckReceived')" id="check{{i}}"><label for="check{{i}}"></label></td>
+                        <td class="customcheckbox"><input type="checkbox" [(ngModel)]="seatsinfo.Boozing" name="boozing" (click)="get(seatsinfo,'Boozing')" id="buzz{{i}}"><label for="buzz{{i}}"></label></td>
+                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.Empty" name="empty" (click)="get(seatsinfo,'Empty')" id="empty{{i}}"><label for="empty{{i}}"></label></td>
 
 
 
@@ -59,12 +59,16 @@
             </table>
 
 
-            <div *ngIf="!hasData()">No Data Found</div>
+           <div *ngIf="!hasData()">No Data Found</div> 
 
 
             <div class="btn-main">
                 <button [disabled]="!isenabled" (click)="postSeatedDetails()">Submit</button>
             </div>
+
+            <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
+
+
 
         </div>
 
