@@ -51,7 +51,7 @@ export class LoginComponent {
                 //else if (!this.loginDetails.ForgetPasswordStatus) {
                 //}
                     if (this.loginDetails.TruflUSERID == 11) {
-                        this.router.navigateByUrl('/home');
+                        this.router.navigateByUrl('/waitlist');
                     }
                     else if (this.loginDetails.TruflUSERID == 1) {
                         this.router.navigateByUrl('/dashboard');

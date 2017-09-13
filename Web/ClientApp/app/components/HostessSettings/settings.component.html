@@ -149,11 +149,12 @@
                         <div class="form-group">
                             <label class="col-md-12">Select the category</label>
                             <div class="col-md-12">
-                                <select>
-                                    <option></option>
-                                    <option>Bio-data</option>
-                                    <option>Bio-data</option>
-                                    <option>Bio-data</option>
+                               
+                                <select (change)="onCategoryChange($event)">
+                                    <option *ngFor="let categories of bioCategories; let i=index"
+                                            [value]="categories.BioID">
+                                        {{categories.BioName}}
+                                    </option>
                                 </select>
                             </div>
                         </div>

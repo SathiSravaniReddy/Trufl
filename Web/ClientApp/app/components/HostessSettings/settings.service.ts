@@ -10,20 +10,25 @@ export class HostessSettingsService {
        // this.loginservice.loginAuthentication
     }
 
+    //Get API for settings page
     getUserDetails() {
         return this.http.get('http://localhost:8679/api/Trufl/GetRestaurantUserDetails/1/11/RA').map(
             (res) => res.json())
 
     }
 
-
-    getTruflCustomers() {
-        return this.http.get('assets/Trufl_customers.json').map(
+    //Get API for Bio categories
+    GetBioCategories() {
+        return this.http.get('http://localhost:8679/api/Trufl/GetBioCategories').map(
             (res) => res.json())
-
     }
-
    
+    //Get API for BioEvents based on categories
+   
+    GetBioEvents(categoryId) {
+        return this.http.get('http://localhost:8679/api/Trufl/GetBioEvents/' + categoryId).map(
+            (res) => res.json())
+    }
 
 
 
