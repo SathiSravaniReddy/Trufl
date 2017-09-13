@@ -3,7 +3,7 @@ import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../shared/login.service';
 import { User } from './user';
-
+import { Reset } from './reset';
 
 @Component({
     selector: 'login',
@@ -20,8 +20,11 @@ export class LoginComponent {
     private email;
     private loginDetails: any;
     private emailDetails;
-    constructor(private loginService: LoginService, private router: Router) {
 
+    public showReset: boolean=false;
+    private reset = new Reset();
+    constructor(private loginService: LoginService, private router: Router) {
+        
     }
     ngOnInit() {
 
@@ -36,14 +39,23 @@ export class LoginComponent {
             res._Data.map((item: any) => {
                 this.loginDetails = item;
             });
-
             if (this.loginDetails) {
-                if (this.loginDetails.TruflUSERID == 11) {
-                    this.router.navigateByUrl('/home');
-                }
-                else if (this.loginDetails.TruflUSERID == 1) {
-                    this.router.navigateByUrl('/dashboard');
-                }
+
+                //if (this.loginDetails.ForgetPasswordStatus) {
+                //   // this.router.navigate(['./reset']);
+                //    this.ResetPasswordShow();
+                //}
+                //else if (!this.loginDetails.ForgetPasswordStatus) {
+                //}
+                    if (this.loginDetails.TruflUSERID == 11) {
+                        this.router.navigateByUrl('/home');
+                    }
+                    else if (this.loginDetails.TruflUSERID == 1) {
+                        this.router.navigateByUrl('/dashboard');
+                    }
+
+               
+               
             }
             else {
                 this.errorMsg = "Please select usertype and enter valid username and password";
@@ -63,15 +75,19 @@ export class LoginComponent {
         //);
     }
     showLogin() {
+        this.user = new User();
         this.showResetPassword = false;
         this.showForgotPassword = false;
         this.showlogin = true;
+        this.showReset = false;
     }
+
+    //Forgot Password
     forgotPasswordShow() {
         this.showlogin = false;
         this.showResetPassword = false;
         this.showForgotPassword = true;
-
+        this.showReset = false;
     }
     forgotPasswordImpl() {
         this.showlogin = false;
@@ -84,6 +100,33 @@ export class LoginComponent {
            
         });
    
+    }
+
+    //Reset Password
+    ResetPasswordShow() {
+        this.showlogin = false;
+        this.showResetPassword = false;
+        this.showForgotPassword = false;
+        this.showReset = true;
+    }
+    resetPasswordImpl() {
+        this.reset.UserEmail = this.loginDetails.Email;
+        this.reset.UserName = this.loginDetails.FullName;
+        this.reset.userId = this.loginDetails.TruflUSERID;
+        console.log(this.reset);
+       
+        this.loginService.resetPassword(this.reset).subscribe(
+            data => {
+                alert("Password change successfull");
+                this.showLogin();
+            },
+            err => {
+                // Log errors if any
+                console.log(err);
+            }
+
+        );
+        
     }
     
 }

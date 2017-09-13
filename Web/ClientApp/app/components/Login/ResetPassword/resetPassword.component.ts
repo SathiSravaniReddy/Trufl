@@ -1,7 +1,8 @@
 ﻿
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { Reset } from './reset';
+import { LoginService } from '../../shared/login.service';
 
 
 @Component({
@@ -9,9 +10,10 @@ import { Router } from '@angular/router';
     templateUrl: './resetPassword.component.html',
 })
 export class ResetPasswordComponent {
-    private mailPassword:string;
+   
+    private reset = new Reset();
     private confirmPassword:string;
-    constructor(private router: Router) {
+    constructor(private router: Router, private loginService: LoginService) {
 
     }
     ngOnInit() {
@@ -21,8 +23,15 @@ export class ResetPasswordComponent {
 
    
     resetPasswordImpl() {
-        
-
+        this.reset.UserEmail = "";
+        console.log(this.reset);
+        console.log(this.confirmPassword);
+        this.loginService.resetPassword(this.reset).subscribe((res: any) => {
+            
+                
+            });
+        this.router.navigateByUrl('./login');
     }
+     
 
 }

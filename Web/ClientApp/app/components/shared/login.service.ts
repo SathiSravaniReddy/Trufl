@@ -45,7 +45,12 @@ export class LoginService {
             (res: Response) => res.json());
 
     }
-    
+
+    resetPassword(reset: any) {
+        return this.http.post('http://localhost:8679/api/Trufl/RestPassword', reset).map(
+            (res: Response) => res.json());
+
+    }
 
     create(user: User): Observable<User> {
         return this.http.post('http://localhost:8679/Api/Trufl/SignUp' , user).map(

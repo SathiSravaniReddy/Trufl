@@ -605,7 +605,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name=" data"></param>
         /// <returns>Returns RestPassword  </returns>
-        public DataTable SaveRestPassword(string LoginEmail)
+        public DataTable SaveRestPassword(RestPasswordInputDTO restPasswordInput)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -613,11 +613,18 @@ namespace Trufl.Data_Access_Layer
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    using (SqlCommand cmd = new SqlCommand("SaveRestPassword", con))
+                    using (SqlCommand cmd = new SqlCommand("SavePassword", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@LoginEmail", LoginEmail);
-                        tvpParam.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@UserID", DBNull.Value);
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserName", DBNull.Value);
+                        SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@UserEmail", restPasswordInput.UserEmail);
+                        tvpParam2.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam3 = cmd.Parameters.AddWithValue("@LoginPassword", restPasswordInput.LoginPassword);
+                        tvpParam3.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam4 = cmd.Parameters.AddWithValue("@NewLoginPassword", restPasswordInput.NewLoginPassword);
+                        tvpParam4.SqlDbType = SqlDbType.Text;
+
 
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
@@ -866,6 +873,73 @@ namespace Trufl.Data_Access_Layer
             }
         }
 
+
+
+        /// <summary>
+        /// This method 'GetBioCategories' will Get BioCategories  list
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns Get Bio Categories Details  </returns>
+        public DataTable GetBioCategories()
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetBioCategories", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                       
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+
+
+        /// <summary>
+        /// This method 'GetBioEvents' will Get Bio Events  details
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns Get Bio Events Details  </returns>
+        public DataTable GetBioEvents(int BioID)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetBioEvents", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@BioID", BioID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
 
         #endregion
 
