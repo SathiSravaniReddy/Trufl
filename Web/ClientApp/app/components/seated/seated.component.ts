@@ -13,6 +13,14 @@ export class SeatedComponent implements OnInit {
     public isenabled = false;
     private seatedinformation: any;
     public items: any = [];
+    load: boolean = false;
+
+
+   // loading: boolean = false;
+
+
+    private arr = ['Seated', 'AppServed', 'MenuServed', 'DesertServed', 'CheckReceived', 'Boozing', 'Empty'];
+
     constructor(private seatedService: SeatedService) {
 
     }
@@ -21,12 +29,32 @@ export class SeatedComponent implements OnInit {
         this.getSeatedDetails();
     }
     getSeatedDetails() {
+        let that = this;
         this.seatedService.getSeatedDetails().subscribe((res: any) => {
             this.seatedinfo = res._Data;
-            console.log(this.seatedinfo);
 
-        }
-        );
+            this.seatedinfo.map(function (obj) {
+                Object.keys(obj).map(function (keyName) {
+                    if (that.arr.indexOf(keyName) >= 0) {
+                        obj[keyName] = (obj[keyName] == 1) ? true : false;
+                    }
+                })
+            });
+
+           this.seatedinfo = this.seatedinfo.filter(function (obj) {
+                return !obj['Empty']
+            }) 
+
+            console.log(this.seatedinfo);
+            /*.seatedinfo.map((item, index) => {
+                if (item.Empty == '1') {
+                    this.seatedinfo.splice(index,1)
+                }
+            })*/
+
+        })
+        
+        
 
     }
 
@@ -38,40 +66,55 @@ export class SeatedComponent implements OnInit {
     change() {
         this.isenabled = true;
     }
-    public get(data: any, type: any, event: any) {
+    public get(data: any, type: any) {
 
         var details = {
             "RestaurantID": data['RestaurantID'],
             "TruflUserID": data['TruflUserID'],
             "AmenitiName": type,
-            "AmenitiChecked": data[type]
+            "AmenitiChecked": !data[type]
         }
         this.isenabled = true;
-        if (event.target.checked) {
-            details.AmenitiChecked = true;
 
-            this.items.push(details);
+        if (this.items.length) {
+            let index = this.items.findIndex(function (item) {
+                return item.TruflUserID === data['TruflUserID'] && item.AmenitiName === type;
+            });
 
-        }
-        else {
-
-            if (details.AmenitiChecked == 1) {
-                details.AmenitiChecked = false
-
-
+            if (index >= 0) {
+                this.items[index] = details;
+            } else {
                 this.items.push(details);
             }
-            else {
-                details.AmenitiChecked = false
-                this.items.map((item, index) => {
-                    if (item.TruflUserID == data['TruflUserID'] && item.AmenitiName == type) {
-                        this.items.splice(index, 1);
-                    }
-                })
-            }
 
-
+        } else {
+            this.items.push(details);
         }
+
+        console.log(this.items);
+        //if (event.target.checked) {
+        //    details.AmenitiChecked = true;
+
+        //    this.items.push(details);
+
+        //}
+        //else {
+
+        //    if (details.AmenitiChecked == 1) {
+        //        details.AmenitiChecked = false;
+        //        this.items.push(details);
+        //    }
+        //    else {
+        //        details.AmenitiChecked = false
+        //        this.items.map((item, index) => {
+        //            if (item.TruflUserID == data['TruflUserID'] && item.AmenitiName == type) {
+        //                this.items.splice(index, 1);
+        //            }
+        //        })
+        //    }
+
+
+        //}
 
 
     }
@@ -79,9 +122,35 @@ export class SeatedComponent implements OnInit {
 
     postSeatedDetails() {
         console.log(this.items);
-        this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {           
+
+        //this.loading = true;
+        this.load = true;
+
+        this.seatedService.postSeatedDetails(this.items).subscribe((res: any) => {  
+
+            if (res['_StatusMessage'] ==
+                "Success") {
+             
+
+                setInterval(() => { this.load = false; }, 3000);
+
+            }
+
             this.getSeatedDetails();
-              this.items = [];
+
+          /*  this.seatedinfo.map((item, index) => {
+                if (item.Empty == '1') {
+                    this.seatedinfo.splice(index, 1);
+
+                    this.getSeatedDetails();
+                }
+            }) */
+
+
+
+            this.items = [];
+         
+           
         })
 
     }
