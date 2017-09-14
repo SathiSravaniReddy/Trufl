@@ -11,7 +11,8 @@ export class LoginService {
     private userType;
     private settingStatus;
     private logindetails;
-
+    private truflid: any;
+    private restarauntid: any;
     constructor(private http: Http) {
     }
     public setUserType(value) {
@@ -24,6 +25,23 @@ export class LoginService {
         return this.userType;
     }   
 
+    public setTrufluserID(value) {
+        this.truflid = value;
+        localStorage.setItem('truflid', value);
+    }
+    public getTrufluserID() {
+        this.truflid = localStorage.getItem('truflid');
+        return this.truflid;
+}
+    public setRestaruantId(value) {
+        this.restarauntid = value;
+        localStorage.setItem('restaruntid', value);
+    }
+    public getRestarauntId() {
+        this.restarauntid = localStorage.getItem('restaruntid');
+        return this.restarauntid;
+    }
+   
     getLoginDetails(userstype: any) {
        //this.http.get('http://localhost:8679/api/Trufl/GetUserTypes/' + userstype).map(
        //    (res: Response) => this.logindetails = res.json());

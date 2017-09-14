@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SettingsService } from './settings.service'
-
+import { LoginService } from '../shared/login.service';
 @Component({
     selector: 'settings',
     templateUrl: './settings.component.html',
@@ -11,25 +11,30 @@ import { SettingsService } from './settings.service'
 export class SettingsComponent implements OnInit {
     private user_Profile: any;
     private trufl_customers: any;
-    private username: boolean = false;
-    private email: boolean = false;
-    private password: boolean = false;;
-    private selected: {};
-    private userdata: any;
     private UserInformation: any;
     private UsersInformation: any;
     private user: any;
     private isShow: boolean;
-    constructor(private settingsService: SettingsService, private router: Router) {
-
+    private userid: any;
+    private restaruantid: any;
+    private usertype: any;
+    private truflid: any;
+    private retarauntid: any;
+    constructor(private settingsService: SettingsService, private router: Router, private loginService: LoginService) {
+        this.usertype = this.loginService.getUserType();
+        console.log(this.usertype, "usertype");
+        this.truflid = this.loginService.getTrufluserID();
+        console.log(this.truflid, "truflid");
+        this.retarauntid = this.loginService.getRestarauntId();
+        console.log(this.retarauntid, "retarauntid");
     }
 
     ngOnInit() {
         let that = this;
-        this.settingsService.getUserDetails().subscribe((res: any) => {
+        this.settingsService.getUserDetails(this.usertype, this.truflid, this.retarauntid).subscribe((res: any) => {
             this.user_Profile = res._Data;
             console.log(this.user_Profile, " this.user_Profile");
-            this.UserInformation = this.user_Profile.UserLoginInformation[0];
+            this.UserInformation = this.user_Profile.UsersInformation[0];
             this.user = [];
             Object.keys(this.UserInformation).map(function (keyName, index) {
                 that.user.push({
@@ -40,7 +45,7 @@ export class SettingsComponent implements OnInit {
             });
 
             console.log(this.UserInformation, "this.UserInformation");
-            this.UsersInformation = this.user_Profile.usersInformation;
+            this.UsersInformation = this.user_Profile.RegisteredRestaurants;
             console.log(this.UsersInformation, "this.UsersInformation");
 
         }
@@ -49,6 +54,8 @@ export class SettingsComponent implements OnInit {
        
 
     }
+
+    
 
     showCancelDone() {
         return this.user.filter(function (obj) {
@@ -76,7 +83,7 @@ export class SettingsComponent implements OnInit {
             obj.isEdit = false;
         });
 
-        this.isShow = this.showCancelDone();
+      //  this.isShow = this.showCancelDone();
     }
 
 
