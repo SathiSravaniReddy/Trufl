@@ -50,14 +50,13 @@ export class LoginComponent {
             if (this.loginDetails) {
 
                 if (this.loginDetails.ForgetPasswordStatus) {
-                   // this.router.navigate(['./reset']);
                     this.ResetPasswordShow();
                 }
                 else if (!this.loginDetails.ForgetPasswordStatus) {
-                    if (this.loginDetails.TruflUSERID == 11) {
+                    if (this.loginDetails.TruflMemberType == "RA ") {
                         this.router.navigateByUrl('/waitlist');
                     }
-                    else if (this.loginDetails.TruflUSERID == 1) {
+                    else if (this.loginDetails.TruflMemberType == "TA ") {
                         this.router.navigateByUrl('/dashboard');
                     }
                 }

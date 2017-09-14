@@ -23,7 +23,7 @@ export class HostessSettingsComponent implements OnInit {
     //Parameters to pass in Api
     private usertype: any;
     private truflid: any;
-    private retarauntid: any;
+    private restaurantid: any;
     //add Bio
     private bioCategories: any = [];
     private bioEvents: any = [];
@@ -36,7 +36,7 @@ export class HostessSettingsComponent implements OnInit {
     constructor(private settingsService: HostessSettingsService, private loginService: LoginService) {
         this.usertype = this.loginService.getUserType();
         this.truflid = this.loginService.getTrufluserID();
-        this.retarauntid = this.loginService.getRestarauntId();
+        this.restaurantid = this.loginService.getRestarauntId();
     }
 
     ngOnInit() {
@@ -45,7 +45,7 @@ export class HostessSettingsComponent implements OnInit {
     }
 
     GetSettingsDetails() {
-        this.settingsService.getUserDetails(this.usertype, this.truflid, this.retarauntid).subscribe((res: any) => {
+        this.settingsService.getUserDetails(this.usertype, this.truflid, this.restaurantid).subscribe((res: any) => {
             this.settingsData = res._Data;
             //Profile credentials
             this.settingsData.UserLoginInformation.map((item: any) => {
@@ -135,7 +135,7 @@ export class HostessSettingsComponent implements OnInit {
     //AddBio
     addBio() {
         this.bio.TruflUserID = this.truflid;
-        this.bio.RestaurantID = this.retarauntid;
+        this.bio.RestaurantID = this.restaurantid;
         this.bio.BioID = this.categoryId;
         this.bio.BioEventID = this.eventId;
         this.bio.BioDesc = this.description;

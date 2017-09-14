@@ -72,7 +72,7 @@ export class LoginService {
     }
 
     //To register new user
-    create(user: User): Observable<User> {
+    create(user: any) {
         return this.http.post('http://localhost:8679/Api/Trufl/SignUp' , user).map(
             (res: Response) => res.json());
 
