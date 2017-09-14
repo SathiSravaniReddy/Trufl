@@ -27,10 +27,10 @@ import { HostessSettingsService } from './components/HostessSettings/settings.se
 import { DashboardService } from './components/dashboard/dashboard.service';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ResetPasswordComponent } from './components/Login/ResetPassword/resetPassword.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
 import {ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { MyDatePickerModule } from 'mydatepicker';
 
 
 @NgModule({
@@ -50,7 +50,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
         SearchPipe,
         EqualValidator,
         HostessSettingsComponent,
-        ResetPasswordComponent
+        
         
     ],
     providers: [
@@ -74,6 +74,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
         NgxPaginationModule,
         Ng2SearchPipeModule,
         ToastModule,
+        MyDatePickerModule, 
         
      
         RouterModule.forRoot([
@@ -87,7 +88,6 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
             { path: 'dashboard', component: DashboardComponent },
             { path: 'restaurant', component: ResturantComponent },
             { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
-            { path: 'reset', component: ResetPasswordComponent },
             { path: '**', redirectTo: 'login' },
            
         ])

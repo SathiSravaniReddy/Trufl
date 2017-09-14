@@ -30,7 +30,10 @@ export class HostessSettingsService {
             (res) => res.json())
     }
 
-
+    AddUserBioEvents(bio) {
+        return this.http.post('http://localhost:8679/api/Trufl/SaveUserBioEvents' ,bio ).map(
+            (res) => res.json())
+    }
 
 
 }
