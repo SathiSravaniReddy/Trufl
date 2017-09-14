@@ -1,137 +1,115 @@
 ﻿<shared-header></shared-header>
 
 <div>
-    <!--Profile Credentials-->
+    <!--Profile-->
     <div class="col-md-12 settingmain">
-        <div class="col-md-5 settingtop">
+        <div class="col-md-5 settingtop" id="secondsettingtop">
             <h3>
                 Profile
+                <a class="pull-right" href="#"></a>
             </h3>
+            <table class="table1">
 
-          <div *ngIf="userProfile">
-                <div class="col-md-12 textborder">
-                    <div class="col-md-3">
-                        <p class="text-muted">Username:</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="textdata">{{userProfile.FullName}}</p>
-                    </div>
-                    <div class="col-md-2 pull-right">
-                        <a><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
-                    </div>
-
-                </div>
-                <div class="col-md-12 textborder">
-                    <div class="col-md-3">
-                        <p class="text-muted">Email Id:</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="textdata"><input type="text" [hidden]="emailDisabled" [(ngModel)]="userProfile.Email" /></p>
-                    </div>
-                    <div class="col-md-2 pull-right">
-                        <a><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
-                    </div>
-
-                </div>
-                <div class="col-md-12 textborder">
-                    <div class="col-md-3">
-                        <p class="text-muted">Password:</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="textdata">{{userProfile.Password}}</p>
-                    </div>
-                    <div class="col-md-2 pull-right">
-                        <a><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="col-md-12 popup-btn">
-                <button type="submit" class="primary-btn">Done</button>
-                <button type="submit" data-dismiss="modal" class="secondary-btn">Cancel</button>
-            </div>
-
-        </div>
-    </div>
-
-    <!--Trufl Customers-->
-    <div class="col-md-12 settingmain">
-        <div class="col-md-5 settingtop setgap">
-            <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" [(ngModel)]="term" placeholder="Search by Name or day" /></h3>
-
-            <table class="table">
                 <tbody>
-                    <tr *ngFor="let customers of truflCustomers|filter:term">
-                        <td width="100">{{customers.FullName}}</td>
-                        <td width="200">Last Visited: {{customers.LastVisited|date:'d/M/yy'}}</td>
-                        <td width="150"> <a id="rowclick" (click)="profile()">View Details</a></td>
+
+                    <tr *ngFor="let obj of user; let i = index" class="textborder">
+                        <td *ngIf="!obj.isEdit" class="text"><p class="text-muted">{{obj.key}}</p><p>: </p><p class="textdata">{{obj.value}}</p></td>
+                        <td *ngIf="!obj.isEdit" class="pull-left">
+                            <a (click)="editDetails(obj, i)">
+                                <img alt="" src="../../../../wwwroot/images/edit.png" />
+                            </a>
+                        </td>
+                        <td *ngIf="obj.isEdit"><label>{{obj.key}}:</label><input type="text" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <button type="submit" class="primary-btn pull-left" (click)="Done()" id="done">Done</button>
+                            <button (click)="cancel()" class="secondary-btn " id="cancel">Cancel</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+     </div>
 
-    </div>
+        <!--Trufl Customers-->
+        <div class="col-md-12 settingmain">
+            <div class="col-md-5 settingtop setgap">
+                <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" [(ngModel)]="term" placeholder="Search by Name or day" /></h3>
 
-    <!--User Profile  Right Side-->
-    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-        <a class="print pull-right" (click)="print()">Print </a>
-        <a id="close" (click)="closeProile('right-section')"><span aria-hidden="true">&times;</span></a>
-
-        <div class="right-top">
-            <img alt="" src="../../../../wwwroot/images/no-img.png" />
-            <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
-            <p class="defaulttext"> Trufl Premier Member</p>
-            <p class="defaulttext">Bottique Louie Member</p>
-           
-        </div>
-
-        <div class="col-md-12 leftnav no-pad">
-            <div>
-                <ul>
-                    <li>
-                        <a (click)="showBio()" [ngClass]="{selected: showbio}">Bio</a>
-                        <a (click)="showHistory()" [ngClass]="{selected: showhistory}">History & Coins</a>
-                    </li>
-                </ul>
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let customers of truflCustomers|filter:term">
+                            <td width="100">{{customers.FullName}}</td>
+                            <td width="200">Last Visited: {{customers.LastVisited|date:'d/M/yy'}}</td>
+                            <td width="150"> <a id="rowclick" (click)="profile()">View Details</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+
         </div>
 
-        <!--Bio -->
-        <div *ngIf="showbio">
-            <div class="right-btn">
-                <h6> Trufl Bio </h6>
-                <a type="button"  data-toggle="modal" data-target="#myModal" class="bioprimary-btn pull-right" href="#">ADD </a>
-                <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
+        <!--User Profile  Right Side-->
+        <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+            <a class="print pull-right" (click)="print()">Print </a>
+            <a id="close" (click)="closeProile('right-section')"><span aria-hidden="true">&times;</span></a>
+
+            <div class="right-top">
+                <img alt="" src="../../../../wwwroot/images/no-img.png" />
+                <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
+                <p class="defaulttext"> Trufl Premier Member</p>
+                <p class="defaulttext">Bottique Louie Member</p>
 
             </div>
 
+            <div class="col-md-12 leftnav no-pad">
+                <div>
+                    <ul>
+                        <li>
+                            <a (click)="showBio()" [ngClass]="{selected: showbio}">Bio</a>
+                            <a (click)="showHistory()" [ngClass]="{selected: showhistory}">History & Coins</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-            <div class="right-rep" *ngFor="let bio of bioData">
-                <h5> {{bio.BioName}} </h5>
-                <div class="row">
-                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                    <div class="col-md-7">{{bio.Description}} </div>
+            <!--Bio -->
+            <div *ngIf="showbio">
+                <div class="right-btn">
+                    <h6> Trufl Bio </h6>
+                    <a type="button" data-toggle="modal" data-target="#myModal" class="bioprimary-btn pull-right" href="#">ADD </a>
+                    <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
+
+                </div>
+
+
+                <div class="right-rep" *ngFor="let bio of bioData">
+                    <h5> {{bio.BioName}} </h5>
+                    <div class="row">
+                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                        <div class="col-md-7">{{bio.Description}} </div>
+                    </div>
+
                 </div>
 
             </div>
 
+
+            <!-- History and coins -->
+            <div *ngIf="showhistory" class="right-btn">
+                <div *ngFor="let history of historyData">
+                    <h5 class="historycount">History (60)</h5>
+                    <p>Dates: {{history.BookingHistoryDates|date:'d/M/yy'}}</p>
+                    <p>Total Coins Earned:500</p>
+                </div>
+            </div>
+
         </div>
 
-        
-        <!-- History and coins -->
-        <div *ngIf="showhistory" class="right-btn">
-            <div *ngFor="let history of historyData">
-                <h5 class="historycount">History (60)</h5>
-                <p>Dates: {{history.BookingHistoryDates|date:'d/M/yy'}}</p>
-                <p>Total Coins Earned:500</p>
-            </div>
-        </div>
 
     </div>
-
-
-</div>
 
 
 <!--Add Bio Modal-->
@@ -139,7 +117,7 @@
     
 
     <!-- Modal -->
-    <div class="modal addBio-modal fade" id="myModal" role="dialog">
+    <div class="modal addBio-modal fade" id="myModal" #bioModal role="dialog">
         <div class="modal-dialog addBio-dialog">
 
             <!-- Modal content-->
@@ -183,7 +161,7 @@
                 <div class="modal-footer addBio-footer">
                     <form>
                         <button type="button" class="btn btn-default bluebtn" (click)="addBio()">ADD</button>
-                        <button type="button" class="btn btn-default cancelbtn" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default cancelbtn" (click)="close()">Cancel</button>
                     </form>
                 </div>
             </div>
