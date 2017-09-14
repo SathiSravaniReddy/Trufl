@@ -20,6 +20,8 @@ export class SettingsComponent implements OnInit {
     private usertype: any;
     private truflid: any;
     private retarauntid: any;
+    //private email: any;
+    private emailDetails: any;
     constructor(private settingsService: SettingsService, private router: Router, private loginService: LoginService) {
         this.usertype = this.loginService.getUserType();
         console.log(this.usertype, "usertype");
@@ -86,5 +88,15 @@ export class SettingsComponent implements OnInit {
       //  this.isShow = this.showCancelDone();
     }
 
+
+    Reset(email) {
+        alert(email);
+        this.loginService.forgotpassword(email).subscribe((res: any) => {
+            res._Data.map((item: any) => {
+                this.emailDetails = item;
+            });
+
+        });
+    }
 
 }
