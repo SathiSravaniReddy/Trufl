@@ -1,14 +1,17 @@
 ﻿
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../shared/login.service';
 import { User } from './user';
 import { Reset } from './reset';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: ['./login.component.css'],
+    providers: [ToastsManager, ToastOptions]
 })
 export class LoginComponent {
     private logininfo: any;
@@ -23,22 +26,24 @@ export class LoginComponent {
 
     public showReset: boolean=false;
     private reset = new Reset();
-    constructor(private loginService: LoginService, private router: Router) {
-        
+
+    constructor(private loginService: LoginService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+        this._toastr.setRootViewContainerRef(vRef);
+        //called first time before the ngOnInit()
     }
     ngOnInit() {
 
     }
 
-
+    //login
     signIn() {
         console.log(this.user);
         this.loginService.setUserType(this.user.usertype);
-        
         this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
             res._Data.map((item: any) => {
                 this.loginDetails = item;
                 console.log(this.loginDetails.TruflUSERID, this.loginDetails.RestaurantID, "RestaurantID");
+                //this.loginService.setUserType(this.loginDetails.TruflMemberType);
                 this.loginService.setTrufluserID(this.loginDetails.TruflUSERID);
                 this.loginService.setRestaruantId(this.loginDetails.RestaurantID);
             });
@@ -70,15 +75,15 @@ export class LoginComponent {
 
 
 
-    //    this.loginService.getLoginDetails(this.user.usertype).subscribe((data: any) => {
-    //       data._Data.map((item: any) => {
-    //          this.logininfo = item;
-    //        });
+       //this.loginService.getLoginDetails(this.loginDetails.TruflMemberType,this.loginDetails.RestaurantID).subscribe((data: any) => {
+       //    data._Data.map((item: any) => {
+       //       this.logininfo = item;
+       //     });
 
-    //       console.log("data", "datausertype");
+       //    console.log(this.logininfo);
 
-    //    }
-    //    );
+       // }
+       // );
     }
     showLogin() {
         this.user = new User();
@@ -120,18 +125,19 @@ export class LoginComponent {
         this.reset.UserName = this.loginDetails.FullName;
         this.reset.userId = this.loginDetails.TruflUSERID;
         console.log(this.reset);
-       
-        this.loginService.resetPassword(this.reset).subscribe(
-            data => {
-                alert("Password change successfull");
-                this.showLogin();
-            },
-            err => {
-                // Log errors if any
-                console.log(err);
-            }
 
-        );
+
+        this.loginService.resetPassword(this.reset).subscribe((res: any) => {
+            window.setTimeout(() => {
+                this._toastr.success("Password changed successfully");
+
+            }, 500);
+            window.setTimeout(() => {
+                this.showLogin();
+
+
+            }, 1000);
+        })
         
     }
     

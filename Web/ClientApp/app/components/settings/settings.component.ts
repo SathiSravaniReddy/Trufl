@@ -19,19 +19,18 @@ export class SettingsComponent implements OnInit {
     private restaruantid: any;
     private usertype: any;
     private truflid: any;
-    private retarauntid: any;
+    private restaurantid: any;
     constructor(private settingsService: SettingsService, private router: Router, private loginService: LoginService) {
+
         this.usertype = this.loginService.getUserType();
-        console.log(this.usertype, "usertype");
         this.truflid = this.loginService.getTrufluserID();
-        console.log(this.truflid, "truflid");
-        this.retarauntid = this.loginService.getRestarauntId();
-        console.log(this.retarauntid, "retarauntid");
+        this.restaurantid = this.loginService.getRestarauntId();
+        
     }
 
     ngOnInit() {
         let that = this;
-        this.settingsService.getUserDetails(this.usertype, this.truflid, this.retarauntid).subscribe((res: any) => {
+        this.settingsService.getUserDetails(this.usertype, this.truflid, this.restaurantid).subscribe((res: any) => {
             this.user_Profile = res._Data;
             console.log(this.user_Profile, " this.user_Profile");
             this.UserInformation = this.user_Profile.UsersInformation[0];

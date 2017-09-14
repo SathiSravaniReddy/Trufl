@@ -1,7 +1,8 @@
 ﻿
 import { Component, OnInit } from '@angular/core';
 import { HostessSettingsService } from './settings.service';
-import {BioEvent} from './bioEvent';
+import { BioEvent } from './bioEvent';
+import { LoginService } from '../shared/login.service';
 
 @Component({
     selector: 'settings',
@@ -19,6 +20,10 @@ export class HostessSettingsComponent implements OnInit {
     private historyData;
     private showhistory: boolean = false;
     private email: boolean = true;
+    //Parameters to pass in Api
+    private usertype: any;
+    private truflid: any;
+    private retarauntid: any;
     //add Bio
     private bioCategories: any = [];
     private bioEvents: any = [];
@@ -28,8 +33,10 @@ export class HostessSettingsComponent implements OnInit {
     private description;
     private bio = new BioEvent();
     
-    constructor(private settingsService: HostessSettingsService) {
-
+    constructor(private settingsService: HostessSettingsService, private loginService: LoginService) {
+        this.usertype = this.loginService.getUserType();
+        this.truflid = this.loginService.getTrufluserID();
+        this.retarauntid = this.loginService.getRestarauntId();
     }
 
     ngOnInit() {
@@ -38,7 +45,7 @@ export class HostessSettingsComponent implements OnInit {
     }
 
     GetSettingsDetails() {
-        this.settingsService.getUserDetails().subscribe((res: any) => {
+        this.settingsService.getUserDetails(this.usertype, this.truflid, this.retarauntid).subscribe((res: any) => {
             this.settingsData = res._Data;
             //Profile credentials
             this.settingsData.UserLoginInformation.map((item: any) => {
@@ -79,6 +86,7 @@ export class HostessSettingsComponent implements OnInit {
         );
     }
 
+    //for AddBio Event
     AddBioEvents(bio) {
         this.settingsService.AddUserBioEvents(bio).subscribe((res: any) => {
             alert("success");
@@ -123,14 +131,16 @@ export class HostessSettingsComponent implements OnInit {
         this.eventId = event.target.value;
 
     }
+
+    //AddBio
     addBio() {
-        this.bio.TruflUserID = 11;
-        this.bio.RestaurantID = 1;
+        this.bio.TruflUserID = this.truflid;
+        this.bio.RestaurantID = this.retarauntid;
         this.bio.BioID = this.categoryId;
         this.bio.BioEventID = this.eventId;
         this.bio.BioDesc = this.description;
         
-        //console.log(this.bio);
+        console.log(this.bio);
         this.AddBioEvents(this.bio);
 
     }

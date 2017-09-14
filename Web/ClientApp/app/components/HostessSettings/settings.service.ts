@@ -11,8 +11,8 @@ export class HostessSettingsService {
     }
 
     //Get API for settings page
-    getUserDetails() {
-        return this.http.get('http://localhost:8679/api/Trufl/GetRestaurantUserDetails/1/11/RA').map(
+    getUserDetails(usertype, truflid, restaurantid) {
+        return this.http.get('http://localhost:8679/api/Trufl/GetRestaurantUserDetails/' + restaurantid + '/' + truflid + '/' + usertype).map(
             (res) => res.json())
 
     }
@@ -23,13 +23,13 @@ export class HostessSettingsService {
             (res) => res.json())
     }
    
-    //Get API for BioEvents based on categories
-   
+    //Get API for BioEvents based on categories 
     GetBioEvents(categoryId) {
         return this.http.get('http://localhost:8679/api/Trufl/GetBioEvents/' + categoryId).map(
             (res) => res.json())
     }
 
+    //Post API for AddUserBioEvents
     AddUserBioEvents(bio) {
         return this.http.post('http://localhost:8679/api/Trufl/SaveUserBioEvents' ,bio ).map(
             (res) => res.json())

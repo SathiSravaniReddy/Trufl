@@ -101,7 +101,7 @@
             </form>
 
             <!-- ResetPassword Form-->
-            <form class="logininner" #resetForm="ngForm" *ngIf="showReset">
+            <form class="logininner" #resetForm="ngForm" *ngIf="showReset" (ngSubmit)="resetPasswordImpl()">
 
                 <div id="ResetPassword">
 
@@ -136,7 +136,7 @@
 
                     <div class="login-btn">
                         <button type="reset" class="secondary-btn lgbtn">Clear</button>
-                        <button type="submit" (click)="resetPasswordImpl()" [disabled]="!resetForm.form.valid" class="primary-btn pull-right lgbtn">submit</button>
+                        <button type="submit" [disabled]="!resetForm.form.valid" class="primary-btn pull-right lgbtn">Reset</button>
                     </div>
                 </div>
             </form>
