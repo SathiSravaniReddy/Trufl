@@ -7,7 +7,7 @@ using System.Spatial;
 
 namespace DTO
 {
-   public class SaveRestaurantInputDTO
+   public class SaveRestaurantDTO
     {
       public int RestaurantID { get; set; }
         public string RestaurantName { get; set; }

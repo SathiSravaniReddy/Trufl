@@ -47,28 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookingTableInputDTO.cs" />
-    <Compile Include="DashBoardDetailsOutputDTO.cs" />
-    <Compile Include="DashBoardInputDTO.cs" />
+    <Compile Include="BookingTableDTO.cs" />
+    <Compile Include="DashBoardDetailsDTO.cs" />
+    <Compile Include="DashBoardDTO.cs" />
     <Compile Include="JsonResponseResult.cs" />
-    <Compile Include="LoginInputDTO.cs" />
-    <Compile Include="NotificationsInputDTO.cs" />
+    <Compile Include="LoginDTO.cs" />
+    <Compile Include="NotificationsDTO.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestaurantSeatedUsers.cs" />
-    <Compile Include="RestaurantSeatedUsersInputDTO.cs" />
-    <Compile Include="RestPasswordInputDTO.cs" />
-    <Compile Include="SaveRestaurantInputDTO.cs" />
-    <Compile Include="SaveUserBioEventsInputDTO.cs" />
-    <Compile Include="SettingsOutputDTO.cs" />
+    <Compile Include="RestaurantSeatedUsersDTO.cs" />
+    <Compile Include="RestPasswordDTO.cs" />
+    <Compile Include="SaveRestaurantDTO.cs" />
+    <Compile Include="SaveUserBioEventsDTO.cs" />
+    <Compile Include="SettingsDTO.cs" />
     <Compile Include="SignDTO.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="TruflConstants.cs" />
-    <Compile Include="TruflUserInputDTO.cs" />
-    <Compile Include="UpdateBookingTableNumberInputDTO.cs" />
-    <Compile Include="UpdateRestaurantHostStatusInputDTO.cs" />
+    <Compile Include="TruflUserDTO.cs" />
+    <Compile Include="UpdateBookingTableNumberDTO.cs" />
+    <Compile Include="UpdateRestaurantHostStatusDTO.cs" />
     <Compile Include="UserProfile.cs" />
   </ItemGroup>
   <ItemGroup>

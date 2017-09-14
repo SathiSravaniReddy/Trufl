@@ -187,7 +187,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name=" data"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveWaitedlistBooking(BookingTableInputDTO bookingTableInput)
+        public bool SaveWaitedlistBooking(BookingTableDTO bookingTableInput)
         {
             try
             {
@@ -340,7 +340,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="passParkingLots"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveSeatBooking(List<RestaurantSeatedUsersInputDTO> restaurantSeatedUsersInputDTO)
+        public bool SaveSeatBooking(List<RestaurantSeatedUsersDTO> restaurantSeatedUsersInputDTO)
         {
             try
             {
@@ -441,7 +441,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="SaveSignUpUserInfo"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveSignUpUserInfo(TruflUserInputDTO registerUserInfo)
+        public bool SaveSignUpUserInfo(TruflUserDTO registerUserInfo)
         {
             try
             {
@@ -535,7 +535,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name=" data"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public DataTable LoginAuthentication(LoginInputDTO loginInput)
+        public DataTable LoginAuthentication(LoginDTO loginInput)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -605,7 +605,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name=" data"></param>
         /// <returns>Returns RestPassword  </returns>
-        public DataTable SaveRestPassword(RestPasswordInputDTO restPasswordInput)
+        public DataTable SaveRestPassword(RestPasswordDTO restPasswordInput)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -712,7 +712,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="SaveSignUpUserInfo"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveUserBioEvents(SaveUserBioEventsInputDTO saveUserBioEvents)
+        public bool SaveUserBioEvents(SaveUserBioEventsDTO saveUserBioEvents)
         {
             try
             {
@@ -770,7 +770,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="SaveSignUpUserInfo"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool UpdateBooking(UpdateBookingTableNumberInputDTO updateBookingTableNumber)
+        public bool UpdateBooking(UpdateBookingTableNumberDTO updateBookingTableNumber)
         {
             try
             {
@@ -826,7 +826,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="UpdateRestaurantHostStatus"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool UpdateRestaurantHostStatus(UpdateRestaurantHostStatusInputDTO UpdateRestaurantHost)
+        public bool UpdateRestaurantHostStatus(UpdateRestaurantHostStatusDTO UpdateRestaurantHost)
         {
             try
             {

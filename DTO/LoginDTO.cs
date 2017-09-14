@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-   public class LoginInputDTO
+   public class LoginDTO
     {
         public string emailid { get; set; }
         public string password { get; set; }

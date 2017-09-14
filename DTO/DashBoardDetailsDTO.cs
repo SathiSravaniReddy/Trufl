@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class DashBoardDetailsOutputDTO
+    public class DashBoardDetailsDTO
     {
         public DataTable  OffersRaised { get; set; }
         public DataTable OffersAccepted { get; set; }

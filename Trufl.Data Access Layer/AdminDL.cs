@@ -20,9 +20,9 @@ namespace Trufl.Data_Access_Layer
 
         #region Trufl_Admin
 
-        public DashBoardDetailsOutputDTO GetDashBoardDetails(DashBoardInputDTO dashboardInput)
+        public DashBoardDetailsDTO GetDashBoardDetails(DashBoardDTO dashboardInput)
         {
-            DashBoardDetailsOutputDTO response = new DashBoardDetailsOutputDTO();
+            DashBoardDetailsDTO response = new DashBoardDetailsDTO();
             try
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -110,7 +110,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="SaveNotifications"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveNotifications(NotificationsInputDTO notifications)
+        public bool SaveNotifications(NotificationsDTO notifications)
         {
             try
             {
@@ -159,7 +159,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="SaveRestaurant"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveRestaurant(SaveRestaurantInputDTO restaurant)
+        public bool SaveRestaurant(SaveRestaurantDTO restaurant)
         {
             try
             {
@@ -262,9 +262,9 @@ namespace Trufl.Data_Access_Layer
         /// This method 'GetRestaurantUserDetails ' returns Restaurant User details
         /// </summary>
         /// <returns>Notifications List</returns>
-        public SettingsOutputDTO GetRestaurantUserDetails(int RestaurantID,int TruflUserID,string UserType)
+        public SettingsDTO GetRestaurantUserDetails(int RestaurantID,int TruflUserID,string UserType)
         {
-            SettingsOutputDTO sendResponse = new SettingsOutputDTO();
+            SettingsDTO sendResponse = new SettingsDTO();
             try
             {
                 string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
