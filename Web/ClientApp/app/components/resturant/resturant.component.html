@@ -236,7 +236,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea rows="4" cols="4" formControlName="description" [formControl]="myForm.controls['description']"> </textarea>
+                                    <textarea rows="4" cols="4" [formControl]="myForm.controls['description']"> </textarea>
                                     <div *ngIf="myForm.controls['description'].hasError('required') && myForm.controls['description'].touched" class="alert alert-danger">You mustenter ownercontact </div>
                                 </div>
                             </div>
@@ -271,24 +271,48 @@
             </div>
             <div class="modal-body">
                 <div class="row modal-items">
-                    <div class="col-md-12">
-                        <div class="form-group ffw addbox">
-                            <label>Select Date</label>
-                            <input type="text" />
-                            <select><option>1 </option> <option>2 </option> </select>
-                        </div>
 
 
-                        <div class="form-group ffw">
-                            <label>Description</label>
-                            <textarea class="form-control" rows="4" cols="30"></textarea>
-                        </div>
-                        <div class="popup-btn">
+                    <form novalidate (ngSubmit)="onSubmitNotification(myFormdata.value)" [formGroup]="myFormdata">
 
-                            <a href="#" class="primary-btn">Submit</a>
-                            <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a>
+                        <div class="col-md-12">
+
+                            <div class="form-group ffw addbox">                             
+                                
+                                <select>
+                                    <option value="volvo">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="mercedes">Mercedes</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                            </div>  
+
+                            <div class="form-group ffw addbox">
+                                <label>Select Date</label>
+                                <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                                [formControl]="myFormdata.controls['ExpiryDate']"></my-date-picker>
+                                <div *ngIf="myFormdata.controls['ExpiryDate'].hasError('required') && myFormdata.controls['ExpiryDate'].touched" class="alert alert-danger">please select date </div>
+
+                            </div>
+
+
+                            <div class="form-group ffw">
+                                <label>Description</label>
+                                <textarea  [formControl]="myFormdata.controls['description']"></textarea>
+                                <div *ngIf="myFormdata.controls['description'].hasError('required') && myFormdata.controls['description'].touched" class="alert alert-danger">please atleast 5 characters </div>
+
+                            </div>
+                            <div class="popup-btn">
+
+                                <!-- <a href="#" class="primary-btn">Submit</a> -->
+                                <button type="submit"  class="primary-btn"   [disabled]="!myFormdata.valid">Submit</button>&nbsp;&nbsp;
+
+                                <button name="button"  data-dismiss="modal" class="secondary-btn">Cancel</button>
+                                <!--  <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a> -->
+                            </div>
                         </div>
-                    </div>
+
+                    </form>
                 </div>
 
             </div>
