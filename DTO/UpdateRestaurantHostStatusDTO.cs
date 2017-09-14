@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class UpdateRestaurantHostStatusInputDTO
+    public class UpdateRestaurantHostStatusDTO
     {
         public string TruflUserType { get; set; }
         public int RestaurantID { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-   public class RestaurantSeatedUsersInputDTO
+   public class RestaurantSeatedUsersDTO
     {
        public int RestaurantID { get; set; }
        public int TruflUserID { get; set; }
