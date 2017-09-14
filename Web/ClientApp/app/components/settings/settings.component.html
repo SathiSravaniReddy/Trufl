@@ -9,7 +9,7 @@
                 <tr>
                     <td class="text"><p>Username:</p><p class="settingsdata">{{truflcustomers.RegisteredRestaurants}}</p></td>
                     <td class="text"><p>Email Id:</p><p class="settingsdata">{{truflcustomers.RegisteredEmail}}</p></td>
-                    <td><a class="reset">Reset</a></td>
+                    <td><a class="reset" (click)="Reset(truflcustomers.RegisteredEmail)">Reset</a></td>
                 </tr>
             </tbody>
         </table>

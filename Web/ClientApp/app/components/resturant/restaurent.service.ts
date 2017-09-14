@@ -5,13 +5,14 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestaurenService {
     public restaurentdetails: any;
+    private notificationdetails: any;
 
     constructor(private http: Http) {
 
     }
     public getRestaurentDetails() {
         return this.http.get('assets/restaurent.json').map(
-            (res)=>res.json())
+            (res) => res.json())
     }
 
     public getnotifications() {
@@ -30,8 +31,16 @@ export class RestaurenService {
             (res) => res.json()
         )
     }
+    onSubmitNotifications(notificationInfo: any) {
+        this.notificationdetails = notificationInfo;
+        console.log(this.notificationdetails);
 
-   
+        return this.http.post('http://localhost:8679/api/Trufl/Admin/SaveNotifications', this.notificationdetails).map(
+            (res) => res.json()
+        )
+    }
+
 }
+
 
 

@@ -38,6 +38,8 @@ export class DashboardComponent implements OnInit {
     private myDateRangePickerOptions: IMyDrpOptions = {
         // other options...
         dateFormat: 'dd.mm.yyyy',
+        showClearBtn: true,
+        showClearDateRangeBtn:false,
     };
 
     // For example initialize to specific date (09.10.2018 - 19.10.2018). It is also possible

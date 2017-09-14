@@ -6,6 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { IMyDpOptions } from 'mydatepicker';
+import { Router } from '@angular/router';
+
+
 
 @Component({
     selector: 'restaurant',
@@ -15,12 +19,19 @@ export class ResturantComponent implements OnInit {
     public restaurent_info: any;
     public notifications_info: any;
     public states: any;
+    public notificationdatails: any;
 
     myForm: FormGroup;
+    myFormdata: FormGroup;
     //name: FormControl; 
 
 
-    constructor(private restaurenService: RestaurenService, private fb: FormBuilder) {
+    private myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'yyyy-mm-dd'
+    };
+
+
+    constructor(private restaurenService: RestaurenService, private fb: FormBuilder, private router: Router) {
 
         /*   this.myForm = new FormGroup({
                restaurentname: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -54,7 +65,17 @@ export class ResturantComponent implements OnInit {
             'ownercontact2': [null],
             'description': [null, Validators.required]
 
-        })
+
+        });
+
+
+
+        this.myFormdata = fb.group({
+            'ExpiryDate': [null, Validators.required],
+            'description': [null, Validators.compose([Validators.required, Validators.minLength(5)])]
+        });
+
+
 
 
     }
@@ -71,6 +92,8 @@ export class ResturantComponent implements OnInit {
         ];
 
 
+
+
     }
 
 
@@ -83,26 +106,54 @@ export class ResturantComponent implements OnInit {
 
     }
 
-    public getnotifications() {
+   public getnotifications() {
 
         this.restaurenService.getnotifications().subscribe((res: any) => {
 
-            console.log(res);
-
             this.notifications_info = res._Data;
             console.log(this.notifications_info);
-        })
+        }) 
 
-    }
+    } 
 
     onSubmit(details: any) {
         this.restaurenService.addRestaurentDetails(details).subscribe((res: any) => {
             console.log(res);
 
         })
+    }
+
+
+
+    onSubmitNotification(details: any) {
+        console.log(details);
+
+
+        /*   console.log("coming");
+          console.log(details); */
+        details.ExpiryDate = details.ExpiryDate.formatted;
+        //this.notificationdatails['myDate'] = details.myDate['formatted'];
+        console.log(details);
+        this.restaurenService.onSubmitNotifications(details).subscribe((res: any) => {
+            console.log(res);
+            if (res['_StatusMessage'] == "Success") {
+                alert("record successfully saved");
+            }
+            else {
+                alert("Error");
+            }
+
+
+
+        })
+
+        this.getnotifications();
+
 
 
     }
+
+
 
 }
 @Pipe({
