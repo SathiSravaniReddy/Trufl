@@ -32,7 +32,7 @@ export class LoginComponent {
 
 
     signIn() {
-        //console.log(this.user);
+        console.log(this.user);
         this.loginService.setUserType(this.user.usertype);
 
         this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
@@ -41,18 +41,19 @@ export class LoginComponent {
             });
             if (this.loginDetails) {
 
-                //if (this.loginDetails.ForgetPasswordStatus) {
-                //   // this.router.navigate(['./reset']);
-                //    this.ResetPasswordShow();
-                //}
-                //else if (!this.loginDetails.ForgetPasswordStatus) {
-                //}
+                if (this.loginDetails.ForgetPasswordStatus) {
+                   // this.router.navigate(['./reset']);
+                    this.ResetPasswordShow();
+                }
+                else if (!this.loginDetails.ForgetPasswordStatus) {
                     if (this.loginDetails.TruflUSERID == 11) {
                         this.router.navigateByUrl('/waitlist');
                     }
                     else if (this.loginDetails.TruflUSERID == 1) {
                         this.router.navigateByUrl('/dashboard');
                     }
+                }
+                    
 
                
                
