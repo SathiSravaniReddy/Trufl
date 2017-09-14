@@ -1,37 +1,42 @@
 ﻿
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../shared/login.service';
 import { User } from '../login/user';
-//import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'register',
     templateUrl: './register.component.html',
-    styleUrls: ['./register.component.css']
+    styleUrls: ['./register.component.css'],
+    providers: [ToastsManager, ToastOptions]
 })
 export class RegisterComponent {
     private user = new User();
-    constructor(private router: Router, private loginService: LoginService, /*public toastr: ToastsManager*/) {
-
-       
+    load: boolean = false;
+    constructor(private router: Router, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+        this._toastr.setRootViewContainerRef(vRef);
+        //called first time before the ngOnInit()
 
     }
     //SignUp method
     signUp() {
         console.log(this.user);
-       alert("Registration Successfull");
-        //this.toastr.success('Registration Successfull','success');
-        this.loginService.create(this.user)
-            .subscribe(
-            data => {
-                   this.router.navigateByUrl("/login");
-            },
-            err => {
-                            // Log errors if any
-               console.log(err);
-        });
-      
-    }
+        
+     
+        this.loginService.create(this.user).subscribe((res: any) => {
+            window.setTimeout(() => {
+                this._toastr.success("Register Successfull");
+               
+            }, 500);
+            window.setTimeout(() => {
+                this.router.navigateByUrl("/login");
+
+
+            }, 2000);   
+        })     
+               
+    }   
 
 }

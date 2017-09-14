@@ -41,22 +41,22 @@ export class LoginService {
         this.restarauntid = localStorage.getItem('restaruntid');
         return this.restarauntid;
     }
-   
-    getLoginDetails(userstype: any) {
-       //this.http.get('http://localhost:8679/api/Trufl/GetUserTypes/' + userstype).map(
-       //    (res: Response) => this.logindetails = res.json());
-       // console.log(this.logindetails._Data);
-        return this.http.get('http://localhost:8679/api/Trufl/GetUserTypes/' + userstype).map(
+
+    //To get User Details
+    getLoginDetails(userstype: any,restaurantid) {
+        return this.http.get('http://localhost:8679/api/Trufl/GetUserTypes/' + userstype + '/' + restaurantid).map(
             (res:Response) => res.json());
 
     }
 
+    //To get Login Member Type
     loginAuthentication(user: any) {
         return this.http.post('http://localhost:8679/api/Trufl/LoginAuthentication',user ).map(
             (res: Response) => res.json());
 
     }
 
+    //To get an email when click on forgot password
     forgotpassword(email: any) {
 
         return this.http.get('http://localhost:8679/api/Trufl/ForgetPassword?LoginEmail=' + email).map(
@@ -64,17 +64,21 @@ export class LoginService {
 
     }
 
+    //To reset password
     resetPassword(reset: any) {
         return this.http.post('http://localhost:8679/api/Trufl/RestPassword', reset).map(
             (res: Response) => res.json());
 
     }
 
+    //To register new user
     create(user: User): Observable<User> {
         return this.http.post('http://localhost:8679/Api/Trufl/SignUp' , user).map(
             (res: Response) => res.json());
 
     }
+
+    //To logout
     logout() {
         localStorage.removeItem("userType");
         

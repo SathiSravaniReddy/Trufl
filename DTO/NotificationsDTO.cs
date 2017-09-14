@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-   public class DashBoardInputDTO
+    public class NotificationsDTO
     {
-        public DateTime FromDate { get; set; }
-        public DateTime ToDate { get; set; }
+      public string Description { get; set; }
+      public DateTime ExpiryDate { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class BookingTableInputDTO
+    public class BookingTableDTO
     {
         public int BookingID { get; set; }
         public int TruflUserID { get; set; }

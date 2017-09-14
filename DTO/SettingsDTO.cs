@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class SettingsOutputDTO
+    public class SettingsDTO
     {
         public DataTable UserLoginInformation { get; set; }
         public DataTable UsersInformation { get; set; }

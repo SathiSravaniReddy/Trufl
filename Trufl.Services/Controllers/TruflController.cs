@@ -44,11 +44,10 @@ namespace Trufl.Services.Controllers
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
-
         
         [Route("UpdateBooking")]
         [HttpPost]
-        public object UpdateBooking(UpdateBookingTableNumberInputDTO updateBookingTableNumber)
+        public object UpdateBooking(UpdateBookingTableNumberDTO updateBookingTableNumber)
         {
             bool res = _hostessBL.UpdateBooking(updateBookingTableNumber);
             try
@@ -63,7 +62,7 @@ namespace Trufl.Services.Controllers
 
         [Route("UpdateRestaurantHostStatus")]
         [HttpPost]
-        public object UpdateRestaurantHostStatus(UpdateRestaurantHostStatusInputDTO UpdateRestaurantHost)
+        public object UpdateRestaurantHostStatus(UpdateRestaurantHostStatusDTO UpdateRestaurantHost)
         {
             bool res = _hostessBL.UpdateRestaurantHostStatus(UpdateRestaurantHost);
             try
@@ -110,7 +109,7 @@ namespace Trufl.Services.Controllers
 
         [Route("SaveWaitedlistBooking")]
         [HttpPost]
-        public object SaveWaitedlistBooking(BookingTableInputDTO bookingTableInput)
+        public object SaveWaitedlistBooking(BookingTableDTO bookingTableInput)
         {
             bool res = _hostessBL.SaveWaitedlistBooking(bookingTableInput);
             try
@@ -161,7 +160,7 @@ namespace Trufl.Services.Controllers
 
         [Route("SaveSeatBookingUsersList")]
         [HttpPost]
-        public object SaveSeatBooking(List<RestaurantSeatedUsersInputDTO> restaurantSeatedUsersInputDTO)
+        public object SaveSeatBooking(List<RestaurantSeatedUsersDTO> restaurantSeatedUsersInputDTO)
         {
             bool res = _hostessBL.SaveSeatBooking(restaurantSeatedUsersInputDTO);
             try
@@ -175,110 +174,14 @@ namespace Trufl.Services.Controllers
         }
         #endregion
 
-        #region LoginUser
-        [Route("GetUserTypes/{UserType}/{RestaurantID}")]
-        [HttpGet]
-        public object GetUserTypes(string UserType,int RestaurantID)
-        {
-            DataTable res = new DataTable();
-            try
-            {
-                res = _hostessBL.GetUserTypes(UserType, RestaurantID);
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-            
-        }
-        
-        [Route("SignUp")]
+
+
+        #region Settings
+        [Route("SaveUserBioEvents")]
         [HttpPost]
-        public object SaveSignUpUserInfo(TruflUserInputDTO registerUserInfo)
+        public object SaveUserBioEvents(SaveUserBioEventsDTO saveUserBioEvents)
         {
-            bool res = _hostessBL.SaveSignUpUserInfo(registerUserInfo);
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-             
-        }
-
-        [Route("LoginAuthentication")]
-        [HttpPost]
-        public object LoginAuthentication(LoginInputDTO loginInput)
-        {
-            DataTable res = new DataTable();
-             res = _hostessBL.LoginAuthentication(loginInput);
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
-
-        [Route("ForgetPassword")]
-        [HttpGet]
-        public object ForgetPassword(string LoginEmail)
-        {
-            DataTable res = new DataTable();
-            res = _hostessBL.ForgetPassword(LoginEmail);
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
-
-        [Route("RestPassword")]
-        [HttpPost]
-        public object SaveRestPassword(RestPasswordInputDTO restPasswordInput)
-        {
-            DataTable res = new DataTable();
-            res = _hostessBL.SaveRestPassword(restPasswordInput);
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
-
-        [Route("GetTruflUserDetails")]
-        [HttpGet]
-        public object GetTruflUserDetails(int TruflUserID)
-        {
-            DataTable res = new DataTable();
-            res = _hostessBL.GetTruflUserDetails(TruflUserID);
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
-
-        [Route("GetTruflUserDetails")]
-        [HttpGet]
-        public object GetRestaurantDetails(int RestaurantID)
-        {
-            DataTable res = new DataTable();
-            res = _hostessBL.GetRestaurantDetails(RestaurantID);
+            bool res = _hostessBL.SaveUserBioEvents(saveUserBioEvents);
             try
             {
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
@@ -304,7 +207,6 @@ namespace Trufl.Services.Controllers
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
-        
 
         [Route("GetBioCategories")]
         [HttpGet]
@@ -337,101 +239,14 @@ namespace Trufl.Services.Controllers
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
-
-        
-
-
         #endregion
 
-            #region Settings
-        [Route("SaveUserBioEvents")]
-        [HttpPost]
-        public object SaveUserBioEvents(SaveUserBioEventsInputDTO saveUserBioEvents)
-        {
-            bool res = _hostessBL.SaveUserBioEvents(saveUserBioEvents);
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
-        #endregion
-
-            #region Trufl_Admin
-        [Route("Admin/GetDashBoardDetails")]
-        [HttpPost]
-        public object GetDashBoardDetails(DashBoardInputDTO dashboardInput)
-        {
-            DashBoardDetailsOutputDTO res = new DashBoardDetailsOutputDTO();
-            res = _adminBL.GetDashBoardDetails(dashboardInput);
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
-
-        
-        [Route("Admin/GetNotifications")]
-        [HttpGet]
-        public object GetNotifications()
-        {
-            DataTable res = new DataTable();
-            res = _adminBL.GetNotifications();
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
-
-
-        [Route("Admin/SaveNotifications")]
-        [HttpPost]
-        public object SaveNotifications(NotificationsInputDTO notifications)
-        {
-            bool res = _adminBL.SaveNotifications(notifications);
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
-
-        [Route("Admin/SaveRestaurant")]
-        [HttpPost]
-        public object SaveRestaurant(SaveRestaurantInputDTO restaurant)
-        {
-            bool res = _adminBL.SaveRestaurant(restaurant);
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
-
-      
         [Route("GetRestaurantUserDetails/{RestaurantID}/{TruflUserID}/{UserType}")]
         [HttpGet]
         public object GetRestaurantUserDetails(int RestaurantID, int TruflUserID, string UserType)
         {
-            SettingsOutputDTO res = new SettingsOutputDTO();
-            res = _adminBL.GetRestaurantUserDetails(RestaurantID,TruflUserID,UserType);
+            SettingsDTO res = new SettingsDTO();
+            res = _adminBL.GetRestaurantUserDetails(RestaurantID, TruflUserID, UserType);
             try
             {
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
@@ -441,23 +256,6 @@ namespace Trufl.Services.Controllers
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
-
-        [Route("Admin/GetAllRestaurants")]
-        [HttpGet]
-        public object GetAllRestaurants()
-        {
-            DataTable res = new DataTable();
-            res = _adminBL.GetAllRestaurants();
-            try
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
-            }
-            catch (Exception ex)
-            {
-                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
-            }
-        }
-            #endregion
-            #endregion
-        }
+        #endregion
+    }
 }
