@@ -10,10 +10,10 @@ export class SettingsService {
     constructor(private http: Http) {
     }
 
-    getUserDetails() {
-        return this.http.get('assets/settings.json').map(
+    getUserDetails(usertype,restarauntid,truflid) {
+        return this.http.get('http://localhost:8679/api/Trufl/GetRestaurantUserDetails/' + restarauntid +'/'+ truflid +'/'+ usertype).map(
             (res) => res.json())
-
+      
     }
 
 

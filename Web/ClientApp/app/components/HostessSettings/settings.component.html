@@ -1,7 +1,7 @@
 ﻿<shared-header></shared-header>
 
 <div>
-
+    <!--Profile Credentials-->
     <div class="col-md-12 settingmain">
         <div class="col-md-5 settingtop">
             <h3>
@@ -55,6 +55,7 @@
         </div>
     </div>
 
+    <!--Trufl Customers-->
     <div class="col-md-12 settingmain">
         <div class="col-md-5 settingtop setgap">
             <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" [(ngModel)]="term" placeholder="Search by Name or day" /></h3>
@@ -72,7 +73,7 @@
 
     </div>
 
-
+    <!--User Profile  Right Side-->
     <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
         <a class="print pull-right" (click)="print()">Print </a>
         <a id="close" (click)="closeProile('right-section')"><span aria-hidden="true">&times;</span></a>
@@ -96,6 +97,7 @@
             </div>
         </div>
 
+        <!--Bio -->
         <div *ngIf="showbio">
             <div class="right-btn">
                 <h6> Trufl Bio </h6>
@@ -117,7 +119,7 @@
         </div>
 
         
-
+        <!-- History and coins -->
         <div *ngIf="showhistory" class="right-btn">
             <div *ngFor="let history of historyData">
                 <h5 class="historycount">History (60)</h5>
@@ -131,6 +133,8 @@
 
 </div>
 
+
+<!--Add Bio Modal-->
 <div class="container">
     
 
@@ -148,26 +152,37 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label class="col-md-12">Select the category</label>
+                            <div class="col-md-12">                       
+                                <select (change)="onCategoryChange($event)">
+                                    <option *ngFor="let categories of bioCategories; let i=index"
+                                            [value]="categories.BioID">
+                                        {{categories.BioName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="showEvents">
+                            <label class="col-md-12">Select the Event</label>
                             <div class="col-md-12">
-                                <select>
-                                    <option></option>
-                                    <option>Bio-data</option>
-                                    <option>Bio-data</option>
-                                    <option>Bio-data</option>
+                                <select (change)="onEventChange($event)">
+                                    <option *ngFor="let events of bioEvents; let i=index"
+                                            [value]="events.BioEventID">
+                                        {{events.BioEventName}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-12">Enter the description</label>
                             <div class="col-md-12">
-                                <textarea name="message" rows="8" cols="60"></textarea>
+                                <textarea [(ngModel)]="description" name="message" rows="8" cols="60"></textarea>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer addBio-footer">
                     <form>
-                        <button type="button" class="btn btn-default bluebtn">ADD</button>
+                        <button type="button" class="btn btn-default bluebtn" (click)="addBio()">ADD</button>
                         <button type="button" class="btn btn-default cancelbtn" data-dismiss="modal">Cancel</button>
                     </form>
                 </div>

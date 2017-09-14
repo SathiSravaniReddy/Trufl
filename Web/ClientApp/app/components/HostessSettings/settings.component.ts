@@ -1,6 +1,7 @@
 ﻿
 import { Component, OnInit } from '@angular/core';
-import { HostessSettingsService } from './settings.service'
+import { HostessSettingsService } from './settings.service';
+import {BioEvent} from './bioEvent';
 
 @Component({
     selector: 'settings',
@@ -8,6 +9,7 @@ import { HostessSettingsService } from './settings.service'
     styleUrls: ['./settings.component.css']
 })
 export class HostessSettingsComponent implements OnInit {
+    private settingsData;
     private userProfile: any;
     private truflCustomers: any;
     private showProfile: boolean = false;
@@ -17,71 +19,74 @@ export class HostessSettingsComponent implements OnInit {
     private historyData;
     private showhistory: boolean = false;
     private email: boolean = true;
-
+    //add Bio
+    private bioCategories: any = [];
+    private bioEvents: any = [];
+    private categoryId;
+    private eventId;
+    private showEvents: boolean = false;
+    private description;
+    private bio = new BioEvent();
+    
     constructor(private settingsService: HostessSettingsService) {
 
     }
 
     ngOnInit() {
-        
-       this.getUserProfile();
-       this.getTruflCustomers();
-       this.getProfile();
-       this.getBioData();
-       this.getHistoryData();
-
+        this.GetSettingsDetails();
+        this.GetBioCategories();
     }
 
-    getUserProfile() {
-
+    GetSettingsDetails() {
         this.settingsService.getUserDetails().subscribe((res: any) => {
-            res._Data.UserLoginInformation.map((item: any) => {
-                this.userProfile = item;
+            this.settingsData = res._Data;
+            //Profile credentials
+            this.settingsData.UserLoginInformation.map((item: any) => {
+               this.userProfile = item;
 
             });
-            console.log(this.userProfile);
-
-        }
-        );
-
-    }
-
-    getTruflCustomers() {
-
-        this.settingsService.getUserDetails().subscribe((res: any) => {
-            this.truflCustomers = res._Data.RestaurantUserDetailswithHistory 
-            console.log(this.truflCustomers);
-        }
-        );
-
-    }
-    getProfile() {
-        this.settingsService.getUserDetails().subscribe((res: any) => {
-            res._Data.UserProfielFullName.map((item: any) => {
-                this.profileData = item;
-
+            //TruflCustomers Data
+            this.truflCustomers = this.settingsData.RestaurantUserDetailswithHistory;
+            //User Profile Data 
+            this.settingsData.UserProfielFullName.map((item: any) => {
+               this.profileData = item;
             });
-            console.log(this.profileData);
+            //Bio Data
+            this.bioData = this.settingsData.BioData;
+            //History Data
+            this.historyData = this.settingsData.BookingHistory;
+
+       });
+    }
+
+    
+
+    //for Bio categories
+    GetBioCategories() {
+        this.settingsService.GetBioCategories().subscribe((res: any) => {
+            this.bioCategories = res._Data;
 
         }
         );
     }
-    getBioData() {
-        this.settingsService.getUserDetails().subscribe((res: any) => {
-            this.bioData = res._Data.BioData;
-            console.log(this.bioData);
+
+    //for Bio events based on categories
+    GetBioEvents(categoryId) {
+        this.settingsService.GetBioEvents(categoryId).subscribe((res: any) => {
+            this.bioEvents = res._Data;
 
         }
         );
     }
-    getHistoryData() {
-        this.settingsService.getUserDetails().subscribe((res: any) => {
-            this.historyData = res._Data.BookingHistory;
-            console.log(this.historyData);
+
+    AddBioEvents(bio) {
+        this.settingsService.AddUserBioEvents(bio).subscribe((res: any) => {
+            alert("success");
 
         }
         );
     }
+
     profile() {
         this.showProfile = true;
     }
@@ -98,6 +103,7 @@ export class HostessSettingsComponent implements OnInit {
         this.showhistory = true;
     }
 
+    //print functionality
     print(profileSection: string) {
         let popupWinindow
         let innerContents = document.getElementById('profileSection').innerHTML;
@@ -105,5 +111,27 @@ export class HostessSettingsComponent implements OnInit {
         popupWinindow.document.open();
         popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + innerContents + '</html>');
         popupWinindow.document.close();
+    }
+
+    onCategoryChange(id) {
+        this.categoryId = id.target.value;
+        this.GetBioEvents(this.categoryId);
+        this.showEvents= true;
+       
+    }
+    onEventChange(event) {
+        this.eventId = event.target.value;
+
+    }
+    addBio() {
+        this.bio.TruflUserID = 11;
+        this.bio.RestaurantID = 1;
+        this.bio.BioID = this.categoryId;
+        this.bio.BioEventID = this.eventId;
+        this.bio.BioDesc = this.description;
+        
+        //console.log(this.bio);
+        this.AddBioEvents(this.bio);
+
     }
 }

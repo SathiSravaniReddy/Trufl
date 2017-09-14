@@ -27,7 +27,6 @@ import { HostessSettingsService } from './components/HostessSettings/settings.se
 import { DashboardService } from './components/dashboard/dashboard.service';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ResetPasswordComponent } from './components/Login/ResetPassword/resetPassword.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
 import {ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -51,7 +50,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         SearchPipe,
         EqualValidator,
         HostessSettingsComponent,
-        ResetPasswordComponent
+        
         
     ],
     providers: [
@@ -81,7 +80,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         RouterModule.forRoot([
             { path: '', component: LoginComponent },    
             { path: 'seated', component: SeatedComponent },
-            { path: 'home', component: HostessComponent },
+            { path: 'waitlist', component: HostessComponent },
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'settings', component: SettingsComponent },
@@ -89,7 +88,6 @@ import { MyDatePickerModule } from 'mydatepicker';
             { path: 'dashboard', component: DashboardComponent },
             { path: 'restaurant', component: ResturantComponent },
             { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
-            { path: 'reset', component: ResetPasswordComponent },
             { path: '**', redirectTo: 'login' },
            
         ])
