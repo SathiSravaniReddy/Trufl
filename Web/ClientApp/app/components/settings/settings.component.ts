@@ -60,6 +60,7 @@ export class SettingsComponent implements OnInit {
     
 
     showCancelDone() {
+
         return this.user.filter(function (obj) {
             return obj.isEdit;
         }).length;
@@ -81,11 +82,23 @@ export class SettingsComponent implements OnInit {
         this.isShow = this.showCancelDone();
     }
     cancel() {
-        this.user.map(function (obj) {
-            obj.isEdit = false;
+        var that = this;
+      this.user.map(function (obj) {
+          obj.isEdit = false;
+        
+            
         });
 
-      //  this.isShow = this.showCancelDone();
+  this.isShow = this.showCancelDone();
+      this.user = [];
+      Object.keys(this.UserInformation).map(function (keyName, index) {
+          that.user.push({
+              isEdit: false,
+              value: that.UserInformation[keyName],
+              key: keyName
+          })
+      });
+        
     }
 
 
