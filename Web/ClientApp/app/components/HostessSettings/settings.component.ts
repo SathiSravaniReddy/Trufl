@@ -2,6 +2,7 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
 import { HostessSettingsService } from './settings.service';
 import { BioEvent } from './bioEvent';
+import { ProfileUser } from './profileUser';
 import { LoginService } from '../shared/login.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -15,13 +16,16 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class HostessSettingsComponent implements OnInit {
     private settingsData;
+    //Profile
     private UserInfo: any;
-    private user: any;
+    private user: any=[];
+    private profileUser = new ProfileUser();
     private truflCustomers: any;
     private showProfile: boolean = false;
     private showbio: boolean = true;
     private profileData: any = [];
     private bioData: any = [];
+    //private bioHistory: any=[];
     private historyData;
     private showhistory: boolean = false;
     private email: boolean = true;
@@ -33,14 +37,16 @@ export class HostessSettingsComponent implements OnInit {
     //add Bio
     private bioCategories: any = [];
     private bioEvents: any = [];
-    private categoryId;
-    private eventId;
+    private categoryId=1;
+    private eventId=1;
     private showEvents: boolean = false;
     private description;
     private bio = new BioEvent();
     @ViewChild('bioModal') bioModal;
     
     constructor(private settingsService: HostessSettingsService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+        this._toastr.setRootViewContainerRef(vRef);
+        //called first time before the ngOnInit()
         this.usertype = this.loginService.getUserType();
         this.truflid = this.loginService.getTrufluserID();
         this.restaurantid = this.loginService.getRestarauntId();
@@ -61,7 +67,6 @@ export class HostessSettingsComponent implements OnInit {
 
             //});
             this.UserInfo = this.settingsData.UserLoginInformation[0];
-            this.user = [];
             Object.keys(this.UserInfo).map(function (keyName, index) {
                 that.user.push({
                     isEdit: false,
@@ -71,12 +76,15 @@ export class HostessSettingsComponent implements OnInit {
             });
             //TruflCustomers Data
             this.truflCustomers = this.settingsData.RestaurantUserDetailswithHistory;
-            //User Profile Data 
+
+            //User Profile Data
             this.settingsData.UserProfielFullName.map((item: any) => {
                this.profileData = item;
             });
+
             //Bio Data
             this.bioData = this.settingsData.BioData;
+
             //History Data
             this.historyData = this.settingsData.BookingHistory;
 
@@ -106,11 +114,16 @@ export class HostessSettingsComponent implements OnInit {
     //for AddBio Event
     AddBioEvents(bio) {
         this.settingsService.AddUserBioEvents(bio).subscribe((res: any) => {
+           
             window.setTimeout(() => {
-                this._toastr.success("Bio Event Added");
+                this._toastr.success("Event Added");
 
             }, 500);
+            window.setTimeout(() => {
+                this.bioModal.nativeElement.click();
 
+
+            }, 2000); 
         }
         );
     }
@@ -126,21 +139,24 @@ export class HostessSettingsComponent implements OnInit {
     editDetails(obj, index) {
         obj.isEdit = !obj.isEdit;
 
-        this.isShow = this.showCancelDone();
+        
     }
-    showCancelDone() {
-
-        return this.user.filter(function (obj) {
-            return obj.isEdit;
-        }).length;
-    }
+    
     Done() {
-        console.log(this.user);
         this.user.map(function (obj) {
             obj.isEdit = false;
         });
+        this.profileUser.UserID = this.truflid;
+        this.profileUser.UserName = this.user[0].value;
+        this.profileUser.UserEmail = this.user[1].value;
+        this.profileUser.NewLoginPassword = this.user[2].value;
+        this.settingsService.PostProfileEdit(this.profileUser).subscribe((res: any) => {
+            window.setTimeout(() => {
+                this._toastr.success("Changes Saved");
 
-        this.isShow = this.showCancelDone();
+            }, 500);
+        }
+        );
     }
     cancel() {
         var that = this;
@@ -149,8 +165,6 @@ export class HostessSettingsComponent implements OnInit {
 
 
         });
-
-        this.isShow = this.showCancelDone();
         this.user = [];
         Object.keys(this.UserInfo).map(function (keyName, index) {
             that.user.push({
@@ -183,13 +197,13 @@ export class HostessSettingsComponent implements OnInit {
     }
 
     onCategoryChange(id) {
-        this.categoryId = id.target.value;
+        this.categoryId = id;
         this.GetBioEvents(this.categoryId);
         this.showEvents= true;
        
     }
     onEventChange(event) {
-        this.eventId = event.target.value;
+        this.eventId = event;
 
     }
 
@@ -204,7 +218,6 @@ export class HostessSettingsComponent implements OnInit {
         console.log(this.bio);
         this.AddBioEvents(this.bio);
         this.bioModal.nativeElement.click();
-
     }
     close() {
         this.bioModal.nativeElement.click();

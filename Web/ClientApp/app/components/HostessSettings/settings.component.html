@@ -19,7 +19,8 @@
                                 <img alt="" src="../../../../wwwroot/images/edit.png" />
                             </a>
                         </td>
-                        <td *ngIf="obj.isEdit"><label>{{obj.key}}:</label><input type="text" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
+                        <td *ngIf="obj.isEdit && obj.key!='Password'"><label class="text-muted">{{obj.key}}:</label><input type="text" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
+                        <td *ngIf="obj.isEdit && obj.key=='Password'"><label class="text-muted">{{obj.key}}:</label><input type="password" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
                     </tr>
 
                     <tr>
@@ -85,11 +86,38 @@
                 </div>
 
 
-                <div class="right-rep" *ngFor="let bio of bioData">
-                    <h5> {{bio.BioName}} </h5>
-                    <div class="row">
-                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                        <div class="col-md-7">{{bio.Description}} </div>
+                <div class="right-rep">
+                    <h5>Visit</h5>
+                    <div *ngFor="let bio of bioData">
+                        
+                        <div class="row" *ngIf="bio.BioID==1">
+                            <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                            <div class="col-md-7">{{bio.Description}} </div>
+                        </div>
+                    </div>
+                    <h5>Relationship</h5>
+                    <div *ngFor="let bio of bioData">
+
+                        <div class="row" *ngIf="bio.BioID==2">
+                            <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                            <div class="col-md-7">{{bio.Description}} </div>
+                        </div>
+                    </div>
+                    <h5>Seating Preference</h5>
+                    <div *ngFor="let bio of bioData">
+
+                        <div class="row" *ngIf="bio.BioID==3">
+                            <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                            <div class="col-md-7">{{bio.Description}} </div>
+                        </div>
+                    </div>
+                    <h5>Food/Drink Preference</h5>
+                    <div *ngFor="let bio of bioData">
+
+                        <div class="row" *ngIf="bio.BioID==4">
+                            <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                            <div class="col-md-7">{{bio.Description}} </div>
+                        </div>
                     </div>
 
                 </div>
@@ -130,8 +158,8 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label class="col-md-12">Select the category</label>
-                            <div class="col-md-12">                       
-                                <select (change)="onCategoryChange($event)">
+                            <div class="col-md-12">   
+                                <select  [ngModel]="categoryId" (ngModelChange)="onCategoryChange($event)" name="categoryId">
                                     <option *ngFor="let categories of bioCategories; let i=index"
                                             [value]="categories.BioID">
                                         {{categories.BioName}}
@@ -142,7 +170,7 @@
                         <div class="form-group" *ngIf="showEvents">
                             <label class="col-md-12">Select the Event</label>
                             <div class="col-md-12">
-                                <select (change)="onEventChange($event)">
+                                <select [ngModel]="eventId" (ngModelChange)="onEventChange($event)" name="eventId">
                                     <option *ngFor="let events of bioEvents; let i=index"
                                             [value]="events.BioEventID">
                                         {{events.BioEventName}}

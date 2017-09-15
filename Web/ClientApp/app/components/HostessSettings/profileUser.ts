@@ -1,11 +1,11 @@
-﻿export class Reset {
+﻿export class ProfileUser {
 
-    userId: number;
+    UserID: number;
     UserName: string;
     UserEmail: string;
     LoginPassword: string;
     NewLoginPassword: string;
-    confirmPassword?: string;
-    
+
     constructor() { }
 }
+

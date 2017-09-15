@@ -13,27 +13,31 @@ export class HostessSettingsService {
     //Get API for settings page
     getUserDetails(usertype, truflid, restaurantid) {
         return this.http.get('http://localhost:8679/api/Trufl/GetRestaurantUserDetails/' + restaurantid + '/' + truflid + '/' + usertype).map(
-            (res) => res.json())
+            (res) => res.json());
 
     }
 
     //Get API for Bio categories
     GetBioCategories() {
         return this.http.get('http://localhost:8679/api/Trufl/GetBioCategories').map(
-            (res) => res.json())
+            (res) => res.json());
     }
    
     //Get API for BioEvents based on categories 
     GetBioEvents(categoryId) {
         return this.http.get('http://localhost:8679/api/Trufl/GetBioEvents/' + categoryId).map(
-            (res) => res.json())
+            (res) => res.json());
     }
 
     //Post API for AddUserBioEvents
     AddUserBioEvents(bio) {
-        return this.http.post('http://localhost:8679/api/Trufl/SaveUserBioEvents' ,bio ).map(
-            (res) => res.json())
+        return this.http.post('http://localhost:8679/api/Trufl/SaveUserBioEvents', bio).map(
+            (res) => res.json());
     }
 
-
+    //Post Api for Edit Profile
+    PostProfileEdit(user) {
+        return this.http.post('http://localhost:8679/api/Trufl/Admin/SaveProfilePassword', user).map(
+            (res) => res.json());
+    }
 }
