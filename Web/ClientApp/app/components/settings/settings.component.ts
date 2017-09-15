@@ -1,12 +1,15 @@
 ﻿
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef} from '@angular/core';
 import { Router } from '@angular/router';
 import { SettingsService } from './settings.service'
 import { LoginService } from '../shared/login.service';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
     selector: 'settings',
     templateUrl: './settings.component.html',
-    styleUrls: ['./settings.component.css']
+    styleUrls: ['./settings.component.css'],
+    providers: [ToastsManager, ToastOptions]
 })
 export class SettingsComponent implements OnInit {
     private user_Profile: any;
@@ -22,7 +25,8 @@ export class SettingsComponent implements OnInit {
     private retarauntid: any;
     //private email: any;
     private emailDetails: any;
-    constructor(private settingsService: SettingsService, private router: Router, private loginService: LoginService) {
+    constructor(private settingsService: SettingsService, private router: Router, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+        this._toastr.setRootViewContainerRef(vRef);
         this.usertype = this.loginService.getUserType();
         console.log(this.usertype, "usertype");
         this.truflid = this.loginService.getTrufluserID();
@@ -33,7 +37,7 @@ export class SettingsComponent implements OnInit {
 
     ngOnInit() {
         let that = this;
-        this.settingsService.getUserDetails(this.usertype, this.truflid, this.retarauntid).subscribe((res: any) => {
+        this.settingsService.getUserDetails(this.usertype, this.retarauntid,this.truflid).subscribe((res: any) => {
             this.user_Profile = res._Data;
             console.log(this.user_Profile, " this.user_Profile");
             this.UserInformation = this.user_Profile.UsersInformation[0];
@@ -98,17 +102,20 @@ export class SettingsComponent implements OnInit {
               key: keyName
           })
       });
-        
+     
     }
 
 
     Reset(email) {
-        alert(email);
+        
         this.loginService.forgotpassword(email).subscribe((res: any) => {
             res._Data.map((item: any) => {
                 this.emailDetails = item;
+                
             });
-
+            window.setTimeout(() => {
+                this._toastr.success("email sent");
+            }, 200);
         });
     }
 
