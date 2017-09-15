@@ -31,7 +31,7 @@ export class SettingsComponent implements OnInit {
         console.log(this.usertype, "usertype");
         this.truflid = this.loginService.getTrufluserID();
         console.log(this.truflid, "truflid");
-        this.retarauntid = this.loginService.getRestarauntId();
+        this.retarauntid = this.loginService.getRestaurantId();
         console.log(this.retarauntid, "retarauntid");
     }
 

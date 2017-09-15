@@ -37,15 +37,23 @@ export class LoginComponent {
 
     //login
     signIn() {
-        console.log(this.user);
+       // console.log(this.user);
+        
+        if (this.user.usertype == null) {
+            window.setTimeout(() => {
+                this._toastr.error("Please Select UserType");
+
+            }, 500);
+        }
         this.loginService.setUserType(this.user.usertype);
         this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
             res._Data.map((item: any) => {
                 this.loginDetails = item;
-                console.log(this.loginDetails.TruflUSERID, this.loginDetails.RestaurantID, "RestaurantID");
+                //console.log(this.loginDetails.TruflUSERID, this.loginDetails.RestaurantID, "RestaurantID");
                 //this.loginService.setUserType(this.loginDetails.TruflMemberType);
                 this.loginService.setTrufluserID(this.loginDetails.TruflUSERID);
-                this.loginService.setRestaruantId(this.loginDetails.RestaurantID);
+                this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
+                this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
             });
             if (this.loginDetails) {
 
@@ -66,7 +74,11 @@ export class LoginComponent {
                
             }
             else {
-                this.errorMsg = "Please select usertype and enter valid username and password";
+                window.setTimeout(() => {
+                    this._toastr.error("Please Enter valid username and password");
+
+                }, 500);
+               // this.errorMsg = "Please select usertype and enter valid username and password";
             }
 
         });

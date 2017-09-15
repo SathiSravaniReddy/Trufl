@@ -1,8 +1,7 @@
 ﻿<div class="header">
     <div class="col-md-5 headerleft">
         <h1>
-            <a (click)="showHeaders()" *ngIf="this.userType=='RA'">Bottique Louie</a>
-            <a (click)="showHeaders()" *ngIf="this.userType=='TA'">Trufl Admin</a>
+            <a (click)="showHeaders()">{{restaurantName}}</a>
         </h1>
     </div>
     <div class="headerright">
@@ -11,7 +10,7 @@
         <div class="profiledd dropdown">
             <a (click)="logoutShow()"> <label>Jeffy </label> <img width="32" alt="" src="../../../../../wwwroot/images/profile.png" /> </a>
           
-            <a class="logout" *ngIf="profileVisible" [routerLink]="['/login']"> Logout</a>
+            <a class="logout" *ngIf="profileVisible" (click)="logout()"> Logout</a>
         </div>
     </div>
 </div>

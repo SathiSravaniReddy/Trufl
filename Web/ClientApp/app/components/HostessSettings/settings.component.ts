@@ -49,7 +49,7 @@ export class HostessSettingsComponent implements OnInit {
         //called first time before the ngOnInit()
         this.usertype = this.loginService.getUserType();
         this.truflid = this.loginService.getTrufluserID();
-        this.restaurantid = this.loginService.getRestarauntId();
+        this.restaurantid = this.loginService.getRestaurantId();
     }
 
     ngOnInit() {

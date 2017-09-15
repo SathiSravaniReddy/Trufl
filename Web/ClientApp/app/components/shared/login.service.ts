@@ -12,7 +12,8 @@ export class LoginService {
     private settingStatus;
     private logindetails;
     private truflid: any;
-    private restarauntid: any;
+    private restaurantid: any;
+    private restaurantName;
     constructor(private http: Http) {
     }
     public setUserType(value) {
@@ -33,13 +34,21 @@ export class LoginService {
         this.truflid = localStorage.getItem('truflid');
         return this.truflid;
 }
-    public setRestaruantId(value) {
-        this.restarauntid = value;
-        localStorage.setItem('restaruntid', value);
+    public setRestaurantId(value) {
+        this.restaurantid = value;
+        localStorage.setItem('restaurantid', value);
     }
-    public getRestarauntId() {
-        this.restarauntid = localStorage.getItem('restaruntid');
-        return this.restarauntid;
+    public getRestaurantId() {
+        this.restaurantid = localStorage.getItem('restaurantid');
+        return this.restaurantid;
+    }
+    public setRestaurantName(value) {
+        this.restaurantName = value;
+        localStorage.setItem('restaurantName', value);
+    }
+    public getRestaurantName() {
+        this.restaurantName = localStorage.getItem('restaurantName');
+        return this.restaurantName;
     }
 
     //To get User Details
@@ -81,6 +90,9 @@ export class LoginService {
     //To logout
     logout() {
         localStorage.removeItem("userType");
+        localStorage.removeItem("truflid");
+        localStorage.removeItem("restaurantid");
+        localStorage.removeItem("restaurantName");
         
     }
 
