@@ -40,6 +40,11 @@ namespace Trufl.Business_Layer
         {
             return _adminDL.GetAllRestaurants();
         }
-            #endregion
+
+        public bool SaveProfilePassword(RestPasswordDTO ProfilePassword)
+        {
+            return _adminDL.SaveProfilePassword(ProfilePassword);
         }
+        #endregion
+    }
 }

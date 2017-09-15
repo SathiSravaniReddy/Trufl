@@ -2,7 +2,7 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../shared/login.service';
-import { User } from '../login/user';
+import { NewUser } from './newUser';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -13,7 +13,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
     providers: [ToastsManager, ToastOptions]
 })
 export class RegisterComponent {
-    private user = new User();
+    private user = new NewUser();
     load: boolean = false;
     constructor(private router: Router, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);

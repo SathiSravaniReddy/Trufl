@@ -337,6 +337,54 @@ namespace Trufl.Data_Access_Layer
             }
             return sendResponse;
         }
+
+        /// <summary>
+        /// This method 'SaveProfilePassword' will Save Profile Password 
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns SaveProfilePassword  </returns>
+        public bool SaveProfilePassword(RestPasswordDTO restPasswordInput)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("SaveProfilePassword", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@UserID", restPasswordInput.UserID);
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserName", restPasswordInput.UserName);
+                        SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@UserEmail", restPasswordInput.UserEmail);
+                        tvpParam2.SqlDbType = SqlDbType.Text;
+                        //SqlParameter tvpParam3 = cmd.Parameters.AddWithValue("@LoginPassword", DBNull.Value);
+              
+                        SqlParameter tvpParam4 = cmd.Parameters.AddWithValue("@NewLoginPassword", restPasswordInput.NewLoginPassword);
+                        tvpParam4.SqlDbType = SqlDbType.Text;
+
+                        int status = cmd.ExecuteNonQuery();
+
+                        if (status == -1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string s = ex.ToString();
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
+
         #endregion
     }
 }

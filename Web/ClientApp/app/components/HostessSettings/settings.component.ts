@@ -1,17 +1,22 @@
 ﻿
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
 import { HostessSettingsService } from './settings.service';
 import { BioEvent } from './bioEvent';
 import { LoginService } from '../shared/login.service';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 
 @Component({
     selector: 'settings',
     templateUrl: './settings.component.html',
-    styleUrls: ['./settings.component.css']
+    styleUrls: ['./settings.component.css'],
+    providers: [ToastsManager, ToastOptions]
 })
 export class HostessSettingsComponent implements OnInit {
     private settingsData;
-    private userProfile: any;
+    private UserInfo: any;
+    private user: any;
     private truflCustomers: any;
     private showProfile: boolean = false;
     private showbio: boolean = true;
@@ -20,10 +25,11 @@ export class HostessSettingsComponent implements OnInit {
     private historyData;
     private showhistory: boolean = false;
     private email: boolean = true;
+    private isShow: boolean;
     //Parameters to pass in Api
     private usertype: any;
     private truflid: any;
-    private retarauntid: any;
+    private restaurantid: any;
     //add Bio
     private bioCategories: any = [];
     private bioEvents: any = [];
@@ -32,11 +38,12 @@ export class HostessSettingsComponent implements OnInit {
     private showEvents: boolean = false;
     private description;
     private bio = new BioEvent();
+    @ViewChild('bioModal') bioModal;
     
-    constructor(private settingsService: HostessSettingsService, private loginService: LoginService) {
+    constructor(private settingsService: HostessSettingsService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this.usertype = this.loginService.getUserType();
         this.truflid = this.loginService.getTrufluserID();
-        this.retarauntid = this.loginService.getRestarauntId();
+        this.restaurantid = this.loginService.getRestarauntId();
     }
 
     ngOnInit() {
@@ -45,12 +52,22 @@ export class HostessSettingsComponent implements OnInit {
     }
 
     GetSettingsDetails() {
-        this.settingsService.getUserDetails(this.usertype, this.truflid, this.retarauntid).subscribe((res: any) => {
+        let that = this;
+        this.settingsService.getUserDetails(this.usertype, this.truflid, this.restaurantid).subscribe((res: any) => {
             this.settingsData = res._Data;
             //Profile credentials
-            this.settingsData.UserLoginInformation.map((item: any) => {
-               this.userProfile = item;
+            //this.settingsData.UserLoginInformation.map((item: any) => {
+            //   this.userProfile = item;
 
+            //});
+            this.UserInfo = this.settingsData.UserLoginInformation[0];
+            this.user = [];
+            Object.keys(this.UserInfo).map(function (keyName, index) {
+                that.user.push({
+                    isEdit: false,
+                    value: that.UserInfo[keyName],
+                    key: keyName
+                })
             });
             //TruflCustomers Data
             this.truflCustomers = this.settingsData.RestaurantUserDetailswithHistory;
@@ -89,7 +106,10 @@ export class HostessSettingsComponent implements OnInit {
     //for AddBio Event
     AddBioEvents(bio) {
         this.settingsService.AddUserBioEvents(bio).subscribe((res: any) => {
-            alert("success");
+            window.setTimeout(() => {
+                this._toastr.success("Bio Event Added");
+
+            }, 500);
 
         }
         );
@@ -102,6 +122,47 @@ export class HostessSettingsComponent implements OnInit {
         this.showProfile = false;
     }
 
+    //edit profile
+    editDetails(obj, index) {
+        obj.isEdit = !obj.isEdit;
+
+        this.isShow = this.showCancelDone();
+    }
+    showCancelDone() {
+
+        return this.user.filter(function (obj) {
+            return obj.isEdit;
+        }).length;
+    }
+    Done() {
+        console.log(this.user);
+        this.user.map(function (obj) {
+            obj.isEdit = false;
+        });
+
+        this.isShow = this.showCancelDone();
+    }
+    cancel() {
+        var that = this;
+        this.user.map(function (obj) {
+            obj.isEdit = false;
+
+
+        });
+
+        this.isShow = this.showCancelDone();
+        this.user = [];
+        Object.keys(this.UserInfo).map(function (keyName, index) {
+            that.user.push({
+                isEdit: false,
+                value: that.UserInfo[keyName],
+                key: keyName
+            })
+        });
+
+    }
+
+    //Bio
     showBio() {
         this.showbio = true;
         this.showhistory = false;
@@ -135,13 +196,17 @@ export class HostessSettingsComponent implements OnInit {
     //AddBio
     addBio() {
         this.bio.TruflUserID = this.truflid;
-        this.bio.RestaurantID = this.retarauntid;
+        this.bio.RestaurantID = this.restaurantid;
         this.bio.BioID = this.categoryId;
         this.bio.BioEventID = this.eventId;
         this.bio.BioDesc = this.description;
         
         console.log(this.bio);
         this.AddBioEvents(this.bio);
+        this.bioModal.nativeElement.click();
 
+    }
+    close() {
+        this.bioModal.nativeElement.click();
     }
 }

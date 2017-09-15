@@ -1,4 +1,5 @@
 ﻿
+/*trufl customers css*/
 .settingtop {
     margin-bottom: 15px;
     font-size: 14px;
@@ -33,11 +34,41 @@
 a{
     cursor:pointer;
 }
+
+
+/*Profile css*/
+.table1{
+    width:100%;
+}
+
+
+.text p {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.text-muted {
+    color: #777;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.textdata {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.textborder {
+    border-bottom: 1px solid #cacaca;
+    line-height: 31px;
+}
+
+
 .bioprimary-btn {
     margin-top: 15px;
     float: left;
     width: auto;
-    padding: 3px 10px;
+    padding: 0px 10px;
     background: #0b7dd9;
     border: 1px solid #0b7dd9;
     font-size: 14px;
@@ -48,15 +79,11 @@ a{
     margin: 15px 10px 0 0;
 }
 .primary-btn {
-    float: left;
-    width: auto;
-    padding: 3px 10px;
-    background: #0b7dd9;
-    border: 1px solid #0b7dd9;
+  
+    padding: 0px 10px;
     font-size: 14px;
     font-weight: 600;
     text-transform: capitalize;
-    color: #fff;
     border-radius: 2px;
     margin: 0 10px 0 0;
 }
@@ -67,10 +94,8 @@ a{
     }
 
 .secondary-btn {
-    float: left;
-    width: auto;
-    padding: 3px 10px;
-    border: 1px solid #0b7dd9;
+   
+    padding: 0px 10px;
     font-size: 14px;
     font-weight: 600;
     text-transform: capitalize;
@@ -78,19 +103,8 @@ a{
     background: #fff;
     color: #0b7dd9;
 }
-.text-muted {
-    color: #777;
-    font-size: 14px;
-    font-weight: 500;
-}
-.textdata {
-    font-size: 14px;
-    font-weight: 600;
-}
-.textborder {
-    border-bottom: 1px solid #cacaca;
-    line-height: 31px;
-}
+
+/*Right Section*/
 .right-top {
     text-align: center;
     margin: 0; 
@@ -343,3 +357,4 @@ button.btn.btn-default.cancelbtn {
     text-align: left; 
     margin: 5px 10px 0 0;
 }
+
