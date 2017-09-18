@@ -1,10 +1,11 @@
 ﻿
-import { Component, OnInit, ViewContainerRef} from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { SettingsService } from './settings.service'
 import { LoginService } from '../shared/login.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ProfileUser } from '../HostessSettings/profileUser';
 @Component({
     selector: 'settings',
     templateUrl: './settings.component.html',
@@ -23,7 +24,8 @@ export class SettingsComponent implements OnInit {
     private usertype: any;
     private truflid: any;
     private retarauntid: any;
-    //private email: any;
+    private profileUser = new ProfileUser();
+   
     private emailDetails: any;
     constructor(private settingsService: SettingsService, private router: Router, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -37,7 +39,7 @@ export class SettingsComponent implements OnInit {
 
     ngOnInit() {
         let that = this;
-        this.settingsService.getUserDetails(this.usertype, this.retarauntid,this.truflid).subscribe((res: any) => {
+        this.settingsService.getUserDetails(this.usertype, this.retarauntid, this.truflid).subscribe((res: any) => {
             this.user_Profile = res._Data;
             console.log(this.user_Profile, " this.user_Profile");
             this.UserInformation = this.user_Profile.UsersInformation[0];
@@ -53,15 +55,15 @@ export class SettingsComponent implements OnInit {
             console.log(this.UserInformation, "this.UserInformation");
             this.UsersInformation = this.user_Profile.RegisteredRestaurants;
             console.log(this.UsersInformation, "this.UsersInformation");
-
+            console.log(this.user, "this.user");
         }
         );
 
-       
+
 
     }
 
-    
+
 
     showCancelDone() {
 
@@ -82,36 +84,49 @@ export class SettingsComponent implements OnInit {
         this.user.map(function (obj) {
             obj.isEdit = false;
         });
+        console.log(this.truflid,"this.truflid in done");
+        this.profileUser.UserID = this.truflid;
+        this.profileUser.UserName = this.user[0].value;
+        this.profileUser.UserEmail = this.user[1].value;
+        this.profileUser.NewLoginPassword = this.user[2].value;
+        this.settingsService.PostProfileEdit(this.profileUser).subscribe((res: any) => {
+            window.setTimeout(() => {
+                this._toastr.success("Changes Saved");
 
-        this.isShow = this.showCancelDone();
+            }, 500);
+        }
+        );
+
+
+
     }
     cancel() {
         var that = this;
-      this.user.map(function (obj) {
-          obj.isEdit = false;
-        
-            
+        this.user.map(function (obj) {
+            obj.isEdit = false;
+
+
         });
 
-  this.isShow = this.showCancelDone();
-      this.user = [];
-      Object.keys(this.UserInformation).map(function (keyName, index) {
-          that.user.push({
-              isEdit: false,
-              value: that.UserInformation[keyName],
-              key: keyName
-          })
-      });
-     
+        this.isShow = this.showCancelDone();
+        this.user = [];
+        Object.keys(this.UserInformation).map(function (keyName, index) {
+            that.user.push({
+                isEdit: false,
+                value: that.UserInformation[keyName],
+                key: keyName
+            })
+        });
+
     }
 
 
     Reset(email) {
-        
+
         this.loginService.forgotpassword(email).subscribe((res: any) => {
             res._Data.map((item: any) => {
                 this.emailDetails = item;
-                
+
             });
             window.setTimeout(() => {
                 this._toastr.success("email sent");

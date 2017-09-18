@@ -5,21 +5,24 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class SettingsService {    
+export class SettingsService {
 
     constructor(private http: Http) {
     }
 
-    getUserDetails(usertype,restarauntid,truflid) {
-        return this.http.get('http://localhost:8679/api/Trufl/GetRestaurantUserDetails/' + restarauntid +'/'+ truflid +'/'+ usertype).map(
+    getUserDetails(usertype, restarauntid, truflid) {
+        return this.http.get('http://localhost:8679/api/Trufl/GetRestaurantUserDetails/' + restarauntid + '/' + truflid + '/' + usertype).map(
             (res) => res.json())
-      
+
     }
 
 
-   
 
-   
+
+    PostProfileEdit(user) {
+        return this.http.post('http://localhost:8679/api/Trufl/Admin/SaveProfilePassword', user).map(
+            (res) => res.json());
+    }
 
 
 
