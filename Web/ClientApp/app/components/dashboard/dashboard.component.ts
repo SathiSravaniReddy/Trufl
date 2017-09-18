@@ -2,7 +2,8 @@
 import { OnInit } from '@angular/core';
 import { DashboardService } from './dashboard.service'
 import { IMyDrpOptions, IMyDateRangeModel } from 'mydaterangepicker';
-import{PaginationControlsComponent} from 'ngx-pagination'
+import { PaginationControlsComponent } from 'ngx-pagination';
+
 @Component({
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css'],

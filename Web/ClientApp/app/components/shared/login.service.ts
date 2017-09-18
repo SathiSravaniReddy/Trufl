@@ -1,5 +1,6 @@
 ﻿import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { constant } from '../shared/appsettings';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
@@ -53,14 +54,14 @@ export class LoginService {
 
     //To get User Details
     getLoginDetails(userstype: any,restaurantid) {
-        return this.http.get('http://localhost:8679/api/Trufl/GetUserTypes/' + userstype + '/' + restaurantid).map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'GetUserTypes/' + userstype + '/' + restaurantid).map(
             (res:Response) => res.json());
 
     }
 
     //To get Login Member Type
     loginAuthentication(user: any) {
-        return this.http.post('http://localhost:8679/api/Trufl/LoginAuthentication',user ).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'LoginAuthentication',user ).map(
             (res: Response) => res.json());
 
     }
@@ -68,21 +69,21 @@ export class LoginService {
     //To get an email when click on forgot password
     forgotpassword(email: any) {
 
-        return this.http.get('http://localhost:8679/api/Trufl/ForgetPassword?LoginEmail=' + email).map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'ForgetPassword?LoginEmail=' + email).map(
             (res: Response) => res.json());
 
     }
 
     //To reset password
     resetPassword(reset: any) {
-        return this.http.post('http://localhost:8679/api/Trufl/RestPassword', reset).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'RestPassword', reset).map(
             (res: Response) => res.json());
 
     }
 
     //To register new user
     create(user: any) {
-        return this.http.post('http://localhost:8679/Api/Trufl/SignUp' , user).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'SignUp' , user).map(
             (res: Response) => res.json());
 
     }

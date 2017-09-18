@@ -32,7 +32,6 @@ import {ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { MyDatePickerModule } from 'mydatepicker';
 
-
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [
@@ -49,7 +48,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         TimerComponent,
         SearchPipe,
         EqualValidator,
-        HostessSettingsComponent,
+        HostessSettingsComponent
         
         
     ],
