@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
 import { AppComponent } from './components/app/app.component';
@@ -33,6 +33,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { MyDatePickerModule } from 'mydatepicker';
 
 
+
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [
@@ -62,6 +63,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         RestaurenService,
         HostessSettingsService,
         ToastsManager,
+        DatePipe,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
 
@@ -78,10 +80,22 @@ import { MyDatePickerModule } from 'mydatepicker';
         
      
         RouterModule.forRoot([
-            { path: '', component: LoginComponent },    
+            { path: '', component: LoginComponent },
+            //{path: 'login', component: LoginComponent,
+            //    children: [  
+            //        { path: 'seated', component: SeatedComponent },
+            //        { path: 'waitlist', component: HostessComponent },
+            //        { path: 'register', component: RegisterComponent },
+            //        { path: 'settings', component: SettingsComponent },
+            //        { path: 'hostesssettings', component: HostessSettingsComponent},
+            //        { path: 'dashboard', component: DashboardComponent },
+            //        { path: 'restaurant', component: ResturantComponent },
+            //        { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
+            //    ]
+            //},
+            { path: 'login', component: LoginComponent },
             { path: 'seated', component: SeatedComponent },
             { path: 'waitlist', component: HostessComponent },
-            { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'settings', component: SettingsComponent },
             { path: 'hostesssettings', component: HostessSettingsComponent},

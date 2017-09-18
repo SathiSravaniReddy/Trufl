@@ -34,110 +34,110 @@
         </div>
      </div>
 
-        <!--Trufl Customers-->
-        <div class="col-md-12 settingmain">
-            <div class="col-md-5 settingtop setgap">
-                <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" [(ngModel)]="term" placeholder="Search by Name or day" /></h3>
+    <!--Trufl Customers-->
+    <div class="col-md-12 settingmain" *ngIf="showTruflCustomers">
+        <div class="col-md-5 settingtop setgap">
+            <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" [(ngModel)]="term" placeholder="Search by Name or day" /></h3>
 
-                <table class="table">
-                    <tbody>
-                        <tr *ngFor="let customers of truflCustomers|filter:term">
-                            <td width="100">{{customers.FullName}}</td>
-                            <td width="200">Last Visited: {{customers.LastVisited|date:'d/M/yy'}}</td>
-                            <td width="150"> <a id="rowclick" (click)="profile()">View Details</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
+            <table class="table">
+                <tbody>
+                    <tr *ngFor="let customers of truflCustomers|filter:term">
+                        <td width="100">{{customers.FullName}}</td>
+                        <td width="200">Last Visited: {{customers.LastVisited}}</td>
+                        <td width="150"> <a id="rowclick" (click)="profile(customers.TruflUserID)">View Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-        <!--User Profile  Right Side-->
-        <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-            <a class="print pull-right" (click)="print()">Print </a>
-            <a id="close" (click)="closeProile('right-section')"><span aria-hidden="true">&times;</span></a>
-
-            <div class="right-top">
-                <img alt="" src="../../../../wwwroot/images/no-img.png" />
-                <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
-                <p class="defaulttext"> Trufl Premier Member</p>
-                <p class="defaulttext">Bottique Louie Member</p>
-
-            </div>
-
-            <div class="col-md-12 leftnav no-pad">
-                <div>
-                    <ul>
-                        <li>
-                            <a (click)="showBio()" [ngClass]="{selected: showbio}">Bio</a>
-                            <a (click)="showHistory()" [ngClass]="{selected: showhistory}">History & Coins</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!--Bio -->
-            <div *ngIf="showbio">
-                <div class="right-btn">
-                    <h6> Trufl Bio </h6>
-                    <a type="button" data-toggle="modal" data-target="#myModal" class="bioprimary-btn pull-right" href="#">ADD </a>
-                    <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
-
-                </div>
-
-            <!--Bio Events-->
-                <div class="right-rep" *ngIf="bioData.length!=0">
-                    <h5>Visit</h5>
-                    <div *ngFor="let bio of bioData">
-                        
-                        <div class="row" *ngIf="bio.BioID==1">
-                            <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                            <div class="col-md-7">{{bio.Description}} </div>
-                        </div>
-                    </div>
-                    <h5>Relationship</h5>
-                    <div *ngFor="let bio of bioData">
-
-                        <div class="row" *ngIf="bio.BioID==2">
-                            <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                            <div class="col-md-7">{{bio.Description}} </div>
-                        </div>
-                    </div>
-                    <h5>Seating Preference</h5>
-                    <div *ngFor="let bio of bioData">
-
-                        <div class="row" *ngIf="bio.BioID==3">
-                            <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                            <div class="col-md-7">{{bio.Description}} </div>
-                        </div>
-                    </div>
-                    <h5>Food/Drink Preference</h5>
-                    <div *ngFor="let bio of bioData">
-
-                        <div class="row" *ngIf="bio.BioID==4">
-                            <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                            <div class="col-md-7">{{bio.Description}} </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- History and coins -->
-            <div *ngIf="showhistory" class="right-btn">
-                <div *ngFor="let history of historyData">
-                    <h5 class="historycount">History (60)</h5>
-                    <p>Dates: {{history.BookingHistoryDates|date:'d/M/yy'}}</p>
-                    <p>Total Coins Earned:500</p>
-                </div>
-            </div>
-
-        </div>
-
 
     </div>
+
+    <!--User Profile  Right Side-->
+    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+        <a class="print pull-right" (click)="print()">Print </a>
+        <a id="close" (click)="closeProile('right-section')"><span aria-hidden="true">&times;</span></a>
+
+        <div class="right-top">
+            <img alt="" src="../../../../wwwroot/images/no-img.png" />
+            <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
+            <p class="defaulttext"> Trufl Premier Member</p>
+            <p class="defaulttext">Bottique Louie Member</p>
+
+        </div>
+
+        <div class="col-md-12 leftnav no-pad">
+            <div>
+                <ul>
+                    <li>
+                        <a (click)="showBio()" [ngClass]="{selected: showbio}">Bio</a>
+                        <a (click)="showHistory()" [ngClass]="{selected: showhistory}">History & Coins</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--Bio -->
+        <div *ngIf="showbio">
+            <div class="right-btn">
+                <h6> Trufl Bio </h6>
+                <a type="button" data-toggle="modal" data-target="#myModal" class="bioprimary-btn pull-right" href="#">ADD </a>
+                <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
+
+            </div>
+
+        <!--Bio Events-->
+            <div class="right-rep" *ngIf="bioData.length!=0">
+                <h5>Visit</h5>
+                <div *ngFor="let bio of bioData">
+                        
+                    <div class="row" *ngIf="bio.BioID==1">
+                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                        <div class="col-md-7">{{bio.Description}} </div>
+                    </div>
+                </div>
+                <h5>Relationship</h5>
+                <div *ngFor="let bio of bioData">
+
+                    <div class="row" *ngIf="bio.BioID==2">
+                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                        <div class="col-md-7">{{bio.Description}} </div>
+                    </div>
+                </div>
+                <h5>Seating Preference</h5>
+                <div *ngFor="let bio of bioData">
+
+                    <div class="row" *ngIf="bio.BioID==3">
+                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                        <div class="col-md-7">{{bio.Description}} </div>
+                    </div>
+                </div>
+                <h5>Food/Drink Preference</h5>
+                <div *ngFor="let bio of bioData">
+
+                    <div class="row" *ngIf="bio.BioID==4">
+                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                        <div class="col-md-7">{{bio.Description}} </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- History and coins -->
+        <div *ngIf="showhistory" class="right-btn">
+            <div *ngFor="let history of historyData">
+                <h5 class="historycount">History (60)</h5>
+                <p *ngIf="this.historyData[0].BookingHistoryDates != ' '">Dates: {{history.BookingHistoryDates|date:'d/M/yy'}}</p>
+                <p>Total Coins Earned:500</p>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
 
 
 <!--Add Bio Modal-->
