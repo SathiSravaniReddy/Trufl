@@ -184,7 +184,7 @@ namespace Trufl.Data_Access_Layer
                 dtClient.Columns.Add("OwnerContact2", typeof(string));
                 dtClient.Columns.Add("OwnerEmail", typeof(string));
                 dtClient.Columns.Add("GetSeatedOffer", typeof(bool));
-                dtClient.Columns.Add("CurrentWaitTime", typeof(Int32));
+                dtClient.Columns.Add("QuotedTime", typeof(string));
                 dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
                 dtClient.Columns.Add("ModifiedBy", typeof(Int32));
                 dtClient.Columns.Add("SeatingSize", typeof(Int32));
@@ -210,7 +210,7 @@ namespace Trufl.Data_Access_Layer
                                   restaurant.OwnerContact2,
                                   restaurant.OwnerEmail,
                                   restaurant.GetSeatedOffer,
-                                  restaurant.CurrentWaitTime,
+                                  restaurant.QuotedTime,
                                   restaurant.ModifiedDate,
                                   restaurant.ModifiedBy,
                                   restaurant.SeatingSize,
