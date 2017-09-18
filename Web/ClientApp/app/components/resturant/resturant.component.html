@@ -25,10 +25,10 @@
 
                 <tbody>
 
-                    <tr *ngFor="let restaurentinfo of restaurent_info|searchPipe:'restaurentname':search">
-                        <td>{{restaurentinfo.restaurentname}}</td>
-                        <td>{{restaurentinfo.Lastvisited}}</td>
-                        <td>View Details</td>
+                    <tr *ngFor="let restaurentinfo of restaurent_info|searchPipe:'RestaurantName':search">
+                        <td>{{restaurentinfo.RestaurantName}}</td>
+                        <td>{{restaurentinfo.ModifiedDate|date: 'dd/MM/yyyy'}}</td>
+                        <td><a data-toggle="modal" data-target="#EditRes" class="pull-right addres" href="#" (click)="editDetails(restaurentinfo)">View Details</a></td>
 
                     </tr>
 
@@ -84,11 +84,11 @@
 </div>
 
 
-<div class="modal fade" id="AddRes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="AddRes" #AddRes tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                 <h4 class="modal-title" id="myModalLabel">Add Resturant</h4>
             </div>
             <div class="modal-body">
@@ -100,8 +100,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Resturant Name</label>
-                                    <input class="form-control" type="text" placeholder="John" [formControl]="myForm.controls['restaurentname']">
-                                    <div *ngIf="myForm.controls['restaurentname'].hasError('required') && myForm.controls['restaurentname'].touched" class="alert alert-danger">You must include restauerntname</div>
+                                    <input class="form-control" formControlName="RestaurantName" type="text" placeholder="John" [(ngModel)]="data.RestaurantName">
+                                    <div *ngIf="myForm.controls['RestaurantName'].hasError('required') && myForm.controls['RestaurantName'].touched" class="alert alert-danger">You must include restauerntname</div>
 
                                 </div>
 
@@ -110,9 +110,9 @@
                                 <div class="form-group">
                                     <label>Email Id</label>
 
-                                    <input class="form-control" type="email" placeholder="John" [formControl]="myForm.controls['emailid']">
+                                    <input class="form-control" type="email" placeholder="John" formControlName="Email" [(ngModel)]="data.Email">
 
-                                    <div *ngIf="myForm.controls['emailid'].hasError('required') && myForm.controls['emailid'].touched" class="alert alert-danger">You mustinclude emailId </div>
+                                    <div *ngIf="myForm.controls['Email'].hasError('required') && myForm.controls['Email'].touched" class="alert alert-danger">You mustinclude emailId </div>
 
 
 
@@ -125,8 +125,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Contact Number 1</label>
-                                    <input type="text" [formControl]="myForm.controls['contact1']" />
-                                    <div *ngIf="myForm.controls['contact1'].hasError('required') && myForm.controls['contact1'].touched" class="alert alert-danger">You must enter contact </div>
+                                    <input type="text" formControlName="PrimaryContact" [(ngModel)]="data.PrimaryContact" />
+                                    <div *ngIf="myForm.controls['PrimaryContact'].hasError('required') && myForm.controls['PrimaryContact'].touched" class="alert alert-danger">You must enter contact </div>
 
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Contact Number 2</label>
-                                    <input type="text" [formControl]="myForm.controls['contact2']" />
+                                    <input type="text" formControlName="SecondaryContact" [(ngModel)]="data.SecondaryContact" />
 
                                 </div>
                             </div>
@@ -147,9 +147,9 @@
                                     <label>Address 1</label>
 
 
-                                    <textarea rows="4" cols="4" class="form-control" [formControl]="myForm.controls['address1']"></textarea>
+                                    <textarea rows="4" cols="4" class="form-control" formControlName="Address1" [(ngModel)]="data.Address1"></textarea>
 
-                                    <div *ngIf="myForm.controls['address1'].hasError('required') && myForm.controls['address1'].touched" class="alert alert-danger">You mustinclude address </div>
+                                    <div *ngIf="myForm.controls['Address1'].hasError('required') && myForm.controls['Address1'].touched" class="alert alert-danger">You mustinclude address </div>
 
 
                                 </div>
@@ -160,7 +160,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Address 2</label>
-                                    <textarea rows="4" cols="4" [formControl]="myForm.controls['address2']"> </textarea>
+                                    <textarea rows="4" cols="4" formControlName="Address2" [(ngModel)]="data.Address2"> </textarea>
 
                                 </div>
                             </div>
@@ -171,24 +171,28 @@
                                 <div class="form-group">
                                     <label>State</label>
 
-                                    <select [formControl]="myForm.controls['state']">
-                                        <option *ngFor="let statename of states" [ngValue]="statevalue">{{statename.name}}</option>
+                                    <select formControlName="State" [(ngModel)]="data.State" (change)="getstate(data.State)">
+                                        <option *ngFor="let statename of states" [ngValue]="statename.value">{{statename.name}}</option>
                                     </select>
+
+
 
 
                                 </div>
                             </div>
+
 
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Zip/Pin Code</label>
-                                    <input type="text" [formControl]="myForm.controls['zipcode']" />
+                                    <input type="text" formControlName="Zipcode" [(ngModel)]="data.Zipcode" />
 
-                                    <div *ngIf="myForm.controls['zipcode'].hasError('required') && myForm.controls['zipcode'].touched" class="alert alert-danger">You mustenter zipcode </div>
+                                    <div *ngIf="myForm.controls['Zipcode'].hasError('required') && myForm.controls['Zipcode'].touched" class="alert alert-danger">You mustenter zipcode </div>
 
                                 </div>
                             </div>
+
 
 
 
@@ -196,8 +200,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Owner Name</label>
-                                    <input type="text" [formControl]="myForm.controls['ownername']" />
-                                    <div *ngIf="myForm.controls['ownername'].hasError('required') && myForm.controls['ownername'].touched" class="alert alert-danger">You mustenter ownername </div>
+                                    <input type="text" formControlName="OwnerName" [(ngModel)]="data.OwnerName" />
+                                    <div *ngIf="myForm.controls['OwnerName'].hasError('required') && myForm.controls['OwnerName'].touched" class="alert alert-danger">You mustenter ownername </div>
 
                                 </div>
                             </div>
@@ -205,8 +209,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Owner Email</label>
-                                    <input type="email" [formControl]="myForm.controls['owneremail']" />
-                                    <div *ngIf="myForm.controls['owneremail'].hasError('required') && myForm.controls['owneremail'].touched" class="alert alert-danger">You mustenter owneremail </div>
+                                    <input type="email" formControlName="OwnerEmail" [(ngModel)]="data.OwnerEmail" />
+                                    <div *ngIf="myForm.controls['OwnerEmail'].hasError('required') && myForm.controls['OwnerEmail'].touched" class="alert alert-danger">You mustenter owneremail </div>
                                 </div>
                             </div>
 
@@ -217,27 +221,33 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Owner Contact Number 1</label>
-                                    <input type="text" [formControl]="myForm.controls['ownercontact1']" />
-                                    <div *ngIf="myForm.controls['ownercontact1'].hasError('required') && myForm.controls['ownercontact1'].touched" class="alert alert-danger">You mustenter ownercontact </div>
+                                    <input type="text" formControlName="OwnerContact1" [(ngModel)]="data.OwnerContact1" />
+                                    <div *ngIf="myForm.controls['OwnerContact1'].hasError('required') && myForm.controls['OwnerContact1'].touched" class="alert alert-danger">You mustenter ownercontact </div>
                                 </div>
                             </div>
-
 
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Owner Contact Number 2</label>
-                                    <input type="text" [formControl]="myForm.controls['ownercontact2']" />
+                                    <input type="text" formControlName="OwnerContact2" [(ngModel)]="data.OwnerContact2" />
                                 </div>
                             </div>
 
+
+                          <!--  <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Quoted Time</label>
+                                    <input type="text" formControlName="QuotedTime" [(ngModel)]="data.QuotedTime" />
+                                </div>
+                            </div> -->
 
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea rows="4" cols="4" [formControl]="myForm.controls['description']"> </textarea>
-                                    <div *ngIf="myForm.controls['description'].hasError('required') && myForm.controls['description'].touched" class="alert alert-danger">You mustenter ownercontact </div>
+                                    <textarea rows="4" cols="4" formControlName="Description" [(ngModel)]="data.Description"> </textarea>
+                                    <div *ngIf="myForm.controls['Description'].hasError('required') && myForm.controls['Description'].touched" class="alert alert-danger">You mustenter ownercontact </div>
                                 </div>
                             </div>
 
@@ -245,8 +255,10 @@
                             <div class="col-md-12">
                                 <div class="popup-btn">
 
-                                    <button type="submit" class="primary-btn" [disabled]="!myForm.valid">Submit</button>
-                                    <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a>
+                                    <button type="submit" class="primary-btn" >Submit</button>&nbsp;&nbsp;
+
+                                    <button class="primary-btn" (click)="cancel()">Cancel</button>
+                                    <!--  <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a> -->
                                 </div>
                             </div>
                         </div>
@@ -262,7 +274,208 @@
 
 
 
-<div class="modal fade" id="Notification" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="EditRes" #EditRes tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                <h4 class="modal-title" id="myModalLabel">Edit Resturant</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row modal-items">
+
+                    <form novalidate (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm">
+
+                        <div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Resturant Name</label>
+                                    <input class="form-control" formControlName="RestaurantName" type="text" placeholder="John" [(ngModel)]="data.RestaurantName">
+                                    <div *ngIf="myForm.controls['RestaurantName'].hasError('required') && myForm.controls['RestaurantName'].touched" class="alert alert-danger">You must include restauerntname</div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email Id</label>
+
+                                    <input class="form-control" type="email" placeholder="John" formControlName="Email" [(ngModel)]="data.Email">
+
+                                    <div *ngIf="myForm.controls['Email'].hasError('required') && myForm.controls['Email'].touched" class="alert alert-danger">You mustinclude emailId </div>
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Contact Number 1</label>
+                                    <input type="text" formControlName="PrimaryContact" [(ngModel)]="data.PrimaryContact" />
+                                    <div *ngIf="myForm.controls['PrimaryContact'].hasError('required') && myForm.controls['PrimaryContact'].touched" class="alert alert-danger">You must enter contact </div>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Contact Number 2</label>
+                                    <input type="text" formControlName="SecondaryContact" [(ngModel)]="data.SecondaryContact" />
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address 1</label>
+
+
+                                    <textarea rows="4" cols="4" class="form-control" formControlName="Address1" [(ngModel)]="data.Address1"></textarea>
+
+                                    <div *ngIf="myForm.controls['Address1'].hasError('required') && myForm.controls['Address1'].touched" class="alert alert-danger">You mustinclude address </div>
+
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address 2</label>
+                                    <textarea rows="4" cols="4" formControlName="Address2" [(ngModel)]="data.Address2"> </textarea>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>State</label>
+
+                                    <select formControlName="State" [(ngModel)]="data.State">
+                                        <option *ngFor="let statename of states" >{{statename.name}}</option>
+                                    </select>
+
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Zip/Pin Code</label>
+                                    <input type="text" formControlName="Zipcode" [(ngModel)]="data.Zipcode" />
+
+                                    <div *ngIf="myForm.controls['Zipcode'].hasError('required') && myForm.controls['Zipcode'].touched" class="alert alert-danger">You mustenter zipcode </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <hr class="popsep" />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Name</label>
+                                    <input type="text" formControlName="OwnerName" [(ngModel)]="data.OwnerName" />
+                                    <div *ngIf="myForm.controls['OwnerName'].hasError('required') && myForm.controls['OwnerName'].touched" class="alert alert-danger">You mustenter ownername </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Email</label>
+                                    <input type="email" formControlName="OwnerEmail" [(ngModel)]="data.OwnerEmail" />
+                                    <div *ngIf="myForm.controls['OwnerEmail'].hasError('required') && myForm.controls['OwnerEmail'].touched" class="alert alert-danger">You mustenter owneremail </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Contact Number 1</label>
+                                    <input type="text" formControlName="OwnerContact1" [(ngModel)]="data.OwnerContact1" />
+                                    <div *ngIf="myForm.controls['OwnerContact1'].hasError('required') && myForm.controls['OwnerContact1'].touched" class="alert alert-danger">You mustenter ownercontact </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Contact Number 2</label>
+                                    <input type="text" formControlName="OwnerContact2" [(ngModel)]="data.OwnerContact2" />
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Quoted Time</label>
+                                    <input type="text" formControlName="QuotedTime" [(ngModel)]="data.QuotedTime" />
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea rows="4" cols="4" formControlName="Description" [(ngModel)]="data.Description"> </textarea>
+                                    <div *ngIf="myForm.controls['Description'].hasError('required') && myForm.controls['Description'].touched" class="alert alert-danger">You mustenter ownercontact </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="popup-btn">
+
+                                    <button type="submit" class="primary-btn" [disabled]="!myForm.valid">Submit</button>
+                                    <button class="primary-btn" (click)="EditCancel()">Cancel</button>
+                                    <!--  <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="Notification" #Notification tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -277,20 +490,20 @@
 
                         <div class="col-md-12">
 
-                            <div class="form-group ffw addbox">                             
-                                
+                            <div class="form-group ffw addbox">
+
                                 <select>
                                     <option value="volvo">Volvo</option>
                                     <option value="saab">Saab</option>
                                     <option value="mercedes">Mercedes</option>
                                     <option value="audi">Audi</option>
                                 </select>
-                            </div>  
+                            </div>
 
                             <div class="form-group ffw addbox">
                                 <label>Select Date</label>
                                 <my-date-picker name="mydate" [options]="myDatePickerOptions"
-                                                [formControl]="myFormdata.controls['ExpiryDate']"></my-date-picker>
+                                                formControlName="ExpiryDate"></my-date-picker>
                                 <div *ngIf="myFormdata.controls['ExpiryDate'].hasError('required') && myFormdata.controls['ExpiryDate'].touched" class="alert alert-danger">please select date </div>
 
                             </div>
@@ -298,17 +511,18 @@
 
                             <div class="form-group ffw">
                                 <label>Description</label>
-                                <textarea  [formControl]="myFormdata.controls['description']"></textarea>
+                                <textarea formControlName="description"></textarea>
                                 <div *ngIf="myFormdata.controls['description'].hasError('required') && myFormdata.controls['description'].touched" class="alert alert-danger">please atleast 5 characters </div>
 
                             </div>
                             <div class="popup-btn">
 
                                 <!-- <a href="#" class="primary-btn">Submit</a> -->
-                                <button type="submit"  class="primary-btn"   [disabled]="!myFormdata.valid">Submit</button>&nbsp;&nbsp;
+                                <button type="submit" class="primary-btn" [disabled]="!myFormdata.valid">Submit</button>&nbsp;&nbsp;
+                                <!--<button name="button" data-dismiss="modal" class="secondary-btn">Cancel</button>-->
+                                <button class="primary-btn" (click)="NotificationCancel()">Cancel</button>
 
-                                <button name="button"  data-dismiss="modal" class="secondary-btn">Cancel</button>
-                                <!--  <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a> -->
+                                <!--<a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a> -->
                             </div>
                         </div>
 

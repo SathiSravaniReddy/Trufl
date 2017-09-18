@@ -11,7 +11,7 @@ export class RestaurenService {
 
     }
     public getRestaurentDetails() {
-        return this.http.get('assets/restaurent.json').map(
+        return this.http.get('http://localhost:8679/api/Trufl/Admin/GetAllRestaurants').map(
             (res) => res.json())
     }
 
@@ -27,7 +27,7 @@ export class RestaurenService {
     addRestaurentDetails(restaurentInfo: any) {
         this.restaurentdetails = restaurentInfo;
         console.log(this.restaurentdetails);
-        return this.http.post('', this.restaurentdetails).map(
+        return this.http.post('http://localhost:8679/api/Trufl/Admin/SaveRestaurant', this.restaurentdetails).map(
             (res) => res.json()
         )
     }
