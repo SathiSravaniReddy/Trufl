@@ -1,5 +1,6 @@
 ﻿import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { constant } from '../shared/appsettings';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -11,12 +12,12 @@ export class RestaurenService {
 
     }
     public getRestaurentDetails() {
-        return this.http.get('assets/restaurent.json').map(
+        return this.http.get('http://localhost:8679/api/Trufl/Admin/GetAllRestaurants').map(
             (res) => res.json())
     }
 
     public getnotifications() {
-        return this.http.get('http://localhost:8679/api/Trufl/Admin/GetNotifications').map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Admin' + '/' + 'GetNotifications').map(
             (res) => res.json())
     }
 
@@ -27,7 +28,7 @@ export class RestaurenService {
     addRestaurentDetails(restaurentInfo: any) {
         this.restaurentdetails = restaurentInfo;
         console.log(this.restaurentdetails);
-        return this.http.post('', this.restaurentdetails).map(
+        return this.http.post('http://localhost:8679/api/Trufl/Admin/SaveRestaurant', this.restaurentdetails).map(
             (res) => res.json()
         )
     }
@@ -35,7 +36,7 @@ export class RestaurenService {
         this.notificationdetails = notificationInfo;
         console.log(this.notificationdetails);
 
-        return this.http.post('http://localhost:8679/api/Trufl/Admin/SaveNotifications', this.notificationdetails).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'Admin' + '/' +'SaveNotifications', this.notificationdetails).map(
             (res) => res.json()
         )
     }

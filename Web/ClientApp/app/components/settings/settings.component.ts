@@ -30,11 +30,9 @@ export class SettingsComponent implements OnInit {
     constructor(private settingsService: SettingsService, private router: Router, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
         this.usertype = this.loginService.getUserType();
-        console.log(this.usertype, "usertype");
         this.truflid = this.loginService.getTrufluserID();
-        console.log(this.truflid, "truflid");
         this.retarauntid = this.loginService.getRestaurantId();
-        console.log(this.retarauntid, "retarauntid");
+       
     }
 
     ngOnInit() {
@@ -52,10 +50,9 @@ export class SettingsComponent implements OnInit {
                 })
             });
 
-            console.log(this.UserInformation, "this.UserInformation");
+            
             this.UsersInformation = this.user_Profile.RegisteredRestaurants;
-            console.log(this.UsersInformation, "this.UsersInformation");
-            console.log(this.user, "this.user");
+           
         }
         );
 
@@ -80,11 +77,11 @@ export class SettingsComponent implements OnInit {
 
 
     Done() {
-        console.log(this.user);
+    
         this.user.map(function (obj) {
             obj.isEdit = false;
         });
-        console.log(this.truflid,"this.truflid in done");
+   
         this.profileUser.UserID = this.truflid;
         this.profileUser.UserName = this.user[0].value;
         this.profileUser.UserEmail = this.user[1].value;
