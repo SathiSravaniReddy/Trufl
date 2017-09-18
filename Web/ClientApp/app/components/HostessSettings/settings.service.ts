@@ -1,5 +1,6 @@
 ﻿import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { constant } from '../shared/appsettings';
 import 'rxjs/add/operator/map';
 import {LoginService} from '../shared/login.service'
 
@@ -12,32 +13,32 @@ export class HostessSettingsService {
 
     //Get API for settings page
     getUserDetails(usertype, truflid, restaurantid) {
-        return this.http.get('http://localhost:8679/api/Trufl/GetRestaurantUserDetails/' + restaurantid + '/' + truflid + '/' + usertype).map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'GetRestaurantUserDetails/' + restaurantid + '/' + truflid + '/' + usertype).map(
             (res) => res.json());
 
     }
 
     //Get API for Bio categories
     GetBioCategories() {
-        return this.http.get('http://localhost:8679/api/Trufl/GetBioCategories').map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'GetBioCategories').map(
             (res) => res.json());
     }
    
     //Get API for BioEvents based on categories 
     GetBioEvents(categoryId) {
-        return this.http.get('http://localhost:8679/api/Trufl/GetBioEvents/' + categoryId).map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'GetBioEvents/' + categoryId).map(
             (res) => res.json());
     }
 
     //Post API for AddUserBioEvents
     AddUserBioEvents(bio) {
-        return this.http.post('http://localhost:8679/api/Trufl/SaveUserBioEvents', bio).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'SaveUserBioEvents', bio).map(
             (res) => res.json());
     }
 
     //Post Api for Edit Profile
     PostProfileEdit(user) {
-        return this.http.post('http://localhost:8679/api/Trufl/Admin/SaveProfilePassword', user).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'Admin/SaveProfilePassword', user).map(
             (res) => res.json());
     }
 }
