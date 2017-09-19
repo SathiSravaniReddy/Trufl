@@ -36,31 +36,35 @@ export class SettingsComponent implements OnInit {
     }
 
     ngOnInit() {
+        
+        this.getuserDetails();
+
+
+    }
+
+    getuserDetails() {
         let that = this;
         this.settingsService.getUserDetails(this.usertype, this.retarauntid, this.truflid).subscribe((res: any) => {
             this.user_Profile = res._Data;
-            console.log(this.user_Profile, " this.user_Profile");
+
             this.UserInformation = this.user_Profile.UsersInformation[0];
             this.user = [];
             Object.keys(this.UserInformation).map(function (keyName, index) {
                 that.user.push({
                     isEdit: false,
                     value: that.UserInformation[keyName],
-                    key: keyName
+                    key: keyName,
+
                 })
             });
 
-            
+
             this.UsersInformation = this.user_Profile.RegisteredRestaurants;
-           
+
+
         }
         );
-
-
-
     }
-
-
 
     showCancelDone() {
 
@@ -94,7 +98,7 @@ export class SettingsComponent implements OnInit {
         }
         );
 
-
+        this.getuserDetails();
 
     }
     cancel() {

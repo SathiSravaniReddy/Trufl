@@ -25,22 +25,73 @@
             <tbody>
 
                 <tr *ngFor="let obj of user; let i = index">
-                    <td *ngIf="!obj.isEdit"  class="text"><p>{{obj.key}}:</p><p class="settingsdata">{{obj.value}}</p></td>
-                    
+                    <td *ngIf="!obj.isEdit" class="text"><p>{{obj.key}}:</p><p class="settingsdata">{{obj.value}}</p></td>
+
                     <td *ngIf="!obj.isEdit">
                         <a (click)="editDetails(obj, i)">
                             <img alt="" src="../../../../wwwroot/images/edit.png" />
                         </a>
                     </td>
-                    <!--<td *ngIf="obj.isEdit"><label>{{obj.key}}:</label><input type="text" value="uname"  name="uname" [(ngModel)]="obj.value" /></td>-->
-                    <td *ngIf="obj.isEdit && obj.key!='Password'"><label class="text-muted">{{obj.key}}:</label><input type="text" value="uname" name="uname" [(ngModel)]="obj.value"/></td>
-                    <td *ngIf="obj.isEdit && obj.key=='Password'"><label class="text-muted">{{obj.key}}:</label><input type="password" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
+
+                    <td *ngIf="obj.isEdit && obj.key=='FullName'">
+                    <label class="text-muted">{{obj.key}}:</label><input type="text" name="name" [(ngModel)]="obj.value"  id="name" #name="ngModel" pattern="^[A-Za-z ]{2,}$" required minlength="2"/>
+                        <label *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                            <label *ngIf="name.errors.required">
+                                username is required.
+                            </label>
+                            <label *ngIf="name.errors.minlength">
+                                username must be at least 2 characters long.
+                            </label>
+                            <label *ngIf="name.errors.pattern">
+                                username must match pattern
+                            </label>
+
+                        </label>
+                    </td>
+
+
+
+
+                    <td *ngIf="obj.isEdit && obj.key=='Email'">
+                        <label class="text-muted">{{obj.key}}:</label><input type="email" name="email" [(ngModel)]="obj.value" id="email" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required  />
+                        <label *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+
+                            <label *ngIf="email.errors.required">
+                                email is required.
+                            </label>
+                           
+                            <label *ngIf="email.errors.pattern">
+                                email  must match pattern
+                            </label>
+
+                        </label>
+                    </td>
+
+
+                    <td *ngIf="obj.isEdit && obj.key=='Password'">
+                        <label class="text-muted">{{obj.key}}:</label><input type="password" required minlength="8" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="password" name="password" #password="ngModel" [(ngModel)]="obj.value" />
+                        <label *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+
+                            <label *ngIf="password.errors.required">
+                                password is required.
+                            </label>
+                            <label *ngIf="password.errors.minlength">
+                                password must be at least 8 characters long.
+                            </label>
+                            <label *ngIf="password.errors.pattern">
+                                password must match pattern
+                            </label>
+
+                        </label>
+
+                    </td>
+
                 </tr>
+
+
                
-                 
-                       <!--<td class="alert alert-danger">password required</td>-->
-                   
-                
+
                 <tr *ngIf="isShow">
                     <td>
                         <button type="submit" class="primary-btn lgbtn pull-left" (click)="Done()" id="done">Done</button>
