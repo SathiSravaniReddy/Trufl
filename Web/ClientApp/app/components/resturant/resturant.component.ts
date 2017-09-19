@@ -1,5 +1,5 @@
 ﻿
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { RestaurenService } from './restaurent.service';
 import { Pipe, PipeTransform } from '@angular/core';
 
@@ -10,20 +10,55 @@ import { IMyDpOptions } from 'mydatepicker';
 import { Router } from '@angular/router';
 
 
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 
 @Component({
     selector: 'restaurant',
-    templateUrl: './resturant.component.html'
+    templateUrl: './resturant.component.html',
+    providers: [ToastsManager, ToastOptions]
 })
 export class ResturantComponent implements OnInit {
     public restaurent_info: any;
     public notifications_info: any;
     public states: any;
     public notificationdatails: any;
+    public details1: any;
 
     myForm: FormGroup;
     myFormdata: FormGroup;
-    //name: FormControl; 
+    //name: FormControl;
+    public data: any = {};
+    public state: any;
+   
+   
+
+    @ViewChild('AddRes') addRes;
+    @ViewChild('Notification') notifications;
+    @ViewChild('EditRes') edit;
+    
+
+    /*public  data = {
+           "restaurentname": "",
+           "emailid": "",
+           "contact1": "",
+           "contact2": "",
+           "address1": "",
+           "address2": "",
+           "state": "",
+           "zipcode": "",
+           "ownername": "",
+           "owneremail": "",
+           "ownercontact1": "",
+           "ownercontact2": "",
+           "description":""
+   
+       }; */
+
+
+
+
 
 
     private myDatePickerOptions: IMyDpOptions = {
@@ -31,40 +66,27 @@ export class ResturantComponent implements OnInit {
     };
 
 
-    constructor(private restaurenService: RestaurenService, private fb: FormBuilder, private router: Router) {
+    constructor(private restaurenService: RestaurenService, private fb: FormBuilder, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
 
-        /*   this.myForm = new FormGroup({
-               restaurentname: new FormControl('', [Validators.required, Validators.minLength(2)]),
-               emailid: new FormControl('', [Validators.required]),
-               contact1: new FormControl('', Validators.required),
-               contact2: new FormControl('', Validators.required),
-               address1: new FormControl('', Validators.required),
-               address2: new FormControl('', Validators.required),
-               state: new FormControl('', Validators.required),
-               zipcode: new FormControl('', Validators.required),
-               ownername: new FormControl('', Validators.required),
-               owneremail: new FormControl('', Validators.required),
-               ownercontact1: new FormControl('', Validators.required),
-               ownercontact2: new FormControl('', Validators.required),
-               description: new FormControl('', Validators.required)
-   
-   
-           }); */
+        this._toastr.setRootViewContainerRef(vRef);
+        //called first time before the ngOnInit()
+
+
         this.myForm = fb.group({
-            'restaurentname': [null, Validators.required],
-            'emailid': [null, Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')])],
-            'contact1': [null, Validators.required],
-            'contact2': [null],
-            'address1': [null, Validators.required],
-            'address2': [null],
-            'state': [null],
-            'zipcode': [null, Validators.required],
-            'ownername': [null, Validators.required],
-            'owneremail': [null, Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')])],
-            'ownercontact1': [null, Validators.required],
-            'ownercontact2': [null],
-            'description': [null, Validators.required]
-
+            'RestaurantName': [null, Validators.required],
+            'Email': [null, Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')])],
+            'PrimaryContact': [null, Validators.required],
+            'SecondaryContact': [null],
+            'Address1': [null, Validators.required],
+            'Address2': [null],
+            'State': [null],
+            'Zipcode': [null, Validators.required],
+            'OwnerName': [null, Validators.required],
+            'OwnerEmail': [null, Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')])],
+            'OwnerContact1': [null, Validators.required],
+            'OwnerContact2': [null],
+            'Description': [null, Validators.required],
+            'QuotedTime': [null, Validators.required]
 
         });
 
@@ -78,16 +100,20 @@ export class ResturantComponent implements OnInit {
 
 
 
+
+
+
     }
     ngOnInit() {
 
         this.getrestaurent();
         this.getnotifications();
 
-        this.states = [{ name: 'Telangane', value: 0 },
-        { name: 'AP', value: 0 },
-        { name: 'Kerala', value: 0 },
-        { name: 'Tamilnadu', value: 0 },
+        this.states = [
+            { value: 0, name: 'Dallas' },
+            { value: 1, name: 'Newyork' },
+            { value: 2, name: 'Chicago' }
+        
 
         ];
 
@@ -96,63 +122,156 @@ export class ResturantComponent implements OnInit {
 
     }
 
+    getstate(name) {
+       
+        this.state = name;
+        console.log(this.state);
+    }
+
 
     public getrestaurent() {
         this.restaurenService.getRestaurentDetails().subscribe((res: any) => {
 
-            this.restaurent_info = res.data;
+            console.log(res);
+            this.restaurent_info = res._Data;
             console.log(this.restaurent_info);
         })
 
     }
 
-   public getnotifications() {
+    public getnotifications() {
 
         this.restaurenService.getnotifications().subscribe((res: any) => {
 
             this.notifications_info = res._Data;
             console.log(this.notifications_info);
-        }) 
+        })
 
-    } 
+    }
 
     onSubmit(details: any) {
-        this.restaurenService.addRestaurentDetails(details).subscribe((res: any) => {
+
+       // console.log(details1);
+
+        var detailsdata = {
+            "RestaurantID": null,
+            "RestaurantName": details['RestaurantName'],
+            "Description": details['Description'],
+            "PrimaryContact": details['PrimaryContact'],
+            "SecondaryContact": details['SecondaryContact'],
+            "HoursofOperation": null,
+            "Parking": null,
+            "Geo": null,
+            "Email": details['Email'],
+            "Address1": details['Address1'],
+            "Address2": details['Address2'],
+            "State": this.state,
+            "Zipcode": details['Zipcode'],
+            "OwnerName": details['OwnerName'],
+            "OwnerContact1": details['OwnerContact1'],
+            "OwnerContact2": details['OwnerContact2'],
+            "OwnerEmail": details['OwnerEmail'],
+            "GetSeatedOffer": null,
+            "CurrentWaitTime":1,
+            /*"QuotedTime": details['QuotedTime'],*/
+            "ModifiedDate":"2017-09-17T21:29:44.0958115-07:00",
+            "ModifiedBy": 1,
+            "SeatingSize": 2,
+            "NumberOfTables": 2,
+            "MenuPath": 2,
+            "LoggedInUser":1           
+        }
+
+
+        console.log(detailsdata,"details info");
+
+        // this.details1.QuotedTime="00:30"
+        this.restaurenService.addRestaurentDetails(detailsdata).subscribe((res: any) => {
             console.log(res);
+            //this.data = "";
+            this.getrestaurent();
+
+            this.addRes.nativeElement.click();
+           this.myForm.reset();
 
         })
+       
+      
+        
+    }
+
+    editDetails(restaurentinfo,$event) {
+        event.preventDefault();
+        console.log(restaurentinfo);
+        this.data = restaurentinfo;
+        console.log(this.data);
+      
+
+      /*  this.data.State = this.states.filter(statename => statename.id === this.data.State.id);
+        console.log(this.data.State);*/
+
+        //this.myForm.setControl = restaurentinfo;
+
+        //this.myForm.setValue(restaurentinfo);
     }
 
 
 
     onSubmitNotification(details: any) {
         console.log(details);
-
-
         /*   console.log("coming");
           console.log(details); */
         details.ExpiryDate = details.ExpiryDate.formatted;
         //this.notificationdatails['myDate'] = details.myDate['formatted'];
         console.log(details);
         this.restaurenService.onSubmitNotifications(details).subscribe((res: any) => {
-            console.log(res);
+            //console.log(res);
+
+            this.myFormdata.reset();
+            this.notifications.nativeElement.click();  
+            this.getnotifications();
+
             if (res['_StatusMessage'] == "Success") {
-                alert("record successfully saved");
+
+                window.setTimeout(() => {
+                    this._toastr.success("data saved successfully");
+                }, 20);
+
+                //alert("record successfully saved");
             }
             else {
                 alert("Error");
             }
-
-
-
+          
+          
+          
         })
 
-        this.getnotifications();
+
+       
 
 
 
     }
 
+    cancel() {
+
+        this.myForm.reset();        
+        this.addRes.nativeElement.click();
+
+
+    }
+
+    EditCancel() {       
+        this.myForm.reset();
+        this.edit.nativeElement.click();
+
+    }
+
+    NotificationCancel() {        
+        this.myFormdata.reset();
+        this.notifications.nativeElement.click();  
+    }
 
 
 }

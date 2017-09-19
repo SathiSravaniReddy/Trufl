@@ -6,13 +6,13 @@ import { ProfileUser } from './profileUser';
 import { LoginService } from '../shared/login.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-
+import { DatePipe } from "@angular/common";
 
 @Component({
     selector: 'settings',
     templateUrl: './settings.component.html',
     styleUrls: ['./settings.component.css'],
-    providers: [ToastsManager, ToastOptions]
+    providers: [ToastsManager, ToastOptions, DatePipe]
 })
 export class HostessSettingsComponent implements OnInit {
     private settingsData;
@@ -20,7 +20,8 @@ export class HostessSettingsComponent implements OnInit {
     private UserInfo: any;
     private user: any=[];
     private profileUser = new ProfileUser();
-    private truflCustomers: any;
+    private truflCustomers: any = [];
+    private showTruflCustomers: boolean = true;
     private showProfile: boolean = false;
     private showbio: boolean = true;
     private profileData: any = [];
@@ -44,7 +45,7 @@ export class HostessSettingsComponent implements OnInit {
     private bio = new BioEvent();
     @ViewChild('bioModal') bioModal;
     
-    constructor(private settingsService: HostessSettingsService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+    constructor(private settingsService: HostessSettingsService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private datePipe: DatePipe) {
         this._toastr.setRootViewContainerRef(vRef);
         //called first time before the ngOnInit()
         this.usertype = this.loginService.getUserType();
@@ -62,10 +63,6 @@ export class HostessSettingsComponent implements OnInit {
         this.settingsService.getUserDetails(this.usertype, this.truflid, this.restaurantid).subscribe((res: any) => {
             this.settingsData = res._Data;
             //Profile credentials
-            //this.settingsData.UserLoginInformation.map((item: any) => {
-            //   this.userProfile = item;
-
-            //});
             this.UserInfo = this.settingsData.UserLoginInformation[0];
             Object.keys(this.UserInfo).map(function (keyName, index) {
                 that.user.push({
@@ -74,20 +71,23 @@ export class HostessSettingsComponent implements OnInit {
                     key: keyName
                 })
             });
+
             //TruflCustomers Data
-            this.truflCustomers = this.settingsData.RestaurantUserDetailswithHistory;
-
-            //User Profile Data
-            this.settingsData.UserProfielFullName.map((item: any) => {
-               this.profileData = item;
-            });
-
-            //Bio Data
-            this.bioData = this.settingsData.BioData;
-
-            //History Data
-            this.historyData = this.settingsData.BookingHistory;
-
+            if (this.settingsData.RestaurantUserDetailswithHistory.length > 0) {
+                this.showTruflCustomers = true;   
+                this.settingsData.RestaurantUserDetailswithHistory.map((item: any) => {
+                    return this.truflCustomers.push({
+                        TruflUserID: item.TruflUserID,
+                        FullName: item.FullName,
+                        LastVisited: item.LastVisited ? this.datePipe.transform(item.LastVisited, 'd/M/yy') : ""
+                    })
+                });
+            }
+            else {
+                this.showTruflCustomers = false;
+            }
+           
+            //console.log(this.truflCustomers );
        });
     }
 
@@ -128,8 +128,25 @@ export class HostessSettingsComponent implements OnInit {
         );
     }
 
-    profile() {
-        this.showProfile = true;
+    //show profile
+    profile(truflUserId) {
+        
+        this.truflid = truflUserId;
+        this.settingsService.getUserDetails(this.usertype, truflUserId, this.restaurantid).subscribe((res: any) => {
+            this.settingsData = res._Data;
+            this.settingsData.UserProfielFullName.map((item: any) => {
+              this.profileData = item;
+            });
+            //Bio Data
+            this.bioData = this.settingsData.BioData;
+
+            //History Data
+            this.historyData = this.settingsData.BookingHistory;
+           
+            this.showProfile = true;
+        });
+
+        //this.showProfile = true;
     }
     closeProile() {
         this.showProfile = false;
@@ -141,7 +158,8 @@ export class HostessSettingsComponent implements OnInit {
 
         
     }
-    
+
+    //edit profile done
     Done() {
         this.user.map(function (obj) {
             obj.isEdit = false;
@@ -158,6 +176,7 @@ export class HostessSettingsComponent implements OnInit {
         }
         );
     }
+    //edit profile cancel
     cancel() {
         var that = this;
         this.user.map(function (obj) {
@@ -181,6 +200,7 @@ export class HostessSettingsComponent implements OnInit {
         this.showbio = true;
         this.showhistory = false;
     }
+    //History
     showHistory() {
         this.showbio = false;
         this.showhistory = true;
@@ -219,6 +239,7 @@ export class HostessSettingsComponent implements OnInit {
         this.AddBioEvents(this.bio);
         this.bioModal.nativeElement.click();
     }
+    //close ADD Bio
     close() {
         this.bioModal.nativeElement.click();
     }

@@ -16,7 +16,7 @@ namespace DTO
         public string SecondaryContact { get; set; }
         public int HoursofOperation { get; set; }
         public bool Parking { get; set; }
-        public Microsoft.SqlServer.Types.SqlGeometry Geo { get; set; }
+        public string Geo { get; set; }
         public string Email { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
@@ -27,7 +27,7 @@ namespace DTO
         public string OwnerContact2 { get; set; }
         public string OwnerEmail { get; set; }
         public bool GetSeatedOffer { get; set; }
-        public int CurrentWaitTime { get; set; }
+        public string QuotedTime { get; set; }
         public DateTime ModifiedDate { get; set; }
         public int ModifiedBy { get; set; }
         public int SeatingSize { get; set; }
