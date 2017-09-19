@@ -23,20 +23,28 @@ export class RegisterComponent {
     //SignUp method
     signUp() {
         console.log(this.user);
-        
-     
-        this.loginService.create(this.user).subscribe((res: any) => {
+
+        if (this.user.LoggedInUserType == null) {
             window.setTimeout(() => {
-                this._toastr.success("Register Successfull");
-               
+                this._toastr.error("Please Select UserType");
+
             }, 500);
-            window.setTimeout(() => {
-                this.router.navigateByUrl("/login");
+        }
+
+        else {
+            this.loginService.create(this.user).subscribe((res: any) => {
+                window.setTimeout(() => {
+                    this._toastr.success("Register Successfull");
+
+                }, 500);
+                window.setTimeout(() => {
+                    this.router.navigateByUrl("/login");
 
 
-            }, 2000);   
-        })     
-               
-    }   
+                }, 2000);
+            })
+
+        }
+    }
 
 }

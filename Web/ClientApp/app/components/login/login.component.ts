@@ -39,51 +39,55 @@ export class LoginComponent {
     signIn() {
        // console.log(this.user);
         
+        this.loginService.setUserType(this.user.usertype);
         if (this.user.usertype == null) {
             window.setTimeout(() => {
                 this._toastr.error("Please Select UserType");
 
             }, 500);
         }
-        this.loginService.setUserType(this.user.usertype);
-        this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
-            res._Data.map((item: any) => {
-                this.loginDetails = item;
-                //console.log(this.loginDetails.TruflUSERID, this.loginDetails.RestaurantID, "RestaurantID");
-                //this.loginService.setUserType(this.loginDetails.TruflMemberType);
-                this.loginService.setTrufluserID(this.loginDetails.TruflUSERID);
-                this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
-                this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
+
+        else {
+            this.loginService.setUserType(this.user.usertype);
+            this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
+                res._Data.map((item: any) => {
+                    this.loginDetails = item;
+                    //console.log(this.loginDetails.TruflUSERID, this.loginDetails.RestaurantID, "RestaurantID");
+                    //this.loginService.setUserType(this.loginDetails.TruflMemberType);
+                    this.loginService.setTrufluserID(this.loginDetails.TruflUSERID);
+                    this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
+                    this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
+                });
+                if (this.loginDetails) {
+
+                    if (this.loginDetails.ForgetPasswordStatus) {
+                        this.ResetPasswordShow();
+                    }
+                    else if (!this.loginDetails.ForgetPasswordStatus) {
+                        if (this.loginDetails.TruflMemberType == "RA ") {
+                            this.router.navigateByUrl('/waitlist');
+                        }
+                        else if (this.loginDetails.TruflMemberType == "TA ") {
+                            this.router.navigateByUrl('/dashboard');
+                        }
+                    }
+
+
+
+
+                }
+                else {
+                    window.setTimeout(() => {
+                        this._toastr.error("Please Enter valid username and password");
+
+                    }, 500);
+                    // this.errorMsg = "Please select usertype and enter valid username and password";
+                }
+
             });
-            if (this.loginDetails) {
-
-                if (this.loginDetails.ForgetPasswordStatus) {
-                    this.ResetPasswordShow();
-                }
-                else if (!this.loginDetails.ForgetPasswordStatus) {
-                    if (this.loginDetails.TruflMemberType == "RA ") {
-                        this.router.navigateByUrl('/waitlist');
-                    }
-                    else if (this.loginDetails.TruflMemberType == "TA ") {
-                        this.router.navigateByUrl('/dashboard');
-                    }
-                }
-                    
-
-               
-               
-            }
-            else {
-                window.setTimeout(() => {
-                    this._toastr.error("Please Enter valid username and password");
-
-                }, 500);
-               // this.errorMsg = "Please select usertype and enter valid username and password";
-            }
-
-        });
 
 
+        }
 
 
        //this.loginService.getLoginDetails(this.loginDetails.TruflMemberType,this.loginDetails.RestaurantID).subscribe((data: any) => {
