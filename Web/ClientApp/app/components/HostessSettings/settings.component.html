@@ -1,6 +1,7 @@
 ﻿<shared-header></shared-header>
 
 <div>
+ 
     <!--Profile-->
     <div class="col-md-12 settingmain">
         <div class="col-md-5 settingtop" id="secondsettingtop">
@@ -13,18 +14,18 @@
                 <tbody>
 
                     <tr *ngFor="let obj of user; let i = index" class="textborder">
-                        <td *ngIf="!obj.isEdit" class="text"><p class="text-muted">{{obj.key}}</p><p>: </p><p class="textdata">{{obj.value}}</p></td>
+                        <td *ngIf="!obj.isEdit" class="text"><p class="text-muted labwid">{{obj.key}} :</p><p class="textdata">{{obj.value}}</p></td>
                         <td *ngIf="!obj.isEdit" class="pull-left">
                             <a (click)="editDetails(obj, i)">
                                 <img alt="" src="../../../../wwwroot/images/edit.png" />
                             </a>
                         </td>
-                        <td *ngIf="obj.isEdit && obj.key!='Password'"><label class="text-muted">{{obj.key}}:</label><input type="text" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
-                        <td *ngIf="obj.isEdit && obj.key=='Password'"><label class="text-muted">{{obj.key}}:</label><input type="password" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
+                        <td *ngIf="obj.isEdit && obj.key!='Password'"><label class="labwid text-muted">{{obj.key}} :</label><input type="text" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
+                        <td *ngIf="obj.isEdit && obj.key=='Password'"><label class="labwid text-muted">{{obj.key}} :</label><input type="password" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
                     </tr>
 
                     <tr>
-                        <td>
+                        <td style="padding:15px;">
                             <button type="submit" class="primary-btn pull-left" (click)="Done()" id="done">Done</button>
                             <button (click)="cancel()" class="secondary-btn " id="cancel">Cancel</button>
                         </td>
@@ -86,7 +87,7 @@
             </div>
 
         <!--Bio Events-->
-            <div class="right-rep" *ngIf="bioData.length!=0">
+            <div class="right-rep" *ngIf="bioData.length>1">
                 <h5>Visit</h5>
                 <div *ngFor="let bio of bioData">
                         
@@ -127,10 +128,12 @@
 
         <!-- History and coins -->
         <div *ngIf="showhistory" class="right-btn">
-            <div *ngFor="let history of historyData">
-                <h5 class="historycount">History (60)</h5>
-                <p *ngIf="this.historyData[0].BookingHistoryDates != ' '">Dates: {{history.BookingHistoryDates|date:'d/M/yy'}}</p>
-                <p>Total Coins Earned:500</p>
+            <div *ngIf="historyData.length>1">
+                <div *ngFor="let history of historyData">
+                    <h5 class="historycount">History (60)</h5>
+                    <p *ngIf="this.historyData[0].BookingHistoryDates != ' '">Dates: {{history.BookingHistoryDates|date:'d/M/yy'}}</p>
+                    <p>Total Coins Earned:500</p>
+                </div>
             </div>
         </div>
 
