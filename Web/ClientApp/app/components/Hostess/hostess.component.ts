@@ -1,12 +1,16 @@
 ﻿
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ViewContainerRef} from '@angular/core';
 import { HostessService } from './hostess.service';
+import { PaginationControlsComponent } from 'ngx-pagination';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'hostess',
     templateUrl: './hostess.component.html',
-    styleUrls: ['./hostess.component.css']
+    styleUrls: ['./hostess.component.css'],
+    providers: [ToastsManager, ToastOptions]
 })
 export class HostessComponent {
 
@@ -32,6 +36,7 @@ export class HostessComponent {
     showSeated:boolean=false;
     ActiveSeats: boolean = false;
     public currentSelectedUser: string;
+   
 
     //Array for Table size
     TableSize = [
@@ -47,7 +52,8 @@ export class HostessComponent {
         { 'size': 20},
     ];
 
-    constructor(private hostessService: HostessService) {
+    constructor(private hostessService: HostessService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+        this._toastr.setRootViewContainerRef(vRef);
         this.classForAccept = "selected";
         this.classForSeated = "";
 
@@ -128,12 +134,14 @@ export class HostessComponent {
         this.accepted = 2;
         event.stopPropagation();
         this.hostessService.acceptedandremovedwaiteduser(item.RestaurantID, this.accepted).subscribe((res: any) => {
-            if (res._Data[0].NotificationMsg) {
-                alert(res._Data[0].NotificationMsg);
-            }
+            
         });
         this.classForAccept = "success";
         this.classForSeated = "selected";
+
+        window.setTimeout(() => {
+            this._toastr.success("search payment has been accepted she has been notified to come to the hostess stand to get started");
+        }, 200);
     }
 
     //Functionality for Seated
@@ -142,6 +150,8 @@ export class HostessComponent {
         this.hostessService.getRestaurantTables(item.RestaurantID,1).subscribe((res: any) => {
             this.tableData = res._Data;
         });
+
+        
     }
 
     //Functionality for submitting reastuarnt table
@@ -150,6 +160,10 @@ export class HostessComponent {
         this.hostessService.updateBooking(this.restaurantTableData).subscribe((res: any) => {
             console.log(res);
         })
+        window.setTimeout(() => {
+            this._toastr.success("submitRestaurantTable");
+        }, 200);
+        
     }
 
     //Selecting table
@@ -165,17 +179,24 @@ export class HostessComponent {
     closeRestaurantTable() {
         this.classForAccept = "success";
         this.classForSeated = "selected";
+        window.setTimeout(() => {
+            this._toastr.success("closed restauranttabel");
+        }, 200);
+
     }
 
     //Functionality for Remove
     remove(item) {
         this.accepted = 5;
         this.hostessService.acceptedandremovedwaiteduser(item.RestaurantID, this.accepted).subscribe((res: any) => {
-            alert(res._Data[0].NotificationMsg);
+         
         });
         this.hostessService.getTruflUserList().subscribe((res: any) => {
             this.truflUserList = res._Data;
         });
+        window.setTimeout(() => {
+            this._toastr.success("removed successfully");
+        }, 200);
     }
 
     //Functionality for Cancel
