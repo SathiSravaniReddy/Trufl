@@ -129,8 +129,8 @@
             </div>
             <div class="modal-body" style="display:inline-block;">
                 <div class="seatselection">
-                    <ul *ngFor="let item of tableData">
-                        <li (click)="selectTable(item)"><a>{{item.TableNo}}</a></li>
+                    <ul>
+                        <li *ngFor="let item of tableData"><a (click)="selectTable(item)">{{item.TableNo}}</a></li>
                         <!--<li><a class="hold" href="#">2 </a> </li>-->
 
                     </ul>
