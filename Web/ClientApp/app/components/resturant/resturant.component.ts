@@ -30,34 +30,14 @@ export class ResturantComponent implements OnInit {
     myFormdata: FormGroup;
     //name: FormControl;
     public data: any = {};
+    public notificationdata: any = {}
     public state: any;
-   
-   
+
+
 
     @ViewChild('AddRes') addRes;
     @ViewChild('Notification') notifications;
-    @ViewChild('EditRes') edit;
-    
-
-    /*public  data = {
-           "restaurentname": "",
-           "emailid": "",
-           "contact1": "",
-           "contact2": "",
-           "address1": "",
-           "address2": "",
-           "state": "",
-           "zipcode": "",
-           "ownername": "",
-           "owneremail": "",
-           "ownercontact1": "",
-           "ownercontact2": "",
-           "description":""
-   
-       }; */
-
-
-
+    /*@ViewChild('EditRes') edit;*/
 
 
 
@@ -88,6 +68,8 @@ export class ResturantComponent implements OnInit {
             'Description': [null, Validators.required],
             'QuotedTime': [null, Validators.required]
 
+
+
         });
 
 
@@ -113,7 +95,7 @@ export class ResturantComponent implements OnInit {
             { value: 0, name: 'Dallas' },
             { value: 1, name: 'Newyork' },
             { value: 2, name: 'Chicago' }
-        
+
 
         ];
 
@@ -123,7 +105,7 @@ export class ResturantComponent implements OnInit {
     }
 
     getstate(name) {
-       
+
         this.state = name;
         console.log(this.state);
     }
@@ -151,7 +133,7 @@ export class ResturantComponent implements OnInit {
 
     onSubmit(details: any) {
 
-       // console.log(details1);
+        console.log(details);
 
         var detailsdata = {
             "RestaurantID": null,
@@ -172,63 +154,137 @@ export class ResturantComponent implements OnInit {
             "OwnerContact2": details['OwnerContact2'],
             "OwnerEmail": details['OwnerEmail'],
             "GetSeatedOffer": null,
-            "CurrentWaitTime":1,
-            /*"QuotedTime": details['QuotedTime'],*/
-            "ModifiedDate":"2017-09-17T21:29:44.0958115-07:00",
+            /*  "CurrentWaitTime":1,*/
+            "QuotedTime": details['QuotedTime'],
+            "ModifiedDate": "2017-09-17T22:27:38.3279471-07:00",
             "ModifiedBy": 1,
             "SeatingSize": 2,
             "NumberOfTables": 2,
             "MenuPath": 2,
-            "LoggedInUser":1           
+            "LoggedInUser": 1
         }
 
 
-        console.log(detailsdata,"details info");
 
-        // this.details1.QuotedTime="00:30"
-        this.restaurenService.addRestaurentDetails(detailsdata).subscribe((res: any) => {
-            console.log(res);
-            //this.data = "";
-            this.getrestaurent();
+        var editdetails = {
+            "RestaurantID": this.data.RestaurantID,
+            "RestaurantName": details['RestaurantName'],
+            "Description": details['Description'],
+            "PrimaryContact": details['PrimaryContact'],
+            "SecondaryContact": details['SecondaryContact'],
+            "HoursofOperation": null,
+            "Parking": null,
+            "Geo": null,
+            "Email": details['Email'],
+            "Address1": details['Address1'],
+            "Address2": details['Address2'],
+            "State": this.state,
+            "Zipcode": details['Zipcode'],
+            "OwnerName": details['OwnerName'],
+            "OwnerContact1": details['OwnerContact1'],
+            "OwnerContact2": details['OwnerContact2'],
+            "OwnerEmail": details['OwnerEmail'],
+            "GetSeatedOffer": null,
+            /*  "CurrentWaitTime":1,*/
+            "QuotedTime": details['QuotedTime'],
+            "ModifiedDate": "2017-09-17T22:27:38.3279471-07:00",
+            "ModifiedBy": 1,
+            "SeatingSize": 2,
+            "NumberOfTables": 2,
+            "MenuPath": 2,
+            "LoggedInUser": 1
+        }
 
-            this.addRes.nativeElement.click();
-           this.myForm.reset();
 
-        })
-       
-      
-        
+
+
+
+
+        if (editdetails.RestaurantID) {
+            console.log("coming");
+
+            this.restaurenService.addRestaurentDetails(editdetails).subscribe((res: any) => {
+                this.myForm.reset();
+                this.addRes.nativeElement.click();
+                this.getrestaurent();
+
+
+
+                if (res['_StatusMessage'] == "Success") {
+
+                    window.setTimeout(() => {
+                        this._toastr.success("data saved successfully");
+                    }, 20);
+
+                }
+                else {
+                    alert("Error");
+                }
+
+
+
+            })
+
+
+        }
+        else {
+            this.restaurenService.addRestaurentDetails(detailsdata).subscribe((res: any) => {
+
+                if (res['_StatusMessage'] == "Success") {
+
+                    window.setTimeout(() => {
+                        this._toastr.success("data saved successfully");
+                    }, 20);
+
+                }
+                else {
+                    alert("Error");
+                }
+
+
+                this.myForm.reset();
+                this.addRes.nativeElement.click();
+                this.getrestaurent();
+
+
+
+
+
+
+            })
+
+        }
+
+
     }
 
-    editDetails(restaurentinfo,$event) {
+
+    cancel() {
+        // console.log("coming");
+
+        this.myForm.reset();
+        /* this.addRes.nativeElement.click();*/
+
+    }
+
+
+
+
+    editDetails(restaurentinfo, $event) {
         event.preventDefault();
-        console.log(restaurentinfo);
         this.data = restaurentinfo;
-        console.log(this.data);
-      
-
-      /*  this.data.State = this.states.filter(statename => statename.id === this.data.State.id);
-        console.log(this.data.State);*/
-
-        //this.myForm.setControl = restaurentinfo;
-
-        //this.myForm.setValue(restaurentinfo);
     }
 
 
 
     onSubmitNotification(details: any) {
-        console.log(details);
-        /*   console.log("coming");
-          console.log(details); */
         details.ExpiryDate = details.ExpiryDate.formatted;
-        //this.notificationdatails['myDate'] = details.myDate['formatted'];
-        console.log(details);
+
         this.restaurenService.onSubmitNotifications(details).subscribe((res: any) => {
-            //console.log(res);
+
 
             this.myFormdata.reset();
-            this.notifications.nativeElement.click();  
+            this.notifications.nativeElement.click();
             this.getnotifications();
 
             if (res['_StatusMessage'] == "Success") {
@@ -237,41 +293,26 @@ export class ResturantComponent implements OnInit {
                     this._toastr.success("data saved successfully");
                 }, 20);
 
-                //alert("record successfully saved");
             }
             else {
                 alert("Error");
             }
-          
-          
-          
+
         })
 
-
-       
-
-
-
     }
 
-    cancel() {
-
-        this.myForm.reset();        
-        this.addRes.nativeElement.click();
 
 
-    }
+    Cancel() {
 
-    EditCancel() {       
-        this.myForm.reset();
-        this.edit.nativeElement.click();
-
-    }
-
-    NotificationCancel() {        
+        //  this.notificationdata = '';
         this.myFormdata.reset();
-        this.notifications.nativeElement.click();  
+        /*  this.myFormdata.reset();
+          this.notifications.nativeElement.click();  */
     }
+
+
 
 
 }
