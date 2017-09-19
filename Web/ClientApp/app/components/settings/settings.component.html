@@ -32,8 +32,9 @@
                             <img alt="" src="../../../../wwwroot/images/edit.png" />
                         </a>
                     </td>
-                    <td *ngIf="obj.isEdit"><label>{{obj.key}}:</label><input type="text" value="uname"  name="uname" [(ngModel)]="obj.value" /></td>
-                    
+                    <!--<td *ngIf="obj.isEdit"><label>{{obj.key}}:</label><input type="text" value="uname"  name="uname" [(ngModel)]="obj.value" /></td>-->
+                    <td *ngIf="obj.isEdit && obj.key!='Password'"><label class="text-muted">{{obj.key}}:</label><input type="text" value="uname" name="uname" [(ngModel)]="obj.value"/></td>
+                    <td *ngIf="obj.isEdit && obj.key=='Password'"><label class="text-muted">{{obj.key}}:</label><input type="password" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
                 </tr>
                
                  
