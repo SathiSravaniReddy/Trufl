@@ -28,7 +28,7 @@
                     <tr *ngFor="let restaurentinfo of restaurent_info|searchPipe:'RestaurantName':search">
                         <td>{{restaurentinfo.RestaurantName}}</td>
                         <td>{{restaurentinfo.ModifiedDate|date: 'dd/MM/yyyy'}}</td>
-                        <td><a data-toggle="modal" data-target="#EditRes" class="pull-right addres" href="#" (click)="editDetails(restaurentinfo)">View Details</a></td>
+                        <td><a data-toggle="modal" data-target="#AddRes" class="pull-right addres" (click)="editDetails(restaurentinfo)">View Details</a></td>
 
                     </tr>
 
@@ -63,17 +63,7 @@
                     <div class="not-inner">{{notificationsinfo.Description}}</div>
 
                 </div>
-                <!--  <div class="not-rep">
-                      <p>01/02/2017 </p>
-                      <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
-
-                  </div>
-                  <div class="not-rep">
-                      <p>01/02/2017 </p>
-                      <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
-
-                  </div> -->
-
+              
 
             </div>
 
@@ -88,7 +78,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                <!--   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>  -->
                 <h4 class="modal-title" id="myModalLabel">Add Resturant</h4>
             </div>
             <div class="modal-body">
@@ -100,9 +90,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Resturant Name</label>
-                                    <input class="form-control" formControlName="RestaurantName" type="text" placeholder="John" [(ngModel)]="data.RestaurantName">
+                                    <input class="form-control" formControlName="RestaurantName" type="text" placeholder="enter restaurentname" [(ngModel)]="data.RestaurantName">
                                     <div *ngIf="myForm.controls['RestaurantName'].hasError('required') && myForm.controls['RestaurantName'].touched" class="alert alert-danger">You must include restauerntname</div>
-
                                 </div>
 
                             </div>
@@ -110,17 +99,12 @@
                                 <div class="form-group">
                                     <label>Email Id</label>
 
-                                    <input class="form-control" type="email" placeholder="John" formControlName="Email" [(ngModel)]="data.Email">
+                                    <input class="form-control" type="email" placeholder="enter restaurentemail" formControlName="Email" [(ngModel)]="data.Email">
 
                                     <div *ngIf="myForm.controls['Email'].hasError('required') && myForm.controls['Email'].touched" class="alert alert-danger">You mustinclude emailId </div>
 
-
-
                                 </div>
                             </div>
-
-
-
 
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -172,200 +156,8 @@
                                     <label>State</label>
 
                                     <select formControlName="State" [(ngModel)]="data.State" (change)="getstate(data.State)">
-                                        <option *ngFor="let statename of states" [ngValue]="statename.value">{{statename.name}}</option>
+                                        <option *ngFor="let statename of states">{{statename.name}}</option>
                                     </select>
-
-
-
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Zip/Pin Code</label>
-                                    <input type="text" formControlName="Zipcode" [(ngModel)]="data.Zipcode" />
-
-                                    <div *ngIf="myForm.controls['Zipcode'].hasError('required') && myForm.controls['Zipcode'].touched" class="alert alert-danger">You mustenter zipcode </div>
-
-                                </div>
-                            </div>
-
-
-
-
-                            <hr class="popsep" />
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Owner Name</label>
-                                    <input type="text" formControlName="OwnerName" [(ngModel)]="data.OwnerName" />
-                                    <div *ngIf="myForm.controls['OwnerName'].hasError('required') && myForm.controls['OwnerName'].touched" class="alert alert-danger">You mustenter ownername </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Owner Email</label>
-                                    <input type="email" formControlName="OwnerEmail" [(ngModel)]="data.OwnerEmail" />
-                                    <div *ngIf="myForm.controls['OwnerEmail'].hasError('required') && myForm.controls['OwnerEmail'].touched" class="alert alert-danger">You mustenter owneremail </div>
-                                </div>
-                            </div>
-
-
-
-
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Owner Contact Number 1</label>
-                                    <input type="text" formControlName="OwnerContact1" [(ngModel)]="data.OwnerContact1" />
-                                    <div *ngIf="myForm.controls['OwnerContact1'].hasError('required') && myForm.controls['OwnerContact1'].touched" class="alert alert-danger">You mustenter ownercontact </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Owner Contact Number 2</label>
-                                    <input type="text" formControlName="OwnerContact2" [(ngModel)]="data.OwnerContact2" />
-                                </div>
-                            </div>
-
-
-                          <!--  <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Quoted Time</label>
-                                    <input type="text" formControlName="QuotedTime" [(ngModel)]="data.QuotedTime" />
-                                </div>
-                            </div> -->
-
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea rows="4" cols="4" formControlName="Description" [(ngModel)]="data.Description"> </textarea>
-                                    <div *ngIf="myForm.controls['Description'].hasError('required') && myForm.controls['Description'].touched" class="alert alert-danger">You mustenter ownercontact </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-12">
-                                <div class="popup-btn">
-
-                                    <button type="submit" class="primary-btn" >Submit</button>&nbsp;&nbsp;
-
-                                    <button class="primary-btn" (click)="cancel()">Cancel</button>
-                                    <!--  <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a> -->
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
-<div class="modal fade" id="EditRes" #EditRes tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                <h4 class="modal-title" id="myModalLabel">Edit Resturant</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row modal-items">
-
-                    <form novalidate (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm">
-
-                        <div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Resturant Name</label>
-                                    <input class="form-control" formControlName="RestaurantName" type="text" placeholder="John" [(ngModel)]="data.RestaurantName">
-                                    <div *ngIf="myForm.controls['RestaurantName'].hasError('required') && myForm.controls['RestaurantName'].touched" class="alert alert-danger">You must include restauerntname</div>
-
-                                </div>
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Email Id</label>
-
-                                    <input class="form-control" type="email" placeholder="John" formControlName="Email" [(ngModel)]="data.Email">
-
-                                    <div *ngIf="myForm.controls['Email'].hasError('required') && myForm.controls['Email'].touched" class="alert alert-danger">You mustinclude emailId </div>
-
-
-
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Contact Number 1</label>
-                                    <input type="text" formControlName="PrimaryContact" [(ngModel)]="data.PrimaryContact" />
-                                    <div *ngIf="myForm.controls['PrimaryContact'].hasError('required') && myForm.controls['PrimaryContact'].touched" class="alert alert-danger">You must enter contact </div>
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Contact Number 2</label>
-                                    <input type="text" formControlName="SecondaryContact" [(ngModel)]="data.SecondaryContact" />
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Address 1</label>
-
-
-                                    <textarea rows="4" cols="4" class="form-control" formControlName="Address1" [(ngModel)]="data.Address1"></textarea>
-
-                                    <div *ngIf="myForm.controls['Address1'].hasError('required') && myForm.controls['Address1'].touched" class="alert alert-danger">You mustinclude address </div>
-
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Address 2</label>
-                                    <textarea rows="4" cols="4" formControlName="Address2" [(ngModel)]="data.Address2"> </textarea>
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>State</label>
-
-                                    <select formControlName="State" [(ngModel)]="data.State">
-                                        <option *ngFor="let statename of states" >{{statename.name}}</option>
-                                    </select>
-
-
                                 </div>
                             </div>
 
@@ -443,9 +235,10 @@
                             <div class="col-md-12">
                                 <div class="popup-btn">
 
-                                    <button type="submit" class="primary-btn" [disabled]="!myForm.valid">Submit</button>
-                                    <button class="primary-btn" (click)="EditCancel()">Cancel</button>
-                                    <!--  <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a> -->
+                                    <button type="submit" class="primary-btn" [disabled]="!myForm.valid">Submit</button>&nbsp;&nbsp;
+
+                                    <!-- <button class="primary-btn" (click)="cancel()">Cancel</button> -->
+                                    <a href="#" data-dismiss="modal" class="secondary-btn" (click)="cancel()">Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -458,20 +251,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -479,15 +258,12 @@
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                 <h4 class="modal-title" id="myModalLabel">Add Notification</h4>
             </div>
             <div class="modal-body">
                 <div class="row modal-items">
-
-
                     <form novalidate (ngSubmit)="onSubmitNotification(myFormdata.value)" [formGroup]="myFormdata">
-
                         <div class="col-md-12">
 
                             <div class="form-group ffw addbox">
@@ -516,13 +292,11 @@
 
                             </div>
                             <div class="popup-btn">
-
                                 <!-- <a href="#" class="primary-btn">Submit</a> -->
                                 <button type="submit" class="primary-btn" [disabled]="!myFormdata.valid">Submit</button>&nbsp;&nbsp;
-                                <!--<button name="button" data-dismiss="modal" class="secondary-btn">Cancel</button>-->
-                                <button class="primary-btn" (click)="NotificationCancel()">Cancel</button>
+                                <!--<button class="primary-btn" (click)="Cancel()">Cancel</button>  -->
 
-                                <!--<a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a> -->
+                                <a href="#" data-dismiss="modal" class="secondary-btn" (click)="Cancel()">Cancel</a>
                             </div>
                         </div>
 

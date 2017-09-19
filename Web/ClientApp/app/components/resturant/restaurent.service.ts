@@ -12,9 +12,13 @@ export class RestaurenService {
 
     }
     public getRestaurentDetails() {
-        return this.http.get('http://localhost:8679/api/Trufl/Admin/GetAllRestaurants').map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Admin' + '/' + 'GetAllRestaurants').map(
             (res) => res.json())
     }
+
+
+    
+
 
     public getnotifications() {
         return this.http.get(constant.truflAPI + constant.truflBase + 'Admin' + '/' + 'GetNotifications').map(
@@ -28,15 +32,18 @@ export class RestaurenService {
     addRestaurentDetails(restaurentInfo: any) {
         this.restaurentdetails = restaurentInfo;
         console.log(this.restaurentdetails);
-        return this.http.post('http://localhost:8679/api/Trufl/Admin/SaveRestaurant', this.restaurentdetails).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'Admin' + '/' + 'SaveRestaurant', this.restaurentdetails).map(
             (res) => res.json()
         )
     }
+
+
+    
+
     onSubmitNotifications(notificationInfo: any) {
         this.notificationdetails = notificationInfo;
         console.log(this.notificationdetails);
-
-        return this.http.post(constant.truflAPI + constant.truflBase + 'Admin' + '/' +'SaveNotifications', this.notificationdetails).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'Admin' + '/' + 'SaveNotifications', this.notificationdetails).map(
             (res) => res.json()
         )
     }
