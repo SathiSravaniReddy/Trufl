@@ -123,6 +123,11 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.GetEmployeConfiguration(TruflUserType, RestaurantID);
         }
+
+        public bool spUpdateRestaurantEmployee(EmployeeConfigDTO employeeConfigDTO)
+        {
+            return _hostessDL.spUpdateRestaurantEmployee(employeeConfigDTO);
+        }
             #endregion
         }
 }

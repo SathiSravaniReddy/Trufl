@@ -47,6 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Trufl.Logging\bin\Debug\Trufl.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="TruflEmailService">
+      <HintPath>..\TruflEmailService\bin\Debug\TruflEmailService.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDL.cs" />
