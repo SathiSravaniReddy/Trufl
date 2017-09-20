@@ -2,7 +2,7 @@
 import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { RestaurenService } from './restaurent.service';
 import { Pipe, PipeTransform } from '@angular/core';
-
+import { PaginationControlsComponent } from 'ngx-pagination';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -65,8 +65,11 @@ export class ResturantComponent implements OnInit {
             'OwnerEmail': [null, Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')])],
             'OwnerContact1': [null, Validators.required],
             'OwnerContact2': [null],
-            'Description': [null, Validators.required],
-            'QuotedTime': [null, Validators.required]
+            /* 'Description': [null, Validators.required],*/
+            'Description': [null, Validators.compose([Validators.required, Validators.minLength(10)])],
+            /* 'QuotedTime': [null, Validators.required] */
+            'QuotedTime': [null, Validators.compose([Validators.required, Validators.pattern('([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]')])]
+
 
 
 
@@ -76,7 +79,7 @@ export class ResturantComponent implements OnInit {
 
         this.myFormdata = fb.group({
             'ExpiryDate': [null, Validators.required],
-            'description': [null, Validators.compose([Validators.required, Validators.minLength(5)])]
+            'description': [null, Validators.compose([Validators.required, Validators.minLength(10)])]
         });
 
 
