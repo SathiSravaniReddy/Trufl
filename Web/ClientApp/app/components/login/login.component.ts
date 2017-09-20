@@ -77,7 +77,7 @@ export class LoginComponent {
                         }
 
                         else if (!this.loginDetails.ForgetPasswordStatus) {
-                            this.router.navigateByUrl('/waitlist');
+                            this.router.navigateByUrl('/dashboard');
                         }
                     }
                 }
