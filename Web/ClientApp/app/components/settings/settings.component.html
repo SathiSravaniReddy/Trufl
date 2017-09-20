@@ -45,7 +45,7 @@
                                 username must be at least 2 characters long.
                             </label>
                             <label *ngIf="name.errors.pattern">
-                                username must match pattern
+                                username can be upper or lower case along with spaces
                             </label>
 
                         </label>
@@ -63,7 +63,7 @@
                             </label>
                            
                             <label *ngIf="email.errors.pattern">
-                                email  must match pattern
+                                email  must match pattern ex:abc@gmail.com
                             </label>
 
                         </label>
@@ -71,7 +71,7 @@
 
 
                     <td *ngIf="obj.isEdit && obj.key=='Password'">
-                        <label class="text-muted">{{obj.key}}:</label><input type="password" required minlength="8" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="password" name="password" #password="ngModel" [(ngModel)]="obj.value" />
+                        <label class="text-muted">{{obj.key}}:</label><input type="password" required minlength="8" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" id="password" name="password" #password="ngModel" [(ngModel)]="obj.value" />
                         <label *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
 
                             <label *ngIf="password.errors.required">
@@ -81,7 +81,7 @@
                                 password must be at least 8 characters long.
                             </label>
                             <label *ngIf="password.errors.pattern">
-                                password must match pattern
+                               password should contain one upper case one lower case one number one special character and minimum length 8
                             </label>
 
                         </label>
