@@ -7,7 +7,7 @@
             <thead>
                 <tr>
                     <th>Trufl</th>
-                    <th>B.L</th>
+                    <th>{{restaurantName}}</th>
                     <th>Name</th>
                     <th>Size</th>
                     <th>Quoted</th>
@@ -18,8 +18,8 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of truflUserList|paginate: { itemsPerPage: 5, currentPage: p };let i=index;" (click)="watlistUserDetails(item)">
-                    <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                    <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
+                    <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
+                    <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
                     <td>{{item.UserName}}</td>
                     <td>{{item.PartySize}}</td>
                     <td>{{item.Quoted}}</td>
@@ -71,24 +71,24 @@
             <p>Get Seated Active Now For </p> <b><timer></timer></b> <span>{{sizeOfTable}} </span> <span>{{priceOfTable}}</span> <a class="secondary-btn" (click)="cancelSeats()">Cancel </a>
         </div>
     </div>
-    <div class="col-md-2 animated fadeInRight" id="right-section" *ngIf="showProfile">
-        <div class="print">
-            <a id="close" (click)="closeProile()"><span aria-hidden="true">&times;</span></a>
 
-
-        </div>
+    <!--User Profile  Right Side-->
+    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+        <a class="print pull-right" (click)="print()">Print </a>
+        <a id="close" (click)="closeProile('right-section')"><span aria-hidden="true">&times;</span></a>
 
         <div class="right-top">
             <img alt="" src="../../../../wwwroot/images/no-img.png" />
-            <h4>{{profileData.UserName}}</h4>
-            <p> Trufl Premier Member</p>
-            <p>Bottique Premier Member</p>
-            <p><a href="#">Print </a> </p>
-        </div>
+            <h5 class="nameheader">{{profileData.UserName}}</h5>
+            <p class="defaulttext"> Trufl Premier Member</p>
+            <p class="defaulttext">{{restaurantName}} Member</p>
 
+        </div>
+        
         <div class="right-btn">
-            <h5> Trufl Bio <a data-toggle="modal" data-target="#AddBio" href="#">ADD </a></h5>
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+            <h6> Trufl Bio </h6>
+            <a type="button" data-toggle="modal" data-target="#myModal" class="bioprimary-btn pull-right" href="#">ADD </a>
+            <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
 
         </div>
 

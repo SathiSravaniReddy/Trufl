@@ -5,6 +5,7 @@ import { PaginationControlsComponent } from 'ngx-pagination';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Observable } from 'rxjs/Observable';
+import { LoginService } from '../shared/login.service';
 
 @Component({
     selector: 'hostess',
@@ -14,6 +15,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HostessComponent {
 
+    private restaurantName;
     private truflUserList;
     private priceOfTable;
     private classForAccept;
@@ -52,11 +54,11 @@ export class HostessComponent {
         { 'size': 20 },
     ];
 
-    constructor(private hostessService: HostessService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+    constructor(private hostessService: HostessService, private loginService: LoginService , private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
         this.classForAccept = "selected";
         this.classForSeated = "";
-
+        this.restaurantName = this.loginService.getRestaurantName();
         //Displaying trufl user's list
         this.hostessService.getTruflUserList().subscribe((res: any) => {
             this.truflUserList = res._Data;
@@ -218,4 +220,13 @@ export class HostessComponent {
         this.showProfile = false;
     }
 
+    //print functionality
+    print(profileSection: string) {
+        let popupWinindow
+        let innerContents = document.getElementById('profileSection').innerHTML;
+        popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+        popupWinindow.document.open();
+        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + innerContents + '</html>');
+        popupWinindow.document.close();
+    }
 }

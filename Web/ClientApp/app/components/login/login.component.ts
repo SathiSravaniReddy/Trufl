@@ -60,22 +60,26 @@ export class LoginComponent {
                     this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
                 });
                 if (this.loginDetails) {
-
-                    if (this.loginDetails.ForgetPasswordStatus) {
-                        this.ResetPasswordShow();
-                    }
-                    else if (!this.loginDetails.ForgetPasswordStatus) {
-                        if (this.loginDetails.TruflMemberType === "RA ") {
-                            this.router.navigateByUrl('/waitlist');
+                    if (this.loginDetails.TruflMemberType === "RA ")
+                    {
+                        if (this.loginDetails.ForgetPasswordStatus) {
+                            this.ResetPasswordShow();
                         }
-                        else if (this.loginDetails.TruflMemberType === "TA ") {
+                    
+                        else if (!this.loginDetails.ForgetPasswordStatus) {
+                                this.router.navigateByUrl('/waitlist');
+                        }
+                    }
+                    else if (this.loginDetails.TruflMemberType === "TA ")
+                    {
+                        if (this.loginDetails.ForgetPasswordStatus) {
+                            this.ResetPasswordShow();
+                        }
+
+                        else if (!this.loginDetails.ForgetPasswordStatus) {
                             this.router.navigateByUrl('/dashboard');
                         }
                     }
-
-
-
-
                 }
                 else {
                     window.setTimeout(() => {

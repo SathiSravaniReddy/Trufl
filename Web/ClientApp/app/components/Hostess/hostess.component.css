@@ -1,6 +1,5 @@
-﻿.alert {
-    margin-top: 10px;
-}
+﻿/*Right Section*/
+
 
 @charset "UTF-8";
 
@@ -86,15 +85,77 @@
     animation-name: fadeInRightBig;
 }
 
-#right-section {
-    height: 100vh;
+#profileSection {
+    height: 99vh;
     background: #fff;
     position: fixed;
-    right: -10px;
-    top: 0px;
+    right: 3px;
+    top: 65px;
     overflow-y: auto;
-    width: 320px;
+    width: 250px;
 }
-#close{
+
+#close {
+    cursor: pointer;
+}
+.right-top {
+    text-align: center;
+    margin: 0 0 5px 0;
+    float: left;
+    width: 100%;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid silver;
+}
+
+
+
+.print {
+    text-align: right;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.alert {
+    margin-top: 10px;
+}
+
+.nameheader {
+    font-weight: bold;
+}
+
+.defaulttext {
+    font-size: 12px;
+    margin: 0 0 2px;
+    font-weight: 500
+}
+
+h6, .h6 {
+    padding-top: 20px;
+    font-size: 12px;
+    display: inline-flex;
+}
+
+.right-btn p {
+    margin: 10px 0 0 0;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.bioprimary-btn {
+    margin-top: 15px;
+    float: left;
+    width: auto;
+    padding: 0px 10px;
+    background: #0b7dd9;
+    border: 1px solid #0b7dd9;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #fff;
+    border-radius: 2px;
+    margin: 15px 10px 0 0;
+}
+a{
     cursor:pointer;
 }
