@@ -977,6 +977,60 @@ namespace Trufl.Data_Access_Layer
             return sendResponse;
         }
 
+        
+        /// <summary>
+        /// This method 'spGetEmployeConfigration' will Get Employe Configration details
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns Get EmployeConfigration Details  </returns>
+        public bool spUpdateRestaurantEmployee(EmployeeConfigDTO employeeConfigDTO)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spUpdateRestaurantEmployee", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserID", employeeConfigDTO.TruflUserID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserName", employeeConfigDTO.UserName);
+                        tvpParam1.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@Email", employeeConfigDTO.Email);
+                        tvpParam2.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam3 = cmd.Parameters.AddWithValue("@PhoneNumber", employeeConfigDTO.PhoneNumber);
+                        tvpParam3.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam4 = cmd.Parameters.AddWithValue("@UserType", employeeConfigDTO.UserType);
+                        tvpParam4.SqlDbType = SqlDbType.Text;
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+           // return sendResponse;
+        }
+
 
         #endregion
 

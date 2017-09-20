@@ -50,6 +50,7 @@
     <Compile Include="BookingTableDTO.cs" />
     <Compile Include="DashBoardDetailsDTO.cs" />
     <Compile Include="DashBoardDTO.cs" />
+    <Compile Include="EmployeeConfigDTO.cs" />
     <Compile Include="JsonResponseResult.cs" />
     <Compile Include="LoginDTO.cs" />
     <Compile Include="NotificationsDTO.cs" />
