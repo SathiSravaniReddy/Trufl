@@ -46,6 +46,7 @@ export class SettingsComponent implements OnInit {
     getuserDetails() {
         let that = this;
         this.settingsService.getUserDetails(this.usertype, this.retarauntid, this.truflid).subscribe((res: any) => {
+            console.log(this.usertype, this.retarauntid, this.truflid,"this.usertype, this.retarauntid, this.truflid");
             this.user_Profile = res._Data;
 
             this.UserInformation = this.user_Profile.UsersInformation[0];
