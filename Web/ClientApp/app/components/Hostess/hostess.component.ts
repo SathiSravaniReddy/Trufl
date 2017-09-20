@@ -97,10 +97,10 @@ export class HostessComponent {
     }
 
     //Toggling get seated now button
-    //trunGetSeatedNow() {
-    //    this.showSeated = true;
-    //    this.hideSeatedButton = false;
-    //}
+    trunGetSeatedNow() {
+        this.showSeated = true;
+        this.hideSeatedButton = false;
+    }
 
     //functionality for table size
     OnTableSizeSelection(item) {
