@@ -6,6 +6,7 @@ import { LoginService } from '../shared/login.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ProfileUser } from '../HostessSettings/profileUser';
+import { PaginationControlsComponent } from 'ngx-pagination';
 @Component({
     selector: 'settings',
     templateUrl: './settings.component.html',

@@ -132,6 +132,7 @@ export class HostessSettingsComponent implements OnInit {
     profile(truflUserId) {
         
         this.truflid = truflUserId;
+        this.usertype = "TU";
         this.settingsService.getUserDetails(this.usertype, truflUserId, this.restaurantid).subscribe((res: any) => {
             this.settingsData = res._Data;
             this.settingsData.UserProfielFullName.map((item: any) => {

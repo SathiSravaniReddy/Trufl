@@ -17,7 +17,7 @@ export class RestaurenService {
     }
 
 
-    
+
 
 
     public getnotifications() {
@@ -38,7 +38,7 @@ export class RestaurenService {
     }
 
 
-    
+
 
     onSubmitNotifications(notificationInfo: any) {
         this.notificationdetails = notificationInfo;
@@ -47,6 +47,7 @@ export class RestaurenService {
             (res) => res.json()
         )
     }
+
 
 }
 

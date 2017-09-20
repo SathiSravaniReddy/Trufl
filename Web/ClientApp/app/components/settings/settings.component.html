@@ -5,7 +5,7 @@
         <h3>Reset Password</h3>
 
         <table class="table">
-            <tbody *ngFor="let truflcustomers of UsersInformation; let i = index">
+            <tbody *ngFor="let truflcustomers of UsersInformation | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
                 <tr>
                     <td class="text"><p>Username:</p><p class="settingsdata">{{truflcustomers.RegisteredRestaurants}}</p></td>
                     <td class="text"><p>Email Id:</p><p class="settingsdata">{{truflcustomers.RegisteredEmail}}</p></td>
@@ -14,6 +14,7 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
     </div>
     <div class="col-md-5 settingtop" id="secondsettingtop">
         <h3>

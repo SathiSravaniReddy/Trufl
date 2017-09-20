@@ -4,3 +4,4 @@ export let constant = {
     truflBase:'api/Trufl/',
 }
 
+//truflAPI: 'http://183.82.48.194:4477/',
