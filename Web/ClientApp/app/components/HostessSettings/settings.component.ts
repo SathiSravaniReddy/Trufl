@@ -66,7 +66,6 @@ export class HostessSettingsComponent implements OnInit {
             this.settingsData = res._Data;
             //Profile credentials
             this.UserInfo = this.settingsData.UserLoginInformation[0];
-            console.log(this.UserInfo.Password);
             Object.keys(this.UserInfo).map((keyName, index) => {
                 that.user.push({
                     isEdit: false,
