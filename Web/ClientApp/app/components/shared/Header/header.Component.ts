@@ -78,10 +78,10 @@ export class HeaderComponent {
     }
 
     showHeaders() {
-        if (this.userType == "RA") {
+        if (this.userType === "RA") {
             this.router.navigateByUrl('/waitlist');
         }
-        else if (this.userType == "TA"){
+        else if (this.userType === "TA"){
             this.router.navigateByUrl('/dashboard');
         }
     }

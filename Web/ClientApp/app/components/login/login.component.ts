@@ -37,10 +37,10 @@ export class LoginComponent {
 
     //login
     signIn() {
-       console.log(this.user);
+       //console.log(this.user);
         
         this.loginService.setUserType(this.user.usertype);
-        if (this.user.usertype == null) {
+        if (this.user.usertype === null) {
             window.setTimeout(() => {
                 this._toastr.error("Please Select UserType");
 
@@ -49,6 +49,7 @@ export class LoginComponent {
 
         else {
             this.loginService.setUserType(this.user.usertype);
+            this.loginService.setUser(this.user);
             this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
                 res._Data.map((item: any) => {
                     this.loginDetails = item;
@@ -64,10 +65,10 @@ export class LoginComponent {
                         this.ResetPasswordShow();
                     }
                     else if (!this.loginDetails.ForgetPasswordStatus) {
-                        if (this.loginDetails.TruflMemberType == "RA ") {
+                        if (this.loginDetails.TruflMemberType === "RA ") {
                             this.router.navigateByUrl('/waitlist');
                         }
-                        else if (this.loginDetails.TruflMemberType == "TA ") {
+                        else if (this.loginDetails.TruflMemberType === "TA ") {
                             this.router.navigateByUrl('/dashboard');
                         }
                     }

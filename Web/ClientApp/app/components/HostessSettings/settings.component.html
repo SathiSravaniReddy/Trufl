@@ -21,7 +21,7 @@
                             </a>
                         </td>
                         <td *ngIf="obj.isEdit && obj.key!='Password'"><label class="labwid text-muted">{{obj.key}} :</label><input type="text" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
-                        <td *ngIf="obj.isEdit && obj.key=='Password'"><label class="labwid text-muted">{{obj.key}} :</label><input type="password" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
+                        <td *ngIf="obj.isEdit && obj.key==='Password'"><label class="labwid text-muted">{{obj.key}} :</label><input type="password" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
                     </tr>
 
                     <tr>
@@ -91,7 +91,7 @@
                 <h5>Visit</h5>
                 <div *ngFor="let bio of bioData">
                         
-                    <div class="row" *ngIf="bio.BioID==1">
+                    <div class="row" *ngIf="bio.BioID===1">
                         <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
                         <div class="col-md-7">{{bio.Description}} </div>
                     </div>
@@ -99,7 +99,7 @@
                 <h5>Relationship</h5>
                 <div *ngFor="let bio of bioData">
 
-                    <div class="row" *ngIf="bio.BioID==2">
+                    <div class="row" *ngIf="bio.BioID===2">
                         <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
                         <div class="col-md-7">{{bio.Description}} </div>
                     </div>
@@ -107,7 +107,7 @@
                 <h5>Seating Preference</h5>
                 <div *ngFor="let bio of bioData">
 
-                    <div class="row" *ngIf="bio.BioID==3">
+                    <div class="row" *ngIf="bio.BioID===3">
                         <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
                         <div class="col-md-7">{{bio.Description}} </div>
                     </div>
@@ -115,7 +115,7 @@
                 <h5>Food/Drink Preference</h5>
                 <div *ngFor="let bio of bioData">
 
-                    <div class="row" *ngIf="bio.BioID==4">
+                    <div class="row" *ngIf="bio.BioID===4">
                         <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
                         <div class="col-md-7">{{bio.Description}} </div>
                     </div>

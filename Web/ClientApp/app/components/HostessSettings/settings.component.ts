@@ -38,10 +38,11 @@ export class HostessSettingsComponent implements OnInit {
     //add Bio
     private bioCategories: any = [];
     private bioEvents: any = [];
-    private categoryId=1;
-    private eventId=1;
+    private categoryId = 1;
+    private eventId = 1;
     private showEvents: boolean = false;
     private description;
+    private loginDetails;
     private bio = new BioEvent();
     @ViewChild('bioModal') bioModal;
     
@@ -51,6 +52,7 @@ export class HostessSettingsComponent implements OnInit {
         this.usertype = this.loginService.getUserType();
         this.truflid = this.loginService.getTrufluserID();
         this.restaurantid = this.loginService.getRestaurantId();
+        this.loginDetails = this.loginService.getUser();
     }
 
     ngOnInit() {
@@ -64,7 +66,8 @@ export class HostessSettingsComponent implements OnInit {
             this.settingsData = res._Data;
             //Profile credentials
             this.UserInfo = this.settingsData.UserLoginInformation[0];
-            Object.keys(this.UserInfo).map(function (keyName, index) {
+            console.log(this.UserInfo.Password);
+            Object.keys(this.UserInfo).map((keyName, index) => {
                 that.user.push({
                     isEdit: false,
                     value: that.UserInfo[keyName],
@@ -87,7 +90,7 @@ export class HostessSettingsComponent implements OnInit {
                 this.showTruflCustomers = false;
             }
            
-            //console.log(this.truflCustomers );
+            
        });
     }
 
@@ -162,31 +165,38 @@ export class HostessSettingsComponent implements OnInit {
 
     //edit profile done
     Done() {
-        this.user.map(function (obj) {
+        this.user.map((obj) => {
             obj.isEdit = false;
         });
+        
         this.profileUser.UserID = this.truflid;
         this.profileUser.UserName = this.user[0].value;
         this.profileUser.UserEmail = this.user[1].value;
-        this.profileUser.NewLoginPassword = this.user[2].value;
+        if (this.UserInfo.Password === this.user[2].value) {
+            this.profileUser.NewLoginPassword = this.loginDetails.password;
+        }
+        else {
+            this.profileUser.NewLoginPassword = this.user[2].value;
+        }
+       // console.log(this.profileUser);
         this.settingsService.PostProfileEdit(this.profileUser).subscribe((res: any) => {
-            window.setTimeout(() => {
+           window.setTimeout(() => {
                 this._toastr.success("Changes Saved");
 
-            }, 500);
+           }, 500);
         }
         );
     }
     //edit profile cancel
     cancel() {
         var that = this;
-        this.user.map(function (obj) {
+        this.user.map((obj) => {
             obj.isEdit = false;
 
 
         });
         this.user = [];
-        Object.keys(this.UserInfo).map(function (keyName, index) {
+        Object.keys(this.UserInfo).map((keyName, index) => {
             that.user.push({
                 isEdit: false,
                 value: that.UserInfo[keyName],
