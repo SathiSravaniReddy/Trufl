@@ -27,6 +27,7 @@ export class HostessComponent {
     private dataOfTable;
     private selectedTableNumber;
     private multipleTables;
+    private rowshow;
     private showProfile: boolean = false;
     private profileData: any = [];
     private tablesSelected: any = [];
@@ -72,6 +73,7 @@ export class HostessComponent {
         this.showSeated = false;
         this.ActiveSeats = false;
         this.showProfile = true;
+        this.rowshow = true;
         this.profileData = data;
         if (this.showSeatedButton == true) {
             this.hideSeatedButton = false;
@@ -149,6 +151,8 @@ export class HostessComponent {
         this.dataOfTable = item;
         this.hostessService.getRestaurantTables(item.RestaurantID,1).subscribe((res: any) => {
             this.tableData = res._Data;
+            this.classForAccept = "success";
+            this.classForSeated = "selected";
         });
 
         
@@ -179,10 +183,6 @@ export class HostessComponent {
     closeRestaurantTable() {
         this.classForAccept = "success";
         this.classForSeated = "selected";
-        window.setTimeout(() => {
-            this._toastr.success("closed restauranttabel");
-        }, 200);
-
     }
 
     //Functionality for Remove

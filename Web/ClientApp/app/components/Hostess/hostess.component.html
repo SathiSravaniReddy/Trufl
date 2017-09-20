@@ -17,9 +17,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of truflUserList|paginate: { itemsPerPage: 5, currentPage: p };let i=index;" (click)="watlistUserDetails(item)">
-                    <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                    <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
+                <tr *ngFor="let rowshow of truflUserList|paginate: { itemsPerPage: 5, currentPage: p };let i=index;"  (click)="watlistUserDetails(item)">
+                    <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
+                    <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
                     <td>{{item.UserName}}</td>
                     <td>{{item.PartySize}}</td>
                     <td>{{item.Quoted}}</td>
@@ -55,7 +55,7 @@
 
                     <ul>
                         <li *ngFor="let item of TableSize">
-                               <span (click)="OnTableSizeSelection(item)">{{item.size}}</span>
+                               <span class="selected" (click)="OnTableSizeSelection(item)">{{item.size}}</span>
                         </li>
                     </ul>
 
@@ -130,9 +130,7 @@
             <div class="modal-body" style="display:inline-block;">
                 <div class="seatselection">
                     <ul>
-                        <li *ngFor="let item of tableData"><a (click)="selectTable(item)">{{item.TableNo}}</a></li>
-                        <!--<li><a class="hold" href="#">2 </a> </li>-->
-
+                        <li *ngFor="let item of tableData" (click)="selectTable(item)"><a>{{item.TableNo}}</a></li>
                     </ul>
                     <div class="popup-btn">
                         <a class="primary-btn" data-dismiss="modal" (click)="submitRestaurantTable()">Submit</a>
