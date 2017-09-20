@@ -35,7 +35,7 @@ export class HostessComponent {
     showSeatedButton: boolean = false;
     hideSeatedButton: boolean = false;
     showTurnSeats: boolean = false;
-    showSeated: boolean = false;
+    showSeated: boolean = true;
     ActiveSeats: boolean = false;
     public currentSelectedUser: string;
 
@@ -97,10 +97,10 @@ export class HostessComponent {
     }
 
     //Toggling get seated now button
-    trunGetSeatedNow() {
-        this.showSeated = true;
-        this.hideSeatedButton = false;
-    }
+    //trunGetSeatedNow() {
+    //    this.showSeated = true;
+    //    this.hideSeatedButton = false;
+    //}
 
     //functionality for table size
     OnTableSizeSelection(item) {

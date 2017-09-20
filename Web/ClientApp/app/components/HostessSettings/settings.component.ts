@@ -26,6 +26,7 @@ export class HostessSettingsComponent implements OnInit {
     private showbio: boolean = true;
     private profileData: any = [];
     private bioData: any = [];
+    private restaurantName;
     //private bioHistory: any=[];
     private historyData;
     private showhistory: boolean = false;
@@ -52,6 +53,7 @@ export class HostessSettingsComponent implements OnInit {
         this.usertype = this.loginService.getUserType();
         this.truflid = this.loginService.getTrufluserID();
         this.restaurantid = this.loginService.getRestaurantId();
+        this.restaurantName = this.loginService.getRestaurantName();
         this.loginDetails = this.loginService.getUser();
     }
 

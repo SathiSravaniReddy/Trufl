@@ -14,7 +14,8 @@
                 <tbody>
 
                     <tr *ngFor="let obj of user; let i = index" class="textborder">
-                        <td *ngIf="!obj.isEdit" class="text"><p class="text-muted labwid">{{obj.key}} :</p><p class="textdata">{{obj.value}}</p></td>
+                        <td *ngIf="!obj.isEdit && obj.key!='Password'" class="text"><p class="text-muted labwid">{{obj.key}} :</p><p class="textdata">{{obj.value}}</p></td>
+                        <td *ngIf="!obj.isEdit && obj.key==='Password'" class="text"><p class="text-muted labwid">{{obj.key}} :</p><p class="textdata">*****</p></td>
                         <td *ngIf="!obj.isEdit" class="pull-left">
                             <a (click)="editDetails(obj, i)">
                                 <img alt="" src="../../../../wwwroot/images/edit.png" />
@@ -62,7 +63,7 @@
             <img alt="" src="../../../../wwwroot/images/no-img.png" />
             <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
             <p class="defaulttext"> Trufl Premier Member</p>
-            <p class="defaulttext">Bottique Louie Member</p>
+            <p class="defaulttext">{{restaurantName}} Member</p>
 
         </div>
 
