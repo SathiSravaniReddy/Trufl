@@ -7,25 +7,22 @@
         <div class="col-md-5 settingtop" id="secondsettingtop">
             <h3>
                 Profile
-                <a class="pull-right" href="#"></a>
+                <a class="pull-right" *ngIf="!isEdit" (click)="editDetails()"><img alt="" src="../../../../wwwroot/images/edit.png" /></a>
             </h3>
             <table class="table1">
 
                 <tbody>
 
                     <tr *ngFor="let obj of user; let i = index" class="textborder">
-                        <td *ngIf="!obj.isEdit" class="text"><p class="text-muted labwid">{{obj.key}} :</p><p class="textdata">{{obj.value}}</p></td>
-                        <td *ngIf="!obj.isEdit" class="pull-left">
-                            <a (click)="editDetails(obj, i)">
-                                <img alt="" src="../../../../wwwroot/images/edit.png" />
-                            </a>
-                        </td>
-                        <td *ngIf="obj.isEdit && obj.key!='Password'"><label class="labwid text-muted">{{obj.key}} :</label><input type="text" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
-                        <td *ngIf="obj.isEdit && obj.key==='Password'"><label class="labwid text-muted">{{obj.key}} :</label><input type="password" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
+                        <td *ngIf="!isEdit && obj.key!='Password'" class="text"><p class="text-muted labwid">{{obj.key}} :</p><p class="textdata">{{obj.value}}</p></td>
+                        <td *ngIf="!isEdit && obj.key==='Password'" class="text"><p class="text-muted labwid">{{obj.key}} :</p><p class="textdata">*****</p></td>
+
+                        <td *ngIf="isEdit && obj.key!='Password'"><label class="labwid text-muted">{{obj.key}} :</label><input class="passwordwid" type="text" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
+                        <td *ngIf="isEdit && obj.key==='Password'"><label class="labwid text-muted">{{obj.key}} :</label><input class="passwordwid" type="password" value="uname" name="uname" [(ngModel)]="obj.value" /></td>
                     </tr>
 
                     <tr>
-                        <td style="padding:15px;">
+                        <td style="padding:15px;" *ngIf="isEdit">
                             <button type="submit" class="primary-btn pull-left" (click)="Done()" id="done">Done</button>
                             <button (click)="cancel()" class="secondary-btn " id="cancel">Cancel</button>
                         </td>
@@ -55,14 +52,20 @@
 
     <!--User Profile  Right Side-->
     <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-        <a class="print pull-right" (click)="print()">Print </a>
-        <a id="close" (click)="closeProile('right-section')"><span aria-hidden="true">&times;</span></a>
+       
+       
+
+
+        <a id="close" class="close" (click)="closeProile('right-section')"><span aria-hidden="true">×</span></a>
+
+
 
         <div class="right-top">
             <img alt="" src="../../../../wwwroot/images/no-img.png" />
             <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
             <p class="defaulttext"> Trufl Premier Member</p>
-            <p class="defaulttext">Bottique Louie Member</p>
+            <p class="defaulttext">{{restaurantName}} Member</p>
+            <p><a class="print" (click)="print()">Print </a></p>
 
         </div>
 
@@ -71,8 +74,11 @@
                 <ul>
                     <li>
                         <a (click)="showBio()" [ngClass]="{selected: showbio}">Bio</a>
+                    </li>
+                    <li>
                         <a (click)="showHistory()" [ngClass]="{selected: showhistory}">History & Coins</a>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -80,14 +86,17 @@
         <!--Bio -->
         <div *ngIf="showbio">
             <div class="right-btn">
-                <h6> Trufl Bio </h6>
-                <a type="button" data-toggle="modal" data-target="#myModal" class="bioprimary-btn pull-right" href="#">ADD </a>
+                <h5>
+                    Trufl Bio
+                    <a data-toggle="modal" data-target="#myModal" class="pull-right" href="#">ADD </a>
+                </h5>
+
                 <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
 
             </div>
 
         <!--Bio Events-->
-            <div class="right-rep" *ngIf="bioData.length>1">
+            <div class="right-rep" *ngIf="bioData.length>=1">
                 <h5>Visit</h5>
                 <div *ngFor="let bio of bioData">
                         
@@ -154,7 +163,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">close</button>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
                     <h4 class="modal-title">Add Bio</h4>
                 </div>
                 <div class="modal-body">

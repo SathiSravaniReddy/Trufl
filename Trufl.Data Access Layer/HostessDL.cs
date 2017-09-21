@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using DTO;
 using Trufl.Logging;
+using TruflEmailService;
 
 namespace Trufl.Data_Access_Layer
 {
@@ -575,6 +576,7 @@ namespace Trufl.Data_Access_Layer
         public DataTable ForgetPassword(string LoginEmail)
         {
             DataTable sendResponse = new DataTable();
+            MailUtility email = new MailUtility();
             try
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -589,6 +591,13 @@ namespace Trufl.Data_Access_Layer
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(sendResponse);
+                            ResetPasswordEmailDTO data = new ResetPasswordEmailDTO();
+                            data.To = sendResponse.Rows[0]["To"].ToString();
+                            data.Subject = sendResponse.Rows[0]["Subject"].ToString(); 
+                            data.Body = sendResponse.Rows[0]["Body"].ToString();
+                            data.BodyFormat = sendResponse.Rows[0]["BodyFormat"].ToString(); 
+                            email.sendMail(data);
+
                         }
                     }
                 }
