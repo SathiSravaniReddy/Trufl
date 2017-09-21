@@ -15,7 +15,7 @@ export class LoginService {
     private truflid: any;
     private restaurantid: any;
     private restaurantName;
-    private user;
+    private user: {};
     constructor(private http: Http) {
     }
     public setUserType(value) {
@@ -52,10 +52,12 @@ export class LoginService {
         this.restaurantName = localStorage.getItem('restaurantName');
         return this.restaurantName;
     }
-    public setUser(value) {
-        this.user = value;
+    public setUser(user) {
+        this.user = user;
+        localStorage.setItem('user', JSON.stringify(user));
     }
     public getUser() {
+        this.user = JSON.parse(localStorage.getItem('user'));
         return this.user;
     }
     //To get User Details
@@ -67,6 +69,7 @@ export class LoginService {
 
     //To get Login Member Type
     loginAuthentication(user: any) {
+        this.setUser(user);
         return this.http.post(constant.truflAPI + constant.truflBase + 'LoginAuthentication',user ).map(
             (res: Response) => res.json());
 

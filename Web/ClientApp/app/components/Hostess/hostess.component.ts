@@ -1,6 +1,8 @@
 ﻿
-import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
+import { Component, ViewEncapsulation, ViewContainerRef, ViewChild } from '@angular/core';
 import { HostessService } from './hostess.service';
+import { HostessSettingsService } from '../HostessSettings/settings.service';
+import { BioEvent } from '../HostessSettings/bioEvent';
 import { PaginationControlsComponent } from 'ngx-pagination';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -10,7 +12,7 @@ import { LoginService } from '../shared/login.service';
 @Component({
     selector: 'hostess',
     templateUrl: './hostess.component.html',
-    styleUrls: ['./hostess.component.css'],
+    styleUrls: ['../HostessSettings/settings.component.css'],
     providers: [ToastsManager, ToastOptions]
 })
 export class HostessComponent {
@@ -22,7 +24,7 @@ export class HostessComponent {
     private sizeOfTable;
     private accepted;
     private classForSeated;
-    private ResturantId;
+    private RestaurantId;
     private count = 0;
     private tableData;
     private restaurantTableData;
@@ -40,6 +42,23 @@ export class HostessComponent {
     public currentSelectedUser: string;
 
 
+    //Parameters to pass in Api
+    private usertype: any;
+    private truflid: any;
+    private settingsData;
+    private bioData: any = [];
+
+    //add Bio
+    private bioCategories: any = [];
+    private bioEvents: any = [];
+    private categoryId = 1;
+    private eventId = 1;
+    private showEvents: boolean = false;
+    private description;
+    private loginDetails;
+    private bio = new BioEvent();
+    @ViewChild('bioModal') bioModal;
+
     //Array for Table size
     TableSize = [
         { 'size': 2 },
@@ -54,7 +73,7 @@ export class HostessComponent {
         { 'size': 20 },
     ];
 
-    constructor(private hostessService: HostessService, private loginService: LoginService , private _toastr: ToastsManager, vRef: ViewContainerRef) {
+    constructor(private hostessService: HostessService, private settingsService: HostessSettingsService, private loginService: LoginService , private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
         this.classForAccept = "selected";
         this.classForSeated = "";
@@ -69,11 +88,14 @@ export class HostessComponent {
     watlistUserDetails(data) {
         var _that = this;
         this.currentSelectedUser = data.Email;
-        this.ResturantId = data.RestaurantID;
+        this.RestaurantId = data.RestaurantID;
         this.showTurnSeats = true;
         this.showSeated = false;
         this.ActiveSeats = false;
-        this.showProfile = true;
+        this.usertype = data.TruflMemberType;
+        this.profile(data.TruflUserID);
+        
+       // this.showProfile = true;
         this.profileData = data;
         if (this.showSeatedButton == true) {
             this.hideSeatedButton = false;
@@ -81,10 +103,9 @@ export class HostessComponent {
         }
         if (this.count == 0) {
             this.showTurnSeats = true;
-            this.hideSeatedButton = true;
+            this.showSeated = true;
         } else {
-            this.showSeated = false;
-            this.hideSeatedButton = true;
+            this.showSeated = true;
         }
 
         this.truflUserList.map(function (obj) {
@@ -95,16 +116,11 @@ export class HostessComponent {
         this.classForAccept = "selected";
         this.classForSeated = "";
     }
-
-    //Toggling get seated now button
-    trunGetSeatedNow() {
-        this.showSeated = true;
-        this.hideSeatedButton = false;
-    }
+   
 
     //functionality for table size
     OnTableSizeSelection(item) {
-        this.hostessService.getRestaurantTableAmount(this.ResturantId, item.size).subscribe((res: any) => {
+        this.hostessService.getRestaurantTableAmount(this.RestaurantId, item.size).subscribe((res: any) => {
             this.priceOfTable = "No Price Available";
             if (res._Data[0].Amount) {
                 this.priceOfTable = res._Data[0].Amount;
@@ -215,6 +231,12 @@ export class HostessComponent {
         this.showProfile = false;
     }
 
+
+
+
+
+
+
     //Functionality for closing side nav
     closeProile() {
         this.showProfile = false;
@@ -229,4 +251,89 @@ export class HostessComponent {
         popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + innerContents + '</html>');
         popupWinindow.document.close();
     }
+
+    //show profile
+    profile(truflUserId) {
+
+        this.truflid = truflUserId;
+        this.settingsService.getUserDetails(this.usertype, truflUserId, this.RestaurantId).subscribe((res: any) => {
+            this.settingsData = res._Data;
+            this.settingsData.UserProfielFullName.map((item: any) => {
+                this.profileData = item;
+            });
+            //Bio Data
+            this.bioData = this.settingsData.BioData;
+
+            //History Data
+
+            this.showProfile = true;
+        });
+
+        this.GetBioCategories();
+        //this.showProfile = true;
+    }
+
+    onCategoryChange(id) {
+        this.categoryId = id;
+        this.GetBioEvents(this.categoryId);
+        this.showEvents = true;
+
+    }
+    onEventChange(event) {
+        this.eventId = event;
+
+    }
+
+    //AddBio
+    addBio() {
+        this.bio.TruflUserID = this.truflid;
+        this.bio.RestaurantID = this.RestaurantId;
+        this.bio.BioID = this.categoryId;
+        this.bio.BioEventID = this.eventId;
+        this.bio.BioDesc = this.description;
+
+        console.log(this.bio);
+        this.AddBioEvents(this.bio);
+        this.bioModal.nativeElement.click();
+    }
+    //close ADD Bio
+    close() {
+        this.bioModal.nativeElement.click();
+    }
+
+    //for Bio categories
+    GetBioCategories() {
+        this.settingsService.GetBioCategories().subscribe((res: any) => {
+            this.bioCategories = res._Data;
+
+        }
+        );
+    }
+
+    //for Bio events based on categories
+    GetBioEvents(categoryId) {
+        this.settingsService.GetBioEvents(categoryId).subscribe((res: any) => {
+            this.bioEvents = res._Data;
+
+        }
+        );
+    }
+
+    //for AddBio Event
+    AddBioEvents(bio) {
+        this.settingsService.AddUserBioEvents(bio).subscribe((res: any) => {
+
+            window.setTimeout(() => {
+                this._toastr.success("Event Added");
+
+            }, 500);
+            window.setTimeout(() => {
+                this.bioModal.nativeElement.click();
+
+
+            }, 2000);
+        }
+        );
+    }
+
 }

@@ -340,7 +340,7 @@ ul {
             }
 
 .tablerowselect {
-    background: #4E4E4E;
+    background: #cacaca;
     color: #fff;
 }
 
@@ -361,6 +361,11 @@ ul {
         text-align: center;
     }
 
+    .price span {
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
     .price a {
         float: left;
         width: 30px;
@@ -1086,4 +1091,9 @@ button.close {
 }
 .labwid{
     width:100px;
+}
+
+.passwordwid{
+    width:65%;
+    margin:5px 0 0 0;
 }
