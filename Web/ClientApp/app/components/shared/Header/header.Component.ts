@@ -21,16 +21,24 @@ export class HeaderComponent {
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
         this.restaurantName = this.loginService.getRestaurantName();
+        console.log(this.restaurantName, "  this.restaurantName");
         if ((router.url != "/hostesssettings") && (router.url != "/settings")) {
             this.isSettings = true;
         }  
 
         //Keep these load headers in a service-----
-        this.loadHeaders = {"RA":[
+        this.loadHeaders = {
+            "RA": [
+                {
+                    "isSettings": this.isSettings,
+                    "name": "HostessDashboard",
+                    "active": true,
+                    "route": '/hostessdashboard'
+                },
             {
                 "isSettings": this.isSettings,
                 "name": "Waitlist",
-                "active": true,
+                "active": false,
                 "route": '/waitlist'
             },
             {
@@ -79,7 +87,7 @@ export class HeaderComponent {
 
     showHeaders() {
         if (this.userType === "RA") {
-            this.router.navigateByUrl('/waitlist');
+            this.router.navigateByUrl('/hostessdashboard');
         }
         else if (this.userType === "TA"){
             this.router.navigateByUrl('/dashboard');

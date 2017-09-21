@@ -31,6 +31,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { MyDatePickerModule } from 'mydatepicker';
+import { HostessDashboardComponent } from './components/HostessDashboard/hostessdashboard.component';
 
 
 
@@ -41,6 +42,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         HostessComponent,
         SeatedComponent,
         LoginComponent,
+        HostessDashboardComponent,
         RegisterComponent,
         SettingsComponent,
         DashboardComponent,
@@ -93,6 +95,7 @@ import { MyDatePickerModule } from 'mydatepicker';
             //        { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
             //    ]
             //},
+            { path: 'hostessdashboard', component: HostessDashboardComponent},
             { path: 'login', component: LoginComponent },
             { path: 'seated', component: SeatedComponent },
             { path: 'waitlist', component: HostessComponent },

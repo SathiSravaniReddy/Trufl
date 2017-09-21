@@ -55,6 +55,7 @@ export class LoginComponent {
                     this.loginDetails = item;
                     //console.log(this.loginDetails.TruflUSERID, this.loginDetails.RestaurantID, "RestaurantID");
                     //this.loginService.setUserType(this.loginDetails.TruflMemberType);
+                    console.log(this.loginDetails, " this.loginDetails");
                     this.loginService.setTrufluserID(this.loginDetails.TruflUSERID);
                     this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
                     this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
@@ -67,7 +68,7 @@ export class LoginComponent {
                         }
                     
                         else if (!this.loginDetails.ForgetPasswordStatus) {
-                                this.router.navigateByUrl('/waitlist');
+                            this.router.navigateByUrl('/hostessdashboard');
                         }
                     }
                     else if (this.loginDetails.TruflMemberType === "TA ")
