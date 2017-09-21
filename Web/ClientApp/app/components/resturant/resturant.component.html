@@ -65,7 +65,8 @@
 
                 <div class="not-rep" *ngFor="let notificationsinfo of notifications_info|paginate:{ itemsPerPage: 5, currentPage: d,id:'d' }">
                     <p>{{notificationsinfo.ExpiresOn|date: 'dd/MM/yyyy'}} </p>
-                    <div class="not-inner">{{notificationsinfo.Description}}</div>
+                    <div class="not-inner">{{notificationsinfo.Description}}<a data-toggle="modal" data-target="#Notification" class="pull-right addres" (click)="editnotificationDetails(notificationsinfo)">View Details</a></div>
+                  
 
                 </div>
 
@@ -250,7 +251,7 @@
 
 
                                     <span *ngIf="myForm.get('Description').touched && !myForm.get('Description').valid && !myForm.get('Description').pristine">
-                                        <small>Please enter atlest 10 characters</small>
+                                        <small>Please enter atlest 3characters</small>
                                     </span>
 
 
@@ -264,7 +265,7 @@
                                     <button type="submit" class="primary-btn" [disabled]="!myForm.valid">Submit</button>&nbsp;&nbsp;
 
                                     <!-- <button class="primary-btn" (click)="cancel()">Cancel</button> -->
-                                    <a href="#" data-dismiss="modal" class="secondary-btn" (click)="cancel()">Cancel</a>
+                                    <a href="#" data-dismiss="modal" class="secondary-btn" (click)="cancel(data)">Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -304,26 +305,28 @@
 
                             <div class="form-group ffw addbox">
                                 <label>Select Date</label>
-                                <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                <my-date-picker name="mydate" [(ngModel)]="editnotification.ExpiryDate"    [selDate]="ExpiryDate"
                                                 formControlName="ExpiryDate"></my-date-picker>
                                 <div *ngIf="myFormdata.controls['ExpiryDate'].hasError('required') && myFormdata.controls['ExpiryDate'].touched">please select date </div>
 
                             </div>
 
 
+
                             <div class="form-group ffw">
                                 <label>Description</label>
-                                <textarea formControlName="description"></textarea>
+                                <textarea formControlName="description" [(ngModel)]="editnotification.Description"></textarea>
                                 <div *ngIf="myFormdata.controls['description'].hasError('required') && myFormdata.controls['description'].touched"></div>
 
                                 <span *ngIf="myFormdata.get('description').touched && !myFormdata.get('description').valid && !myFormdata.get('description').pristine">
-                                    <small>Please enter atlest 10 characters</small>
+                                    <small>Please enter atlest 3 characters</small>
                                 </span>
 
                             </div>
                             <div class="popup-btn">
                                 <!-- <a href="#" class="primary-btn">Submit</a> -->
                                 <button type="submit" class="primary-btn" [disabled]="!myFormdata.valid">Submit</button>&nbsp;&nbsp;
+
                                 <!--<button class="primary-btn" (click)="Cancel()">Cancel</button>  -->
 
                                 <a href="#" data-dismiss="modal" class="secondary-btn" (click)="Cancel()">Cancel</a>

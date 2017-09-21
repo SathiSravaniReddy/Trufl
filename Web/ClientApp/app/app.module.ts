@@ -31,6 +31,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { MyDatePickerModule } from 'mydatepicker';
+import { EmployeeConfigService } from './components/employeeconfiguration/EmployeeConfiguration.service';
+
 
 
 
@@ -62,6 +64,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         DashboardService,
         RestaurenService,
         HostessSettingsService,
+        EmployeeConfigService,
         ToastsManager,
         DatePipe,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]

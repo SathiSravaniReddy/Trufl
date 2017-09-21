@@ -34,8 +34,12 @@
                     <tr  *ngFor="let seatsinfo of seatedinfo|paginate:{ itemsPerPage: 5, currentPage: p }; let i = index">
                         
 
-                        <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td>
-                        <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td>
+                      <!--  <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td>
+                        <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td> -->
+
+                        <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
+                        <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
+
                         <td>{{seatsinfo.TUserName}}</td>
                         <td>{{seatsinfo.PartySize}}</td>
                         <td>{{seatsinfo.OfferAmount}}</td>

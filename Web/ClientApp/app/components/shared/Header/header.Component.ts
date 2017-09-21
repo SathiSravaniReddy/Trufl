@@ -89,4 +89,9 @@ export class HeaderComponent {
         this.loginService.logout();
         this.router.navigateByUrl('/login');
     }
+
+    getEmployee() {
+
+        this.router.navigate(['employeeconfiguration']);
+    }
 }
