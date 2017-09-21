@@ -37,7 +37,6 @@ export class LoginComponent {
 
     //login
     signIn() {
-       //console.log(this.user);
         
         this.loginService.setUserType(this.user.usertype);
         if (this.user.usertype === null) {
@@ -49,7 +48,7 @@ export class LoginComponent {
 
         else {
             this.loginService.setUserType(this.user.usertype);
-            this.loginService.setUser(this.user);
+            //this.loginService.setUser(this.user);
             this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
                 res._Data.map((item: any) => {
                     this.loginDetails = item;
