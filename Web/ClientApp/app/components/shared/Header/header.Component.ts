@@ -24,38 +24,34 @@ export class HeaderComponent {
         this.userType = this.loginService.getUserType();
         this.restaurantName = this.loginService.getRestaurantName();
         console.log(this.restaurantName, "  this.restaurantName");
-        if ((router.url != "/hostesssettings") && (router.url != "/settings") && (router.url != "/hostessdashboard")){
-            this.isSettings = true;
+       
+
+        //if ((router.url != "/hostesssettings") && (router.url != "/settings") && (router.url != "/hostessdashboard")){
+        //    this.isSettings = true;
           
-        }  
-     
-        if (router.url == "/hostessdashboard") {
-            this.showDashboard = false;
-        }
+        //}  
+
+
         //Keep these load headers in a service-----
         this.loadHeaders = {
             "RA": [
                 {
-                    "isShowDashboard": !this.showDashboard,
                     "name": "HostessDashboard",
                     "active": true,
                     "route": '/hostessdashboard'
                 },
             {
-                "isSettings": this.isSettings,
                 "name": "Waitlist",
                 "active": false,
                 "route": '/waitlist'
             },
             {
-                "isSettings": this.isSettings,
                 "name": "Seated",
                 "active": false,
                 "route": '/seated'
             },
             {
-                "isSettings": !this.isSettings,
-                "isShowDashboard": this.showDashboard,
+               
                 "name": "Settings",
                 "active": true,
                 "route": '/hostesssettings'
@@ -63,20 +59,19 @@ export class HeaderComponent {
         ],
            "TA": [
                {
-                "isSettings": this.isSettings,
+                
                 "name": "Dashboard",
                 "active": true,
                 "route": '/dashboard'
                 },
                {
-                "isSettings": this.isSettings,
+              
                 "name": "Restaurant",
                 "active": false,
                 "route": '/restaurant'
                },
                {
-                   "isSettings": !this.isSettings,
-                   "isShowDashboard":this.showDashboard,
+                  
                    "name": "Settings",
                    "active": true,
                    "route": '/settings'
@@ -86,6 +81,12 @@ export class HeaderComponent {
         };
 
         this.headers = this.loadHeaders[this.userType];
+
+        
+        this.headers.map(function (obj) {
+            obj.isShow=router.url == obj.route;
+            })
+       
 
     }
  
@@ -107,6 +108,7 @@ export class HeaderComponent {
     }
 
     getEmployee() {
+
 
         this.router.navigate(['employeeconfiguration']);
     }
