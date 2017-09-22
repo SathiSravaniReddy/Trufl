@@ -22,8 +22,8 @@ export class HeaderComponent {
    
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
-        this.restaurantName = this.loginService.getRestaurantName();
-        console.log(this.restaurantName, "  this.restaurantName");
+     
+      
         if ((router.url != "/hostesssettings") && (router.url != "/settings") && (router.url != "/hostessdashboard")){
             this.isSettings = true;
           
@@ -59,19 +59,16 @@ export class HeaderComponent {
         ],
            "TA": [
                {
-                
                 "name": "Dashboard",
                 "active": true,
                 "route": '/dashboard'
                 },
                {
-              
                 "name": "Restaurant",
                 "active": false,
                 "route": '/restaurant'
                },
                {
-                  
                    "name": "Settings",
                    "active": true,
                    "route": '/settings'
@@ -82,10 +79,33 @@ export class HeaderComponent {
 
         this.headers = this.loadHeaders[this.userType];
 
+        if ((router.url === '/waitlist') || (router.url === '/seated')) {
+            this.headers.map(function (obj, index) {
+                if ([0,1, 2].indexOf(index) >= 0) {
+                    obj.isShow = true;
+                } else {
+                    obj.isShow = false;
+                }
+            });
+            
+        }
+
+        if ((router.url === '/hostessdashboard') || (router.url === '/hostesssettings') || (router.url === '/settings')) {
+            this.headers.map(function (obj, index) {
+                obj.isShow = obj.route == router.url;
+            });
+        }
         
-        this.headers.map(function (obj) {
-            obj.isShow=router.url == obj.route;
-            })
+        if ((router.url === '/dashboard') || (router.url === '/restaurant')) {
+            this.headers.map(function (obj, index) {
+                if ([0, 1].indexOf(index) >= 0) {
+                    obj.isShow = true;
+                } else {
+                    obj.isShow = false;
+                }
+            });
+
+        }
        
 
     }
