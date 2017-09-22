@@ -19,3 +19,14 @@ E:\Trufl_Dev\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csprojRes
 E:\Trufl_Dev\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
 E:\Trufl_Dev\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.dll
 E:\Trufl_Dev\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.pdb
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csprojResolveAssemblyReference.cache
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.dll
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\obj\Debug\Trufl.Data Access Layer.pdb
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\bin\Debug\Trufl.Data Access Layer.dll.config
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\bin\Debug\Trufl.Data Access Layer.dll
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\bin\Debug\Trufl.Data Access Layer.pdb
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\bin\Debug\DTO.dll
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\bin\Debug\Microsoft.SqlServer.Types.dll
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\bin\Debug\DTO.pdb
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Data Access Layer\bin\Debug\TruflEmailService.pdb
