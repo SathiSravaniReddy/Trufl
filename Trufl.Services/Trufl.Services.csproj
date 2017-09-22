@@ -188,7 +188,7 @@
     <Compile Include="Controllers\AdminRestaurantController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HostessRestaurantEmployeeController.cs" />
-    <Compile Include="Controllers\HotessSettingsController.cs" />
+    <Compile Include="Controllers\HostessSettingsController.cs" />
     <Compile Include="Controllers\SeatedUserController.cs" />
     <Compile Include="Controllers\TruflAdminLoginController.cs" />
     <Compile Include="Controllers\TruflController.cs" />

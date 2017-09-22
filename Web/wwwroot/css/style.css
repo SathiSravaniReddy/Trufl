@@ -1155,3 +1155,36 @@ button.close {
 .mydp .selection{
     background:none !important;
 }
+.passwordwid{
+    width:65%;
+    margin:5px 0 0 0;
+}
+
+.pdd {
+    float: left;
+    width: 200px;
+    list-style: none;
+    background: #fff;
+    position: absolute;
+    top: 47px;
+    right: 0px;
+    z-index: 9999;
+    border: #0078d7 solid 1px;
+    border-width:1px 1px 0 1px;
+}
+
+    .pdd li {
+        float: left;
+        width: 200px;
+        border-bottom: #0078d7 solid 1px;
+    }
+        .pdd li a {
+            float: left;
+            width: 200px;
+            font-size: 15px;
+            padding: 7px 15px 7px 15px;
+        }
+        .pdd li a :hover{
+            background:#cacaca;
+        }
+       

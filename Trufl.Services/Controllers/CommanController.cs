@@ -18,7 +18,7 @@ using Newtonsoft.Json;
 
 namespace Trufl.Services.Controllers
 {
-    [RoutePrefix("api/Trufl")]
+    [RoutePrefix("api")]
     public class CommanController : ApiController
     {
         AdminBL _adminBL = new AdminBL();

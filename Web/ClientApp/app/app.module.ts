@@ -54,6 +54,7 @@ import { HostessDashboardService } from './components/HostessDashboard/hostessda
         SearchPipe,
         EqualValidator,
         HostessSettingsComponent,
+        HostessDashboardComponent,
         
         
     ],
@@ -97,6 +98,7 @@ import { HostessDashboardService } from './components/HostessDashboard/hostessda
             //        { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
             //    ]
             //},
+            { path: 'hostessdashboard', component: HostessDashboardComponent },
             { path: 'login', component: LoginComponent },
             { path: 'seated', component: SeatedComponent },
             { path: 'waitlist', component: HostessComponent },

@@ -62,7 +62,7 @@ export class LoginService {
     }
     //To get User Details
     getLoginDetails(userstype: any,restaurantid) {
-        return this.http.get(constant.truflAPI + constant.truflBase + 'GetUserTypes/' + userstype + '/' + restaurantid).map(
+        return this.http.get(constant.truflAPI + constant.truflBase +  'GetUserTypes/' + userstype + '/' + restaurantid).map(
             (res:Response) => res.json());
 
     }
