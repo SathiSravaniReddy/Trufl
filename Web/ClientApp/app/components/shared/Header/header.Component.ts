@@ -22,8 +22,8 @@ export class HeaderComponent {
    
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
-        this.userName = this.loginService.getUserName();
-        console.log(this.userName);
+     
+      
         if ((router.url != "/hostesssettings") && (router.url != "/settings") && (router.url != "/hostessdashboard")){
             this.isSettings = true;
           
@@ -36,26 +36,22 @@ export class HeaderComponent {
         this.loadHeaders = {
             "RA": [
                 {
-                    "isShowDashboard": !this.showDashboard,
                     "name": "HostessDashboard",
                     "active": true,
                     "route": '/hostessdashboard'
                 },
             {
-                "isSettings": this.isSettings,
                 "name": "Waitlist",
                 "active": false,
                 "route": '/waitlist'
             },
             {
-                "isSettings": this.isSettings,
                 "name": "Seated",
                 "active": false,
                 "route": '/seated'
             },
             {
-                "isSettings": !this.isSettings,
-                "isShowDashboard": this.showDashboard,
+               
                 "name": "Settings",
                 "active": true,
                 "route": '/hostesssettings'
@@ -63,20 +59,16 @@ export class HeaderComponent {
         ],
            "TA": [
                {
-                "isSettings": this.isSettings,
                 "name": "Dashboard",
                 "active": true,
                 "route": '/dashboard'
                 },
                {
-                "isSettings": this.isSettings,
                 "name": "Restaurant",
                 "active": false,
                 "route": '/restaurant'
                },
                {
-                   "isSettings": !this.isSettings,
-                   "isShowDashboard":this.showDashboard,
                    "name": "Settings",
                    "active": true,
                    "route": '/settings'
@@ -86,6 +78,35 @@ export class HeaderComponent {
         };
 
         this.headers = this.loadHeaders[this.userType];
+
+        if ((router.url === '/waitlist') || (router.url === '/seated')) {
+            this.headers.map(function (obj, index) {
+                if ([0,1, 2].indexOf(index) >= 0) {
+                    obj.isShow = true;
+                } else {
+                    obj.isShow = false;
+                }
+            });
+            
+        }
+
+        if ((router.url === '/hostessdashboard') || (router.url === '/hostesssettings') || (router.url === '/settings')) {
+            this.headers.map(function (obj, index) {
+                obj.isShow = obj.route == router.url;
+            });
+        }
+        
+        if ((router.url === '/dashboard') || (router.url === '/restaurant')) {
+            this.headers.map(function (obj, index) {
+                if ([0, 1].indexOf(index) >= 0) {
+                    obj.isShow = true;
+                } else {
+                    obj.isShow = false;
+                }
+            });
+
+        }
+       
 
     }
  
@@ -111,6 +132,7 @@ export class HeaderComponent {
     }
 
     getEmployee() {
+
 
         this.router.navigate(['employeeconfiguration']);
     }

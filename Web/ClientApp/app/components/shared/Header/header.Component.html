@@ -27,7 +27,7 @@
         <div>
             <ul>
                 <li *ngFor="let header of headers let i=index">
-                    <a *ngIf="header.isSettings" [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
+                    <a *ngIf="header.isShow" [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
                 </li>
             </ul>
         </div>
