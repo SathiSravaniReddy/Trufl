@@ -22,7 +22,7 @@ export class HeaderComponent {
    
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
-     
+        this.userName = this.loginService.getUserName();
         //Keep these load headers in a service-----
         this.loadHeaders = {
             "RA": [

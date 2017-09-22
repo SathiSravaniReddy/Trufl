@@ -19,6 +19,7 @@ export class HostessComponent {
 
     private restaurantName;
     private truflUserList;
+    private selectedRow: Number;
     private priceOfTable;
     private classForAccept;
     private sizeOfTable;
@@ -82,10 +83,12 @@ export class HostessComponent {
         this.hostessService.getTruflUserList().subscribe((res: any) => {
             this.truflUserList = res._Data;
         });
+        
     }
 
     //Functinality for trufl user's list
-    watlistUserDetails(data) {
+    watlistUserDetails(data,index) {
+        this.selectedRow = index;
         var _that = this;
         this.currentSelectedUser = data.Email;
         this.RestaurantId = data.RestaurantID;
