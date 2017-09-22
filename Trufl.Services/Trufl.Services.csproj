@@ -192,7 +192,7 @@
     <Compile Include="Controllers\SeatedUserController.cs" />
     <Compile Include="Controllers\TruflAdminLoginController.cs" />
     <Compile Include="Controllers\TruflController.cs" />
-    <Compile Include="Controllers\CommanController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\HostessWaitListUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

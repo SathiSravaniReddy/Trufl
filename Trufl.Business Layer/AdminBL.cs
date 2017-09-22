@@ -32,7 +32,7 @@ namespace Trufl.Business_Layer
             return _adminDL.SaveRestaurant(restaurant);
         }
 
-        public SettingsDTO GetRestaurantUserDetails(int RestaurantID, int TruflUserID, string UserType)
+        public SettingsDTO GetRestaurantUserDetails(int? RestaurantID, int TruflUserID, string UserType)
         {
             return _adminDL.GetRestaurantUserDetails(RestaurantID,TruflUserID,UserType);
         }
