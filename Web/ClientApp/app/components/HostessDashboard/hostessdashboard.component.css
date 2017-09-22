@@ -10,10 +10,7 @@
     .loginbg .header {
         background: none !important;
     }
-.leftnav{
-    display: none !important;
-}
 
-.innermain{
-    display: none!important;
+.notihead {
+    color: #0078d7 !important;
 }
