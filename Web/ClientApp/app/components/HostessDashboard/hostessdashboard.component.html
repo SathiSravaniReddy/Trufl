@@ -6,9 +6,17 @@
 
         <div class="col-md-4  spmain">
 
-            <h3>Special offers of the day </h3>
+            <h3 class="notihead">Special offers of the day </h3>
 
-            <div class="sprep">
+            <div class="sprep" *ngFor="let _dashboardnotifications of dashboardnotifications | paginate: { itemsPerPage: 5, currentPage: p};">
+                <p>{{_dashboardnotifications.CreatedDate|date:'dd/MM/yyyy'}}</p>
+                <p class="sptext">
+                  {{_dashboardnotifications.Description}}
+
+                </p>
+
+            </div>
+            <!--<div class="sprep">
                 <p>01/072017</p>
                 <p class="sptext">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -55,16 +63,8 @@
 
                 </p>
 
-            </div>
-            <div class="sprep">
-                <p>01/072017</p>
-                <p class="sptext">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-
-                </p>
-
-            </div>
-            <!--<pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>-->
+            </div>-->
+            <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
         </div>
 
         <div class="col-md-8  sptabs">
