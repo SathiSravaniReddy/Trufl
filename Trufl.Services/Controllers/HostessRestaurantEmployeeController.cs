@@ -27,7 +27,7 @@ namespace Trufl.Services.Controllers
 
         [Route("GetRestaurantUserDetails/{RestaurantID}/{TruflUserID}/{UserType}")]
         [HttpGet]
-        public object GetRestaurantUserDetails(int RestaurantID, int TruflUserID, string UserType)
+        public object GetRestaurantUserDetails(int? RestaurantID, int TruflUserID, string UserType)
         {
             SettingsDTO res = new SettingsDTO();
             res = _adminBL.GetRestaurantUserDetails(RestaurantID, TruflUserID, UserType);
