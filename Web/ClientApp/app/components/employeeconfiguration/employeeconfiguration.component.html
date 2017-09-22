@@ -32,7 +32,9 @@
                 </td>
                 <td *ngIf="!showOnEdit"><a (click)="editEmployeeDetails(i)">Edit</a></td>
                 <td *ngIf="showOnEdit"><a (click)="saveEditedEmployeeDetails(item)">Save</a></td>
-                <td><a href="#">Deactivate</a></td>
+
+                <td><a  (click)="updatehoststatus(item)"  *ngIf="item.ActiveInd==0" >Active</a><a *ngIf="item.ActiveInd==1" (click)="updatehoststatus(item)">Deactivate</a></td>
+
             </tr>
         </tbody>
     </table>

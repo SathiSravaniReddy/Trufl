@@ -67,6 +67,7 @@ import { HostessDashboardService } from './components/HostessDashboard/hostessda
         HostessSettingsService,
         ToastsManager,
         DatePipe,
+        EmployeeConfigService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
 
