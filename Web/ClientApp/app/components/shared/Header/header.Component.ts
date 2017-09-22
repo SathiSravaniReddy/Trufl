@@ -11,11 +11,11 @@ import { Router, RouterLinkActive  } from '@angular/router';
 export class HeaderComponent {
     private userType;
     private userName;
-    private profileVisible = false;
+    private profileVisible:boolean = false;
     private showHeadings = true;
     public isSettings = false;
     private showDashboard = true;
- 
+    private employeeVisible: boolean = false;
     public loadHeaders = {};
     public headers = [];
   
@@ -91,6 +91,9 @@ export class HeaderComponent {
  
     logoutShow() {
         this.profileVisible = true;
+        if (this.userType == "RA") {
+            this.employeeVisible = true;
+        }
        
     }
 
