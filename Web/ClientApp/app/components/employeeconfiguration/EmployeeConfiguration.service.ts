@@ -16,21 +16,27 @@ export class EmployeeConfigService {
         this.RestaurantID = id;
         console.log(this.TruflUserType);
         console.log(this.RestaurantID);
-        return this.http.get(constant.truflAPI + constant.truflBase + "GetEmployeConfiguration/" + this.TruflUserType + "/" + this.RestaurantID).map(
+        return this.http.get(constant.truflAPI + constant.truflBase +'Hostess/' + "GetEmployeConfiguration/" + this.TruflUserType + "/" + this.RestaurantID).map(
             (res) => res.json())
     }
+
+
+    /* GET api/Hostess/GetEmployeConfiguration/{TruflUserType}/{RestaurantID} */
 
 
     editEmployeConfiguration(items: any) {
         console.log(items);
-        return this.http.post(constant.truflAPI + constant.truflBase + 'UpdateRestaurantEmployee', items).map(
+        return this.http.post(constant.truflAPI + constant.truflBase +'Hostess/'+ 'UpdateRestaurantEmployee', items).map(
             (res) => res.json())
     }
     saveEmployeConfiguration(items: any) {
         console.log(items);
-        return this.http.post(constant.truflAPI + constant.truflBase + 'SignUp', items).map(
+        return this.http.post(constant.truflAPI + constant.truflBase+'Trufl/' + 'SignUp', items).map(
             (res) => res.json())
     }
+
+    /*api/Hostess/UpdateRestaurantEmployee          */
+   
 
     /* getSeatedDetails() {
          return this.http.get(constant.truflAPI + constant.truflBase + 'GetSeatedUsersList/1').map(

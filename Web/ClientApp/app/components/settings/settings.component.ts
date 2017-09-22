@@ -26,13 +26,15 @@ export class SettingsComponent implements OnInit {
     private truflid: any;
     private retarauntid: any;
     private profileUser = new ProfileUser();
-   
+    //private loginDetails;
     private emailDetails: any;
     constructor(private settingsService: SettingsService, private router: Router, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
         this.usertype = this.loginService.getUserType();
         this.truflid = this.loginService.getTrufluserID();
+        console.log(this.truflid);
         this.retarauntid = this.loginService.getRestaurantId();
+        //this.loginDetails = this.loginService.getUser();
        
     }
 
@@ -83,7 +85,7 @@ export class SettingsComponent implements OnInit {
 
 
     Done() {
-    
+       
         this.user.map(function (obj) {
             obj.isEdit = false;
         });
@@ -92,6 +94,12 @@ export class SettingsComponent implements OnInit {
         this.profileUser.UserName = this.user[0].value;
         this.profileUser.UserEmail = this.user[1].value;
         this.profileUser.NewLoginPassword = this.user[2].value;
+        //if (this.UserInformation.Password === this.user[2].value) {
+        //    this.profileUser.NewLoginPassword = this.loginDetails.password;
+        //}
+        //else {
+        //    this.profileUser.NewLoginPassword = this.user[2].value;
+        //}
         this.settingsService.PostProfileEdit(this.profileUser).subscribe((res: any) => {
             window.setTimeout(() => {
                 this._toastr.success("Changes Saved");

@@ -92,10 +92,10 @@
 
 
                
-
                 <tr *ngIf="isShow">
                     <td>
                         <button type="submit" class="primary-btn lgbtn pull-left" (click)="Done()" id="done">Done</button>
+                        <!--<button *ngIf="(name.errors.required && name.errors.pattern)||(email.errors.required && email.errors.pattern)||(password.errors.minlength && password.errors.pattern)" type="submit" class="primary-btn lgbtn pull-left" (click)="Done()" id="done">Done</button>-->
                         <button (click)="cancel()" class="secondary-btn lgbtn" id="cancel">Cancel</button>
                     </td>
                 </tr>

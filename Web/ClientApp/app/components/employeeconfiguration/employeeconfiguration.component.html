@@ -14,23 +14,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of employeesList|paginate:{ itemsPerPage: 5, currentPage: p,id:'p' }">
+            <tr *ngFor="let item of employeesList|paginate:{ itemsPerPage: 5, currentPage: p,id:'p' };let i = index">
                 <td>
                     <Span>{{item.TruflUserID}}</Span>
                 </td>
                 <td>
-                    <Span *ngIf="!showOnEdit">{{item.FullName}}</Span>
-                    <input type="text" [(ngModel)]="item.FullName" *ngIf="showOnEdit" />
+                    <Span  *ngIf="i!=this.indexvalue">{{item.FullName}}</Span>
+                    <input type="text" [(ngModel)]="item.FullName"  *ngIf="i==this.indexvalue" />
                 </td>
                 <td>
-                    <Span *ngIf="!showOnEdit">{{item.PhoneNumber}}</Span>
-                    <input type="text" [(ngModel)]="item.PhoneNumber" *ngIf="showOnEdit" />
+                    <Span *ngIf="i!=this.indexvalue" >{{item.PhoneNumber}}</Span>
+                    <input type="text" [(ngModel)]="item.PhoneNumber" *ngIf="i==this.indexvalue" />
                 </td>
                 <td>
-                    <Span *ngIf="!showOnEdit">{{item.Email}}</Span>
-                    <input type="text" [(ngModel)]="item.Email" *ngIf="showOnEdit" />
+                    <Span  *ngIf="i!=this.indexvalue">{{item.Email}}</Span>
+                    <input type="text" [(ngModel)]="item.Email" *ngIf="i==this.indexvalue" />
                 </td>
-                <td *ngIf="!showOnEdit"><a (click)="editEmployeeDetails()">Edit</a></td>
+                <td *ngIf="!showOnEdit"><a (click)="editEmployeeDetails(i)">Edit</a></td>
                 <td *ngIf="showOnEdit"><a (click)="saveEditedEmployeeDetails(item)">Save</a></td>
                 <td><a href="#">Deactivate</a></td>
             </tr>
