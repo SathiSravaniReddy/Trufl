@@ -14,23 +14,29 @@ export class HeaderComponent {
     private profileVisible = false;
     private showHeadings = true;
     public isSettings = false;
+    private showDashboard = true;
+ 
     public loadHeaders = {};
     public headers = [];
-
-      
+  
+   
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
         this.restaurantName = this.loginService.getRestaurantName();
         console.log(this.restaurantName, "  this.restaurantName");
-        if ((router.url != "/hostesssettings") && (router.url != "/settings")) {
+        if ((router.url != "/hostesssettings") && (router.url != "/settings") && (router.url != "/hostessdashboard")){
             this.isSettings = true;
+          
         }  
-
+     
+        if (router.url == "/hostessdashboard") {
+            this.showDashboard = false;
+        }
         //Keep these load headers in a service-----
         this.loadHeaders = {
             "RA": [
                 {
-                    "isSettings": this.isSettings,
+                    "isShowDashboard": !this.showDashboard,
                     "name": "HostessDashboard",
                     "active": true,
                     "route": '/hostessdashboard'
@@ -49,6 +55,7 @@ export class HeaderComponent {
             },
             {
                 "isSettings": !this.isSettings,
+                "isShowDashboard": this.showDashboard,
                 "name": "Settings",
                 "active": true,
                 "route": '/hostesssettings'
@@ -69,6 +76,7 @@ export class HeaderComponent {
                },
                {
                    "isSettings": !this.isSettings,
+                   "isShowDashboard":this.showDashboard,
                    "name": "Settings",
                    "active": true,
                    "route": '/settings'

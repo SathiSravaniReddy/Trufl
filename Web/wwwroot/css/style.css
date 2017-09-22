@@ -501,7 +501,7 @@ button.close {
     width: 55%;
 }
 
-.form-group input[type="text"] {
+.form-group input[type="text"], .form-group input[type="email"] {
     width: 55%;
     height: 35px;
     padding: 6px 12px;
@@ -512,7 +512,7 @@ button.close {
 }
 
 .form-group select {
-    width: 100%;
+    width: 55%;
     height: 40px;
     padding: 6px 12px;
     font-size: 14px;
@@ -885,7 +885,7 @@ button.close {
     font-size: 14px;
     border: #abaeaf solid 1px;
     height: 34px;
-    background: url(../images/date.png) no-repeat 98% center;
+    /*background: url(../images/date.png) no-repeat 98% center;*/
 }
 
 .ffw {
@@ -1086,4 +1086,72 @@ button.close {
 }
 .labwid{
     width:100px;
+}
+
+.spmain {
+    background: rgba(255, 255, 255, 0.9);
+    height: 600px;
+    overflow-y: auto;
+}
+
+    .spmain h3 {
+        margin-bottom: 30px;
+    }
+
+.sprep {
+    float: left;
+    width: 100%;
+    font-size: 15px;
+    border-bottom: 1px solid #95989a;
+    margin: 5px 0;
+    padding: 10px 0;
+}
+
+.sptext {
+    text-align: center;
+    font-weight: 700;
+}
+
+.sptabs ul {
+    list-style: none;
+    float: left;
+    width: 100%;
+    margin: 150px 0 0 0;
+}
+
+.sptabs li {
+    float: left;
+    width: 45%;
+    margin: 0 0px 0 0;
+}
+
+    .sptabs li a {
+        float: left;
+        width: 100%;
+        padding: 15px 0;
+        background: rgba(255, 255, 255, 0.6);
+        text-align: center;
+        height: 280px;
+        color: #000000;
+    }
+
+        .sptabs li a h4 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .sptabs li a img {
+            margin: 10px 0 10px 0;
+        }
+.spinner {
+    /*background: url(../images/loginbg.jpg) no-repeat top center;
+    background-size: cover;
+    background-attachment:fixed;
+    padding:15px;*/
+}
+.ffw select{
+    width: 100% !important;
+}
+.mydp .selection{
+    background:none !important;
 }

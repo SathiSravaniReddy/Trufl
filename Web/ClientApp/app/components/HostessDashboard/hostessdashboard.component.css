@@ -1,10 +1,19 @@
-﻿.loginbg {
+﻿
+.loginbg {
     background: url(../../../../wwwroot/images/loginbg.jpg) no-repeat center center;
     background-size: cover;
-    background-attachment: fixed;
+    display: table;
+    width: 100%;
+    min-height: 100%;
 }
 
-
     .loginbg .header {
-        background: none;
+        background: none !important;
     }
+.leftnav{
+    display: none !important;
+}
+
+.innermain{
+    display: none!important;
+}
