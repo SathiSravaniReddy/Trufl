@@ -13,32 +13,32 @@ export class HostessSettingsService {
 
     //Get API for settings page
     getUserDetails(usertype, truflid, restaurantid) {
-        return this.http.get(constant.truflAPI + constant.truflBase + 'GetRestaurantUserDetails/' + restaurantid + '/' + truflid + '/' + usertype).map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/GetRestaurantUserDetails/' + restaurantid + '/' + truflid + '/' + usertype).map(
             (res) => res.json());
 
     }
 
     //Get API for Bio categories
     GetBioCategories() {
-        return this.http.get(constant.truflAPI + constant.truflBase + 'GetBioCategories').map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/GetBioCategories').map(
             (res) => res.json());
     }
    
     //Get API for BioEvents based on categories 
     GetBioEvents(categoryId) {
-        return this.http.get(constant.truflAPI + constant.truflBase + 'GetBioEvents/' + categoryId).map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/GetBioEvents/' + categoryId).map(
             (res) => res.json());
     }
 
     //Post API for AddUserBioEvents
     AddUserBioEvents(bio) {
-        return this.http.post(constant.truflAPI + constant.truflBase + 'SaveUserBioEvents', bio).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/SaveUserBioEvents', bio).map(
             (res) => res.json());
     }
 
     //Post Api for Edit Profile
     PostProfileEdit(user) {
-        return this.http.post(constant.truflAPI + constant.truflBase + 'Admin/SaveProfilePassword', user).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'AdminLogin/SaveProfilePassword', user).map(
             (res) => res.json());
     }
 }
