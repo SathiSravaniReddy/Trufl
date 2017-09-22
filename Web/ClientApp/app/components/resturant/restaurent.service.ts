@@ -17,6 +17,7 @@ export class RestaurenService {
     }
 
 
+   
 
 
 
@@ -25,6 +26,8 @@ export class RestaurenService {
             (res) => res.json())
     }
 
+
+  
 
 
 
@@ -36,6 +39,9 @@ export class RestaurenService {
             (res) => res.json()
         )
     }
+
+
+   
 
 
 
