@@ -16,6 +16,7 @@ export class LoginService {
     private restaurantid: any;
     private restaurantName;
     private user: {};
+    private userName;
     constructor(private http: Http) {
     }
     public setUserType(value) {
@@ -59,6 +60,14 @@ export class LoginService {
     public getUser() {
         this.user = JSON.parse(localStorage.getItem('user'));
         return this.user;
+    }
+    public setUserName(value) {
+        this.userName = value;
+        localStorage.setItem('userName', value);
+    }
+    public getUserName() {
+        this.userName = localStorage.getItem('userName');
+        return this.userName;
     }
     //To get User Details
     getLoginDetails(userstype: any,restaurantid) {
