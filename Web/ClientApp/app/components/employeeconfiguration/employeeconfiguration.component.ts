@@ -53,13 +53,9 @@ export class EmployeeConfigurationComponent  {
 
     getRestaurantEmployees() {
         //Displaying trufl user's list
-        this.employeeConfigService.getEmployeConfiguration(this.TruflUserType, 1).subscribe((res: any) => {
-            console.log(res._Data);
-            this.employeesList = res._Data;
-            console.log(this.employeesList);
-
-            
-
+        this.employeeConfigService.getEmployeConfiguration(this.TruflUserType, 1).subscribe((res: any) => {          
+            this.employeesList = res._Data;        
+                      
         });
 
     }
@@ -103,8 +99,7 @@ export class EmployeeConfigurationComponent  {
     }
 
 
-    updatehoststatus(statusdetails:any) {
-        console.log(statusdetails);
+    updatehoststatus(statusdetails:any) {       
 
         if (statusdetails['ActiveInd'] == 1) {
 
@@ -138,32 +133,7 @@ export class EmployeeConfigurationComponent  {
 
 
 
-    onSubmit(details: any) {
-        console.log(details);
-
-      /*  var newempdata = {
-            "TruflUserID": null,
-            "RestaurantID": null,
-            "FullName": details['FullName'],
-            "Email": details['Email'],
-            "pic": null,
-            "PhoneNumber": details['PhoneNumber'],
-            "Password": null,
-            "Salt": null,
-            "DOB": null,
-            "ActiveInd":null,
-            "RestaurantEmpInd":null,
-            "TruflMemberType":1,
-            "TruflRelationship": null,
-            "TruflshareCode": null,
-            "ReferTruflUserID":null,
-            "ModifiedDate": null,
-            "ModifiedBy": null,
-            "Waited": null,
-            "LoggedInUserType":'RH'
-
-        }*/
-
+    onSubmit(details: any) {       
         var newempdata = {
             "TruflUserID": null,
             "RestaurantID": null,
@@ -189,12 +159,22 @@ export class EmployeeConfigurationComponent  {
 
 
         this.employeeConfigService.saveEmployeConfiguration(newempdata).subscribe((res: any) => {
-            console.log(res);
+            
+            if (res['_StatusMessage'] == "Success") {
+
+                window.setTimeout(() => {
+                    this._toastr.success("data saved successfully");
+                }, 20);
+
+            }
+            else {
+                alert("Error");
+            }
+
            
         });
 
         this.getRestaurantEmployees();
-
         this.addEmp.nativeElement.click();
         this.myForm.reset();
     }

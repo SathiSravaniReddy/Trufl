@@ -62,7 +62,8 @@
                     <form novalidate (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm">
 
 
-                        <div>
+                       
+                            <div class="col-md-12">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>FullName</label>
@@ -84,11 +85,12 @@
                                 </div>
 
                             </div>
+                                </div>
+
+                      
 
 
-
-
-
+                            <div class="col-md-12">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>PhoneNumber</label>
@@ -98,18 +100,19 @@
                                 </div>
 
                             </div>
+                                </div>
 
 
                             <div class="col-md-12">
                                 <div class="popup-btn">
 
                                     <button type="submit" class="primary-btn" [disabled]="!myForm.valid">Submit</button>&nbsp;&nbsp;
-                                    <!-- <button class="primary-btn" (click)="cancel()">Cancel</button> -->
+                                   
                                     <a href="#" data-dismiss="modal" class="secondary-btn" (click)="cancel()">Cancel</a>
                                 </div>
                             </div>
 
-                        </div>
+                 
 
 
                     </form>
@@ -119,4 +122,4 @@
 
         </div>
     </div>
-</div>
+</div>  

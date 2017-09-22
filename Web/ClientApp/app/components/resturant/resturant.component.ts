@@ -27,8 +27,7 @@ export class ResturantComponent implements OnInit {
     public details1: any;
 
     myForm: FormGroup;
-    myFormdata: FormGroup;
-    //name: FormControl;
+    myFormdata: FormGroup;   
     public data: any = {};
     public notificationdata: any = {};
     public editnotification: any = {};
@@ -42,10 +41,7 @@ export class ResturantComponent implements OnInit {
 
     @ViewChild('AddRes') addRes;
     @ViewChild('Notification') notifications;
-    /*@ViewChild('EditRes') edit;*/
-
-
-
+   
     private myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'yyyy-mm-dd'
     };
@@ -210,8 +206,7 @@ export class ResturantComponent implements OnInit {
 
 
 
-        if (editdetails.RestaurantID) {
-            console.log("coming");
+        if (editdetails.RestaurantID) {          
 
             this.restaurenService.addRestaurentDetails(editdetails).subscribe((res: any) => {
                 this.myForm.reset();
@@ -269,13 +264,10 @@ export class ResturantComponent implements OnInit {
     }
 
 
-    cancel(data:any) {
-        // console.log("coming");
+    cancel(data:any) {       
 
         this.myForm.reset();
-        this.getrestaurent();
-        /* this.addRes.nativeElement.click();*/
-      //  this.data = this.previousdata;  
+        this.getrestaurent();       
     }
 
 
@@ -290,8 +282,7 @@ export class ResturantComponent implements OnInit {
     }
 
 
-    editnotificationDetails(notificationdetails: any) {
-        console.log(notificationdetails);
+    editnotificationDetails(notificationdetails: any) {       
         this.editnotification = notificationdetails;
         var x = this.editnotification.ExpiresOn;
         console.log(x);
@@ -308,8 +299,7 @@ export class ResturantComponent implements OnInit {
 
     onSubmitNotification(details: any) {
 
-        console.log(details);
-
+    
         details.ExpiryDate = details.ExpiryDate.formatted;
 
         this.restaurenService.onSubmitNotifications(details).subscribe((res: any) => {
@@ -338,11 +328,9 @@ export class ResturantComponent implements OnInit {
 
 
     Cancel() {
-
-        //  this.notificationdata = '';
+       
         this.myFormdata.reset();
-        /*  this.myFormdata.reset();
-          this.notifications.nativeElement.click();  */
+       
     }
 
 
