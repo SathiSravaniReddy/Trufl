@@ -37,9 +37,9 @@ export class LoginComponent {
 
     //login
     signIn() {
-        
+        console.log(this.user);
         this.loginService.setUserType(this.user.usertype);
-        if (this.user.usertype === null) {
+        if (this.user.usertype == null) {
             window.setTimeout(() => {
                 this._toastr.error("Please Select UserType");
 
@@ -48,13 +48,9 @@ export class LoginComponent {
 
         else {
             this.loginService.setUserType(this.user.usertype);
-            //this.loginService.setUser(this.user);
             this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
                 res._Data.map((item: any) => {
                     this.loginDetails = item;
-                    //console.log(this.loginDetails.TruflUSERID, this.loginDetails.RestaurantID, "RestaurantID");
-                    //this.loginService.setUserType(this.loginDetails.TruflMemberType);
-                    console.log(this.loginDetails, " this.loginDetails");
                     this.loginService.setTrufluserID(this.loginDetails.TruflUSERID);
                     this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
                     this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
