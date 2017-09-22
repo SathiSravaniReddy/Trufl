@@ -22,6 +22,7 @@ export class EmployeeConfigurationComponent  {
     private TruflUserType = "RH";
     private employeesList;
     showOnEdit: boolean = false;
+    public indexvalue: any;
 
 
     myForm: FormGroup;
@@ -59,8 +60,9 @@ export class EmployeeConfigurationComponent  {
     }
 
 
-    editEmployeeDetails() {
+    editEmployeeDetails(index:any) {
         this.showOnEdit = true;
+        this.indexvalue = index;
 
     }
 
