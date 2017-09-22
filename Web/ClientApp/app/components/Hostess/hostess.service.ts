@@ -14,7 +14,7 @@ export class HostessService {
     //Service for Users List display
     public getTruflUserList() {
    
-        return this.http.get(constant.truflAPI + constant.truflBase + 'GetWaitListUsers')
+        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetWaitListUsers')
 .map(res => res.json() || {})
             .catch(this.handleError);
     }
@@ -23,7 +23,7 @@ export class HostessService {
     public acceptedandremovedwaiteduser(bookingid, bookinstatus) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post(constant.truflAPI + constant.truflBase + 'AcceptedandRemovedWaitedUser/' + bookingid + '/' + bookinstatus, { headers: headers })
+        return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/AcceptedandRemovedWaitedUser/' + bookingid + '/' + bookinstatus, { headers: headers })
             .map(res => res.json() || {})
     }
 
@@ -31,7 +31,7 @@ export class HostessService {
     public getRestaurantTableAmount(restaurantId, tableNo) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.get(constant.truflAPI + constant.truflBase + 'GetRestaurantTableAmount/' + restaurantId + '/' + tableNo, { headers: headers })
+        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantTableAmount/' + restaurantId + '/' + tableNo, { headers: headers })
             .map(res => res.json() || {})
     }
 
@@ -39,13 +39,13 @@ export class HostessService {
     public getRestaurantTables(restaurantId, tableNo) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.get(constant.truflAPI + constant.truflBase + 'GetRestaurantTables/' + restaurantId + '/' + tableNo, { headers: headers })
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/GetRestaurantTables/' + restaurantId + '/' + tableNo, { headers: headers })
             .map(res => res.json() || {})
     } 
 
     //Service for updating booking
     public updateBooking(seatedInfo) {
-        return this.http.post(constant.truflAPI + constant.truflBase + 'UpdateBooking', seatedInfo).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateBooking', seatedInfo).map(
             (res) => res.json()
         )
     }
