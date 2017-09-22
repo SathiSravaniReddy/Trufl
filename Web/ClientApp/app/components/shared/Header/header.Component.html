@@ -9,7 +9,7 @@
         <a *ngIf="this.userType==='RA'" [routerLink]="['/hostesssettings']"><img alt="" src="../../../../../wwwroot/images/setting.png" /> </a>
         <a *ngIf="this.userType==='TA'" [routerLink]="['/settings']"><img alt="" src="../../../../../wwwroot/images/setting.png" /> </a>
         <div class="profiledd dropdown">
-            <a (click)="logoutShow()"> <label>Jeffy </label> <img width="32" alt="" src="../../../../../wwwroot/images/profile.png" /> </a>
+            <a (click)="logoutShow()"> <label>{{userName}} </label> <img width="32" alt="" src="../../../../../wwwroot/images/profile.png" /> </a>
             <ul class="pdd" *ngIf="profileVisible">
                 <li>
                     <a class="" (click)="getEmployee()"> Employees Configuration</a>
@@ -27,7 +27,7 @@
         <div>
             <ul>
                 <li *ngFor="let header of headers let i=index">
-                    <a *ngIf="header.isSettings" [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
+                    <a *ngIf="header.isShow" [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
                 </li>
             </ul>
         </div>

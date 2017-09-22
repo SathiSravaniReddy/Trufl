@@ -7,7 +7,7 @@
                 <h1 class="text-center">Resturant App </h1>
             </div>
             <!-- Login Form-->
-           <form class="logininner" #loginForm="ngForm" (ngSubmit)="signIn()" *ngIf="showlogin">
+           <form class="logininner" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && signIn()" *ngIf="showlogin">
                 <div id="login">
                     <div class="logcheck">
                         <span class="pull-left">
@@ -33,7 +33,7 @@
                         <span class="help-block"></span>
                     </div>
 
-                    <div class="errormsg">{{errorMsg}}
+                    <div class="errormsg" *ngIf="!loginForm.form.valid">
                         
                         <span class="help-block"></span>
                     </div>
@@ -46,7 +46,7 @@
                     </div>-->
                     <div class="login-btn">
                         <button type="reset" class="secondary-btn lgbtn">Clear</button>
-                        <button type="submit" class="primary-btn lgbtn pull-right" [disabled]="!loginForm.form.valid">Sign In</button>
+                        <button type="submit" class="primary-btn lgbtn pull-right" >Sign In</button>
                     </div>
 
                     <div class="createaccount">
