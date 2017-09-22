@@ -35,6 +35,17 @@ export class EmployeeConfigService {
             (res) => res.json())
     }
 
+    updatehoststatus(updateitems: any) {
+
+        return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/' + 'UpdateRestaurantHostStatus', updateitems).map(
+            (res) => res.json())
+
+    }
+
+
+    /*constant.truflAPI + constant.truflBase + 'Hostess/' + 'UpdateRestaurantHostStatus'*/
+
+
     /*api/Hostess/UpdateRestaurantEmployee          */
    
 
