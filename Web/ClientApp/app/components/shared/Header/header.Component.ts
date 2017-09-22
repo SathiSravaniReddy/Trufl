@@ -23,15 +23,6 @@ export class HeaderComponent {
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
      
-      
-        if ((router.url != "/hostesssettings") && (router.url != "/settings") && (router.url != "/hostessdashboard")){
-            this.isSettings = true;
-          
-        }  
-     
-        if (router.url == "/hostessdashboard") {
-            this.showDashboard = false;
-        }
         //Keep these load headers in a service-----
         this.loadHeaders = {
             "RA": [
@@ -111,7 +102,7 @@ export class HeaderComponent {
     }
  
     logoutShow() {
-        this.profileVisible = true;
+        this.profileVisible = this.profileVisible == false?true:false;
         if (this.userType == "RA") {
             this.employeeVisible = true;
         }
