@@ -23,6 +23,7 @@ export class EmployeeConfigurationComponent  {
     private employeesList;
     showOnEdit: boolean = false;
     public indexvalue: any;
+ /*   public activestatus: boolean;*/
 
 
     myForm: FormGroup;
@@ -55,6 +56,10 @@ export class EmployeeConfigurationComponent  {
         this.employeeConfigService.getEmployeConfiguration(this.TruflUserType, 1).subscribe((res: any) => {
             console.log(res._Data);
             this.employeesList = res._Data;
+            console.log(this.employeesList);
+
+            
+
         });
 
     }
@@ -67,7 +72,8 @@ export class EmployeeConfigurationComponent  {
     }
 
     saveEditedEmployeeDetails(details: any) {
-        this.showOnEdit = false;
+       // this.showOnEdit = false;
+        this.indexvalue = !this.indexvalue;
 
         var detailsdata = {
             "TruflUserID": details['TruflUserID'],
@@ -95,6 +101,41 @@ export class EmployeeConfigurationComponent  {
 
         this.getRestaurantEmployees();
     }
+
+
+    updatehoststatus(statusdetails:any) {
+        console.log(statusdetails);
+
+        if (statusdetails['ActiveInd'] == 1) {
+
+            var empdetails = {
+                "TruflUserType": statusdetails['TruflMemberType'],
+                "RestaurantID": statusdetails['RestaurantID'],
+                "UserID": statusdetails['TruflUserID'],
+                "ActiveStatus":false
+            }
+
+        }
+        else {
+
+            var empdetails = {
+                "TruflUserType": statusdetails['TruflMemberType'],
+                "RestaurantID": statusdetails['RestaurantID'],
+                "UserID": statusdetails['TruflUserID'],
+                "ActiveStatus":true
+            }
+
+        }
+
+        console.log(empdetails);
+      
+          
+        this.employeeConfigService.updatehoststatus(empdetails).subscribe((res: any) => {
+                console.log(res._Data);               
+            });        
+
+    }
+
 
 
     onSubmit(details: any) {

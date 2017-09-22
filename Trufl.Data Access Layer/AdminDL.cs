@@ -262,7 +262,7 @@ namespace Trufl.Data_Access_Layer
         /// This method 'GetRestaurantUserDetails ' returns Restaurant User details
         /// </summary>
         /// <returns>Notifications List</returns>
-        public SettingsDTO GetRestaurantUserDetails(int RestaurantID,int TruflUserID,string UserType)
+        public SettingsDTO GetRestaurantUserDetails(int? RestaurantID,int TruflUserID,string UserType)
         {
             SettingsDTO sendResponse = new SettingsDTO();
             try
@@ -274,8 +274,17 @@ namespace Trufl.Data_Access_Layer
                     {
                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
                         cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
-                        tvpParam.SqlDbType = SqlDbType.Int;
+
+                        
+                        if (RestaurantID == null)
+                        {
+                            SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", DBNull.Value);
+                        }
+                        else
+                        {
+                            SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                            tvpParam.SqlDbType = SqlDbType.Int;
+                        }
                         SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@TruflUserID", TruflUserID);
                         tvparam1.SqlDbType = SqlDbType.Int;
                         SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@UserType", UserType);

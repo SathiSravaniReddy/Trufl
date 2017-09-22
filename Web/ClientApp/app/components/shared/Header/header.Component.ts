@@ -10,7 +10,7 @@ import { Router, RouterLinkActive  } from '@angular/router';
 })
 export class HeaderComponent {
     private userType;
-    private restaurantName;
+    private userName;
     private profileVisible = false;
     private showHeadings = true;
     public isSettings = false;
@@ -24,14 +24,14 @@ export class HeaderComponent {
         this.userType = this.loginService.getUserType();
         this.restaurantName = this.loginService.getRestaurantName();
         console.log(this.restaurantName, "  this.restaurantName");
-       
-
-        //if ((router.url != "/hostesssettings") && (router.url != "/settings") && (router.url != "/hostessdashboard")){
-        //    this.isSettings = true;
+        if ((router.url != "/hostesssettings") && (router.url != "/settings") && (router.url != "/hostessdashboard")){
+            this.isSettings = true;
           
-        //}  
-
-
+        }  
+     
+        if (router.url == "/hostessdashboard") {
+            this.showDashboard = false;
+        }
         //Keep these load headers in a service-----
         this.loadHeaders = {
             "RA": [
@@ -92,6 +92,7 @@ export class HeaderComponent {
  
     logoutShow() {
         this.profileVisible = true;
+       
     }
 
     showHeaders() {
