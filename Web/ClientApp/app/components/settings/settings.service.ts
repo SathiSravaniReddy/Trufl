@@ -13,7 +13,7 @@ export class SettingsService {
     }
 
     getUserDetails(usertype, restarauntid, truflid) {
-        return this.http.get(constant.truflAPI + constant.truflBase + 'GetRestaurantUserDetails'  +'/' + restarauntid + '/' + truflid + '/' + usertype).map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/'+'GetRestaurantUserDetails'  +'/' + restarauntid + '/' + truflid + '/' + usertype).map(
             (res) => res.json())
 
     }
@@ -22,7 +22,7 @@ export class SettingsService {
 
 
     PostProfileEdit(user) {
-        return this.http.post(constant.truflAPI + constant.truflBase + 'Admin'+'/'+ 'SaveProfilePassword', user).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'AdminLogin'+'/'+ 'SaveProfilePassword', user).map(
             (res) => res.json());
     }
 
