@@ -33,7 +33,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { MyDatePickerModule } from 'mydatepicker';
 import { EmployeeConfigService } from './components/employeeconfiguration/EmployeeConfiguration.service';
 
-
+import { HostessDashboardComponent } from './components/HostessDashboard/hostessdashboard.component';
+import { HostessDashboardService } from './components/HostessDashboard/hostessdashboard.service';
 
 
 @NgModule({
@@ -64,7 +65,6 @@ import { EmployeeConfigService } from './components/employeeconfiguration/Employ
         DashboardService,
         RestaurenService,
         HostessSettingsService,
-        EmployeeConfigService,
         ToastsManager,
         DatePipe,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
