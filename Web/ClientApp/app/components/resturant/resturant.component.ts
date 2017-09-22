@@ -30,9 +30,14 @@ export class ResturantComponent implements OnInit {
     myFormdata: FormGroup;
     //name: FormControl;
     public data: any = {};
-    public notificationdata: any = {}
+    public notificationdata: any = {};
+    public editnotification: any = {};
     public state: any;
 
+    public previousdata: any;
+    public ExpiryDate: string;
+    public ExpiresOn: string;
+  
 
 
     @ViewChild('AddRes') addRes;
@@ -66,7 +71,7 @@ export class ResturantComponent implements OnInit {
             'OwnerContact1': [null, Validators.required],
             'OwnerContact2': [null],
             /* 'Description': [null, Validators.required],*/
-            'Description': [null, Validators.compose([Validators.required, Validators.minLength(10)])],
+            'Description': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
             /* 'QuotedTime': [null, Validators.required] */
             'QuotedTime': [null, Validators.compose([Validators.required, Validators.pattern('([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]')])]
 
@@ -80,7 +85,7 @@ export class ResturantComponent implements OnInit {
 
         this.myFormdata = fb.group({
             'ExpiryDate': [null, Validators.required],
-            'description': [null, Validators.compose([Validators.required, Validators.minLength(10)])]
+            'description': [null, Validators.compose([Validators.required, Validators.minLength(3)])]
         });
 
 
@@ -127,10 +132,11 @@ export class ResturantComponent implements OnInit {
 
     public getnotifications() {
 
-        this.restaurenService.getnotifications().subscribe((res: any) => {
+       
 
+        this.restaurenService.getnotifications().subscribe((res: any) => {
             this.notifications_info = res._Data;
-            console.log(this.notifications_info);
+            
         })
 
     }
@@ -263,29 +269,52 @@ export class ResturantComponent implements OnInit {
     }
 
 
-    cancel() {
+    cancel(data:any) {
         // console.log("coming");
 
         this.myForm.reset();
+        this.getrestaurent();
         /* this.addRes.nativeElement.click();*/
-
+      //  this.data = this.previousdata;  
     }
 
 
 
 
     editDetails(restaurentinfo, $event) {
-        event.preventDefault();
         this.data = restaurentinfo;
+        this.previousdata = (<any>Object).assign({},restaurentinfo);
+
+        event.preventDefault();
+      
     }
 
 
+    editnotificationDetails(notificationdetails: any) {
+        console.log(notificationdetails);
+        this.editnotification = notificationdetails;
+        var x = this.editnotification.ExpiresOn;
+        console.log(x);
+        var y = x.split("T")[0];
+        console.log(y);
+        var divide = y.split('-');
+        var newDate = divide[2]+"/"+divide[1]+ "/" +divide[0];
+        console.log(newDate);
+        this.ExpiryDate = newDate;
+
+    
+    }
+
 
     onSubmitNotification(details: any) {
+
+        console.log(details);
+
         details.ExpiryDate = details.ExpiryDate.formatted;
 
         this.restaurenService.onSubmitNotifications(details).subscribe((res: any) => {
 
+           
 
             this.myFormdata.reset();
             this.notifications.nativeElement.click();

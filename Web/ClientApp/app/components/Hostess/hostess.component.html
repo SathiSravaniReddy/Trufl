@@ -37,17 +37,12 @@
             </tbody>
         </table>
 
-        <!--<div class="btn-main">
-            <a href="#">Add </a>
-
-        </div>-->
+      
 
         <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
     </div>
     <div class="col-md-12 seatmain" *ngIf="showTurnSeats">
-        <div class="col-md-3 btn-main" *ngIf="hideSeatedButton">
-            <button class="" (click)="trunGetSeatedNow()">turn get seated now</button>
-        </div>
+      
         <div class="col-md-12" *ngIf="showSeated">
             <div class="row">
                 <div class="col-md-9 tableselect">
@@ -74,46 +69,74 @@
 
     <!--User Profile  Right Side-->
     <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-        <a class="print pull-right" (click)="print()">Print </a>
-        <a id="close" (click)="closeProile('right-section')"><span aria-hidden="true">&times;</span></a>
+
+
+
+
+        <a id="close" class="close" (click)="closeProile('right-section')"><span aria-hidden="true">×</span></a>
+
+
 
         <div class="right-top">
             <img alt="" src="../../../../wwwroot/images/no-img.png" />
-            <h5 class="nameheader">{{profileData.UserName}}</h5>
+            <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
             <p class="defaulttext"> Trufl Premier Member</p>
             <p class="defaulttext">{{restaurantName}} Member</p>
-
-        </div>
-        
-        <div class="right-btn">
-            <h6> Trufl Bio </h6>
-            <a type="button" data-toggle="modal" data-target="#AddBio" class="bioprimary-btn pull-right" href="#">ADD </a>
-            <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
+            <p><a class="print" (click)="print()">Print </a></p>
 
         </div>
 
 
-        <div class="right-rep">
-            <h5> This Visit </h5>
-            <div class="row">
-                <div class="col-md-5"> <a href="#">Birthday </a> </div>
-                <div class="col-md-7">Jay Chanuu Turning to 32 </div>
+        <!--Bio -->
+        <div>
+            <div class="right-btn">
+                <h5>
+                    Trufl Bio
+                    <a data-toggle="modal" data-target="#myModal" class="pull-right" href="#">ADD </a>
+                </h5>
+
+                <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
+
+            </div>
+
+            <!--Bio Events-->
+            <div class="right-rep" *ngIf="bioData.length>=1">
+                <h5>Visit</h5>
+                <div *ngFor="let bio of bioData">
+
+                    <div class="row" *ngIf="bio.BioID===1">
+                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                        <div class="col-md-7">{{bio.Description}} </div>
+                    </div>
+                </div>
+                <h5>Relationship</h5>
+                <div *ngFor="let bio of bioData">
+
+                    <div class="row" *ngIf="bio.BioID===2">
+                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                        <div class="col-md-7">{{bio.Description}} </div>
+                    </div>
+                </div>
+                <h5>Seating Preference</h5>
+                <div *ngFor="let bio of bioData">
+
+                    <div class="row" *ngIf="bio.BioID===3">
+                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                        <div class="col-md-7">{{bio.Description}} </div>
+                    </div>
+                </div>
+                <h5>Food/Drink Preference</h5>
+                <div *ngFor="let bio of bioData">
+
+                    <div class="row" *ngIf="bio.BioID===4">
+                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                        <div class="col-md-7">{{bio.Description}} </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
-        <div class="right-rep">
-            <h5> Relationship </h5>
-            <div class="row">
-                <div class="col-md-5"> <a href="#">VIP </a> <a href="#">Friend of owner </a> </div>
-                <div class="col-md-7">Jay Chanuu Turning to 32 </div>
-            </div>
-
-        </div>
-
-
-
-
-
     </div>
 
 
@@ -155,32 +178,58 @@
 
 
 
-<div class="modal fade" id="AddBio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add Bio</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row modal-items">
-                    <div class="col-md-12">
-                        <div class="form-group ffw">
-                            <label class="text-left">Category</label>
-                            <select class="form-items">
-                                <option>Option1</option>
-                                <option>Option1</option>
-                            </select>
-                        </div>
+<!--Add Bio Modal-->
+<div class="container">
 
 
-                        <div class="form-group ffw">
-                            <label>Description</label>
-                            <textarea class="form-control" rows="4" cols="30"></textarea>
-                        </div>
-                    </div>
+    <!-- Modal -->
+    <div class="modal addBio-modal fade" id="myModal" #bioModal role="dialog">
+        <div class="modal-dialog addBio-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Add Bio</h4>
                 </div>
-
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-12">Select the category</label>
+                            <div class="col-md-12">
+                                <select [ngModel]="categoryId" (ngModelChange)="onCategoryChange($event)" name="categoryId">
+                                    <option *ngFor="let categories of bioCategories; let i=index"
+                                            [value]="categories.BioID">
+                                        {{categories.BioName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="showEvents">
+                            <label class="col-md-12">Select the Event</label>
+                            <div class="col-md-12">
+                                <select [ngModel]="eventId" (ngModelChange)="onEventChange($event)" name="eventId">
+                                    <option *ngFor="let events of bioEvents; let i=index"
+                                            [value]="events.BioEventID">
+                                        {{events.BioEventName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12">Enter the description</label>
+                            <div class="col-md-12">
+                                <textarea [(ngModel)]="description" name="message" rows="8" cols="60"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer addBio-footer">
+                    <form>
+                        <button type="button" class="btn btn-default bluebtn" (click)="addBio()">ADD</button>
+                        <button type="button" class="btn btn-default cancelbtn" (click)="close()">Cancel</button>
+                    </form>
+                </div>
             </div>
 
         </div>

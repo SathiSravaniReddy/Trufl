@@ -20,6 +20,7 @@ export class HostessSettingsComponent implements OnInit {
     private UserInfo: any;
     private user: any=[];
     private profileUser = new ProfileUser();
+    private isEdit: boolean = false;
     private truflCustomers: any = [];
     private showTruflCustomers: boolean = true;
     private showProfile: boolean = false;
@@ -70,7 +71,6 @@ export class HostessSettingsComponent implements OnInit {
             this.UserInfo = this.settingsData.UserLoginInformation[0];
             Object.keys(this.UserInfo).map((keyName, index) => {
                 that.user.push({
-                    isEdit: false,
                     value: that.UserInfo[keyName],
                     key: keyName
                 })
@@ -158,18 +158,15 @@ export class HostessSettingsComponent implements OnInit {
     }
 
     //edit profile
-    editDetails(obj, index) {
-        obj.isEdit = !obj.isEdit;
-
+    editDetails() {
+        this.isEdit = true;
         
     }
 
     //edit profile done
     Done() {
-        this.user.map((obj) => {
-            obj.isEdit = false;
-        });
         
+        this.isEdit = false;
         this.profileUser.UserID = this.truflid;
         this.profileUser.UserName = this.user[0].value;
         this.profileUser.UserEmail = this.user[1].value;
@@ -179,7 +176,7 @@ export class HostessSettingsComponent implements OnInit {
         else {
             this.profileUser.NewLoginPassword = this.user[2].value;
         }
-       // console.log(this.profileUser);
+       //console.log(this.profileUser);
         this.settingsService.PostProfileEdit(this.profileUser).subscribe((res: any) => {
            window.setTimeout(() => {
                 this._toastr.success("Changes Saved");
@@ -191,15 +188,10 @@ export class HostessSettingsComponent implements OnInit {
     //edit profile cancel
     cancel() {
         var that = this;
-        this.user.map((obj) => {
-            obj.isEdit = false;
-
-
-        });
+        this.isEdit = false;
         this.user = [];
         Object.keys(this.UserInfo).map((keyName, index) => {
             that.user.push({
-                isEdit: false,
                 value: that.UserInfo[keyName],
                 key: keyName
             })
