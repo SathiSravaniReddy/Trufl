@@ -20,8 +20,6 @@ export class HostessComponent {
     private restaurantName;
     private truflUserList;
     private selectedRow: Number;
-    private selectedSize: Number;
-    private selectedTable: Number;
     private priceOfTable;
     private classForAccept;
     private sizeOfTable;
@@ -91,7 +89,6 @@ export class HostessComponent {
     //Functinality for trufl user's list
     watlistUserDetails(data,index) {
         this.selectedRow = index;
-        this.selectedSize = -1;
         var _that = this;
         this.currentSelectedUser = data.Email;
         this.RestaurantId = data.RestaurantID;
@@ -125,8 +122,7 @@ export class HostessComponent {
    
 
     //functionality for table size
-    OnTableSizeSelection(item,index) {
-        this.selectedSize = index;
+    OnTableSizeSelection(item) {
         this.hostessService.getRestaurantTableAmount(this.RestaurantId, item.size).subscribe((res: any) => {
             this.priceOfTable = "No Price Available";
             if (res._Data[0].Amount) {
@@ -184,10 +180,6 @@ export class HostessComponent {
         this.restaurantTableData = { "BookingID": this.dataOfTable.BookingID, "UserID": this.dataOfTable.TruflUserID, "RestaurantID": this.dataOfTable.RestaurantID, "BStatus": 3, "TableNumbers": this.multipleTables }
         this.hostessService.updateBooking(this.restaurantTableData).subscribe((res: any) => {
             console.log(res);
-            this.hostessService.getTruflUserList().subscribe((res: any) => {
-                this.truflUserList = res._Data;
-            });
-
         })
         window.setTimeout(() => {
             this._toastr.success("submitRestaurantTable");
@@ -196,8 +188,7 @@ export class HostessComponent {
     }
 
     //Selecting table
-    selectTable(item, index) {
-        this.selectedTable = index;
+    selectTable(item) {
         this.tablesSelected.push(item.TableNo);
         var uniq = this.tablesSelected.filter(function (elem, index, self) {
             return index == self.indexOf(elem);
@@ -210,7 +201,7 @@ export class HostessComponent {
         this.classForAccept = "success";
         this.classForSeated = "selected";
         window.setTimeout(() => {
-            this._toastr.success("closed restaurantTable");
+            this._toastr.success("closed restauranttabel");
         }, 200);
 
     }

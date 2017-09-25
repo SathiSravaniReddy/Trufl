@@ -112,8 +112,6 @@ export class LoginService {
         localStorage.removeItem("truflid");
         localStorage.removeItem("restaurantid");
         localStorage.removeItem("restaurantName");
-        localStorage.removeItem("user");
-        localStorage.removeItem("userName");
         
     }
 

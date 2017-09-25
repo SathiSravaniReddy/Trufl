@@ -37,7 +37,7 @@ export class HostessDashboardComponent implements OnInit {
 
         this._restaraunt.getnotifications().subscribe((res: any) => {
             this.dashboardnotifications = res._Data;
-            //console.log(this.dashboardnotifications, "this.notifications_info");
+            console.log(this.dashboardnotifications, "this.notifications_info");
 
         })
 
