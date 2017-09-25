@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Configuration;
 using DTO;
 using Trufl.Logging;
+using System.Web;
+using System.IO;
+using System.Net;
 
 namespace Trufl.Data_Access_Layer
 {
@@ -393,6 +396,48 @@ namespace Trufl.Data_Access_Layer
             }
         }
 
+        /// <summary>
+        /// This Method SendPushNotification is used to send Push Notification to mobile devices using Firebase Cloud Messaging(FCM) service
+        /// </summary>
+        /// <param name="DeviceID">FCM RegId or Device ID of the mobile to which the push notification is to be sent</param>
+        /// <param name="Title">Title for the push notification</param>
+        /// <param name="Message">message or body on the push notification</param>
+        public void SendPushNotification(string DeviceID, string Title, string Message)
+        {
+
+            var result = "-1";
+            string serverKey = ConfigurationManager.AppSettings["FCMServerKey"];
+            //Message = "Push Notification Sent using WebAPi Sample Test";
+            //Title = "Welcome to PTG";
+            //DeviceID = "eJ3yblr-rBE:APA91bG9maWJUiRuakp4NNHUIX-acvPXUKNNVQ36maSTFSKSAnhT1O4sYVYgA7GqlPFXLFwmT-V79fbT7VtzPKWe3IT9KfFKjjJRtJzaVB0DHFNqPtEnPo3HtXUthUShwYrpjAjGaXvF";
+
+            try
+            {
+                var webAddr = ConfigurationManager.AppSettings["webAddress"];
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Headers.Add(string.Format("Authorization: key={0}", serverKey));
+                httpWebRequest.Method = "POST";
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    //string json = "{\"to\": \"/topics/news\",\"notification\": {\"body\": \"New news added in application!\",\"title\":\"" + Your_Notif_Title + "\",}}";
+                    string json = "{\"to\": \"" + DeviceID + "\",\"notification\": {\"body\": \"" + Message + "\",\"title\":\"" + Title + "\",}}";
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    result = streamReader.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex, result);
+            }
+        }
 
         #endregion
     }
