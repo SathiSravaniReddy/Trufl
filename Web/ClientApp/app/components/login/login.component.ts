@@ -37,7 +37,7 @@ export class LoginComponent {
 
     //login
     signIn() {
-        console.log(this.user);
+       // console.log(this.user);
         this.loginService.setUserType(this.user.usertype);
         if (this.user.usertype == null) {
             window.setTimeout(() => {

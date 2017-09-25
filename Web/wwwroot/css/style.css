@@ -340,8 +340,8 @@ ul {
             }
 
 .tablerowselect {
-    background: #4E4E4E;
-    color: #fff;
+    background: #cacaca;
+    color: #333;
 }
 
 
@@ -360,7 +360,11 @@ ul {
         width: 200px;
         text-align: center;
     }
-
+    .price span {
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
     .price a {
         float: left;
         width: 30px;

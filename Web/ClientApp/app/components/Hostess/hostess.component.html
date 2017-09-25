@@ -49,8 +49,8 @@
                     <label>Table Size : </label>
 
                     <ul>
-                        <li *ngFor="let item of TableSize">
-                            <span (click)="OnTableSizeSelection(item)">{{item.size}}</span>
+                        <li *ngFor="let item of TableSize;let i=index;">
+                            <span (click)="OnTableSizeSelection(item,i)" [class.selected]="i == selectedSize">{{item.size}}</span>
                         </li>
                     </ul>
 
@@ -69,14 +69,7 @@
 
     <!--User Profile  Right Side-->
     <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-
-
-
-
         <a id="close" class="close" (click)="closeProile('right-section')"><span aria-hidden="true">×</span></a>
-
-
-
         <div class="right-top">
             <img alt="" src="../../../../wwwroot/images/no-img.png" />
             <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
@@ -85,7 +78,6 @@
             <p><a class="print" (click)="print()">Print </a></p>
 
         </div>
-
 
         <!--Bio -->
         <div>
@@ -153,7 +145,7 @@
             <div class="modal-body" style="display:inline-block;">
                 <div class="seatselection">
                     <ul>
-                        <li *ngFor="let item of tableData"><a (click)="selectTable(item)">{{item.TableNo}}</a></li>
+                        <li *ngFor="let item of tableData;let i=index;"><a (click)="selectTable(item,i)" [class.selected]="i == selectedTable">{{item.TableNo}}</a></li>
                         <!--<li><a class="hold" href="#">2 </a> </li>-->
 
                     </ul>
