@@ -54,7 +54,9 @@ export class EmployeeConfigurationComponent  {
     getRestaurantEmployees() {
         //Displaying trufl user's list
         this.employeeConfigService.getEmployeConfiguration(this.TruflUserType, 1).subscribe((res: any) => {          
-            this.employeesList = res._Data;        
+            this.employeesList = res._Data; 
+
+            console.log(this.employeesList);
                       
         });
 
@@ -126,8 +128,10 @@ export class EmployeeConfigurationComponent  {
       
           
         this.employeeConfigService.updatehoststatus(empdetails).subscribe((res: any) => {
-                console.log(res._Data);               
-            });        
+            this.getRestaurantEmployees();            
+        });  
+
+       
 
     }
 
@@ -182,5 +186,14 @@ export class EmployeeConfigurationComponent  {
 
         this.myForm.reset();
     }
+
+
+
+    public hasData(): boolean {
+        return (this.employeesList != null && this.employeesList.length > 0);
+    }
+
+
+
 
 }

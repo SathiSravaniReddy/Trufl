@@ -29,10 +29,19 @@
                         <td>{{restaurentinfo.RestaurantName}}</td>
                         <td>{{restaurentinfo.ModifiedDate|date: 'dd/MM/yyyy'}}</td>
                         <td><a data-toggle="modal" data-target="#AddRes" class="pull-right addres" (click)="editDetails(restaurentinfo)">View Details</a></td>
-
+                         
+                       
+                    
+                   
                     </tr>
 
-                    <!-- <tr>
+               
+
+
+
+                 
+
+                      <!-- <tr>
                          <td width="250">Botique Louie</td>
                          <td width="100">4/6/17</td>
                          <td width="100"> <a id="rowclick" href="#">View Details</a></td>
@@ -49,7 +58,16 @@
                      </tr> -->
                 </tbody>
             </table>
-            <pagination-controls class="pull-right" (pageChange)="p=$event" id="p"></pagination-controls>
+
+           
+            
+           <p *ngIf="restaurentinfo">No data</p>
+           
+
+            <div *ngIf="!hasData()">No Data Found</div> 
+
+
+            <pagination-controls class="pull-right" (pageChange)="p=$event" id="p" *ngIf="hasData()"></pagination-controls>
         </div>
 
 
@@ -65,17 +83,25 @@
 
                 <div class="not-rep" *ngFor="let notificationsinfo of notifications_info|paginate:{ itemsPerPage: 5, currentPage: d,id:'d' }">
                     <p>{{notificationsinfo.ExpiresOn|date: 'dd/MM/yyyy'}} </p>
-                    <div class="not-inner">{{notificationsinfo.Description}}<a data-toggle="modal" data-target="#Notification" class="pull-right addres" (click)="editnotificationDetails(notificationsinfo)">View Details</a></div>
+                    <div class="not-inner">{{notificationsinfo.Description}}<a href="" data-toggle="modal" data-target="#Notification" class="pull-right addres" (click)="editnotificationDetails(notificationsinfo)">View Details</a></div>
                   
 
                 </div>
 
 
             </div>
+            
+            <div *ngIf="!hasDetails()">No Data Found</div> 
 
-            <pagination-controls class="pull-right" (pageChange)="d=$event" id="d"></pagination-controls>
+
+            <pagination-controls class="pull-right" (pageChange)="d=$event" id="d" *ngIf="hasDetails()" ></pagination-controls>
 
         </div>
+
+
+        
+
+
     </div>
 </div>
 

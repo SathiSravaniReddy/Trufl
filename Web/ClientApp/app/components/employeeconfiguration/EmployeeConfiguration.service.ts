@@ -28,9 +28,11 @@ export class EmployeeConfigService {
             (res) => res.json())
     }
     saveEmployeConfiguration(items: any) {       
-        return this.http.post(constant.truflAPI + constant.truflBase+'Trufl/' + 'SignUp', items).map(
+        return this.http.post(constant.truflAPI + constant.truflBase+'/SignUp', items).map(
             (res) => res.json())
     }
+    
+
 
     updatehoststatus(updateitems: any) {
 
