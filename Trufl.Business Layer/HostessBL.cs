@@ -36,7 +36,7 @@ namespace Trufl.Business_Layer
             return _hostessDL.GetRestaurantTables(RestaurantID, UserID);
         }
 
-        public bool SaveWaitedlistBooking(BookingTableInputDTO bookingTableInput)
+        public bool SaveWaitedlistBooking(BookingTableDTO bookingTableInput)
         {
             return _hostessDL.SaveWaitedlistBooking(bookingTableInput);
         }
@@ -44,6 +44,16 @@ namespace Trufl.Business_Layer
         public DataTable GetRestaurantTableAmount(int RestaurantID, int TableNumber)
         {
             return _hostessDL.GetRestaurantTableAmount(RestaurantID, TableNumber);
+        }
+
+        public bool UpdateBooking(UpdateBookingTableNumberDTO updateBookingTableNumber)
+        {
+            return _hostessDL.UpdateBooking(updateBookingTableNumber);
+        }
+
+        public bool UpdateRestaurantHostStatus(UpdateRestaurantHostStatusDTO UpdateRestaurantHost)
+        {
+            return _hostessDL.UpdateRestaurantHostStatus(UpdateRestaurantHost);
         }
             #endregion
 
@@ -53,24 +63,24 @@ namespace Trufl.Business_Layer
             return _hostessDL.GetRestaurantSeatedUsers(RestaurantID);
         }
 
-         public bool SaveSeatBooking(List<RestaurantSeatedUsersInputDTO> restaurantSeatedUsersInputDTO)
+         public bool SaveSeatBooking(List<RestaurantSeatedUsersDTO> restaurantSeatedUsersInputDTO)
         {
             return _hostessDL.SaveSeatBooking(restaurantSeatedUsersInputDTO);
         }
         #endregion
 
         #region LoginUser
-        public DataTable GetUserTypes(string UserType)
+        public DataTable GetUserTypes(string UserType,int RestaurantID)
         {
-            return _hostessDL.GetUserTypes(UserType);
+            return _hostessDL.GetUserTypes(UserType,RestaurantID);
         }
 
-        public bool SaveSignUpUserInfo(TruflUserInputDTO registerUserInfo)
+        public bool SaveSignUpUserInfo(TruflUserDTO registerUserInfo)
         {
             return _hostessDL.SaveSignUpUserInfo(registerUserInfo);
         }
 
-        public DataTable LoginAuthentication(LoginInputDTO loginInput)
+        public DataTable LoginAuthentication(LoginDTO loginInput)
         {
             return _hostessDL.LoginAuthentication(loginInput);
         }
@@ -80,9 +90,9 @@ namespace Trufl.Business_Layer
             return _hostessDL.ForgetPassword(LoginEmail);
         }
 
-        public DataTable SaveRestPassword(string LoginEmail)
+        public DataTable SaveRestPassword(RestPasswordDTO restPasswordInput)
         {
-            return _hostessDL.SaveRestPassword(LoginEmail);
+            return _hostessDL.SaveRestPassword(restPasswordInput);
         }
 
         public DataTable GetTruflUserDetails(int TruflUserID)
@@ -93,9 +103,31 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.GetRestaurantDetails(RestaurantID);
         }
-            #endregion
+        #endregion
+        public bool SaveUserBioEvents(SaveUserBioEventsDTO saveUserBioEvents)
+        {
+            return _hostessDL.SaveUserBioEvents(saveUserBioEvents);
+        }
 
+        public DataTable GetBioCategories()
+        {
+            return _hostessDL.GetBioCategories();
+        }
 
+        public DataTable GetBioEvents(int BioID)
+        {
+            return _hostessDL.GetBioEvents(BioID);
+        }
+
+        public DataTable GetEmployeConfiguration(string TruflUserType, int RestaurantID)
+        {
+            return _hostessDL.GetEmployeConfiguration(TruflUserType, RestaurantID);
+        }
+
+        public bool spUpdateRestaurantEmployee(EmployeeConfigDTO employeeConfigDTO)
+        {
+            return _hostessDL.spUpdateRestaurantEmployee(employeeConfigDTO);
+        }
             #endregion
         }
 }

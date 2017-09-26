@@ -1,137 +1,107 @@
-﻿<shared-header></shared-header>
-
+﻿
+<shared-header></shared-header>
 <div class="col-md-12 settingmain">
-    <div class="col-md-5 settingtop setgap dn">
-        <h3 class="nb">Trufl Customers <input type="text" class="settingsearch" placeholder="Search" /></h3>
+    <div class="col-md-6 settingtop setgap">
+        <h3>Reset Password</h3>
 
         <table class="table">
-            <thead>
+            <tbody *ngFor="let truflcustomers of UsersInformation | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
                 <tr>
-                    <th width="200">Resturant Name</th>
-                    <th width="100">Last Visited</th>
-                    <th width="150">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td width="250">Jeff</td>
-                    <td width="100">4/6/17</td>
-                    <td width="100"> <a id="rowclick" href="#">View Details</a></td>
-                </tr>
-                <tr>
-                    <td>Jeff</td>
-                    <td>4/6/17</td>
-                    <td><a href="#">View Details</a></td>
-                </tr>
-                <tr>
-                    <td>Jeff</td>
-                    <td>4/6/17</td>
-                    <td><a href="#">View Details</a></td>
+                    <td class="text"><p>Username:</p><p class="settingsdata">{{truflcustomers.RegisteredRestaurants}}</p></td>
+                    <td class="text"><p>Email Id:</p><p class="settingsdata">{{truflcustomers.RegisteredEmail}}</p></td>
+                   
+                    <td><a class="reset" (click)="Reset(truflcustomers.RegisteredEmail)">Reset</a></td>
                 </tr>
             </tbody>
         </table>
+        <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
     </div>
-
-
-
-    <div class="col-md-5 settingtop setgap">
-        <h3 class="nb">Reset Password</h3>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th width="150">User Name</th>
-                    <th width="200">Email Id</th>
-                    <th width="150">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let truflcustomers of trufl_customers; let i = index">
-                    <td>{{truflcustomers.name}}</td>
-                    <td>{{truflcustomers.Lastvisited}}</td>
-                    <td>Reset</td>
-                </tr>
-                <!--  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>
-                  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>
-                  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>
-                  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>
-                  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>
-                  <tr>
-                      <td>Jeff</td>
-                      <td>4/6/17</td>
-                      <td><a href="#">Reset</a></td>
-                  </tr>-->
-            </tbody>
-        </table>
-    </div>
-
-
-    <div class="col-md-5 settingtop">
-
-
+    <div class="col-md-5 settingtop" id="secondsettingtop">
         <h3>
             Profile
-            <a class="pull-right" href="#"><!--<img alt="" src="../images/edit.png" />--></a>
+            <a class="pull-right" href="#"></a>
         </h3>
+        <table class="table">
 
-        <div *ngFor="let userprofile of user_Profile; let i = index">
-            <div class="col-md-12 textborder">
-                <div class="col-md-3">
-                    <p class="text-muted">Username:</p>
-                </div>
-                <div class="col-md-4">
-                    <p>{{userprofile.username}}</p>
-                </div>
+            <tbody>
 
-            </div>
-            <div class="col-md-12 textborder">
-                <div class="col-md-3">
-                    <p class="text-muted">Email Id:</p>
-                </div>
-                <div class="col-md-4">
-                    <p>{{userprofile.emailId}}</p>
-                </div>
+                <tr *ngFor="let obj of user; let i = index">
+                    <td *ngIf="!obj.isEdit" class="text"><p>{{obj.key}}:</p><p class="settingsdata">{{obj.value}}</p></td>
 
-            </div>
-            <div class="col-md-12 textborder">
-                <div class="col-md-3">
-                    <p class="text-muted">Password:</p>
-                </div>
-                <div class="col-md-4">
-                    <p>{{userprofile.password}}</p>
-                </div>
+                    <td *ngIf="!obj.isEdit">
+                        <a (click)="editDetails(obj, i)">
+                            <img alt="" src="../../../../wwwroot/images/edit.png" />
+                        </a>
+                    </td>
 
-            </div>
+                    <td *ngIf="obj.isEdit && obj.key=='FullName'">
+                    <label class="text-muted">{{obj.key}}:</label><input type="text" name="name" [(ngModel)]="obj.value"  id="name" #name="ngModel" pattern="^[A-Za-z ]{2,}$" required minlength="2"/>
+                        <label *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
 
-        </div>
-        <div class="col-md-12 popup-btn dn">
+                            <label *ngIf="name.errors.required">
+                                username is required.
+                            </label>
+                            <label *ngIf="name.errors.minlength">
+                                username must be at least 2 characters long.
+                            </label>
+                            <label *ngIf="name.errors.pattern">
+                                username can be upper or lower case along with spaces
+                            </label>
+
+                        </label>
+                    </td>
 
 
-            <a href="#" class="primary-btn">Submit</a>
-            <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a>
-        </div>
 
+
+                    <td *ngIf="obj.isEdit && obj.key=='Email'">
+                        <label class="text-muted">{{obj.key}}:</label><input type="email" name="email" [(ngModel)]="obj.value" id="email" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required  />
+                        <label *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+
+                            <label *ngIf="email.errors.required">
+                                email is required.
+                            </label>
+                           
+                            <label *ngIf="email.errors.pattern">
+                                email  must match pattern ex:abc@gmail.com
+                            </label>
+
+                        </label>
+                    </td>
+
+
+                    <td *ngIf="obj.isEdit && obj.key=='Password'">
+                        <label class="text-muted">{{obj.key}}:</label><input type="password" required minlength="8" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" id="password" name="password" #password="ngModel" [(ngModel)]="obj.value" />
+                        <label *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+
+                            <label *ngIf="password.errors.required">
+                                password is required.
+                            </label>
+                            <label *ngIf="password.errors.minlength">
+                                password must be at least 8 characters long.
+                            </label>
+                            <label *ngIf="password.errors.pattern">
+                               password should contain one upper case one lower case one number one special character and minimum length 8
+                            </label>
+
+                        </label>
+
+                    </td>
+
+                </tr>
+
+
+               
+                <tr *ngIf="isShow">
+                    <td>
+                        <button type="submit" class="primary-btn lgbtn pull-left" (click)="Done()" id="done">Done</button>
+                        <!--<button [disabled]="!(name.errors.required || name.errors.pattern || email.errors.required || email.errors.pattern || password.errors.minlength || password.errors.pattern)" type="submit" class="primary-btn lgbtn pull-left" (click)="Done()" id="done">Done</button>-->
+                       
+                        <button (click)="cancel()" class="secondary-btn lgbtn" id="cancel">Cancel</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-
-</div>
+    </div>

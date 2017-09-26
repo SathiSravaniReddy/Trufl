@@ -20,3 +20,17 @@ E:\Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.csprojResolve
 E:\Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.csproj.CoreCompileInputs.cache
 E:\Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.dll
 E:\Trufl\Trufl\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.pdb
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.csprojResolveAssemblyReference.cache
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.csproj.CoreCompileInputs.cache
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.dll
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\obj\Debug\Trufl.Business Layer.pdb
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\bin\Debug\Trufl.Business Layer.dll
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\bin\Debug\Trufl.Business Layer.pdb
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\bin\Debug\DTO.dll
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\bin\Debug\Trufl.Data Access Layer.dll
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\bin\Debug\TruflEmailService.dll
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\bin\Debug\Trufl.Logging.dll
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\bin\Debug\DTO.pdb
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\bin\Debug\Trufl.Data Access Layer.pdb
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\bin\Debug\Trufl.Data Access Layer.dll.config
+D:\Projects-2017\Trufl_09-18-2017\Trufl.Business Layer\bin\Debug\TruflEmailService.pdb

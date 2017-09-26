@@ -1,5 +1,6 @@
 ﻿import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { constant } from '../shared/appsettings';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
@@ -9,6 +10,13 @@ import { User } from '../Login/user';
 export class LoginService {
     private results: any;
     private userType;
+    private settingStatus;
+    private logindetails;
+    private truflid: any;
+    private restaurantid: any;
+    private restaurantName;
+    private user: {};
+    private userName;
     constructor(private http: Http) {
     }
     public setUserType(value) {
@@ -19,37 +27,91 @@ export class LoginService {
     public getUserType() {
         this.userType = localStorage.getItem('userType');
         return this.userType;
-    }
-    
+    }   
 
-    getLoginDetails(userstype:any) {
-   
-        return this.http.get('http://localhost:8679/api/Trufl/GetUserTypes/' + userstype).map(
+    public setTrufluserID(value) {
+        this.truflid = value;
+        localStorage.setItem('truflid', value);
+    }
+    public getTrufluserID() {
+        this.truflid = localStorage.getItem('truflid');
+        return this.truflid;
+}
+    public setRestaurantId(value) {
+        this.restaurantid = value;
+        localStorage.setItem('restaurantid', value);
+    }
+    public getRestaurantId() {
+        this.restaurantid = localStorage.getItem('restaurantid');
+        return this.restaurantid;
+    }
+    public setRestaurantName(value) {
+        this.restaurantName = value;
+        localStorage.setItem('restaurantName', value);
+    }
+    public getRestaurantName() {
+        this.restaurantName = localStorage.getItem('restaurantName');
+        return this.restaurantName;
+    }
+    public setUser(user) {
+        this.user = user;
+        localStorage.setItem('user', JSON.stringify(user));
+    }
+    public getUser() {
+        this.user = JSON.parse(localStorage.getItem('user'));
+        return this.user;
+    }
+    public setUserName(value) {
+        this.userName = value;
+        localStorage.setItem('userName', value);
+    }
+    public getUserName() {
+        this.userName = localStorage.getItem('userName');
+        return this.userName;
+    }
+    //To get User Details
+    getLoginDetails(userstype: any,restaurantid) {
+        return this.http.get(constant.truflAPI + constant.truflBase +  'GetUserTypes/' + userstype + '/' + restaurantid).map(
             (res:Response) => res.json());
 
     }
 
+    //To get Login Member Type
     loginAuthentication(user: any) {
-        return this.http.post('http://localhost:8679/api/Trufl/LoginAuthentication',user ).map(
+        this.setUser(user);
+        return this.http.post(constant.truflAPI + constant.truflBase + 'LoginAuthentication',user ).map(
             (res: Response) => res.json());
 
     }
 
+    //To get an email when click on forgot password
     forgotpassword(email: any) {
 
-        return this.http.get('http://localhost:8679/api/Trufl/ForgetPassword?LoginEmail=' + email).map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'ForgetPassword?LoginEmail=' + email).map(
             (res: Response) => res.json());
 
     }
-    
 
-    create(user: User): Observable<User> {
-        return this.http.post('http://localhost:8679/Api/Trufl/SignUp' , user).map(
+    //To reset password
+    resetPassword(reset: any) {
+        return this.http.post(constant.truflAPI + constant.truflBase + 'RestPassword', reset).map(
             (res: Response) => res.json());
 
     }
+
+    //To register new user
+    create(user: any) {
+        return this.http.post(constant.truflAPI + constant.truflBase + 'SignUp' , user).map(
+            (res: Response) => res.json());
+
+    }
+
+    //To logout
     logout() {
         localStorage.removeItem("userType");
+        localStorage.removeItem("truflid");
+        localStorage.removeItem("restaurantid");
+        localStorage.removeItem("restaurantName");
         
     }
 

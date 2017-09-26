@@ -183,9 +183,17 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AdminDashBoardController.cs" />
+    <Compile Include="Controllers\AdminNotificationsController.cs" />
+    <Compile Include="Controllers\AdminRestaurantController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HostessRestaurantEmployeeController.cs" />
+    <Compile Include="Controllers\HostessSettingsController.cs" />
+    <Compile Include="Controllers\SeatedUserController.cs" />
+    <Compile Include="Controllers\TruflAdminLoginController.cs" />
     <Compile Include="Controllers\TruflController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\HostessWaitListUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

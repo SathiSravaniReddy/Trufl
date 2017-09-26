@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using DTO;
 using Trufl.Logging;
+using TruflEmailService;
 
 namespace Trufl.Data_Access_Layer
 {
@@ -187,24 +188,24 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name=" data"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveWaitedlistBooking(BookingTableInputDTO bookingTableInput)
+        public bool SaveWaitedlistBooking(BookingTableDTO bookingTableInput)
         {
             try
             {
                 var dtClient = new DataTable();
 
-                dtClient.Columns.Add("BookingID", typeof(Int64));
-                dtClient.Columns.Add("TruflUserID", typeof(Int64));
-                dtClient.Columns.Add("RestaurantID", typeof(Int64));
-                dtClient.Columns.Add("PartySize", typeof(Int64));
-                dtClient.Columns.Add("OfferType", typeof(Int64));
-                dtClient.Columns.Add("OfferAmount", typeof(Int64));
-                dtClient.Columns.Add("BookingStatus", typeof(Int64));
-                dtClient.Columns.Add("Points", typeof(Int64));
-                dtClient.Columns.Add("TruflUserCardDataID", typeof(Int64));
-                dtClient.Columns.Add("TruflTCID", typeof(Int64));
+                dtClient.Columns.Add("BookingID", typeof(Int32));
+                dtClient.Columns.Add("TruflUserID", typeof(Int32));
+                dtClient.Columns.Add("RestaurantID", typeof(Int32));
+                dtClient.Columns.Add("PartySize", typeof(Int32));
+                dtClient.Columns.Add("OfferType", typeof(Int32));
+                dtClient.Columns.Add("OfferAmount", typeof(Int32));
+                dtClient.Columns.Add("BookingStatus", typeof(Int32));
+                dtClient.Columns.Add("Points", typeof(Int32));
+                dtClient.Columns.Add("TruflUserCardDataID", typeof(Int32));
+                dtClient.Columns.Add("TruflTCID", typeof(Int32));
                 dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
-                dtClient.Columns.Add("ModifiedBy", typeof(Int64));
+                dtClient.Columns.Add("ModifiedBy", typeof(Int32));
                 dtClient.Columns.Add("Quoted", typeof(DateTime));
                 dtClient.Columns.Add("PaymentStatus", typeof(string));
                 dtClient.Columns.Add("TableNumbers", typeof(string));
@@ -340,14 +341,14 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="passParkingLots"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveSeatBooking(List<RestaurantSeatedUsersInputDTO> restaurantSeatedUsersInputDTO)
+        public bool SaveSeatBooking(List<RestaurantSeatedUsersDTO> restaurantSeatedUsersInputDTO)
         {
             try
             {
                 var dtClient = new DataTable();
 
-                dtClient.Columns.Add("RestaurantID", typeof(Int64));
-                dtClient.Columns.Add("TruflUserID", typeof(Int64));
+                dtClient.Columns.Add("RestaurantID", typeof(Int32));
+                dtClient.Columns.Add("TruflUserID", typeof(Int32));
                 dtClient.Columns.Add("AmenitiName", typeof(string));
                 dtClient.Columns.Add("AmenitiChecked", typeof(bool));
 
@@ -405,7 +406,7 @@ namespace Trufl.Data_Access_Layer
         /// This method 'GetUserTypes ' returns User type details
         /// </summary>
         /// <returns>user type list</returns>
-        public DataTable GetUserTypes(string UserType)
+        public DataTable GetUserTypes(string UserType,int RestaurantID)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -417,7 +418,10 @@ namespace Trufl.Data_Access_Layer
                     {
                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
                         cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter tvpParam5 = cmd.Parameters.AddWithValue("@TruflUserType", UserType);
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@TruflUserType", UserType);
+                        tvpParam1.SqlDbType = SqlDbType.Char;
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(sendResponse);
@@ -438,7 +442,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="SaveSignUpUserInfo"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public bool SaveSignUpUserInfo(TruflUserInputDTO registerUserInfo)
+        public bool SaveSignUpUserInfo(TruflUserDTO registerUserInfo)
         {
             try
             {
@@ -532,7 +536,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name=" data"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public DataTable LoginAuthentication(LoginInputDTO loginInput)
+        public DataTable LoginAuthentication(LoginDTO loginInput)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -572,6 +576,7 @@ namespace Trufl.Data_Access_Layer
         public DataTable ForgetPassword(string LoginEmail)
         {
             DataTable sendResponse = new DataTable();
+            MailUtility email = new MailUtility();
             try
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -586,6 +591,13 @@ namespace Trufl.Data_Access_Layer
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(sendResponse);
+                            ResetPasswordEmailDTO data = new ResetPasswordEmailDTO();
+                            data.To = sendResponse.Rows[0]["To"].ToString();
+                            data.Subject = sendResponse.Rows[0]["Subject"].ToString(); 
+                            data.Body = sendResponse.Rows[0]["Body"].ToString();
+                            data.BodyFormat = sendResponse.Rows[0]["BodyFormat"].ToString(); 
+                            email.sendMail(data);
+
                         }
                     }
                 }
@@ -602,7 +614,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name=" data"></param>
         /// <returns>Returns RestPassword  </returns>
-        public DataTable SaveRestPassword(string LoginEmail)
+        public DataTable SaveRestPassword(RestPasswordDTO restPasswordInput)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -610,11 +622,18 @@ namespace Trufl.Data_Access_Layer
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    using (SqlCommand cmd = new SqlCommand("SaveRestPassword", con))
+                    using (SqlCommand cmd = new SqlCommand("SavePassword", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@LoginEmail", LoginEmail);
-                        tvpParam.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@UserID", restPasswordInput.UserID);
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserName", restPasswordInput.UserName);
+                        SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@UserEmail", restPasswordInput.UserEmail);
+                        tvpParam2.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam3 = cmd.Parameters.AddWithValue("@LoginPassword", restPasswordInput.LoginPassword);
+                        tvpParam3.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam4 = cmd.Parameters.AddWithValue("@NewLoginPassword", restPasswordInput.NewLoginPassword);
+                        tvpParam4.SqlDbType = SqlDbType.Text;
+
 
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
@@ -697,6 +716,329 @@ namespace Trufl.Data_Access_Layer
         }
         #endregion
 
+        /// <summary>
+        /// This method 'Save User Bio Events' will save User Bio Events data
+        /// </summary>
+        /// <param name="SaveSignUpUserInfo"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool SaveUserBioEvents(SaveUserBioEventsDTO saveUserBioEvents)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveUserBioEvents", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", saveUserBioEvents.RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@TruflUserID", saveUserBioEvents.TruflUserID);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@BioID", saveUserBioEvents.BioID);
+                        tvparam2.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam3 = cmd.Parameters.AddWithValue("@BioEventID", saveUserBioEvents.BioEventID);
+                        tvparam3.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam4 = cmd.Parameters.AddWithValue("@BioDesc", saveUserBioEvents.BioDesc);
+                        tvparam4.SqlDbType = SqlDbType.Text;
+                        
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
+
+
+
+
+        /// <summary>
+        /// This method 'Update Booking' will Update Booking data.
+        /// </summary>
+        /// <param name="SaveSignUpUserInfo"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool UpdateBooking(UpdateBookingTableNumberDTO updateBookingTableNumber)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spUpdateBooking", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@BookingID", updateBookingTableNumber.BookingID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@UserID", updateBookingTableNumber.UserID);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@RestaurantID", updateBookingTableNumber.RestaurantID);
+                        tvparam2.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam3 = cmd.Parameters.AddWithValue("@BStatus", updateBookingTableNumber.BStatus);
+                        tvparam3.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam4 = cmd.Parameters.AddWithValue("@TableNumbers", updateBookingTableNumber.TableNumbers);
+                        tvparam4.SqlDbType = SqlDbType.Text;
+
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// This method 'Update Restaurant Host Status' will Update Restaurant Host Status data.
+        /// </summary>
+        /// <param name="UpdateRestaurantHostStatus"></param>
+        /// <returns>Returns 1 if Success, 0 for failure</returns>
+        public bool UpdateRestaurantHostStatus(UpdateRestaurantHostStatusDTO UpdateRestaurantHost)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spUpdateRestaurantHostStatus", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserType", UpdateRestaurantHost.TruflUserType);
+                        tvpParam.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvparam1 = cmd.Parameters.AddWithValue("@RestaurantID", UpdateRestaurantHost.RestaurantID);
+                        tvparam1.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam2 = cmd.Parameters.AddWithValue("@UserID", UpdateRestaurantHost.UserID);
+                        tvparam2.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvparam3 = cmd.Parameters.AddWithValue("@ActiveStatus", UpdateRestaurantHost.ActiveStatus);
+                        tvparam3.SqlDbType = SqlDbType.Bit;
+                       
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// This method 'GetBioCategories' will Get BioCategories  list
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns Get Bio Categories Details  </returns>
+        public DataTable GetBioCategories()
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetBioCategories", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                       
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+
+
+        /// <summary>
+        /// This method 'GetBioEvents' will Get Bio Events  details
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns Get Bio Events Details  </returns>
+        public DataTable GetBioEvents(int BioID)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetBioEvents", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@BioID", BioID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+
+        /// <summary>
+        /// This method 'spGetEmployeConfigration' will Get Employe Configration details
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns Get EmployeConfigration Details  </returns>
+        public DataTable GetEmployeConfiguration(string TruflUserType, int RestaurantID)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetEmployeConfigration", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserType", TruflUserType);
+                        tvpParam.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam1.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+        
+        /// <summary>
+        /// This method 'spGetEmployeConfigration' will Get Employe Configration details
+        /// </summary>
+        /// <param name=" data"></param>
+        /// <returns>Returns Get EmployeConfigration Details  </returns>
+        public bool spUpdateRestaurantEmployee(EmployeeConfigDTO employeeConfigDTO)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spUpdateRestaurantEmployee", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@TruflUserID", employeeConfigDTO.TruflUserID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserName", employeeConfigDTO.UserName);
+                        tvpParam1.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@Email", employeeConfigDTO.Email);
+                        tvpParam2.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam3 = cmd.Parameters.AddWithValue("@PhoneNumber", employeeConfigDTO.PhoneNumber);
+                        tvpParam3.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam4 = cmd.Parameters.AddWithValue("@UserType", employeeConfigDTO.UserType);
+                        tvpParam4.SqlDbType = SqlDbType.Text;
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+           // return sendResponse;
+        }
 
 
         #endregion

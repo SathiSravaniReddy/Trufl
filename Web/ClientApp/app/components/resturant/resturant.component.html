@@ -10,7 +10,7 @@
 
 
             <h3 class="nb">
-                Resturant Info <input type="text" class="settingsearch" placeholder="Search" [(ngModel)]="search"  />
+                Resturant Info <input type="text" class="settingsearch" placeholder="Search" [(ngModel)]="search" />
                 <a data-toggle="modal" data-target="#AddRes" class="pull-right addres" href="#"><img width="24" alt="" src="../../../../wwwroot/images/add.png" /></a>
             </h3>
             <table class="table">
@@ -23,206 +23,255 @@
                     </tr>
                 </thead>
 
-                <tbody>                   
-                   
-                    <tr *ngFor="let restaurentinfo of restaurent_info|searchPipe:'restaurentname':search">
-                        <td>{{restaurentinfo.restaurentname}}</td>
-                        <td>{{restaurentinfo.Lastvisited}}</td>
-                        <td>View Details</td>
+                <tbody>
+
+                    <tr *ngFor="let restaurentinfo of restaurent_info|paginate:{ itemsPerPage: 5, currentPage: p,id:'p' }|searchPipe:'RestaurantName':search let i = index">
+                        <td>{{restaurentinfo.RestaurantName}}</td>
+                        <td>{{restaurentinfo.ModifiedDate|date: 'dd/MM/yyyy'}}</td>
+                        <td><a data-toggle="modal" data-target="#AddRes" class="pull-right addres" (click)="editDetails(restaurentinfo)">View Details</a></td>
 
                     </tr>
-                   
-                   <!-- <tr>
-                        <td width="250">Botique Louie</td>
-                        <td width="100">4/6/17</td>
-                        <td width="100"> <a id="rowclick" href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Glasses</td>
-                        <td>4/6/17</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>Juices</td>
-                        <td>4/6/17</td>
-                        <td><a href="#">View Details</a></td>
-                    </tr> -->
+
+                    <!-- <tr>
+                         <td width="250">Botique Louie</td>
+                         <td width="100">4/6/17</td>
+                         <td width="100"> <a id="rowclick" href="#">View Details</a></td>
+                     </tr>
+                     <tr>
+                         <td>Glasses</td>
+                         <td>4/6/17</td>
+                         <td><a href="#">View Details</a></td>
+                     </tr>
+                     <tr>
+                         <td>Juices</td>
+                         <td>4/6/17</td>
+                         <td><a href="#">View Details</a></td>
+                     </tr> -->
                 </tbody>
             </table>
-
+            <pagination-controls class="pull-right" (pageChange)="p=$event" id="p"></pagination-controls>
         </div>
+
+
+
+
+
         <div class="col-md-6 settingtop pull-right">
             <h3 class="nb">
                 Notifications
-                <a class="pull-right addres" data-toggle="modal" data-target="#Notification" href="#"><img width="24" alt="" src="../../../../wwwroot/images/add.png"/></a>
+                <a class="pull-right addres" data-toggle="modal" data-target="#Notification" href="#"><img width="24" alt="" src="../../../../wwwroot/images/add.png" /></a>
             </h3>
             <div class="notify-main col-md-12">
 
-                <div class="not-rep">
-                    <p>01/02/2017 </p>
-                    <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
-
-                </div>
-                <div class="not-rep">
-                    <p>01/02/2017 </p>
-                    <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
-
-                </div>
-                <div class="not-rep">
-                    <p>01/02/2017 </p>
-                    <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
+                <div class="not-rep" *ngFor="let notificationsinfo of notifications_info|paginate:{ itemsPerPage: 5, currentPage: d,id:'d' }">
+                    <p>{{notificationsinfo.ExpiresOn|date: 'dd/MM/yyyy'}} </p>
+                    <div class="not-inner">{{notificationsinfo.Description}}<a data-toggle="modal" data-target="#Notification" class="pull-right addres" (click)="editnotificationDetails(notificationsinfo)">View Details</a></div>
+                  
 
                 </div>
 
 
             </div>
 
-
+            <pagination-controls class="pull-right" (pageChange)="d=$event" id="d"></pagination-controls>
 
         </div>
     </div>
 </div>
 
 
-<div class="modal fade" id="AddRes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="AddRes" #AddRes tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <!--   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>  -->
                 <h4 class="modal-title" id="myModalLabel">Add Resturant</h4>
             </div>
             <div class="modal-body">
                 <div class="row modal-items">
 
-                    <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
+                    <form novalidate (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm">
 
-                        <div formGroupName="restaurent">
+                        <div>
                             <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Resturant Name</label>
-                                <input type="text"  formControlName="restaurentname"/>
+                                <div class="form-group">
+                                    <label>Resturant Name</label>
+                                    <input class="form-control" formControlName="RestaurantName" type="text" placeholder="enter restaurentname" [(ngModel)]="data.RestaurantName">
+                                    <div *ngIf="myForm.controls['RestaurantName'].hasError('required') && myForm.controls['RestaurantName'].touched">You must include restauerntname</div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email Id</label>
+
+                                    <input class="form-control" type="email" placeholder="enter restaurentemail" formControlName="Email" [(ngModel)]="data.Email">
+
+                                    <div *ngIf="myForm.controls['Email'].hasError('required') && myForm.controls['Email'].touched"></div>
+
+
+                                    <span *ngIf="myForm.get('Email').touched && !myForm.get('Email').valid && !myForm.get('Email').pristine">
+                                        <small>Invalid email</small>
+                                    </span>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Contact Number 1</label>
+                                    <input type="text" formControlName="PrimaryContact" [(ngModel)]="data.PrimaryContact" />
+                                    <div *ngIf="myForm.controls['PrimaryContact'].hasError('required') && myForm.controls['PrimaryContact'].touched">You must enter contact </div>
+
+                                </div>
                             </div>
 
 
 
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Email Id</label>
-                                <input type="text" formControlName="emailid" />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Contact Number 2</label>
+                                    <input type="text" formControlName="SecondaryContact" [(ngModel)]="data.SecondaryContact" />
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address 1</label>
+
+
+                                    <textarea rows="4" cols="4" class="form-control" formControlName="Address1" [(ngModel)]="data.Address1"></textarea>
+
+                                    <div *ngIf="myForm.controls['Address1'].hasError('required') && myForm.controls['Address1'].touched">You mustinclude address </div>
+
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address 2</label>
+                                    <textarea rows="4" cols="4" formControlName="Address2" [(ngModel)]="data.Address2"> </textarea>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>State</label>
+
+                                    <select formControlName="State" [(ngModel)]="data.State" (change)="getstate(data.State)">
+                                        <option *ngFor="let statename of states">{{statename.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Zip/Pin Code</label>
+                                    <input type="text" formControlName="Zipcode" [(ngModel)]="data.Zipcode" />
+
+                                    <div *ngIf="myForm.controls['Zipcode'].hasError('required') && myForm.controls['Zipcode'].touched">You mustenter zipcode </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <hr class="popsep" />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Name</label>
+                                    <input type="text" formControlName="OwnerName" [(ngModel)]="data.OwnerName" />
+                                    <div *ngIf="myForm.controls['OwnerName'].hasError('required') && myForm.controls['OwnerName'].touched">You mustenter ownername </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Email</label>
+                                    <input type="email" formControlName="OwnerEmail" [(ngModel)]="data.OwnerEmail" />
+                                    <div *ngIf="myForm.controls['OwnerEmail'].hasError('required') &&  myForm.controls['OwnerEmail'].touched"></div>
+
+
+                                    <span *ngIf="myForm.get('OwnerEmail').touched && !myForm.get('OwnerEmail').valid && !myForm.get('OwnerEmail').pristine">
+                                        <small>Invalid email</small>
+                                    </span>
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Contact Number 1</label>
+                                    <input type="text" formControlName="OwnerContact1" [(ngModel)]="data.OwnerContact1" />
+                                    <div *ngIf="myForm.controls['OwnerContact1'].hasError('required') && myForm.controls['OwnerContact1'].touched">You mustenter ownercontact </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Owner Contact Number 2</label>
+                                    <input type="text" formControlName="OwnerContact2" [(ngModel)]="data.OwnerContact2" />
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Quoted Time</label>
+                                    <input type="text" formControlName="QuotedTime" [(ngModel)]="data.QuotedTime" placeholder="please enter hh:mm:ss format" />
+                                    <span *ngIf="myForm.get('QuotedTime').touched && !myForm.get('QuotedTime').valid && !myForm.get('QuotedTime').pristine">Invalid time format</span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea rows="4" cols="4" formControlName="Description" [(ngModel)]="data.Description"> </textarea>
+                                    <div *ngIf="myForm.controls['Description'].hasError('required') && myForm.controls['Description'].touched"></div>
+
+
+
+                                    <span *ngIf="myForm.get('Description').touched && !myForm.get('Description').valid && !myForm.get('Description').pristine">
+                                        <small>Please enter atlest 3characters</small>
+                                    </span>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="popup-btn">
+
+                                    <button type="submit" class="primary-btn" [disabled]="!myForm.valid">Submit</button>&nbsp;&nbsp;
+
+                                    <!-- <button class="primary-btn" (click)="cancel()">Cancel</button> -->
+                                    <a href="#" data-dismiss="modal" class="secondary-btn" (click)="cancel(data)">Cancel</a>
+                                </div>
                             </div>
                         </div>
-
-
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Contact Number 1</label>
-                                <input type="text" formControlName="contact1" />
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Contact Number 2</label>
-                                <input type="text" formControlName="contact2" />
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Address 1</label>
-                                <textarea rows="4" cols="4" formControlName="address1"> </textarea>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Address 2</label>
-                                <textarea rows="4" cols="4" formControlName="address2"> </textarea>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>State</label>
-                                <input type="text" formControlName="state"/>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Zip/Pin Code</label>
-                                <input type="text" formControlName="zipcode" />
-                            </div>
-                        </div>
-
-
-
-                        <hr class="popsep" />
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Owner Name</label>
-                                <input type="text" formControlName="ownername" />
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Owner Email</label>
-                                <input type="text" formControlName="owneremail" />
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Owner Contact Number 1</label>
-                                <input type="text" formControlName="ownercontact1"/>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Owner Contact Number 2</label>
-                                <input type="text" formControlName="ownercontact2"/>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea rows="4" cols="4" formControlName="description"> </textarea>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <div class="popup-btn">
-                                <a href="#" class="primary-btn">Submit</a>
-                                <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a>
-                            </div>
-                        </div>
-                      </div>
                     </form>
 
-</div>
+                </div>
 
             </div>
 
@@ -232,33 +281,60 @@
 
 
 
-<div class="modal fade" id="Notification" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="Notification" #Notification tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                 <h4 class="modal-title" id="myModalLabel">Add Notification</h4>
             </div>
             <div class="modal-body">
                 <div class="row modal-items">
-                    <div class="col-md-12">
-                        <div class="form-group ffw addbox">
-                            <label>Select Date</label>
-                            <input type="text" />
-                            <select><option>1 </option> <option>2 </option> </select>
+                    <form novalidate (ngSubmit)="onSubmitNotification(myFormdata.value)" [formGroup]="myFormdata">
+                        <div class="col-md-12">
+
+                            <div class="form-group ffw addbox">
+
+                                <select>
+                                    <option value="volvo">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="mercedes">Mercedes</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group ffw addbox">
+                                <label>Select Date</label>
+                                <my-date-picker name="mydate" [(ngModel)]="editnotification.ExpiryDate"    [selDate]="ExpiryDate"
+                                                formControlName="ExpiryDate"></my-date-picker>
+                                <div *ngIf="myFormdata.controls['ExpiryDate'].hasError('required') && myFormdata.controls['ExpiryDate'].touched">please select date </div>
+
+                            </div>
+
+
+
+                            <div class="form-group ffw">
+                                <label>Description</label>
+                                <textarea formControlName="description" [(ngModel)]="editnotification.Description"></textarea>
+                                <div *ngIf="myFormdata.controls['description'].hasError('required') && myFormdata.controls['description'].touched"></div>
+
+                                <span *ngIf="myFormdata.get('description').touched && !myFormdata.get('description').valid && !myFormdata.get('description').pristine">
+                                    <small>Please enter atlest 3 characters</small>
+                                </span>
+
+                            </div>
+                            <div class="popup-btn">
+                                <!-- <a href="#" class="primary-btn">Submit</a> -->
+                                <button type="submit" class="primary-btn" [disabled]="!myFormdata.valid">Submit</button>&nbsp;&nbsp;
+
+                                <!--<button class="primary-btn" (click)="Cancel()">Cancel</button>  -->
+
+                                <a href="#" data-dismiss="modal" class="secondary-btn" (click)="Cancel()">Cancel</a>
+                            </div>
                         </div>
 
 
-                        <div class="form-group ffw">
-                            <label>Description</label>
-                            <textarea class="form-control" rows="4" cols="30"></textarea>
-                        </div>
-                        <div class="popup-btn">
-
-                            <a href="#" class="primary-btn">Submit</a>
-                            <a href="#" data-dismiss="modal" class="secondary-btn">Cancel</a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
             </div>

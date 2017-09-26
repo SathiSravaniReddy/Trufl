@@ -1,27 +1,30 @@
-﻿import { Injectable } from "@angular/core";
+﻿
+import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { constant } from '../shared/appsettings';
+
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class SettingsService {    
+export class SettingsService {
 
     constructor(private http: Http) {
+
     }
 
-    getUserDetails() {
-        return this.http.get('assets/settings.json').map(
+    getUserDetails(usertype, restarauntid, truflid) {
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/'+'GetRestaurantUserDetails'  +'/' + restarauntid + '/' + truflid + '/' + usertype).map(
             (res) => res.json())
 
     }
 
 
-    getTruflCustomers() {
-        return this.http.get('assets/Trufl_customers.json').map(
-            (res) => res.json())
 
+
+    PostProfileEdit(user) {
+        return this.http.post(constant.truflAPI + constant.truflBase + 'AdminLogin'+'/'+ 'SaveProfilePassword', user).map(
+            (res) => res.json());
     }
-
-   
 
 
 

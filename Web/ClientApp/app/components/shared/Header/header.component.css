@@ -6,3 +6,10 @@
     .leftnav .selected a {
         color: #0078d7 !important;
     }*/
+a{
+    cursor:pointer;
+    display:block;
+}
+.logout {
+
+}
