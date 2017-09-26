@@ -133,6 +133,7 @@ export class DashboardComponent implements OnInit {
     setDate() {
         let dateformater = new Date();
         if (this.today) {
+            this.showDatePicker = false;
             this.otherday = false; 
             this.date = {
                beginDate: { year: dateformater.getFullYear(), month: dateformater.getMonth() + 1, day: dateformater.getDate() },
@@ -142,6 +143,7 @@ export class DashboardComponent implements OnInit {
             this.getDetails(this.date);
         } else {
             this.date = '';
+            
         }
 
     }

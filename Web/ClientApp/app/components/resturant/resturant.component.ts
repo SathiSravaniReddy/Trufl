@@ -37,7 +37,7 @@ export class ResturantComponent implements OnInit {
     public ExpiryDate: string;
     public ExpiresOn: string;
   
-    public value: any;
+
 
     @ViewChild('AddRes') addRes;
     @ViewChild('Notification') notifications;
@@ -120,7 +120,7 @@ export class ResturantComponent implements OnInit {
         this.restaurenService.getRestaurentDetails().subscribe((res: any) => {
 
             console.log(res);
-          this.restaurent_info = res._Data;
+            this.restaurent_info = res._Data;
             console.log(this.restaurent_info);
         })
 
@@ -275,9 +275,9 @@ export class ResturantComponent implements OnInit {
 
     editDetails(restaurentinfo, $event) {
         this.data = restaurentinfo;
-       this.previousdata = (<any>Object).assign({},restaurentinfo);
+        this.previousdata = (<any>Object).assign({},restaurentinfo);
 
-       event.preventDefault();
+        event.preventDefault();
       
     }
 
@@ -330,25 +330,11 @@ export class ResturantComponent implements OnInit {
     Cancel() {
        
         this.myFormdata.reset();
-        this.getnotifications();     
        
     }
 
 
-    public hasData(): boolean {
-        return (this.restaurent_info != null && this.restaurent_info.length > 0);
-    } 
 
-
-    public hasDetails(): boolean {
-        return (this.notifications_info != null && this.notifications_info.length > 0);
-    } 
-
-  /*  public hasfilterData(): boolean {
-
-        return this.value;
-    } */
-  
 
 }
 @Pipe({
@@ -367,11 +353,6 @@ export class SearchPipe implements PipeTransform {
             if (item.hasOwnProperty(key)) {
                 if (term) {
                     let regExp = new RegExp('\\b' + term, 'gi');
-
-                  /*  if (regExp.test(item[key]).valueOf.length<1) {
-                        return null;
-                    }  */
-
                     return regExp.test(item[key]);
                 } else {
                     return true;

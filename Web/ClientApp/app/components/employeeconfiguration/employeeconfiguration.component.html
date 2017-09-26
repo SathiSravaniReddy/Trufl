@@ -38,23 +38,18 @@
             </tr>
         </tbody>
     </table>
-
-
-    <div *ngIf="!hasData()">No Data Found</div> 
-
-
-    <pagination-controls class="pull-right" (pageChange)="p=$event" id="p"  *ngIf="hasData()"></pagination-controls>
+    <pagination-controls class="pull-right" (pageChange)="p=$event" id="p"></pagination-controls>
 
     <div class="btn-main">
         <!--  <a href="#">Add </a>-->
-        <a href="" data-toggle="modal" data-target="#AddEmp" class="pull-left addres">Add</a>
+        <a data-toggle="modal" data-target="#AddEmp" class="pull-left addres">Add</a>
 
     </div>
 </div>
 
 
 
-<!--
+
 <div class="modal fade" id="AddEmp" #AddEmp tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
@@ -64,7 +59,7 @@
             </div>
             <div class="modal-body">
                 <div class="row modal-items">
-                    <form class="form-horizontal" (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm">
+                    <form novalidate (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm">
 
 
                        
@@ -127,74 +122,4 @@
 
         </div>
     </div>
-</div>   -->
-
-
-
-
-<div class="modal fade" id="AddEmp" #AddEmp tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                <h4 class="modal-title" id="myModalLabel">Add Notification</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row modal-items">
-                    <form novalidate (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm">
-                        <div class="col-md-12">
-
-                            <div class="form-group ffw addbox">
-
-                                 
-                              
-                                    <label>FullName</label>
-                                    <input class="form-control" formControlName="FullName" type="text" placeholder="enter fullname">
-                                    <div *ngIf="myForm.controls['FullName'].hasError('required') && myForm.controls['FullName'].touched">You must include FullName</div>
-                               
-                                
-
-
-
-                            </div>
-
-                            <div class="form-group ffw addbox">
-                              
-                                    <label>Email</label>
-                                    <input class="form-control" formControlName="Email" type="text" placeholder="enter email">
-                                    <div *ngIf="myForm.controls['Email'].hasError('required') && myForm.controls['Email'].touched"></div>
-                                    <span *ngIf="myForm.get('Email').touched && !myForm.get('Email').valid && !myForm.get('Email').pristine">
-                                        <small>Invalid email</small>
-                                    </span>
-                               
-                          </div>
-
-                            <div class="form-group ffw addbox">
-                               
-                                    <label>PhoneNumber</label>
-                                    <input class="form-control" formControlName="PhoneNumber" type="text" placeholder="enter PhoneNumber">
-                                    <div *ngIf="myForm.controls['PhoneNumber'].hasError('required') && myForm.controls['PhoneNumber'].touched">You must include PhoneNumber</div>
-
-                               
-                           </div>
-
-
-                                <div class="popup-btn">
-                                    <!-- <a href="#" class="primary-btn">Submit</a> -->
-                                    <button type="submit" class="primary-btn" [disabled]="!myForm.valid">Submit</button>&nbsp;&nbsp;
-
-                                    <!--<button class="primary-btn" (click)="Cancel()">Cancel</button>  -->
-
-                                    <a href="#" data-dismiss="modal" class="secondary-btn" (click)="cancel()">Cancel</a>
-                                </div>
-                            </div>
-
-
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</div>
+</div>  

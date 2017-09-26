@@ -11,27 +11,18 @@ import { Router, RouterLinkActive  } from '@angular/router';
 export class HeaderComponent {
     private userType;
     private userName;
-    private profileVisible = false;
+    private profileVisible:boolean = false;
     private showHeadings = true;
     public isSettings = false;
     private showDashboard = true;
- 
+    private employeeVisible: boolean = false;
     public loadHeaders = {};
     public headers = [];
   
    
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
-     
-      
-        if ((router.url != "/hostesssettings") && (router.url != "/settings") && (router.url != "/hostessdashboard")){
-            this.isSettings = true;
-          
-        }  
-     
-        if (router.url == "/hostessdashboard") {
-            this.showDashboard = false;
-        }
+        this.userName = this.loginService.getUserName();
         //Keep these load headers in a service-----
         this.loadHeaders = {
             "RA": [
@@ -111,7 +102,10 @@ export class HeaderComponent {
     }
  
     logoutShow() {
-        this.profileVisible = true;
+        this.profileVisible = this.profileVisible == false?true:false;
+        if (this.userType == "RA") {
+            this.employeeVisible = true;
+        }
        
     }
 
