@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d7f39506c27a9429a233"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "210219586ca621a48b84"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -706,7 +706,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(84)(__webpack_require__.s = 84);
+/******/ 	return hotCreateRequire(102)(__webpack_require__.s = 102);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -760,7 +760,7 @@ var /** @type {?} */ NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angula
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NG_ASYNC_VALIDATORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Validators; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(9);
@@ -1046,7 +1046,7 @@ function ControlContainer_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox_value_accessor__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__default_value_accessor__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__normalize_validator__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__normalize_validator__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__number_value_accessor__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__radio_control_value_accessor__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__range_value_accessor__ = __webpack_require__(26);
@@ -1356,9 +1356,9 @@ function NgControl_tsickle_Closure_declarations() {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventEmitter; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
 /* unused harmony reexport Observable */
 /* unused harmony reexport Subject */
@@ -1706,7 +1706,7 @@ function escapeRegExp(s) {
     return s.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
 }
 //# sourceMappingURL=lang.js.map
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(75)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(93)))
 
 /***/ }),
 /* 10 */
@@ -4023,7 +4023,7 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FormControl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FormGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FormArray; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_async__ = __webpack_require__(8);
@@ -7931,8 +7931,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(77);
-__webpack_require__(67);
+var http_1 = __webpack_require__(95);
+__webpack_require__(83);
 var SeatedService = (function () {
     function SeatedService(http) {
         this.http = http;
@@ -8204,34 +8204,46 @@ module.exports = Html5Entities;
 
 /***/ }),
 /* 38 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = (__webpack_require__(2))(120);
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAxtJREFUeNq0V01IVFEUfr6ZgswwqZaVopBom0r7QSIwcCFEi4RxsF2LXI5U1oCuQmqslBYR1VLKSexnNZtoxFZaGLiYiNDMFm0sNDQXoTN9J74Hp5dv3p0fD3zcO3fOPd+95557zn0lmUzGMpGS6MetaI4DjUA1sJN/LQKzwDtgMnOj9reRPT9iENai6QJCQLmPvSUgDgxiAZ/yIgZhBZoYcAGwrdwkDTwEoljAkjExSI+iGQX2quHP3M0YkAJ+cHw3UAc0A2GgUs35ArSBfMqXGKQtaF4ApRyaA7qB5zCQ9jkW8Uwb0A/s5/Av4CzmvvYkxsRjaJKKdAjoxKTVXPwMO9vRPAA6OLQCnIKd9/8R80ynlXtjULxmFSCweRvNJeW5Q7D503IFTUyRDhVKKgIbl9E84c8qoO+fHfPKpLgQWdnBbO6F/hYakTPvge5aFt0y2t4HrAMHoD/r7LhL7f6qwZm2AldEF2jx2fUK9UQCQOSvq5mRQurKPDPw4jbVLzXQHwHm2Q+DM2AzDToZKe53ZfI86zRzgMguoMFm7nVkzNo8Sap+Y5AJ35GURyC1utx7QvWboBNUvyU+EhsE3AfVrwmqKmOpNKilj4HkJRGPOT2usQXVr7ANE36u4jsnyHpqqYT/zaUjK3/jit4mtdM7wIT6T67Pqw249qj+YpBF3JE6NzHPKuE6d32mE9AZNfBCverP2Hw5ONK8iVGtbb8V4km+HJzLbRebURIGmnb+/A5M2XwjPeVgJeupn6y6ztRPQszVIsPgXHd2N6AisZ/1NJskeGWuewSS3u0OVj4RiZdBdz2+L0WfCo+xqvNFcnNc1YK7sBtx1+OoSuQdmHCrCKQDilRuT6/X0+cImnHAcbUU8YssbbkQinsfKdJl4CTsTGd77J1G8xIo49BX1tMRg8degGQ31WtGSM9g7rjJ8/Ywn7dVaniepS3JhL+gMlI972m7il7Hvef0Tk0e9OWM3E6+HHIRid57cqYgXc73E6aaeTnMIp5NJDkM8xNmrqBvJ9f5NfDhUCOlTX20zUgalIwkycHE3h8BBgDV0izXnugutAAAAABJRU5ErkJggg=="
 
 /***/ }),
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(2))(13);
+module.exports = __webpack_require__.p + "dcdf3a4ebf874e45d2aa205678b17b50.png";
 
 /***/ }),
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(2))(334);
+module.exports = (__webpack_require__(2))(120);
 
 /***/ }),
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = (__webpack_require__(2))(13);
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(2))(334);
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(80);
+__webpack_require__(98);
 var core_1 = __webpack_require__(0);
-var angular2_universal_1 = __webpack_require__(40);
-var app_module_1 = __webpack_require__(52);
-__webpack_require__(81);
+var angular2_universal_1 = __webpack_require__(42);
+var app_module_1 = __webpack_require__(54);
+__webpack_require__(99);
 var rootElemTagName = 'app'; // Update this if you change your root component selector
 // Enable either Hot Module Reloading or production mode
 if (true) {
@@ -8259,7 +8271,7 @@ else {
 
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__resourceQuery, module) {/*eslint-env browser*/
@@ -8275,7 +8287,7 @@ var options = {
   name: ''
 };
 if (true) {
-  var querystring = __webpack_require__(66);
+  var querystring = __webpack_require__(82);
   var overrides = querystring.parse(__resourceQuery.slice(1));
   if (overrides.path) options.path = overrides.path;
   if (overrides.timeout) options.timeout = overrides.timeout;
@@ -8395,11 +8407,11 @@ if (typeof window !== 'undefined') {
 }
 
 function createReporter() {
-  var strip = __webpack_require__(69);
+  var strip = __webpack_require__(85);
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(73);
+    overlay = __webpack_require__(91);
   }
 
   var styles = {
@@ -8452,7 +8464,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(74);
+var processUpdate = __webpack_require__(92);
 
 var customHandler;
 var subscribeAllHandler;
@@ -8517,21 +8529,21 @@ if (module) {
   };
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(83)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(101)(module)))
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(336);
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_forms__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_forms__ = __webpack_require__(50);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractControlDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractFormGroupDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CheckboxControlValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["c"]; });
@@ -8585,7 +8597,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8719,7 +8731,7 @@ function InternalFormsSharedModule_tsickle_Closure_declarations() {
 //# sourceMappingURL=directives.js.map
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8759,14 +8771,14 @@ function normalizeAsyncValidator(validator) {
 //# sourceMappingURL=normalize_validator.js.map
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormsModule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ReactiveFormsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_radio_control_value_accessor__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_builder__ = __webpack_require__(33);
 /**
@@ -8837,7 +8849,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_providers.js.map
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8897,9 +8909,9 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["c"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__version__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__version__ = __webpack_require__(51);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return __WEBPACK_IMPORTED_MODULE_22__version__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__form_providers__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__form_providers__ = __webpack_require__(49);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return __WEBPACK_IMPORTED_MODULE_23__form_providers__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return __WEBPACK_IMPORTED_MODULE_23__form_providers__["b"]; });
 /**
@@ -8947,7 +8959,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 //# sourceMappingURL=forms.js.map
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8968,7 +8980,7 @@ var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["
 //# sourceMappingURL=version.js.map
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9151,7 +9163,7 @@ ansiHTML.reset()
 
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9162,7 +9174,7 @@ module.exports = function () {
 
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9175,13 +9187,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(79);
-var angular2_universal_1 = __webpack_require__(40);
-var app_component_1 = __webpack_require__(54);
-var hostess_component_1 = __webpack_require__(53);
-var forms_1 = __webpack_require__(44);
-var seated_component_1 = __webpack_require__(55);
+var router_1 = __webpack_require__(97);
+var angular2_universal_1 = __webpack_require__(42);
+var app_component_1 = __webpack_require__(56);
+var hostess_component_1 = __webpack_require__(55);
+var login_component_1 = __webpack_require__(59);
+var register_component_1 = __webpack_require__(60);
+var settings_component_1 = __webpack_require__(63);
+var dashboard_component_1 = __webpack_require__(57);
+var resturant_component_1 = __webpack_require__(61);
+var employeeconfiguration_component_1 = __webpack_require__(58);
+var forms_1 = __webpack_require__(46);
+var seated_component_1 = __webpack_require__(62);
 var seated_service_1 = __webpack_require__(35);
+var header_Component_1 = __webpack_require__(64);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -9191,7 +9210,14 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 hostess_component_1.HostessComponent,
-                seated_component_1.SeatedComponent
+                seated_component_1.SeatedComponent,
+                login_component_1.LoginComponent,
+                register_component_1.RegisterComponent,
+                settings_component_1.SettingsComponent,
+                dashboard_component_1.DashboardComponent,
+                resturant_component_1.ResturantComponent,
+                employeeconfiguration_component_1.EmployeeConfigurationComponent,
+                header_Component_1.HeaderComponent
             ],
             providers: [
                 seated_service_1.SeatedService
@@ -9203,6 +9229,12 @@ var AppModule = (function () {
                     { path: '', component: hostess_component_1.HostessComponent },
                     { path: 'getseatedpage', component: seated_component_1.SeatedComponent },
                     { path: 'home', component: hostess_component_1.HostessComponent },
+                    { path: 'login', component: login_component_1.LoginComponent },
+                    { path: 'register', component: register_component_1.RegisterComponent },
+                    { path: 'settings', component: settings_component_1.SettingsComponent },
+                    { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
+                    { path: 'resturant', component: resturant_component_1.ResturantComponent },
+                    { path: 'employeeconfiguration', component: employeeconfiguration_component_1.EmployeeConfigurationComponent },
                     { path: '**', redirectTo: 'home' },
                 ])
             ],
@@ -9214,7 +9246,7 @@ exports.AppModule = AppModule;
 
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9233,7 +9265,7 @@ var HostessComponent = (function () {
     HostessComponent = __decorate([
         core_1.Component({
             selector: 'hostess',
-            template: __webpack_require__(61)
+            template: __webpack_require__(70)
         })
     ], HostessComponent);
     return HostessComponent;
@@ -9242,7 +9274,7 @@ exports.HostessComponent = HostessComponent;
 
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9261,8 +9293,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: __webpack_require__(62),
-            styles: [__webpack_require__(70)]
+            template: __webpack_require__(71),
+            styles: [__webpack_require__(86)]
         })
     ], AppComponent);
     return AppComponent;
@@ -9271,7 +9303,147 @@ exports.AppComponent = AppComponent;
 
 
 /***/ }),
-/* 55 */
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var DashboardComponent = (function () {
+    function DashboardComponent() {
+    }
+    DashboardComponent = __decorate([
+        core_1.Component({
+            selector: 'dashboard',
+            template: __webpack_require__(72)
+        })
+    ], DashboardComponent);
+    return DashboardComponent;
+}());
+exports.DashboardComponent = DashboardComponent;
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var EmployeeConfigurationComponent = (function () {
+    function EmployeeConfigurationComponent() {
+    }
+    EmployeeConfigurationComponent = __decorate([
+        core_1.Component({
+            selector: 'employeeconfiguration',
+            template: __webpack_require__(73)
+        })
+    ], EmployeeConfigurationComponent);
+    return EmployeeConfigurationComponent;
+}());
+exports.EmployeeConfigurationComponent = EmployeeConfigurationComponent;
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var LoginComponent = (function () {
+    function LoginComponent() {
+    }
+    LoginComponent = __decorate([
+        core_1.Component({
+            selector: 'login',
+            template: __webpack_require__(74)
+        })
+    ], LoginComponent);
+    return LoginComponent;
+}());
+exports.LoginComponent = LoginComponent;
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var RegisterComponent = (function () {
+    function RegisterComponent() {
+    }
+    RegisterComponent = __decorate([
+        core_1.Component({
+            selector: 'register',
+            template: __webpack_require__(75)
+        })
+    ], RegisterComponent);
+    return RegisterComponent;
+}());
+exports.RegisterComponent = RegisterComponent;
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var ResturantComponent = (function () {
+    function ResturantComponent() {
+    }
+    ResturantComponent = __decorate([
+        core_1.Component({
+            selector: 'resturant',
+            template: __webpack_require__(76)
+        })
+    ], ResturantComponent);
+    return ResturantComponent;
+}());
+exports.ResturantComponent = ResturantComponent;
+
+
+/***/ }),
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9309,8 +9481,8 @@ var SeatedComponent = (function () {
     };
     SeatedComponent = __decorate([
         core_1.Component({
-            template: __webpack_require__(63),
-            styles: [__webpack_require__(71)]
+            template: __webpack_require__(77),
+            styles: [__webpack_require__(87)]
         }),
         __metadata("design:paramtypes", [seated_service_1.SeatedService])
     ], SeatedComponent);
@@ -9320,7 +9492,63 @@ exports.SeatedComponent = SeatedComponent;
 
 
 /***/ }),
-/* 56 */
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var SettingsComponent = (function () {
+    function SettingsComponent() {
+    }
+    SettingsComponent = __decorate([
+        core_1.Component({
+            selector: 'settings',
+            template: __webpack_require__(78)
+        })
+    ], SettingsComponent);
+    return SettingsComponent;
+}());
+exports.SettingsComponent = SettingsComponent;
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var HeaderComponent = (function () {
+    function HeaderComponent() {
+    }
+    HeaderComponent = __decorate([
+        core_1.Component({
+            selector: 'shared-header',
+            template: __webpack_require__(79)
+        })
+    ], HeaderComponent);
+    return HeaderComponent;
+}());
+exports.HeaderComponent = HeaderComponent;
+
+
+/***/ }),
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(36)();
@@ -9334,7 +9562,7 @@ exports.push([module.i, "@media (max-width: 767px) {\r\n    /* On small screens,
 
 
 /***/ }),
-/* 57 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(36)();
@@ -9348,19 +9576,19 @@ exports.push([module.i, ".sbtbtn {\r\n    margin: 0 0 10px 0;\r\n    float: left
 
 
 /***/ }),
-/* 58 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  XmlEntities: __webpack_require__(60),
-  Html4Entities: __webpack_require__(59),
+  XmlEntities: __webpack_require__(69),
+  Html4Entities: __webpack_require__(68),
   Html5Entities: __webpack_require__(37),
   AllHtmlEntities: __webpack_require__(37)
 };
 
 
 /***/ }),
-/* 59 */
+/* 68 */
 /***/ (function(module, exports) {
 
 var HTML_ALPHA = ['apos', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'Aelig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'quot', 'amp', 'lt', 'gt', 'OElig', 'oelig', 'Scaron', 'scaron', 'Yuml', 'circ', 'tilde', 'ensp', 'emsp', 'thinsp', 'zwnj', 'zwj', 'lrm', 'rlm', 'ndash', 'mdash', 'lsquo', 'rsquo', 'sbquo', 'ldquo', 'rdquo', 'bdquo', 'dagger', 'Dagger', 'permil', 'lsaquo', 'rsaquo', 'euro', 'fnof', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmaf', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'thetasym', 'upsih', 'piv', 'bull', 'hellip', 'prime', 'Prime', 'oline', 'frasl', 'weierp', 'image', 'real', 'trade', 'alefsym', 'larr', 'uarr', 'rarr', 'darr', 'harr', 'crarr', 'lArr', 'uArr', 'rArr', 'dArr', 'hArr', 'forall', 'part', 'exist', 'empty', 'nabla', 'isin', 'notin', 'ni', 'prod', 'sum', 'minus', 'lowast', 'radic', 'prop', 'infin', 'ang', 'and', 'or', 'cap', 'cup', 'int', 'there4', 'sim', 'cong', 'asymp', 'ne', 'equiv', 'le', 'ge', 'sub', 'sup', 'nsub', 'sube', 'supe', 'oplus', 'otimes', 'perp', 'sdot', 'lceil', 'rceil', 'lfloor', 'rfloor', 'lang', 'rang', 'loz', 'spades', 'clubs', 'hearts', 'diams'];
@@ -9513,7 +9741,7 @@ module.exports = Html4Entities;
 
 
 /***/ }),
-/* 60 */
+/* 69 */
 /***/ (function(module, exports) {
 
 var ALPHA_INDEX = {
@@ -9674,25 +9902,67 @@ module.exports = XmlEntities;
 
 
 /***/ }),
-/* 61 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "\r\n<div class=\"col-md-12 no-pad\">\r\n    <div class=\"col-md-2 leftnav no-pad\">\r\n        <h1>Bottique Louie </h1>\r\n        <ul>\r\n            <li>\r\n                <a [routerLink]=\"['/home']\" class=\"selected\" >Waitlist </a>\r\n            </li>\r\n            <li>\r\n                <a [routerLink]=\"['/getseatedpage']\">Seated </a>\r\n            </li>\r\n            <li>\r\n                <a href=\"#\">Settings </a>\r\n            </li>\r\n        </ul>\r\n\r\n    </div>\r\n    <div class=\"col-md-10 no-pad\">\r\n        <div class=\"header\"> </div>\r\n\r\n        <div class=\"col-md-12 innermain\">\r\n            <h2>Waitlist </h2>\r\n            <div class=\"col-md-9 tablemain\">\r\n\r\n                <table class=\"table\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th>Trufl</th>\r\n                            <th>B.L</th>\r\n                            <th>Name</th>\r\n                            <th>Size</th>\r\n                            <th>Quoted</th>\r\n                            <th>Waited</th>\r\n                            <th>Offer</th>\r\n                            <th></th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td width=\"350\">\r\n                                <div class=\"wait-btn\">\r\n                                    <a id=\"rowclick\" href=\"#\">View </a>\r\n                                    <a class=\"success\" href=\"#\">Accepted</a>\r\n                                    <a class=\"success\" href=\"#\">Notified</a>\r\n                                    <a data-toggle=\"modal\" data-target=\"#SelectSeat\" class=\"selected\" href=\"#\">Seated</a>\r\n                                    <a href=\"#\">Remove</a>\r\n                                </div>\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td></td>\r\n                        </tr>\r\n\r\n                    </tbody>\r\n                </table>\r\n\r\n                <div class=\"btn-main\">\r\n                    <a href=\"#\">Add </a>\r\n\r\n                </div>\r\n\r\n\r\n            </div>\r\n            <div class=\"col-md-9 seatmain\">\r\n                <div class=\"col-md-12\">\r\n                    <div class=\"btn-main\"> <a class=\"btn-disable\" href=\"#\">turn get seated now </a> </div>\r\n                </div>\r\n                <div class=\"col-md-12\">\r\n                    <div class=\"row\">\r\n                        <div class=\"col-md-9 tableselect\">\r\n                            <label>Table Size : </label>\r\n\r\n                            <ul>\r\n                                <li> <a href=\"#\">1 </a> </li>\r\n                                <li> <a href=\"#\">2 </a> </li>\r\n                                <li> <a href=\"#\">3 </a> </li>\r\n                                <li> <a href=\"#\">4 </a> </li>\r\n                                <li> <a class=\"selected\" href=\"#\">5 </a> </li>\r\n                                <li> <a href=\"#\">6 </a> </li>\r\n                                <li> <a href=\"#\">7 </a> </li>\r\n                                <li> <a href=\"#\">8 </a> </li>\r\n                                <li> <a href=\"#\">9 </a> </li>\r\n                                <li> <a href=\"#\">10 </a> </li>\r\n                            </ul>\r\n\r\n                        </div>\r\n                        <div class=\"col-md-3 price\">\r\n                            <label>Price </label>\r\n                            <a href=\"#\">-</a> <input value=\"$150\" type=\"text\" /> <a href=\"#\">+</a>\r\n\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div class=\"btn-main\">\r\n                        <a href=\"#\">submit </a>\r\n\r\n                    </div>\r\n\r\n\r\n                </div>\r\n                <div class=\"col-md-12 booked\">\r\n                    <p>Get Seated Active Now For </p> <b>3 Min 47 Sec </b> <span>4 </span> <span>150</span> <a class=\"secondary-btn\" href=\"#\">Cancel </a>\r\n\r\n                </div>\r\n\r\n\r\n\r\n            </div>\r\n\r\n\r\n        </div>\r\n\r\n    </div>\r\n    <div class=\"right-section col-md-2\">\r\n        <div class=\"print\">\r\n            <a href=\"#\">Print </a>\r\n\r\n        </div>\r\n\r\n        <div class=\"right-top\">\r\n            <img alt=\"\" src=\"" + __webpack_require__(72) + "\" />\r\n            <h4> Jay Chanuu </h4>\r\n            <p> Trufl Premier Member</p>\r\n            <p>Bottique Premier Member</p>\r\n\r\n        </div>\r\n\r\n        <div class=\"right-btn\">\r\n            <h5> Trufl Bio <a data-toggle=\"modal\" data-target=\"#AddBio\" href=\"#\">ADD </a></h5>\r\n            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>\r\n\r\n        </div>\r\n\r\n\r\n        <div class=\"right-rep\">\r\n            <h5> This Visit </h5>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-5\"> <a href=\"#\">Birthday </a> </div>\r\n                <div class=\"col-md-7\">Jay Chanuu Turning to 32 </div>\r\n            </div>\r\n\r\n        </div>\r\n        <div class=\"right-rep\">\r\n            <h5> Relationship </h5>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-5\"> <a href=\"#\">VIP </a> <a href=\"#\">Friend of owner </a> </div>\r\n                <div class=\"col-md-7\">Jay Chanuu Turning to 32 </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n\r\n\r\n\r\n\r\n    </div>\r\n\r\n\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"SelectSeat\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog modal-lg\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title\" id=\"myModalLabel\">Choose the table for seating</h4>\r\n            </div>\r\n            <div class=\"modal-body\" style=\"display:inline-block;\">\r\n                <div class=\"seatselection\">\r\n                    <ul>\r\n                        <li><a href=\"#\">1 </a> </li>\r\n                        <li><a class=\"hold\" href=\"#\">2 </a> </li>\r\n                        <li><a href=\"#\">3 </a> </li>\r\n                        <li><a href=\"#\">4 </a> </li>\r\n                        <li><a href=\"#\">5 </a> </li>\r\n                        <li><a href=\"#\">6 </a> </li>\r\n                        <li><a href=\"#\">7 </a> </li>\r\n                        <li><a href=\"#\">8 </a> </li>\r\n                        <li><a href=\"#\">9 </a> </li>\r\n                        <li><a class=\"hold\" href=\"#\">10 </a> </li>\r\n                        <li><a href=\"#\">11 </a> </li>\r\n                        <li><a href=\"#\">12 </a> </li>\r\n                        <li><a href=\"#\">13 </a> </li>\r\n                        <li><a href=\"#\">14 </a> </li>\r\n                        <li><a href=\"#\">15 </a> </li>\r\n                        <li><a href=\"#\">16 </a> </li>\r\n                        <li><a href=\"#\">17 </a> </li>\r\n                        <li><a href=\"#\">18 </a> </li>\r\n                        <li><a href=\"#\">19 </a> </li>\r\n                        <li><a href=\"#\">20 </a> </li>\r\n\r\n                    </ul>\r\n                    <div class=\"popup-btn\">\r\n\r\n                        <a href=\"#\" class=\"primary-btn\">Submit</a>\r\n                        <a href=\"#\" data-dismiss=\"modal\" class=\"secondary-btn\">Cancel</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"success-content\" style=\"display:none;\">\r\n\r\n                    Table No :14, 15 are Successfully Assigned For the Sarrah Status.\r\n\r\n                    <div class=\"popup-btn\">\r\n                        <a href=\"#\" data-dismiss=\"modal\" class=\"primary-btn\">Ok</a>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"AddBio\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog modal-md\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title\" id=\"myModalLabel\">Add Bio</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <div class=\"row modal-items\">\r\n                    <div class=\"col-md-12\">\r\n                        <div class=\"form-group\">\r\n                            <label>Category</label>\r\n                            <select class=\"form-items\">\r\n                                <option>Option1</option>\r\n                                <option>Option1</option>\r\n                            </select>\r\n                        </div>\r\n\r\n\r\n                        <div class=\"form-group\">\r\n                            <label>Description</label>\r\n                            <textarea class=\"form-control\" rows=\"4\" cols=\"30\"></textarea>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<shared-header></shared-header>\r\n<div class=\"col-md-9\">\r\n  \r\n    \r\n\r\n       \r\n           \r\n            <div class=\"col-md-12 tablemain\">\r\n\r\n                <table class=\"table\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th>Trufl</th>\r\n                            <th>B.L</th>\r\n                            <th>Name</th>\r\n                            <th>Size</th>\r\n                            <th>Quoted</th>\r\n                            <th>Waited</th>\r\n                            <th>Offer</th>\r\n                            <th></th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td width=\"350\">\r\n                                <div class=\"wait-btn\">\r\n                                    <a id=\"rowclick\" href=\"#\">View </a>\r\n                                    <a class=\"success\" href=\"#\">Accepted</a>\r\n                                    <a class=\"success\" href=\"#\">Notified</a>\r\n                                    <a data-toggle=\"modal\" data-target=\"#SelectSeat\" class=\"selected\" href=\"#\">Seated</a>\r\n                                    <a href=\"#\">Remove</a>\r\n                                </div>\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                            <td>Jay Chanuu</td>\r\n                            <td>2</td>\r\n                            <td>45 min</td>\r\n                            <td>30 min</td>\r\n                            <td>$400</td>\r\n                            <td></td>\r\n                        </tr>\r\n\r\n                    </tbody>\r\n                </table>\r\n\r\n                <div class=\"btn-main\">\r\n                    <a href=\"#\">Add </a>\r\n\r\n                </div>\r\n\r\n\r\n            </div>\r\n            <div class=\"col-md-12 seatmain\">\r\n                <div class=\"col-md-12\">\r\n                    <div class=\"btn-main\"> <a class=\"btn-disable\" href=\"#\">turn get seated now </a> </div>\r\n                </div>\r\n                <div class=\"col-md-12\">\r\n                    <div class=\"row\">\r\n                        <div class=\"col-md-9 tableselect\">\r\n                            <label>Table Size : </label>\r\n\r\n                            <ul>\r\n                                <li> <a href=\"#\">1 </a> </li>\r\n                                <li> <a href=\"#\">2 </a> </li>\r\n                                <li> <a href=\"#\">3 </a> </li>\r\n                                <li> <a href=\"#\">4 </a> </li>\r\n                                <li> <a class=\"selected\" href=\"#\">5 </a> </li>\r\n                                <li> <a href=\"#\">6 </a> </li>\r\n                                <li> <a href=\"#\">7 </a> </li>\r\n                                <li> <a href=\"#\">8 </a> </li>\r\n                                <li> <a href=\"#\">9 </a> </li>\r\n                                <li> <a href=\"#\">10 </a> </li>\r\n                            </ul>\r\n\r\n                        </div>\r\n                        <div class=\"col-md-3 price\">\r\n                            <label>Price </label>\r\n                            <a href=\"#\">-</a> <input value=\"$150\" type=\"text\" /> <a href=\"#\">+</a>\r\n\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div class=\"btn-main\">\r\n                        <a href=\"#\">submit </a>\r\n\r\n                    </div>\r\n\r\n\r\n                </div>\r\n                <div class=\"col-md-12 booked\">\r\n                    <p>Get Seated Active Now For </p> <b>3 Min 47 Sec </b> <span>4 </span> <span>150</span> <a class=\"secondary-btn\" href=\"#\">Cancel </a>\r\n\r\n                </div>\r\n\r\n\r\n\r\n            </div>\r\n\r\n\r\n        \r\n\r\n   \r\n    <div class=\"right-section col-md-2\">\r\n        <div class=\"print\">\r\n            <a href=\"#\">Print </a>\r\n\r\n        </div>\r\n\r\n        <div class=\"right-top\">\r\n            <img alt=\"\" src=\"" + __webpack_require__(88) + "\" />\r\n            <h4> Jay Chanuu </h4>\r\n            <p> Trufl Premier Member</p>\r\n            <p>Bottique Premier Member</p>\r\n\r\n        </div>\r\n\r\n        <div class=\"right-btn\">\r\n            <h5> Trufl Bio <a data-toggle=\"modal\" data-target=\"#AddBio\" href=\"#\">ADD </a></h5>\r\n            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>\r\n\r\n        </div>\r\n\r\n\r\n        <div class=\"right-rep\">\r\n            <h5> This Visit </h5>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-5\"> <a href=\"#\">Birthday </a> </div>\r\n                <div class=\"col-md-7\">Jay Chanuu Turning to 32 </div>\r\n            </div>\r\n\r\n        </div>\r\n        <div class=\"right-rep\">\r\n            <h5> Relationship </h5>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-5\"> <a href=\"#\">VIP </a> <a href=\"#\">Friend of owner </a> </div>\r\n                <div class=\"col-md-7\">Jay Chanuu Turning to 32 </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n\r\n\r\n\r\n\r\n    </div>\r\n\r\n\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"SelectSeat\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog modal-lg\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title\" id=\"myModalLabel\">Choose the table for seating</h4>\r\n            </div>\r\n            <div class=\"modal-body\" style=\"display:inline-block;\">\r\n                <div class=\"seatselection\">\r\n                    <ul>\r\n                        <li><a href=\"#\">1 </a> </li>\r\n                        <li><a class=\"hold\" href=\"#\">2 </a> </li>\r\n                        <li><a href=\"#\">3 </a> </li>\r\n                        <li><a href=\"#\">4 </a> </li>\r\n                        <li><a href=\"#\">5 </a> </li>\r\n                        <li><a href=\"#\">6 </a> </li>\r\n                        <li><a href=\"#\">7 </a> </li>\r\n                        <li><a href=\"#\">8 </a> </li>\r\n                        <li><a href=\"#\">9 </a> </li>\r\n                        <li><a class=\"hold\" href=\"#\">10 </a> </li>\r\n                        <li><a href=\"#\">11 </a> </li>\r\n                        <li><a href=\"#\">12 </a> </li>\r\n                        <li><a href=\"#\">13 </a> </li>\r\n                        <li><a href=\"#\">14 </a> </li>\r\n                        <li><a href=\"#\">15 </a> </li>\r\n                        <li><a href=\"#\">16 </a> </li>\r\n                        <li><a href=\"#\">17 </a> </li>\r\n                        <li><a href=\"#\">18 </a> </li>\r\n                        <li><a href=\"#\">19 </a> </li>\r\n                        <li><a href=\"#\">20 </a> </li>\r\n\r\n                    </ul>\r\n                    <div class=\"popup-btn\">\r\n\r\n                        <a href=\"#\" class=\"primary-btn\">Submit</a>\r\n                        <a href=\"#\" data-dismiss=\"modal\" class=\"secondary-btn\">Cancel</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"success-content\" style=\"display:none;\">\r\n\r\n                    Table No :14, 15 are Successfully Assigned For the Sarrah Status.\r\n\r\n                    <div class=\"popup-btn\">\r\n                        <a href=\"#\" data-dismiss=\"modal\" class=\"primary-btn\">Ok</a>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"AddBio\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog modal-md\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title\" id=\"myModalLabel\">Add Bio</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <div class=\"row modal-items\">\r\n                    <div class=\"col-md-12\">\r\n                        <div class=\"form-group\">\r\n                            <label>Category</label>\r\n                            <select class=\"form-items\">\r\n                                <option>Option1</option>\r\n                                <option>Option1</option>\r\n                            </select>\r\n                        </div>\r\n\r\n\r\n                        <div class=\"form-group\">\r\n                            <label>Description</label>\r\n                            <textarea class=\"form-control\" rows=\"4\" cols=\"30\"></textarea>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 62 */
+/* 71 */
 /***/ (function(module, exports) {
 
 module.exports = "<router-outlet></router-outlet>";
 
 /***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 72 */
+/***/ (function(module, exports) {
 
-module.exports = "\r\n   \r\n\r\n\r\n\r\n\r\n  <div class=\"col-md-12 no-pad\">\r\n        <div class=\"col-md-2 leftnav no-pad\">\r\n            <h1>Bottique Louie </h1>\r\n            <ul>\r\n                <li>\r\n                    <a [routerLink]=\"['/home']\">Waitlist </a>\r\n                </li>\r\n                <li>\r\n                    <a class=\"selected\" [routerLink]=\"['/getseatedpage']\">Seated </a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\">Settings </a>\r\n                </li>\r\n            </ul>\r\n\r\n        </div>\r\n        <div class=\"col-md-10 no-pad\">\r\n            <div class=\"header\">\r\n\r\n            </div>\r\n\r\n            <div class=\"col-md-12 innermain\">\r\n                <h2>Seated </h2>\r\n                <div class=\"col-md-12 tablemain\">\r\n\r\n                    <table class=\"table table-hover\">\r\n                        <thead>\r\n                            <tr>\r\n                                <th>Trufl</th>\r\n                                <th>B.L</th>\r\n                                <th>Name</th>\r\n                                <th>Size</th>\r\n                                <th>Amount</th>\r\n                                <th>Status</th>\r\n                                <th>Table no</th>\r\n                                <th>Seated</th>\r\n                                <th>App Served</th>\r\n                                <th>Menu Served</th>\r\n                                <th>Desert Served</th>\r\n                                <th>Check Received</th>\r\n                                <th>Buzzing</th>\r\n                                <th>Empty</th>\r\n                            </tr>\r\n                        </thead>\r\n                        <tbody>\r\n\r\n                          <tr *ngFor=\"let seatsinfo of seatedinfo; let i = index\">\r\n                               <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                               <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                              <td>{{seatsinfo.name}}</td>\r\n                               <td>{{seatsinfo.size}}</td>\r\n                               <td>{{seatsinfo.amount}}</td>\r\n                               <td>{{seatsinfo.status}}</td>\r\n                               <td>{{seatsinfo.tableno}}</td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\" name=\"isAdult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                             \r\n\r\n                           </tr>\r\n\r\n                      \r\n                    </table>\r\n                 \r\n                    <div class=\"sbtbtn\">\r\n                        <button [disabled]=\"!isenabled\">Submit</button>\r\n                    </div>\r\n\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n  \r\n";
+module.exports = "<shared-header></shared-header>\r\n\r\n\r\n\r\n<div class=\"col-md-12 dashmain\">\r\n\r\n    <div class=\"col-md-6 date-time\">\r\n\r\n        <h3>Date and Time</h3>\r\n        <div class=\"col-md-7 checkbox\">\r\n            <label class=\"checkbox-inline\">\r\n                <input id=\"checkbox1\" type=\"checkbox\">Today\r\n            </label>\r\n            <label class=\"checkbox-inline\">\r\n                <input id=\"checkbox2\" type=\"checkbox\">OtherDate\r\n            </label>\r\n        </div>\r\n        <div class=\"col-md-5 date\">\r\n            <input type=\"text\" value=\"5/6/17 - 7/8/17\" />\r\n\r\n        </div>\r\n\r\n        <div class=\"col-md-12 noofcustomers\">\r\n            <div class=\"col-md-4\">\r\n                <div class=\"Raised\">\r\n                    <p>Offers Raised</p>\r\n                    <h5>1500</h5>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-4\">\r\n                <div class=\"Raised\">\r\n                    <p>Offers Accepted</p>\r\n                    <h5 class=\"Secondarytext\">500</h5>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-4\">\r\n                <div class=\"Raised\">\r\n                    <p>Offers Removed</p>\r\n                    <h5 class=\"text\">100</h5>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n\r\n    </div>\r\n    <div class=\"col-md-6 count\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-4\">\r\n                <div class=\"visitors\">\r\n                    <p class=\"visited-customers\">No of Customers Visited Trufl</p>\r\n                    <h5>1500</h5>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-4\">\r\n                <div class=\"visitors\">\r\n                    <p class=\"visited-customers\">Total Number of Trufl Customers</p>\r\n                    <h5>1500</h5>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-4\">\r\n                <div class=\"visitors\">\r\n                    <p class=\"visited-customers\">Number of Trufl Resturants </p>\r\n                    <h5>50</h5>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<div class=\"col-md-12 no-pad dashnot\">\r\n\r\n    <div class=\"col-md-6 settingtop\">\r\n        <h3 class=\"nb\">\r\n            Notifications\r\n\r\n        </h3>\r\n        <div class=\"notify-main col-md-12\">\r\n\r\n            <div class=\"not-rep\">\r\n                <p>01/02/2017 </p>\r\n                <div class=\"not-inner\">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>\r\n\r\n            </div>\r\n            <div class=\"not-rep\">\r\n                <p>01/02/2017 </p>\r\n                <div class=\"not-inner\">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>\r\n\r\n            </div>\r\n\r\n\r\n\r\n        </div>\r\n\r\n\r\n\r\n    </div>\r\n\r\n\r\n</div>";
 
 /***/ }),
-/* 64 */
+/* 73 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"col-md-12 tablemain\">\r\n\r\n    <table class=\"table\">\r\n        <thead>\r\n            <tr>\r\n                <th>Id</th>\r\n                <th>Name</th>\r\n                <th>Phone</th>\r\n                <th>Email Id</th>\r\n                <th></th>\r\n                <th></th>\r\n\r\n\r\n\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr>\r\n                <td>1785</td>\r\n                <td>Sarrah</td>\r\n                <td>12457896</td>\r\n                <td>xyz@abc.com</td>\r\n                <td><a href=\"#\">Edit</a></td>\r\n                <td><a href=\"#\">Deactivate</a></td>\r\n            </tr>\r\n            <tr>\r\n                <td>1785</td>\r\n                <td>Sarrah</td>\r\n                <td>12457896</td>\r\n                <td>xyz@abc.com</td>\r\n                <td><a href=\"#\">Edit</a></td>\r\n                <td><a href=\"#\">Deactivate</a></td>\r\n            </tr>\r\n            <tr>\r\n                <td>1785</td>\r\n                <td>Sarrah</td>\r\n                <td>12457896</td>\r\n                <td>xyz@abc.com</td>\r\n                <td><a href=\"#\">Edit</a></td>\r\n                <td><a href=\"#\">Deactivate</a></td>\r\n            </tr>\r\n            <tr>\r\n                <td>1785</td>\r\n                <td>Sarrah</td>\r\n                <td>12457896</td>\r\n                <td>xyz@abc.com</td>\r\n                <td><a href=\"#\">Edit</a></td>\r\n                <td><a href=\"#\">Deactivate</a></td>\r\n            </tr>\r\n            <tr>\r\n                <td>1785</td>\r\n                <td>Sarrah</td>\r\n                <td>12457896</td>\r\n                <td>xyz@abc.com</td>\r\n                <td><a href=\"#\">Edit</a></td>\r\n                <td><a href=\"#\">Deactivate</a></td>\r\n            </tr>\r\n            <tr>\r\n                <td>1785</td>\r\n                <td>Sarrah</td>\r\n                <td>12457896</td>\r\n                <td>xyz@abc.com</td>\r\n                <td><a href=\"#\">Edit</a></td>\r\n                <td><a href=\"#\">Deactivate</a></td>\r\n            </tr>\r\n            <tr>\r\n                <td>1785</td>\r\n                <td>Sarrah</td>\r\n                <td>12457896</td>\r\n                <td>xyz@abc.com</td>\r\n                <td><a href=\"#\">Edit</a></td>\r\n                <td><a href=\"#\">Deactivate</a></td>\r\n            </tr>\r\n            <tr>\r\n                <td>1785</td>\r\n                <td>Sarrah</td>\r\n                <td>12457896</td>\r\n                <td>xyz@abc.com</td>\r\n                <td><a href=\"#\">Edit</a></td>\r\n                <td><a href=\"#\">Deactivate</a></td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n    <div class=\"btn-main\">\r\n        <a href=\"#\">Add </a>\r\n\r\n    </div>\r\n</div>";
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = "<div class=\"loginbg\">\r\n    <div class=\"col-md-3 logincontiner\">\r\n        <div class=\"loginmain\">\r\n            <div class=\"login-top\">\r\n                <img alt=\"\" src=\"" + __webpack_require__(39) + "\" />\r\n\r\n                <h1 class=\"text-center\">Resturant App </h1>\r\n            </div>\r\n            <form class=\"logininner\">\r\n                <div class=\"logcheck\">\r\n                    <span class=\"pull-left\">\r\n                        <input type=\"checkbox\" checked> <label> Resturant Admin</label>\r\n                    </span> <span class=\"pull-right\">\r\n                        <input type=\"checkbox\"> <label>Trufl Admin</label>\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group ffw\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"username\" name=\"username\" value=\"\" required=\"\" placeholder=\"Enter your username or email\" />\r\n                    <span class=\"help-block\"></span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n\r\n                    <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" value=\"\" required=\"\" placeholder=\"Enter Password\" />\r\n                    <span class=\"help-block\"></span>\r\n                </div>\r\n\r\n                <div class=\"fp text-right\">\r\n                    <a href=\"#\">\r\n                        forgot password ?\r\n                    </a>\r\n\r\n                </div>\r\n                <div class=\"login-btn\">\r\n                    <a href=\"#\" class=\"secondary-btn\">Clear</a>\r\n                    <a href=\"#\" class=\"primary-btn pull-right\">Sign In</a>\r\n                </div>\r\n\r\n                <div class=\"createaccount\">\r\n                    <h2>\r\n                        No account ?\r\n                        <a [routerLink]=\"['/register']\">Create One </a>\r\n                    </h2>\r\n                </div>\r\n\r\n            </form>\r\n        </div>\r\n\r\n        <div class=\"terms\">\r\n            By logging in, you agree to Trufl's Terms of Service, Cookie Policy, Privacy Policy and Content Policies\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = "<div class=\"loginbg\">\r\n    <div class=\"col-md-3 logincontiner\">\r\n        <div class=\"loginmain\">\r\n            <div class=\"login-top\">\r\n                <img alt=\"\" src=\"" + __webpack_require__(39) + "\" />\r\n\r\n                <h1 class=\"text-center\">Resturant App </h1>\r\n            </div>\r\n            <form class=\"logininner\">\r\n\r\n                <div class=\"form-group ffw\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"username\" name=\"username\" value=\"\" required=\"\" placeholder=\"Enter your Full Name\" />\r\n                    <span class=\"help-block\"></span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n\r\n                    <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" value=\"\" required=\"\" placeholder=\"Enter your email address\" />\r\n                    <span class=\"help-block\"></span>\r\n                </div>\r\n                <div class=\"form-group ffw\">\r\n                    <input type=\"text\" class=\"form-control\" id=\"username\" name=\"username\" value=\"\" required=\"\" placeholder=\"Enter Password\" />\r\n                    <span class=\"help-block\"></span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n\r\n                    <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" value=\"\" required=\"\" placeholder=\"Re-enter Password\" />\r\n                    <span class=\"help-block\"></span>\r\n                </div>\r\n                <div class=\"logcheck no-mar\">\r\n                    <span class=\"pull-left fw\">\r\n                        <input type=\"checkbox\" checked> <label> By Checking in, you agree to Trufl's Terms of Service, Cookie Policy, Privacy Policy and Content Policies</label>\r\n                    </span>\r\n                </div>\r\n                <div class=\"login-btn\">\r\n                    <a href=\"#\" class=\"secondary-btn\">Clear</a>\r\n                    <a href=\"#\" class=\"primary-btn pull-right\">Register</a>\r\n                </div>\r\n\r\n                <div class=\"createaccount\">\r\n                    <h2>\r\n                        Already have a account ?\r\n                        <a [routerLink]=\"['/login']\">Login</a>\r\n                    </h2>\r\n                </div>\r\n\r\n            </form>\r\n        </div>\r\n\r\n        <div class=\"terms\">\r\n        </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = "<shared-header></shared-header>\r\n\r\n\r\n\r\n\r\n<div class=\"col-md-12\">\r\n    <div class=\"row reinfomain\">\r\n\r\n        <div class=\"col-md-6 settingtop\">\r\n\r\n\r\n            <h3 class=\"nb\">\r\n                Resturant Info <input type=\"text\" class=\"settingsearch\" placeholder=\"Search\" />\r\n                <a data-toggle=\"modal\" data-target=\"#AddRes\" class=\"pull-right addres\" href=\"#\"><img width=\"24\" alt=\"\" src=\"" + __webpack_require__(38) + "\" /></a>\r\n            </h3>\r\n            <table class=\"table\">\r\n\r\n                <thead>\r\n                    <tr>\r\n                        <th width=\"200\">Resturant Name</th>\r\n                        <th width=\"100\">Last Visited</th>\r\n                        <th width=\"150\">Actions</th>\r\n                    </tr>\r\n                </thead>\r\n\r\n                <tbody>\r\n                    <tr>\r\n                        <td width=\"250\">Botique Louie</td>\r\n                        <td width=\"100\">4/6/17</td>\r\n                        <td width=\"100\"> <a id=\"rowclick\" href=\"#\">View Details</a></td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td>Glasses</td>\r\n                        <td>4/6/17</td>\r\n                        <td><a href=\"#\">View Details</a></td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td>Juices</td>\r\n                        <td>4/6/17</td>\r\n                        <td><a href=\"#\">View Details</a></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n        </div>\r\n        <div class=\"col-md-6 settingtop pull-right\">\r\n            <h3 class=\"nb\">\r\n                Notifications\r\n                <a class=\"pull-right addres\" data-toggle=\"modal\" data-target=\"#Notification\" href=\"#\"><img width=\"24\" alt=\"\" src=\"" + __webpack_require__(38) + "\"/></a>\r\n            </h3>\r\n            <div class=\"notify-main col-md-12\">\r\n\r\n                <div class=\"not-rep\">\r\n                    <p>01/02/2017 </p>\r\n                    <div class=\"not-inner\">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>\r\n\r\n                </div>\r\n                <div class=\"not-rep\">\r\n                    <p>01/02/2017 </p>\r\n                    <div class=\"not-inner\">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>\r\n\r\n                </div>\r\n                <div class=\"not-rep\">\r\n                    <p>01/02/2017 </p>\r\n                    <div class=\"not-inner\">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>\r\n\r\n                </div>\r\n\r\n\r\n            </div>\r\n\r\n\r\n\r\n        </div>\r\n    </div>\r\n</div>";
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = "<shared-header></shared-header>\r\n   \r\n\r\n\r\n\r\n\r\n  <div class=\"col-md-12 no-pad\">\r\n      \r\n        <div class=\"col-md-10 no-pad\">\r\n          \r\n            <div class=\"col-md-12 innermain\">\r\n                <h2>Seated </h2>\r\n                <div class=\"col-md-12 tablemain\">\r\n\r\n                    <table class=\"table table-hover\">\r\n                        <thead>\r\n                            <tr>\r\n                                <th>Trufl</th>\r\n                                <th>B.L</th>\r\n                                <th>Name</th>\r\n                                <th>Size</th>\r\n                                <th>Amount</th>\r\n                                <th>Status</th>\r\n                                <th>Table no</th>\r\n                                <th>Seated</th>\r\n                                <th>App Served</th>\r\n                                <th>Menu Served</th>\r\n                                <th>Desert Served</th>\r\n                                <th>Check Received</th>\r\n                                <th>Buzzing</th>\r\n                                <th>Empty</th>\r\n                            </tr>\r\n                        </thead>\r\n                        <tbody>\r\n\r\n                          <tr *ngFor=\"let seatsinfo of seatedinfo; let i = index\">\r\n                               <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                               <td> <img alt=\"\" src=\"" + __webpack_require__(1) + "\" /> </td>\r\n                              <td>{{seatsinfo.name}}</td>\r\n                               <td>{{seatsinfo.size}}</td>\r\n                               <td>{{seatsinfo.amount}}</td>\r\n                               <td>{{seatsinfo.status}}</td>\r\n                               <td>{{seatsinfo.tableno}}</td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\" name=\"isAdult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                               <td><input type=\"checkbox\" [(ngModel)]=\"person.is_adult\"  (change)=\"onCheckboxChange(i, $event)\"></td>\r\n                             \r\n\r\n                           </tr>\r\n\r\n                      \r\n                    </table>\r\n                 \r\n                    <div class=\"sbtbtn\">\r\n                        <button [disabled]=\"!isenabled\">Submit</button>\r\n                    </div>\r\n\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n  \r\n</div>";
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports) {
+
+module.exports = "<shared-header></shared-header>\r\n\r\n<div class=\"col-md-12 settingmain\">\r\n    <div class=\"col-md-5 settingtop setgap dn\">\r\n        <h3 class=\"nb\">Trufl Customers <input type=\"text\" class=\"settingsearch\" placeholder=\"Search\" /></h3>\r\n\r\n        <table class=\"table\">\r\n            <thead>\r\n                <tr>\r\n                    <th width=\"200\">Resturant Name</th>\r\n                    <th width=\"100\">Last Visited</th>\r\n                    <th width=\"150\">Actions</th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr>\r\n                    <td width=\"250\">Jeff</td>\r\n                    <td width=\"100\">4/6/17</td>\r\n                    <td width=\"100\"> <a id=\"rowclick\" href=\"#\">View Details</a></td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Jeff</td>\r\n                    <td>4/6/17</td>\r\n                    <td><a href=\"#\">View Details</a></td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Jeff</td>\r\n                    <td>4/6/17</td>\r\n                    <td><a href=\"#\">View Details</a></td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n\r\n\r\n\r\n    <div class=\"col-md-5 settingtop setgap\">\r\n        <h3 class=\"nb\">Reset Password</h3>\r\n\r\n        <table class=\"table\">\r\n            <thead>\r\n                <tr>\r\n                    <th width=\"150\">User Name</th>\r\n                    <th width=\"200\">Email Id</th>\r\n                    <th width=\"150\">Actions</th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr>\r\n                    <td>Jeff</td>\r\n                    <td>4/6/17</td>\r\n                    <td><a href=\"#\">Reset</a></td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Jeff</td>\r\n                    <td>4/6/17</td>\r\n                    <td><a href=\"#\">Reset</a></td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Jeff</td>\r\n                    <td>4/6/17</td>\r\n                    <td><a href=\"#\">Reset</a></td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Jeff</td>\r\n                    <td>4/6/17</td>\r\n                    <td><a href=\"#\">Reset</a></td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Jeff</td>\r\n                    <td>4/6/17</td>\r\n                    <td><a href=\"#\">Reset</a></td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Jeff</td>\r\n                    <td>4/6/17</td>\r\n                    <td><a href=\"#\">Reset</a></td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n\r\n\r\n    <div class=\"col-md-5 settingtop\">\r\n\r\n\r\n        <h3>\r\n            Profile\r\n            <a class=\"pull-right\" href=\"#\"><!--<img alt=\"\" src=\"../images/edit.png\" />--></a>\r\n        </h3>\r\n\r\n        <div class=\"col-md-12 textborder\">\r\n            <div class=\"col-md-3\">\r\n                <p class=\"text-muted\">Username:</p>\r\n            </div>\r\n            <div class=\"col-md-4\">\r\n                <p>Jeff</p>\r\n            </div>\r\n\r\n        </div>\r\n        <div class=\"col-md-12 textborder\">\r\n            <div class=\"col-md-3\">\r\n                <p class=\"text-muted\">Email Id:</p>\r\n            </div>\r\n            <div class=\"col-md-4\">\r\n                <p>Jeff124resw@outlook.com</p>\r\n            </div>\r\n\r\n        </div>\r\n        <div class=\"col-md-12 textborder\">\r\n            <div class=\"col-md-3\">\r\n                <p class=\"text-muted\">Password:</p>\r\n            </div>\r\n            <div class=\"col-md-4\">\r\n                <p>xxxxxx7890</p>\r\n            </div>\r\n\r\n        </div>\r\n        <div class=\"col-md-12 popup-btn dn\">\r\n\r\n\r\n            <a href=\"#\" class=\"primary-btn\">Submit</a>\r\n            <a href=\"#\" data-dismiss=\"modal\" class=\"secondary-btn\">Cancel</a>\r\n        </div>\r\n\r\n    </div>\r\n\r\n\r\n</div>";
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = "<div class=\"header\">\r\n    <div class=\"col-md-5 headerleft\">\r\n        <h1><a href=\"#\">Bottique Louie</a></h1>\r\n    </div>\r\n    <div class=\"headerright\">\r\n        <a [routerLink]=\"['/settings']\"><img alt=\"\" src=\"" + __webpack_require__(90) + "\" /> </a>\r\n        <div class=\"profiledd dropdown\">\r\n            <a class=\"\" data-toggle=\"dropdown\" href=\"#\"> <label>Jeffy </label> <img width=\"32\" alt=\"\" src=\"" + __webpack_require__(89) + "\" /> </a>\r\n            <ul class=\"dropdown-menu pull-right\">\r\n                <li><a href=\"login.html\">Logout</a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"col-md-12 innermain\">\r\n\r\n    <div class=\"col-md-12 leftnav no-pad\">\r\n        <ul>\r\n            <li>\r\n                <a [routerLink]=\"['/home']\" class=\"selected\">Waitlist </a>\r\n            </li>\r\n            <li>\r\n                <a [routerLink]=\"['/getseatedpage']\">Seated </a>\r\n            </li>\r\n            <li>\r\n                <a [routerLink]=\"['/dashboard']\">Dashboard </a>\r\n            </li>\r\n            <li>\r\n                <a [routerLink]=\"['/resturant']\">Resturant </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n\r\n</div>";
+
+/***/ }),
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9783,7 +10053,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 65 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9875,34 +10145,34 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 66 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(64);
-exports.encode = exports.stringify = __webpack_require__(65);
+exports.decode = exports.parse = __webpack_require__(80);
+exports.encode = exports.stringify = __webpack_require__(81);
 
 
 /***/ }),
-/* 67 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Observable_1 = __webpack_require__(39);
-var map_1 = __webpack_require__(76);
+var Observable_1 = __webpack_require__(41);
+var map_1 = __webpack_require__(94);
 Observable_1.Observable.prototype.map = map_1.map;
 //# sourceMappingURL=map.js.map
 
 /***/ }),
-/* 68 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(82);
+var root_1 = __webpack_require__(100);
 /* tslint:enable:max-line-length */
 /**
  * Converts an Observable sequence to a ES2015 compliant promise.
@@ -9975,12 +10245,12 @@ exports.toPromise = toPromise;
 //# sourceMappingURL=toPromise.js.map
 
 /***/ }),
-/* 69 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ansiRegex = __webpack_require__(51)();
+var ansiRegex = __webpack_require__(53)();
 
 module.exports = function (str) {
 	return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
@@ -9988,11 +10258,11 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 70 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(56);
+        var result = __webpack_require__(65);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -10002,11 +10272,11 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 71 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(57);
+        var result = __webpack_require__(66);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -10016,13 +10286,25 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 72 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,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"
 
 /***/ }),
-/* 73 */
+/* 89 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAytJREFUeNqs10tIFVEYwHGvmYYWSElCmlTmYxEtMix0UYsKK3ohBimC1Uba9JJaJD2oXFQStgixByW1CIlSNIkSUnpqaJQmqdHD7CGWi0h6mLf/iW/icDhz79zwwI8798yc+e6Z75szc31+vz8shJaNIviM/hEcwLDXE0WEhdZU0CEMGP3FaMDN8Qi8Ek+NIGqmV/DEODbHchWy5Qo8t5083CXoHpzDQ6Qagd2avi8fNWjBQuvRKseGEtxBDE7iPYpQj89ItoypwjBOYTfeIgUbMYgMc4wtaLMEdfpU8FasQYQlqCNVAr+UoE5/ngRf4BZ4iyXoeFEz/4Q5Tp9eXPFoxDcPBTkfMzGKHvQGGXMXXzHZLceV2OHyq6egDB/Qggu4hA50Sx34LOMS0Cmpcs2xGngVqy3560E54iwnT0cdahFt7FM/LD9YcSlNmKp9j8crrPeQy6MS3GcUZ4l5rDogjSueIld+OuZhl5YftWC04YTHRemaqJbvM3ALe+X7GO6pwJ1s9GkDD6FDtueiCclSSF6aOrZWJuC0Y9pCpH7IIzXt2wEu3U7Ja6i3zwP91jGolJ0ND/Lr09EZFnpTY9Jc9o0GWqudFolf/xFYnXyiy74xL4H7JWehNpXPNy77/r4AqOJ6zGeltqMOg7K9FOXICCFonBTnLPyWvhVIkm1VdFFqxkeQgEQsQaF2kma5ZGtDCFyK81rQCaiSJVbF+IIKs+KipSLDtb4sDBhPHDd5snzqq1cuLnpZudT6u8Hoy5fg61wCRqIUfZbndZtt1TNPsAkNlvVWWaTqAe04iEJsRYU8+NWsplnGrUIXZptLppObAnllycX3ADnMlKJTOfuJF7iBdwHGLMdpLHOqXX8eZ6E9SFDVWkUorVtiJf+7zbTpR8l71X7jUmXKpY31UFyLcdh4RUpEL4oD5dgMrvI6hGr04zKSLAEL5L3sGRpRI8GdoNu8VLUT/IwEzZP+SdKfYxlTr80oXArtultQxbZk/pACG5F/DjXSr3L/MUAeX2tr8WZ0oUyKyvM/CRV8u8u+GMRazuM3HgT7xvO/030ctzxcRuS28tz+CDAAcMJFZnfUa3EAAAAASUVORK5CYII="
+
+/***/ }),
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*eslint-env browser*/
@@ -10051,7 +10333,7 @@ for (var key in styles) {
   clientOverlay.style[key] = styles[key];
 }
 
-var ansiHTML = __webpack_require__(50);
+var ansiHTML = __webpack_require__(52);
 var colors = {
   reset: ['transparent', 'transparent'],
   black: '181818',
@@ -10066,7 +10348,7 @@ var colors = {
 };
 ansiHTML.setColors(colors);
 
-var Entities = __webpack_require__(58).AllHtmlEntities;
+var Entities = __webpack_require__(67).AllHtmlEntities;
 var entities = new Entities();
 
 exports.showProblems =
@@ -10107,7 +10389,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 74 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -10245,66 +10527,66 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
-/* 75 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(11);
 
 /***/ }),
-/* 76 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(121);
 
 /***/ }),
-/* 77 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(194);
 
 /***/ }),
-/* 78 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(316);
 
 /***/ }),
-/* 79 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(332);
 
 /***/ }),
-/* 80 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(333);
 
 /***/ }),
-/* 81 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(335);
 
 /***/ }),
-/* 82 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(47);
 
 /***/ }),
-/* 83 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(574);
 
 /***/ }),
-/* 84 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(43);
-__webpack_require__(42);
-module.exports = __webpack_require__(41);
+__webpack_require__(45);
+__webpack_require__(44);
+module.exports = __webpack_require__(43);
 
 
 /***/ })
