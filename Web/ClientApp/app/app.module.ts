@@ -35,6 +35,7 @@ import { EmployeeConfigService } from './components/employeeconfiguration/Employ
 
 import { HostessDashboardComponent } from './components/HostessDashboard/hostessdashboard.component';
 import { HostessDashboardService } from './components/HostessDashboard/hostessdashboard.service';
+import { AuthGuard } from './components/shared/authgaurd.service';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { HostessDashboardService } from './components/HostessDashboard/hostessda
         RestaurenService,
         HostessSettingsService,
         ToastsManager,
+        AuthGuard,
         DatePipe,
         EmployeeConfigService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
@@ -86,29 +88,19 @@ import { HostessDashboardService } from './components/HostessDashboard/hostessda
      
         RouterModule.forRoot([
             { path: '', component: LoginComponent },
-            //{path: 'login', component: LoginComponent,
-            //    children: [  
-            //        { path: 'seated', component: SeatedComponent },
-            //        { path: 'waitlist', component: HostessComponent },
-            //        { path: 'register', component: RegisterComponent },
-            //        { path: 'settings', component: SettingsComponent },
-            //        { path: 'hostesssettings', component: HostessSettingsComponent},
-            //        { path: 'dashboard', component: DashboardComponent },
-            //        { path: 'restaurant', component: ResturantComponent },
-            //        { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
-            //    ]
-            //},
-            { path: 'hostessdashboard', component: HostessDashboardComponent },
+       
+             { path: 'hostessdashboard', component: HostessDashboardComponent, canActivate: [AuthGuard]},
             { path: 'login', component: LoginComponent },
-            { path: 'seated', component: SeatedComponent },
-            { path: 'waitlist', component: HostessComponent },
-            { path: 'register', component: RegisterComponent },
-            { path: 'settings', component: SettingsComponent },
-            { path: 'hostesssettings', component: HostessSettingsComponent},
-            { path: 'dashboard', component: DashboardComponent },
-            { path: 'restaurant', component: ResturantComponent },
-            { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
+            { path: 'seated', component: SeatedComponent, canActivate: [AuthGuard] },
+            { path: 'waitlist', component: HostessComponent, canActivate: [AuthGuard] },
+            { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+            { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+            { path: 'hostesssettings', component: HostessSettingsComponent, canActivate: [AuthGuard] },
+            { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+            { path: 'restaurant', component: ResturantComponent, canActivate: [AuthGuard] },
+            { path: 'employeeconfiguration', component: EmployeeConfigurationComponent, canActivate: [AuthGuard] },
             { path: '**', redirectTo: 'login' },
+
            
         ])
     ],
