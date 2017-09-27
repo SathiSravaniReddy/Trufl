@@ -32,9 +32,18 @@ import {ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { MyDatePickerModule } from 'mydatepicker';
 import { EmployeeConfigService } from './components/employeeconfiguration/EmployeeConfiguration.service';
-
 import { HostessDashboardComponent } from './components/HostessDashboard/hostessdashboard.component';
 import { HostessDashboardService } from './components/HostessDashboard/hostessdashboard.service';
+import { StartServiceComponent } from "./components/startservice/start-service.component";
+import { SelectSelectionsComponent } from "./components/selectselections/select-selections.component";
+import { SelectStaffComponent } from "./components/selectstaff/select-staff.component";
+import { ReviewSelectionsComponent } from "./components/reviewselections/review-selections.component";
+import { OtherSettingsComponent } from "./components/defaultsettings/othersettings/other-settings.component";
+import { DefaultSettingsComponent } from "./components/defaultsettings/default-settings.component";
+import { ManageServersComponent } from "./components/defaultsettings/manageservers/manage-servers.component";
+import { DefineSelectionsComponent } from "./components/defaultsettings/defineselections/define-selections.component";
+import { SeataGuestComponent } from "./components/seataguest/seataguest.component";
+import { AddGuestComponent } from "./components/addguest/addguest.component";
 
 
 @NgModule({
@@ -55,7 +64,16 @@ import { HostessDashboardService } from './components/HostessDashboard/hostessda
         EqualValidator,
         HostessSettingsComponent,
         HostessDashboardComponent,
-        
+        StartServiceComponent,
+        SelectSelectionsComponent,
+        SelectStaffComponent,
+        ReviewSelectionsComponent,
+        DefineSelectionsComponent,
+        ManageServersComponent,
+        OtherSettingsComponent,
+        DefaultSettingsComponent,
+        SeataGuestComponent,
+        AddGuestComponent,
         
     ],
     providers: [
@@ -86,18 +104,6 @@ import { HostessDashboardService } from './components/HostessDashboard/hostessda
      
         RouterModule.forRoot([
             { path: '', component: LoginComponent },
-            //{path: 'login', component: LoginComponent,
-            //    children: [  
-            //        { path: 'seated', component: SeatedComponent },
-            //        { path: 'waitlist', component: HostessComponent },
-            //        { path: 'register', component: RegisterComponent },
-            //        { path: 'settings', component: SettingsComponent },
-            //        { path: 'hostesssettings', component: HostessSettingsComponent},
-            //        { path: 'dashboard', component: DashboardComponent },
-            //        { path: 'restaurant', component: ResturantComponent },
-            //        { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
-            //    ]
-            //},
             { path: 'hostessdashboard', component: HostessDashboardComponent },
             { path: 'login', component: LoginComponent },
             { path: 'seated', component: SeatedComponent },
@@ -108,6 +114,17 @@ import { HostessDashboardService } from './components/HostessDashboard/hostessda
             { path: 'dashboard', component: DashboardComponent },
             { path: 'restaurant', component: ResturantComponent },
             { path: 'employeeconfiguration', component: EmployeeConfigurationComponent },
+            { path: 'startservice', component: StartServiceComponent },
+            { path: 'selectselections', component: SelectSelectionsComponent },
+            { path: 'selectStaff', component: SelectStaffComponent },
+            { path: 'reviewSelections', component: ReviewSelectionsComponent },
+            { path: 'defineSelections', component: DefineSelectionsComponent },
+            { path: 'manageServers', component: ManageServersComponent },
+            { path: 'otherSettings', component: OtherSettingsComponent },
+            { path: 'defaultSettings', component: DefaultSettingsComponent },   
+            { path: 'seataGuest', component: SeataGuestComponent },   
+            { path: 'addGuest', component: AddGuestComponent },   
+            
             { path: '**', redirectTo: 'login' },
            
         ])
