@@ -108,10 +108,7 @@ export class LoginService {
 
     //To logout
     logout() {
-        localStorage.removeItem("userType");
-        localStorage.removeItem("truflid");
-        localStorage.removeItem("restaurantid");
-        localStorage.removeItem("restaurantName");
+        localStorage.clear();
         
     }
 

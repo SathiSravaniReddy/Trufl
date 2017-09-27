@@ -1,15 +1,1 @@
-﻿/*.leftnav .selected {
-    color: #0078d7 !important;
-    border-bottom: #0078d7 2px solid !important;
-}
-
-    .leftnav .selected a {
-        color: #0078d7 !important;
-    }*/
-a{
-    cursor:pointer;
-    display:block;
-}
-.logout {
-
-}
+﻿
