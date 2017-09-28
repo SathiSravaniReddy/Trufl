@@ -27,10 +27,10 @@ namespace Trufl.Services.Controllers
 
         [Route("GetNotifications")]
         [HttpGet]
-        public object GetNotifications()
+        public object GetNotifications(int RestaurantID)
         {
             DataTable res = new DataTable();
-            res = _adminBL.GetNotifications();
+            res = _adminBL.GetNotifications(RestaurantID);
             try
             {
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });

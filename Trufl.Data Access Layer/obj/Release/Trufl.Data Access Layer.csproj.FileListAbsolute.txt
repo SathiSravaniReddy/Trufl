@@ -17,3 +17,16 @@ E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\obj\Release\Trufl.Data Access
 E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
 E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.dll
 E:\Manohar\Trufl_8-31-2017\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.pdb
+D:\TruflDev\Trufl.Data Access Layer\bin\Release\Trufl.Data Access Layer.dll.config
+D:\TruflDev\Trufl.Data Access Layer\bin\Release\Trufl.Data Access Layer.dll
+D:\TruflDev\Trufl.Data Access Layer\bin\Release\Trufl.Data Access Layer.pdb
+D:\TruflDev\Trufl.Data Access Layer\bin\Release\DTO.dll
+D:\TruflDev\Trufl.Data Access Layer\bin\Release\Microsoft.SqlServer.Types.dll
+D:\TruflDev\Trufl.Data Access Layer\bin\Release\Trufl.Logging.dll
+D:\TruflDev\Trufl.Data Access Layer\bin\Release\TruflEmailService.dll
+D:\TruflDev\Trufl.Data Access Layer\bin\Release\DTO.pdb
+D:\TruflDev\Trufl.Data Access Layer\bin\Release\TruflEmailService.pdb
+D:\TruflDev\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.csprojResolveAssemblyReference.cache
+D:\TruflDev\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.csproj.CoreCompileInputs.cache
+D:\TruflDev\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.dll
+D:\TruflDev\Trufl.Data Access Layer\obj\Release\Trufl.Data Access Layer.pdb

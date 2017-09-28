@@ -77,7 +77,7 @@ namespace Trufl.Data_Access_Layer
         /// This method 'GetNotifications ' returns Notifications details
         /// </summary>
         /// <returns>Notifications List</returns>
-        public DataTable GetNotifications()
+        public DataTable GetNotifications(int RestaurantID)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -85,9 +85,13 @@ namespace Trufl.Data_Access_Layer
                 string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
                 using (SqlConnection sqlcon = new SqlConnection(connectionString))
                 {
+                    con.Open();
                     using (SqlCommand cmd = new SqlCommand("spGetNotifications", sqlcon))
                     {
                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
 
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
@@ -121,10 +125,12 @@ namespace Trufl.Data_Access_Layer
                     using (SqlCommand cmd = new SqlCommand("spSaveNotifications", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@Description", notifications.Description);
-                        tvpParam.SqlDbType = SqlDbType.Text;
-                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@ExpiryDate ", notifications.ExpiryDate);
-                        tvpParam1.SqlDbType = SqlDbType.DateTime;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", notifications.RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@Description", notifications.Description);
+                        tvpParam1.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@ExpiryDate ", notifications.ExpiryDate);
+                        tvpParam2.SqlDbType = SqlDbType.DateTime;
 
 
                         SqlParameter pvNewId = new SqlParameter();
