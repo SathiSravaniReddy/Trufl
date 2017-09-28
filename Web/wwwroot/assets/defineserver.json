@@ -1,0 +1,36 @@
+﻿{
+
+
+  "_Data": [
+    {
+      "name": "main daining",
+      "sectionStartNumber": 15,
+      "sectionsEndNumber": 35
+    },
+    {
+      "name": "BarArea",
+      "sectionStartNumber": 1,
+      "sectionsEndNumber": 14
+    },
+    {
+      "name": "Patio",
+      "sectionStartNumber": 33,
+      "sectionsEndNumber": 49
+    },
+    {
+      "name": "2nd Floor Dining",
+      "sectionStartNumber": 50,
+      "sectionsEndNumber": 78
+    },
+    {
+      "name": "Mezzanine",
+      "sectionStartNumber": 79,
+      "sectionsEndNumber": 89
+    },
+    {
+      "name": "RoofTopBar",
+      "sectionStartNumber": 90,
+      "sectionsEndNumber": 100
+    }
+  ]
+}

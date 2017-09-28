@@ -1,0 +1,26 @@
+﻿{
+
+
+  "_Data": [
+    {
+      "mainname": "DiningExperience",
+      "subname": "Length of average Dinner Service(in minutes)",
+      "DiningExperience": 60
+
+    },
+    {
+      "mainname": "Preferred Word",
+      "subname": "Host,Hostess,Mitre',Podium,etc",
+      "Preferred Word": "Hostess"
+    },
+    {
+      "mainname": "Waitlist & Get Seated Now",
+      "sectionStartNumber": "Geofence(in miles)",
+      "Waitlist": 5,
+      "How long get seated now remain active(in mnimutes-enter 0 to remove time limit)": 5,
+      "Default Get A Table Now Capacity[2,4,5,6,8,or10]": 4,
+      "Default Get A Table Now Price(in USD)": 200
+    }
+   
+  ]
+}

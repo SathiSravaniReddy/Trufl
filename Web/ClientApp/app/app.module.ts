@@ -34,7 +34,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { EmployeeConfigService } from './components/employeeconfiguration/EmployeeConfiguration.service';
 import { HostessDashboardComponent } from './components/HostessDashboard/hostessdashboard.component';
 import { HostessDashboardService } from './components/HostessDashboard/hostessdashboard.service';
-import { AuthGuard } from './components/shared/authgaurd.service';
+//import { AuthGuard } from './components/shared/authgaurd.service';
 import { StartServiceComponent } from "./components/startservice/start-service.component";
 import { SelectSelectionsComponent } from "./components/selectselections/select-selections.component";
 import { SelectStaffComponent } from "./components/selectstaff/select-staff.component";
@@ -45,8 +45,10 @@ import { ManageServersComponent } from "./components/defaultsettings/manageserve
 import { DefineSelectionsComponent } from "./components/defaultsettings/defineselections/define-selections.component";
 import { SeataGuestComponent } from "./components/seataguest/seataguest.component";
 import { AddGuestComponent } from "./components/addguest/addguest.component";
-
-
+import { DefineSelectionService } from "./components/defaultsettings/defineselections/define-selection.service";
+import { ManageServersService } from "./components/defaultsettings/manageservers/manage-servers.service";
+import { OtherSettingsService } from "./components/defaultsettings/othersettings/other-settings.service";
+import { SidebarModule } from 'ng-sidebar';
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [
@@ -65,6 +67,19 @@ import { AddGuestComponent } from "./components/addguest/addguest.component";
         EqualValidator,
         HostessSettingsComponent,
         HostessDashboardComponent,
+        StartServiceComponent,
+        SelectSelectionsComponent,
+        SelectStaffComponent,
+        ReviewSelectionsComponent,
+        OtherSettingsComponent,
+DefaultSettingsComponent,
+ ManageServersComponent ,
+ DefineSelectionsComponent,
+ SeataGuestComponent ,
+
+    AddGuestComponent 
+
+
         
     ],
     providers: [
@@ -78,6 +93,9 @@ import { AddGuestComponent } from "./components/addguest/addguest.component";
         ToastsManager,
         DatePipe,
         EmployeeConfigService,
+        OtherSettingsService,
+        ManageServersService,
+        DefineSelectionService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
 
@@ -91,7 +109,7 @@ import { AddGuestComponent } from "./components/addguest/addguest.component";
         Ng2SearchPipeModule,
         ToastModule,
         MyDatePickerModule, 
-        
+        SidebarModule.forRoot(),
      
         RouterModule.forRoot([
             { path: '', component: LoginComponent },

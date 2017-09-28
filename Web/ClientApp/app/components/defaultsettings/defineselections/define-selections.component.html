@@ -1,61 +1,32 @@
-<shared-header></shared-header>
-<div class="col-md-12 sectionsmain">
+
+<div class="customheader">
+
+    <div class="customheaderleft">
+        <h2>DefineSections</h2>
+    </div>
+    <div class="customheaderright">
+        <a  class="secondary-btn" (click)="cancel()">
+            Cancel
+        </a>
+        <a  class="primary-btn" (click)="saveclose()">
+            SaveAndnext
+        </a>
+    </div>
+
+</div>
+<div class="col-md-12 sectionsmain"  *ngFor="let _defineserverdeatils of defineselectionsdetails;let i=index;">
 
     <ul>
         <li>
             <a href="#">
-                <h3> Main Dining </h3>
-                <p>15-32 </p>
+                <h3>{{_defineserverdeatils.name}}</h3>
+                <p>{{_defineserverdeatils.sectionStartNumber}}-{{_defineserverdeatils.sectionsEndNumber}}</p>
 
             </a>
         </li>
-        <li>
-            <a href="#">
-                <h3> Bar Area</h3>
-                <p>15-32 </p>
-
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h3> Patio</h3>
-                <p>15-32 </p>
-
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h3>
-                    2nd Floor Dining
-                </h3>
-                <p>15-32 </p>
-
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h3> Define Sections</h3>
-                <p>15-32 </p>
-
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h3>
-                    Mezzanine
-                </h3>
-                <p>15-32 </p>
-
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h3> Rooftop Bar</h3>
-                <p>15-32 </p>
-
-            </a>
-        </li>
+        
     </ul>
 
 
+   
 </div>
