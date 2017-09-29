@@ -45,10 +45,10 @@ import { ManageServersComponent } from "./components/defaultsettings/manageserve
 import { DefineSelectionsComponent } from "./components/defaultsettings/defineselections/define-selections.component";
 import { SeataGuestComponent } from "./components/seataguest/seataguest.component";
 import { AddGuestComponent } from "./components/addguest/addguest.component";
-import { DefineSelectionService } from "./components/defaultsettings/defineselections/define-selection.service";
+import { DefineSelectionService } from "./components/defaultsettings/defineselections/define-selections.service";
 import { ManageServersService } from "./components/defaultsettings/manageservers/manage-servers.service";
 import { OtherSettingsService } from "./components/defaultsettings/othersettings/other-settings.service";
-import { SidebarModule } from 'ng-sidebar';
+
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [
@@ -109,7 +109,7 @@ DefaultSettingsComponent,
         Ng2SearchPipeModule,
         ToastModule,
         MyDatePickerModule, 
-        SidebarModule.forRoot(),
+       
      
         RouterModule.forRoot([
             { path: '', component: LoginComponent },

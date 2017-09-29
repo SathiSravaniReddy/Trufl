@@ -18,7 +18,7 @@
 
     <ul>
         <li>
-            <a href="#">
+            <a (click)="showProfile(_defineserverdeatils)">
                 <h3>{{_defineserverdeatils.name}}</h3>
                 <p>{{_defineserverdeatils.sectionStartNumber}}-{{_defineserverdeatils.sectionsEndNumber}}</p>
 
@@ -26,6 +26,42 @@
         </li>
         
     </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="_defineserverdeatils.isShow">
+
+
+
+
+        <a id="close" class="close" (click)="closeProile('right-section')"><span aria-hidden="true">x</span></a>
+
+
+
+        <div class="right-top">
+            <img alt="" src="../../../../../wwwroot/images/no-img.png" />
+            <h5 class="nameheader">dfefef</h5>
+            <p class="defaulttext"> Trufl Premier Member</p>
+            <p class="defaulttext">fdsfdsfds Member</p>
+      
+
+        </div>
+
+
+       
+    </div>
+
 
 
    

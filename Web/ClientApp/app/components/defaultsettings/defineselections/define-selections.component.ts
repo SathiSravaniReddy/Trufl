@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { DefineSelectionService } from '../defineselections/define-selection.service'; 
+import { DefineSelectionService } from '../defineselections/define-selections.service'; 
 import { Router } from '@angular/router';
 @Component({
     selector: 'defineSelections',
     templateUrl: './define-selections.component.html',
-   
+    styleUrls: ['./define-selections.component.css'],
 })
 export class DefineSelectionsComponent {
     
     private defineselectionsdetails;
+    //private isShow: boolean = false;
+    private currentRow;
     constructor(private _defineservice: DefineSelectionService, private router: Router) {
         
 
@@ -36,9 +38,19 @@ export class DefineSelectionsComponent {
      }
 
 
-     private _opened: boolean = false;
-
-     public _toggleSidebar() {
-         this._opened = !this._opened;
+     showProfile(defineselections) {
+         var _that = this;
+         console.log(defineselections, "defineselectionsrwtert");
+         //this.isShow = !this.isShow;
+         this.currentRow =defineselections.name;
+         this.defineselectionsdetails.map(function (obj) {
+             obj.isShow = obj.name == _that.currentRow;
+         });
      }
+
+
+
+
+
+
 }
