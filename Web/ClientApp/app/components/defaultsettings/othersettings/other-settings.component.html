@@ -1,0 +1,112 @@
+<div class="customheader">
+
+    <div class="customheaderleft">
+        <h2>Other Settings</h2>
+    </div>
+    <div class="customheaderright">
+        <a class="secondary-btn" (click)="cancel()">
+            Cancel
+        </a>
+        <a class="primary-btn" (click)="savenext()">
+            SaveAndnext
+        </a>
+    </div>
+
+</div>
+<div class="col-md-12 newguestmain">
+    <h3> Dining Experience</h3>
+
+    <div class="col-md-6">
+
+        <div class="input input--haruki">
+            <input class="input__field input__field--haruki" type="text" id="input-1">
+            <label class="input__label input__label--haruki" for="input-1">
+                <span class="input__label-content input__label-content--haruki">Length of average Dinner Service(in minutes)</span>
+            </label>
+        </div>
+
+
+    </div>
+    <br style="clear:both;" />
+    <h3>Preferred Word</h3>
+    <div class="col-md-6">
+        <div class="input input--haruki">
+            <input class="input__field input__field--haruki" type="text" id="input-1">
+            <label class="input__label input__label--haruki" for="input-1">
+                <span class="input__label-content input__label-content--haruki">Host,Hostess,Mitre',Podium,etc</span>
+            </label>
+        </div>
+
+    </div>
+    <br style="clear:both;" />
+    <h3>Waitlist & Get Seated Now</h3>
+    <div class="col-md-6">
+        <div class="input input--haruki">
+            <input class="input__field input__field--haruki" type="text" id="input-1">
+            <label class="input__label input__label--haruki" for="input-1">
+                <span class="input__label-content input__label-content--haruki">Geofence(in miles)</span>
+            </label>
+        </div>
+        <div class="input input--haruki">
+            <input class="input__field input__field--haruki" type="text" id="input-1">
+            <label class="input__label input__label--haruki" for="input-1">
+                <span class="input__label-content input__label-content--haruki">How long get seated now remain active(in mnimutes-enter 0 to remove time limit)</span>
+            </label>
+        </div>
+        <div class="input input--haruki">
+            <input class="input__field input__field--haruki" type="text" id="input-1">
+            <label class="input__label input__label--haruki" for="input-1">
+                <span class="input__label-content input__label-content--haruki">Default Get A Table Now Capacity[2,4,5,6,8,or10]</span>
+            </label>
+        </div>
+        <div class="input input--haruki">
+            <input class="input__field input__field--haruki" type="text" id="input-1">
+            <label class="input__label input__label--haruki" for="input-1">
+                <span class="input__label-content input__label-content--haruki">Default Get A Table Now Price(in USD)</span>
+            </label>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script src="~/js/classie.js"></script>
+<script>
+    (function() {
+
+        if (!String.prototype.trim) {
+            (function() {
+                // Make sure we trim BOM and NBSP
+                var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                String.prototype.trim = function() {
+                    return this.replace(rtrim, '');
+                };
+            })();
+        }
+
+        [].slice.call(document.querySelectorAll('input.input__field')).forEach(function(inputEl) {
+            // in case the input is already filled..
+            if (inputEl.value.trim() !== '') {
+                classie.add(inputEl.parentNode, 'input--filled');
+            }
+
+            // events:
+            inputEl.addEventListener('focus', onInputFocus);
+            inputEl.addEventListener('blur', onInputBlur);
+        });
+
+        function onInputFocus(ev) {
+            classie.add(ev.target.parentNode, 'input--filled');
+        }
+
+        function onInputBlur(ev) {
+            if (ev.target.value.trim() === '') {
+                classie.remove(ev.target.parentNode, 'input--filled');
+            }
+        }
+    })();
+
+</script>

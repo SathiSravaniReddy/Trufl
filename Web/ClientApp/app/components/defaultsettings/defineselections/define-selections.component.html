@@ -1,0 +1,68 @@
+
+<div class="customheader">
+
+    <div class="customheaderleft">
+        <h2>DefineSections</h2>
+    </div>
+    <div class="customheaderright">
+        <a  class="secondary-btn" (click)="cancel()">
+            Cancel
+        </a>
+        <a  class="primary-btn" (click)="saveclose()">
+            SaveAndnext
+        </a>
+    </div>
+
+</div>
+<div class="col-md-12 sectionsmain"  *ngFor="let _defineserverdeatils of defineselectionsdetails;let i=index;">
+
+    <ul>
+        <li>
+            <a (click)="showProfile(_defineserverdeatils)">
+                <h3>{{_defineserverdeatils.name}}</h3>
+                <p>{{_defineserverdeatils.sectionStartNumber}}-{{_defineserverdeatils.sectionsEndNumber}}</p>
+
+            </a>
+        </li>
+        
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="_defineserverdeatils.isShow">
+
+
+
+
+        <a id="close" class="close" (click)="closeProile('right-section')"><span aria-hidden="true">x</span></a>
+
+
+
+        <div class="right-top">
+            <img alt="" src="../../../../../wwwroot/images/no-img.png" />
+            <h5 class="nameheader">dfefef</h5>
+            <p class="defaulttext"> Trufl Premier Member</p>
+            <p class="defaulttext">fdsfdsfds Member</p>
+      
+
+        </div>
+
+
+       
+    </div>
+
+
+
+   
+</div>

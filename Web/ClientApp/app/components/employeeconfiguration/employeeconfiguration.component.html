@@ -1,4 +1,6 @@
-﻿<div class="col-md-12 tablemain">
+﻿<shared-header></shared-header>
+
+<div class="col-md-12 tablemain">
 
     <table class="table">
         <thead>
@@ -9,80 +11,115 @@
                 <th>Email Id</th>
                 <th></th>
                 <th></th>
-
-
-
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1785</td>
-                <td>Sarrah</td>
-                <td>12457896</td>
-                <td>xyz@abc.com</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Deactivate</a></td>
-            </tr>
-            <tr>
-                <td>1785</td>
-                <td>Sarrah</td>
-                <td>12457896</td>
-                <td>xyz@abc.com</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Deactivate</a></td>
-            </tr>
-            <tr>
-                <td>1785</td>
-                <td>Sarrah</td>
-                <td>12457896</td>
-                <td>xyz@abc.com</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Deactivate</a></td>
-            </tr>
-            <tr>
-                <td>1785</td>
-                <td>Sarrah</td>
-                <td>12457896</td>
-                <td>xyz@abc.com</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Deactivate</a></td>
-            </tr>
-            <tr>
-                <td>1785</td>
-                <td>Sarrah</td>
-                <td>12457896</td>
-                <td>xyz@abc.com</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Deactivate</a></td>
-            </tr>
-            <tr>
-                <td>1785</td>
-                <td>Sarrah</td>
-                <td>12457896</td>
-                <td>xyz@abc.com</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Deactivate</a></td>
-            </tr>
-            <tr>
-                <td>1785</td>
-                <td>Sarrah</td>
-                <td>12457896</td>
-                <td>xyz@abc.com</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Deactivate</a></td>
-            </tr>
-            <tr>
-                <td>1785</td>
-                <td>Sarrah</td>
-                <td>12457896</td>
-                <td>xyz@abc.com</td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Deactivate</a></td>
+            <tr *ngFor="let item of employeesList|paginate:{ itemsPerPage: 5, currentPage: p,id:'p' };let i = index">
+                <td>
+                    <Span>{{item.TruflUserID}}</Span>
+                </td>
+                <td>
+                    <Span  *ngIf="i!=this.indexvalue">{{item.FullName}}</Span>
+                    <input type="text" [(ngModel)]="item.FullName"  *ngIf="i==this.indexvalue" />
+                </td>
+                <td>
+                    <Span *ngIf="i!=this.indexvalue" >{{item.PhoneNumber}}</Span>
+                    <input type="text" [(ngModel)]="item.PhoneNumber" *ngIf="i==this.indexvalue" />
+                </td>
+                <td>
+                    <Span  *ngIf="i!=this.indexvalue">{{item.Email}}</Span>
+                    <input type="text" [(ngModel)]="item.Email" *ngIf="i==this.indexvalue" />
+                </td>
+                <td *ngIf="!showOnEdit"><a (click)="editEmployeeDetails(i)">Edit</a></td>
+                <td *ngIf="showOnEdit"><a (click)="saveEditedEmployeeDetails(item)">Save</a></td>
+
+                <td><a  (click)="updatehoststatus(item)"  *ngIf="item.ActiveInd==0" >Active</a><a *ngIf="item.ActiveInd==1" (click)="updatehoststatus(item)">Deactivate</a></td>
+
             </tr>
         </tbody>
     </table>
+    <pagination-controls class="pull-right" (pageChange)="p=$event" id="p"></pagination-controls>
+
     <div class="btn-main">
-        <a href="#">Add </a>
+        <!--  <a href="#">Add </a>-->
+        <a data-toggle="modal" data-target="#AddEmp" class="pull-left addres">Add</a>
 
     </div>
 </div>
+
+
+
+
+<div class="modal fade" id="AddEmp" #AddEmp tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="myModalLabel">Add Employee</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row modal-items">
+                    <form novalidate (ngSubmit)="onSubmit(myForm.value)" [formGroup]="myForm">
+
+
+                       
+                            <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>FullName</label>
+                                    <input class="form-control" formControlName="FullName" type="text" placeholder="enter fullname">
+                                    <div *ngIf="myForm.controls['FullName'].hasError('required') && myForm.controls['FullName'].touched">You must include FullName</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input class="form-control" formControlName="Email" type="text" placeholder="enter email">
+                                    <div *ngIf="myForm.controls['Email'].hasError('required') && myForm.controls['Email'].touched"></div>
+                                    <span *ngIf="myForm.get('Email').touched && !myForm.get('Email').valid && !myForm.get('Email').pristine">
+                                        <small>Invalid email</small>
+                                    </span>
+                                </div>
+
+                            </div>
+                                </div>
+
+                      
+
+
+                            <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>PhoneNumber</label>
+                                    <input class="form-control" formControlName="PhoneNumber" type="text" placeholder="enter PhoneNumber">
+                                    <div *ngIf="myForm.controls['PhoneNumber'].hasError('required') && myForm.controls['PhoneNumber'].touched">You must include PhoneNumber</div>
+
+                                </div>
+
+                            </div>
+                                </div>
+
+
+                            <div class="col-md-12">
+                                <div class="popup-btn">
+
+                                    <button type="submit" class="primary-btn" [disabled]="!myForm.valid">Submit</button>&nbsp;&nbsp;
+                                   
+                                    <a href="#" data-dismiss="modal" class="secondary-btn" (click)="cancel()">Cancel</a>
+                                </div>
+                            </div>
+
+                 
+
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>  

@@ -2,41 +2,30 @@
 
 
 
-<div class="col-md-12 dashmain">
+<div class="col-md-12 dashmain" >
 
     <div class="col-md-6 date-time">
 
         <h3>Date and Time</h3>
-        <div class="col-md-7 checkbox">
+        <div class="col-md-6 checkbox">
             <label class="checkbox-inline">
-                <input id="checkbox1" type="checkbox">Today
+                <input id="checkbox1" type="checkbox" [(ngModel)]="today" (ngModelChange)="setDate()">Today
             </label>
             <label class="checkbox-inline">
-                <input id="checkbox2" type="checkbox">OtherDate
+                <input id="checkbox2" type="checkbox" [(ngModel)]="otherday" (ngModelChange)="setRange()">OtherDate
             </label>
         </div>
-        <div class="col-md-5 date">
-            <input type="text" value="5/6/17 - 7/8/17" />
-
+        <div class="col-md-6 date">
+       
+            <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions" (dateRangeChanged)="onDateRangeChanged($event)"
+                                  [(ngModel)]="date" required *ngIf="showDatePicker"></my-date-range-picker>
         </div>
 
-        <div class="col-md-12 noofcustomers">
-            <div class="col-md-4">
+        <div class="col-md-12 noofcustomers" >
+            <div class="col-md-4" *ngFor="let offer of offers;">
                 <div class="Raised">
-                    <p>Offers Raised</p>
-                    <h5>1500</h5>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="Raised">
-                    <p>Offers Accepted</p>
-                    <h5 class="Secondarytext">500</h5>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="Raised">
-                    <p>Offers Removed</p>
-                    <h5 class="text">100</h5>
+                    <p>{{offer.name}}</p>
+                    <h5 class="text">{{offer.value}}</h5>
                 </div>
             </div>
         </div>
@@ -44,25 +33,14 @@
 
     </div>
     <div class="col-md-6 count">
-        <div class="row">
-            <div class="col-md-4">
+        <div class="row" >
+            <div class="col-md-4" *ngFor="let customer of customers;">
                 <div class="visitors">
-                    <p class="visited-customers">No of Customers Visited Trufl</p>
-                    <h5>1500</h5>
+                    <p class="visited-customers">{{customer.name}}</p>
+                    <h5>{{customer.value}}</h5>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="visitors">
-                    <p class="visited-customers">Total Number of Trufl Customers</p>
-                    <h5>1500</h5>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="visitors">
-                    <p class="visited-customers">Number of Trufl Resturants </p>
-                    <h5>50</h5>
-                </div>
-            </div>
+            
 
         </div>
     </div>
@@ -76,26 +54,25 @@
             Notifications
 
         </h3>
-        <div class="notify-main col-md-12">
+        <div class="notify-main col-md-12" *ngFor="let _notifications of notifications | paginate: { itemsPerPage: 5, currentPage: p }">
 
             <div class="not-rep">
-                <p>01/02/2017 </p>
-                <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
+                <p>{{_notifications.ExpiresOn|date:'dd/MM/yyyy'}}</p>
+                <div class="not-inner">{{_notifications.Description}}</div>
 
             </div>
-            <div class="not-rep">
-                <p>01/02/2017 </p>
-                <div class="not-inner">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout </div>
-
-            </div>
+           
+            
 
 
 
         </div>
-
+        <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
 
 
     </div>
-
+    
+    
 
 </div>
+
