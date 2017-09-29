@@ -17,9 +17,9 @@ namespace Trufl.Business_Layer
             return _adminDL.GetDashBoardDetails(dashboardInput);
         }
 
-        public DataTable GetNotifications(int RestaurantID)
+        public DataTable GetNotifications()
         {
-            return _adminDL.GetNotifications(RestaurantID);
+            return _adminDL.GetNotifications();
         }
 
         public bool SaveNotifications(NotificationsDTO notifications)

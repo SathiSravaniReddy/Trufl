@@ -10,17 +10,3 @@ E:\Trufl\Trufl\Trufl.Business Layer\obj\Release\Trufl.Business Layer.csprojResol
 E:\Trufl\Trufl\Trufl.Business Layer\obj\Release\Trufl.Business Layer.csproj.CoreCompileInputs.cache
 E:\Trufl\Trufl\Trufl.Business Layer\obj\Release\Trufl.Business Layer.dll
 E:\Trufl\Trufl\Trufl.Business Layer\obj\Release\Trufl.Business Layer.pdb
-D:\TruflDev\Trufl.Business Layer\bin\Release\Trufl.Business Layer.dll
-D:\TruflDev\Trufl.Business Layer\bin\Release\Trufl.Business Layer.pdb
-D:\TruflDev\Trufl.Business Layer\bin\Release\DTO.dll
-D:\TruflDev\Trufl.Business Layer\bin\Release\Trufl.Data Access Layer.dll
-D:\TruflDev\Trufl.Business Layer\bin\Release\TruflEmailService.dll
-D:\TruflDev\Trufl.Business Layer\bin\Release\Trufl.Logging.dll
-D:\TruflDev\Trufl.Business Layer\bin\Release\DTO.pdb
-D:\TruflDev\Trufl.Business Layer\bin\Release\Trufl.Data Access Layer.pdb
-D:\TruflDev\Trufl.Business Layer\bin\Release\Trufl.Data Access Layer.dll.config
-D:\TruflDev\Trufl.Business Layer\bin\Release\TruflEmailService.pdb
-D:\TruflDev\Trufl.Business Layer\obj\Release\Trufl.Business Layer.csprojResolveAssemblyReference.cache
-D:\TruflDev\Trufl.Business Layer\obj\Release\Trufl.Business Layer.csproj.CoreCompileInputs.cache
-D:\TruflDev\Trufl.Business Layer\obj\Release\Trufl.Business Layer.dll
-D:\TruflDev\Trufl.Business Layer\obj\Release\Trufl.Business Layer.pdb
