@@ -18,7 +18,6 @@
     src: url('../fonts/AvenirNextCondensed.ttc') format('OpenType');
 }
 
-
 body {
     margin: 0px;
     padding: 0px;
@@ -104,6 +103,7 @@ ul {
     height: 60px;
     float: left;
     width: 100%;
+    border-bottom: #86898b solid 1px;
 }
 
     .header h1 {
@@ -228,12 +228,10 @@ ul {
 }
 
 .seatmain {
-    background: #fff;
-    -webkit-box-shadow: 0px 0px 40px 3px rgba(211, 216, 220, 1);
-    -moz-box-shadow: 0px 0px 40px 3px rgba(211, 216, 220, 1);
-    box-shadow: 0px 0px 40px 3px rgba(211, 216, 220, 1);
-    margin: 45px 0 10px 0;
-    padding: 15px 0 0 0;
+    background: #394165;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0px;
 }
 
 .right-section {
@@ -335,19 +333,21 @@ ul {
 
     .tableselect li {
         float: left;
-        width: 40px;
+        width: 50px;
         height: 40px;
     }
 
         .tableselect li span {
-            border: #b1b4b5 solid 1px;
+            border: #636b90 solid 1px;
             float: left;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             text-align: center;
-            line-height: 30px;
-            font-size: 14px;
+            line-height: 35px;
+            font-size: 15px;
             cursor: pointer;
+            font-family: 'Roboto Slab', serif;
+            background: #4f5879;
         }
 
             .tableselect li span:hover {
@@ -371,27 +371,32 @@ ul {
 
     .price label {
         float: left;
-        width: 200px;
-        text-align: center;
+        width: 150px;
+        text-align: left;
+        padding: 0 0 0 30px;
     }
 
     .price a {
         float: left;
         width: 30px;
-        height: 30px;
-        line-height: 30px;
+        height: 35px;
+        line-height: 35px;
         text-align: center;
         font-size: 20px;
-        color: #0b7dd9;
+        color: #969bad;
     }
 
     .price input {
         float: left;
         width: 100px;
         text-align: center;
-        height: 30px;
+        height: 35px;
         border: #5f5f5f solid 1px;
-        color: #0b7dd9;
+        color: #fff;
+        background: #4f5879;
+        border: #697195 solid 1px;
+        font-family: 'Roboto Slab', serif;
+        font-size: 20px;
     }
 
 .seatselection {
@@ -434,28 +439,46 @@ ul {
 .primary-btn {
     float: left;
     width: auto;
-    padding: 5px 10px;
+    padding: 5px 20px;
     background: #c19c59;
     border: 1px solid #c19c59;
     font-size: 15px;
+    text-transform: capitalize;
+    /*margin: 0 10px 0 0;*/
+    color: #fff;
+    text-align: center;
+}
+
+.cancel-btn {
+    float: right;
+    width: auto;
+    padding: 5px 10px;
+    font-size: 18px;
     text-transform: uppercase;
     /*margin: 0 10px 0 0;*/
     color: #fff;
     text-align: center;
 }
 
-    .primary-btn:hover,
-    .primary-btn:focus {
-        color: #fff;
+    .cancel-btn img {
+        margin: 5px 10px 0 0;
+        width: 14px;
+        height: 14px;
+        float: left;
     }
+
+.primary-btn:hover,
+.primary-btn:focus {
+    color: #fff;
+}
 
 .secondary-btn {
     float: left;
     width: auto;
-    padding: 5px 10px;
+    padding: 5px 20px;
     border: 1px solid #fff;
     font-size: 15px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     margin: 0 20px 0 0;
     cursor: pointer;
     background: none;
@@ -545,42 +568,40 @@ button.close {
 
 .booked {
     font-size: 15px;
-    border: 2px solid gray;
-    padding: 8px;
+    font-family: 'Roboto Slab', serif;
 }
 
-    .booked p {
-        float: left;
-        width: auto;
-        margin: 7px 40px 0 0;
-    }
+.bookrep {
+    margin: 0 25px 0 0;
+    float: left;
+}
 
-    .booked b {
-        float: left;
-        width: auto;
-        margin: 5px 60px 0 0;
-        font-size: 18px;
-    }
+.bookcan {
+    margin: 30px 0 0 0;
+}
 
-        .booked b h3 {
-            margin: 0px;
-            font-weight: bold;
-            font-size: 18px;
-        }
+.bookrep label {
+    display: block;
+    width: 100%;
+    float: left;
+    margin: 0 0 5px 0;
+    font-family: Avenir !important;
+    font-size: 14px;
+}
 
-    .booked span {
-        float: left;
-        width: auto;
-        margin: 0 40px 0 0;
-        font-size: 18px;
-        border: 1px solid #b9b9b9;
-        padding: 7px 15px;
-        font-size: 13px;
-    }
+.bookrep span {
+    display: block;
+    float: left;
+    background: #4f5879;
+    border: #636b90 solid 2px;
+    color: #fff;
+    padding: 5px 25px;
+    font-size: 20px;
+}
 
-    .booked a {
-        margin: 0 0 0 100px !important;
-    }
+.bookrep .selected {
+    border: #fff solid 2px;
+}
 
 .settingtop {
     background: #fff;
@@ -1424,7 +1445,7 @@ input[type=time]::-webkit-outer-spin-button {
     font-size: 50px;
     padding: 0 0 0 15px;
     margin: 15px 0;
-    font-family: 'AvenirNextCondensed' !important;
+    font-family: 'Roboto Slab', serif;
 }
 
 .newguestmain {
@@ -1437,7 +1458,7 @@ input[type=time]::-webkit-outer-spin-button {
         color: #fff;
         font-family: 'AvenirNextCondensed' !important;
         font-size: 30px;
-        margin-bottom:50px;
+        margin-bottom: 50px;
     }
 
 .guestform {
@@ -1512,4 +1533,146 @@ input[type=time]::-webkit-outer-spin-button {
 
     .msgap .selectstaff {
         margin: 0px 3% !important;
+    }
+
+.snapmain {
+    margin: 20px 0;
+}
+
+    .snapmain table {
+        width: 100%;
+    }
+
+        .snapmain table tr th {
+            border-bottom: #cacacb solid 1px;
+            font-family: 'Avenir' !important;
+            font-size: 14px;
+            color: #cacacb;
+            padding: 10px;
+            text-transform: uppercase;
+        }
+
+        .snapmain table tr td {
+            border-bottom: #cacacb solid 1px;
+            font-family: 'Roboto Slab', serif;
+            color: #fff;
+            padding: 15px 10px;
+            font-size: 46px;
+        }
+
+            .snapmain table tr td img {
+                opacity: .6;
+            }
+
+            .snapmain table tr td .selected {
+                opacity: 1;
+            }
+
+.snaptabs {
+    margin: 10px 0 0 0
+}
+
+    .snaptabs ul {
+        width: auto;
+        float: right;
+    }
+
+    .snaptabs li {
+        float: left;
+        margin: 0 25px 0 0
+    }
+
+        .snaptabs li a {
+            float: left;
+            font-size: 18px;
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: normal;
+            opacity: .6;
+        }
+
+    .snaptabs .selected {
+        opacity: 1;
+        border-bottom: 1px solid #fff;
+    }
+
+.snapdata img {
+    width: 70px;
+    height: 70px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    border: 3px solid #fff;
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.snapdata {
+    font-size: 24px !important;
+}
+
+.headertbas {
+    margin: 30px 0 0 0;
+}
+
+    .headertbas ul {
+        float: right;
+    }
+
+    .headertbas li {
+        float: left;
+        width: auto;
+        margin: 0 10px 0 0;
+    }
+
+        .headertbas li a {
+            float: left;
+            margin: 0 20px;
+            font-size: 20px;
+            text-transform: uppercase;
+            color: #fff;
+            opacity: .6;
+        }
+
+    .headertbas .selected {
+        border-bottom: 1px solid #fff;
+        opacity: 1;
+    }
+
+.bottombuttons {
+    background: #1f2024;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 99;
+}
+
+.addbtn {
+    float: right;
+}
+
+    .addbtn img {
+        width: 60px;
+        height: 60px;
+    }
+
+.seattitle {
+    font-size: 14px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 2px 0 0 0px;
+    font-family: 'AvenirNextCondensed';
+}
+
+.tableselect label {
+    font-size: 15px;
+}
+
+.seat-btn {
+    margin: 30px 15px 0 0;
+    float: right;
+}
+
+    .seat-btn a {
+        padding: 5px 60px;
     }
