@@ -3,7 +3,7 @@ import { OnInit } from '@angular/core';
 import { SeatedService } from './seated.service';
 import { PaginationControlsComponent } from 'ngx-pagination';
 import { Router } from '@angular/router';
-
+import { LoginService } from '../shared/login.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -18,15 +18,17 @@ export class SeatedComponent implements OnInit {
     public seatedinfo: any = [];
     public isenabled = false;
     private seatedinformation: any;
+    private restaurantName: any;
     public items: any = [];
     load: boolean = false;   
 
 
     private arr = ['Seated', 'AppServed', 'MenuServed', 'DesertServed', 'CheckReceived', 'Boozing', 'Empty'];
 
-    constructor(private seatedService: SeatedService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+    constructor(private seatedService: SeatedService, private loginService: LoginService,  private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
 
         this._toastr.setRootViewContainerRef(vRef);
+        this.restaurantName = this.loginService.getRestaurantName();
         //called first time before the ngOnInit()
 
     }
@@ -124,7 +126,22 @@ export class SeatedComponent implements OnInit {
       
 
     }
-   
+
+
+    //routing
+    waitlistPage() {
+        this.router.navigateByUrl('/waitlist');
+    }
+    seatedPage() {
+        this.router.navigateByUrl('/seated');
+    }
+    snapshotPage() {
+        //this.router.navigateByUrl('');
+    }
+    settingsPage() {
+        this.router.navigateByUrl('/settings');
+    }
+
     public hasData(): boolean {
         return (this.seatedinfo != null && this.seatedinfo.length > 0);
     } 

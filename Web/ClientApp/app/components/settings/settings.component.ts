@@ -22,6 +22,7 @@ export class SettingsComponent implements OnInit {
     private isShow: boolean;
     private userid: any;
     private restaruantid: any;
+    private restaurantName: any;
     private usertype: any;
     private truflid: any;
     private retarauntid: any;
@@ -34,6 +35,7 @@ export class SettingsComponent implements OnInit {
         this.truflid = this.loginService.getTrufluserID();
         console.log(this.truflid);
         this.retarauntid = this.loginService.getRestaurantId();
+        this.restaurantName = this.loginService.getRestaurantName();
         //this.loginDetails = this.loginService.getUser();
        
     }
@@ -131,6 +133,20 @@ export class SettingsComponent implements OnInit {
 
     }
 
+
+    //routing
+    waitlistPage() {
+        this.router.navigateByUrl('/waitlist');
+    }
+    seatedPage() {
+        this.router.navigateByUrl('/seated');
+    }
+    snapshotPage() {
+        //this.router.navigateByUrl('');
+    }
+    settingsPage() {
+        this.router.navigateByUrl('/settings');
+    }
 
     Reset(email) {
 

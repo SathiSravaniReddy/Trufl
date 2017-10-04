@@ -11,7 +11,7 @@ export class ReviewSelectionsComponent {
 
     }
     public next() {
-
+        this.router.navigateByUrl('/waitlist');
     }
     public back() {
         this.router.navigateByUrl('/selectStaff');
