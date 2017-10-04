@@ -1,23 +1,33 @@
-<shared-header></shared-header>
+<div class="customheader">
+
+    <div class="customheaderleft">
+        <h2>Select Sections</h2>
+    </div>
+    <div class="customheaderright">
+        <a (click)="back()" class="secondary-btn">
+            Back
+        </a>
+        <a (click)="next()" class="primary-btn">
+            Next
+        </a>
+    </div>
+
+</div>
 <div class="col-md-12 servicesmain">
 
     <span class="servicetext">Tap to close or open sections for tonight's service. </span>
 
     <div class="selectfloor">
         <ul>
-            <li style="background-image:url(images/restaurants1.jpg)">
-                <a href="#">
+            <li *ngFor="let section of sections;let i=index" [ngStyle]="{ 'background-image': 'url(' + section.image + ')'}" (click)="select(section,i)" [class.selected]="i == selectedSection">
 
-                    <h3>Main Dinning Room</h3>
+                <a>
+                    <h3>{{section.sectionName}}</h3>
                 </a>
             </li>
 
-            <li style="background-image:url(images/restaurants1.jpg)">
-                <a href="#">
-                    <h3>Main Dinning Room</h3>
-                </a>
-            </li>
-            <li style="background-image:url(images/restaurants1.jpg)">
+            <!--<li style="background-image:url(section.image)">
+                <img [src]="section.image">
                 <a href="#">
                     <h3>Main Dinning Room</h3>
                 </a>
@@ -26,12 +36,7 @@
                 <a href="#" class="selected">
                     <h3>Main Dinning Room</h3>
                 </a>
-            </li>
-            <li style="background-image:url(images/restaurants1.jpg)">
-                <a href="#" class="selected">
-                    <h3>Main Dinning Room</h3>
-                </a>
-            </li>
+            </li>-->
         </ul>
 
     </div>

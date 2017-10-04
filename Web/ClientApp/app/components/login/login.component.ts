@@ -64,7 +64,7 @@ export class LoginComponent {
                         }
                     
                         else if (!this.loginDetails.ForgetPasswordStatus) {
-                            this.router.navigateByUrl('/hostessdashboard');
+                            this.router.navigateByUrl('/startservice');
                         }
                     }
                     else if (this.loginDetails.TruflMemberType === "TA ")
