@@ -1,7 +1,4 @@
-
-
-
-<div class="customheader">
+﻿<div class="customheader">
 
     <div class="customheaderleft">
         <h2>Add A New Guest</h2>
@@ -25,14 +22,14 @@
         <div class="col-md-6">
 
             <div class="input input--haruki">
-                <input class="input__field input__field--haruki error-input" type="text" id="input-1" name="guest" [(ngModel)]="data.guest" #guest="ngModel" required      >
-                <label class="input__label input__label--haruki" for="input-1" >
-                    <span class="input__label-content input__label-content--haruki">Guest Name *</span>
+                <input class="input__field input__field--haruki" type="text" id="input-1" name="guest" [(ngModel)]="data.guest"  #guest="ngModel" required>
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki error-input">Guest Name *</span>
 
                 </label>
 
 
-                <label *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)" [ngStyle]="{'color': 'red'}"  >
+                <label *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
                     <label *ngIf="guest.errors.required ">
                         name is required.
                     </label>
@@ -42,20 +39,18 @@
 
             <div class="input input--haruki">
                 <input class="input__field input__field--haruki" type="text" id="input-1" name="email" [(ngModel)]="data.email" #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki error-input">Email Address *</span>
+                </label>
 
-
-            <label class="input__label input__label--haruki" for="input-1">
-                 <span class="input__label-content input__label-content--haruki error-input" >Email Address *</span>
-            </label>
-
-                <label *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
+                <label *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}"  >
                     <label *ngIf="email.errors.required ">
                         email is required.
                     </label>
                     <label *ngIf="email.errors.pattern">
-                        please enter avalid email address
+                        please enter avalid email address <i class="material-icons" ></i>
                     </label>
-                    
+
 
 
                 </label>
@@ -68,7 +63,7 @@
                     <span class="input__label-content input__label-content--haruki error-input">Mobile Number *</span>
                 </label>
 
-                <label *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
+                <label *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)"  [ngStyle]="{'color': 'red'}">
                     <label *ngIf="mobile.errors.required">
                         mobile number is required.
                     </label>
@@ -121,81 +116,3 @@
         <button type="submit" class="primary-btn">Submit</button>&nbsp;&nbsp;
     </form>
 </div>
-
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Guest Name</th>
-            <th>Email Address</th>
-            <th>Mobile Number</th>
-            <th>Relatonship</th>
-            <th>This Visit</th>
-            <th>Food & Drink</th>
-            <th>Seating Preferences</th>
-            <th>Notes</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        <tr *ngFor="let guestinfo of guest_info">
-            <td>{{guestinfo.guest}}</td>
-            <td>{{guestinfo.email}}</td>
-            <td>{{guestinfo.mobile}}</td>
-            <td>{{guestinfo.relationship}}</td>
-            <td>{{guestinfo.visit}}</td>
-            <td>{{guestinfo.food}}</td>
-            <td>{{guestinfo.seating}}</td>
-            <td>{{guestinfo.notes}}</td>
-            <td><a href="" data-toggle="modal" data-target="#AddRes" class="pull-right addres" (click)="editguest(guestinfo)">View Details</a></td>
-
-        </tr>
-    </tbody>
-</table>
-
-
-<!-- <app_edit [guestinfo]="record" (getNotification)="getNotification1($event)"></app_edit> -->
-
-
-<script src="~/js/classie.js"></script>
-
-<script>
-    (function () {
-
-        if (!String.prototype.trim) {
-            (function () {
-                // Make sure we trim BOM and NBSP
-                var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-                String.prototype.trim = function () {
-                    return this.replace(rtrim, '');
-                };
-            })();
-        }
-
-        [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
-            // in case the input is already filled..
-            if (inputEl.value.trim() !== '') {
-                classie.add(inputEl.parentNode, 'input--filled');
-            }
-
-            // events:
-            inputEl.addEventListener('focus', onInputFocus);
-            inputEl.addEventListener('blur', onInputBlur);
-        });
-
-        function onInputFocus(ev) {
-            classie.add(ev.target.parentNode, 'input--filled');
-        }
-
-        function onInputBlur(ev) {
-            if (ev.target.value.trim() === '') {
-                classie.remove(ev.target.parentNode, 'input--filled');
-            }
-        }
-    })();
-
-</script>
-
-

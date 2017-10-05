@@ -44,10 +44,18 @@ import { DefaultSettingsComponent } from "./components/defaultsettings/default-s
 import { ManageServersComponent } from "./components/defaultsettings/manageservers/manage-servers.component";
 import { DefineSelectionsComponent } from "./components/defaultsettings/defineselections/define-selections.component";
 import { SeataGuestComponent } from "./components/seataguest/seataguest.component";
-import { AddGuestComponent } from "./components/addguest/addguest.component";
 import { DefineSelectionService } from "./components/defaultsettings/defineselections/define-selections.service";
 import { ManageServersService } from "./components/defaultsettings/manageservers/manage-servers.service";
 import { OtherSettingsService } from "./components/defaultsettings/othersettings/other-settings.service";
+
+
+
+import { AddGuestComponent } from "./components/addguest/addguest.component";
+import { EditGuestComponent } from "./components/EditGuest/editguest.component";
+import { GuestService } from "./components/addguest/addguest.service";
+import { SharedService } from "./components/shared/Shared.Service";
+import { EditGuestService } from "./components/EditGuest/editguest.service";
+
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -77,7 +85,8 @@ DefaultSettingsComponent,
  DefineSelectionsComponent,
  SeataGuestComponent ,
 
-    AddGuestComponent 
+        AddGuestComponent,
+        EditGuestComponent,
 
 
         
@@ -96,6 +105,9 @@ DefaultSettingsComponent,
         OtherSettingsService,
         ManageServersService,
         DefineSelectionService,
+        GuestService,
+        SharedService,
+        EditGuestService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
 
@@ -144,7 +156,8 @@ DefaultSettingsComponent,
             { path: 'otherSettings', component: OtherSettingsComponent },
             { path: 'defaultSettings', component: DefaultSettingsComponent },   
             { path: 'seataGuest', component: SeataGuestComponent },   
-            { path: 'addGuest', component: AddGuestComponent },   
+            { path: 'addGuest', component: AddGuestComponent }, 
+            { path: 'editguest', component: EditGuestComponent },   
             
             { path: '**', redirectTo: 'login' },
 
