@@ -11,8 +11,8 @@ export class ManageServersService {
 
     getManageServersDetails() {
 
-        //return this.http.post(constant.truflAPI + constant.truflBase + 'Admin' + '/' + 'GetDashBoardDetails', date).map(
-        //    (res) => res.json())
+        return this.http.get("assets/managers.json").map(
+            (res) => res.json())
 
     }
 
