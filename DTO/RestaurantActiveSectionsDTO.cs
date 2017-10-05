@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class NotificationsDTO
+    public class RestaurantActiveSectionsDTO
     {
         public int RestaurantID { get; set; }
-        public string Description { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public int FloorNumber { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

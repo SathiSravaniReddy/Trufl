@@ -107,5 +107,76 @@ namespace Trufl.Services.Controllers
             }
         }
         #endregion
+
+        // Naresh Pittala on 2017-10-04
+        [Route("GetRestaurantOpenSections")]
+        [HttpGet]
+        public object GetRestaurantOpenSections(int RestaurantID)
+        {
+            DataTable res = new DataTable();
+            res = _hostessBL.GetRestaurantOpenSections(RestaurantID);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
+        // Naresh Pittala on 2017-10-04
+        [Route("UpdateRestaurantActiveSections")]
+        [HttpPost]
+        public object UpdateRestaurantActiveSections([FromBody]List<RestaurantActiveSectionsDTO> restaurantActiveSections)
+        {
+            bool res = _hostessBL.UpdateRestaurantActiveSections(restaurantActiveSections);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
+        // Naresh Pittala on 2017-10-04
+        [Route("SaveRestaurantOpenSectionStaff")]
+        [HttpPost]
+        public object SaveRestaurantOpenSectionStaff([FromBody]List<RestaurantSectionStaffDTO> restaurantSectionStaff)
+        {
+            bool res = _hostessBL.SaveRestaurantOpenSectionStaff(restaurantSectionStaff);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
+        // Naresh Pittala on 2017-10-04
+        [Route("GetRestaurantWaitTimeOpenSectionStaff")]
+        [HttpGet]
+        public object GetRestaurantWaitTimeOpenSectionStaff(int RestaurantID)
+        {
+            DataSet res = new DataSet();
+            res = _hostessBL.GetRestaurantWaitTimeOpenSectionStaff(RestaurantID);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
+
+
+
+
     }
 }
