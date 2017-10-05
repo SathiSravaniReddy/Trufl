@@ -25,12 +25,13 @@ namespace Trufl.Services.Controllers
         HostessBL _hostessBL = new HostessBL();
         JsonResponseResult JsonResponseResult = new JsonResponseResult();
 
+        // Naresh Pittala changes done 2017-09-28
         [Route("GetNotifications")]
         [HttpGet]
-        public object GetNotifications()
+        public object GetNotifications(int RestaurantID)
         {
             DataTable res = new DataTable();
-            res = _adminBL.GetNotifications();
+            res = _adminBL.GetNotifications(RestaurantID);
             try
             {
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
@@ -41,7 +42,7 @@ namespace Trufl.Services.Controllers
             }
         }
 
-
+        // Naresh Pittala changes done 2017-09-28
         [Route("SaveNotifications")]
         [HttpPost]
         public object SaveNotifications(NotificationsDTO notifications)

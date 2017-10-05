@@ -8,7 +8,7 @@
       "sectionsEndNumber": 35
     },
     {
-      "name": "BarArea",
+      "name": "Bar Area",
       "sectionStartNumber": 1,
       "sectionsEndNumber": 14
     },
@@ -28,7 +28,7 @@
       "sectionsEndNumber": 89
     },
     {
-      "name": "RoofTopBar",
+      "name": "Roof TopBar",
       "sectionStartNumber": 90,
       "sectionsEndNumber": 100
     }
