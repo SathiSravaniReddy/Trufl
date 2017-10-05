@@ -8,6 +8,7 @@ import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Observable } from 'rxjs/Observable';
 import { LoginService } from '../shared/login.service';
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'hostess',
@@ -74,7 +75,7 @@ export class HostessComponent {
         { 'size': 20 },
     ];
 
-    constructor(private hostessService: HostessService, private settingsService: HostessSettingsService, private loginService: LoginService , private _toastr: ToastsManager, vRef: ViewContainerRef) {
+    constructor(private hostessService: HostessService, private settingsService: HostessSettingsService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router) {
         this._toastr.setRootViewContainerRef(vRef);
         this.classForAccept = "selected";
         this.classForSeated = "";
@@ -233,12 +234,7 @@ export class HostessComponent {
         this.count++;
         this.showProfile = false;
     }
-
-
-
-
-
-
+    
 
     //Functionality for closing side nav
     closeProile() {
@@ -337,6 +333,20 @@ export class HostessComponent {
             }, 2000);
         }
         );
+    }
+
+    //routing
+    waitlistPage() {
+        this.router.navigateByUrl('/waitlist');
+    }
+    seatedPage() {
+        this.router.navigateByUrl('/seated');
+    }
+    snapshotPage() {
+        //this.router.navigateByUrl('');
+    }
+    settingsPage() {
+        this.router.navigateByUrl('/settings');
     }
 
 }

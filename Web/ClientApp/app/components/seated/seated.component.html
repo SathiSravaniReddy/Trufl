@@ -1,11 +1,18 @@
-﻿<shared-header></shared-header>
+﻿<div class="customheader">
 
+    <div class="customheaderleft">
+        <h2>{{restaurantName}}</h2>
+    </div>
+    <div class="customheaderright">
+        <ul>
+            <li style="float:left;padding-left:20px" (click)="waitlistPage()">Waitlist</li>
+            <li style="float:left;padding-left:20px" (click)="seatedPage()">Seated</li>
+            <li style="float:left;padding-left:20px" (click)="snapshotPage()">Snapshot</li>
+            <li style="float:left;padding-left:20px" (click)="settingsPage()">Settings</li>
+        </ul>
+    </div>
 
-
-
-
-
-
+</div>
     <div class="col-md-12">
 
         <div class="col-md-12 snapmain">
