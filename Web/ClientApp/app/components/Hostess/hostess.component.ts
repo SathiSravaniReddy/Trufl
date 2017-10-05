@@ -349,4 +349,11 @@ export class HostessComponent {
         this.router.navigateByUrl('/settings');
     }
 
+    Addguest() {     
+              
+        this.router.navigateByUrl('/addGuest');
+       
+
+    }
+
 }

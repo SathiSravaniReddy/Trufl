@@ -8,6 +8,16 @@ import { Router } from "@angular/router";
 })
 export class SelectSelectionsComponent implements OnInit {
     private selectedSection: Number;
+    public array: any[] = [];
+
+
+    constructor(private router: Router) {
+
+    }
+    ngOnInit() {
+
+    }
+
     private sections = [
         {
             id: 1,
@@ -40,19 +50,35 @@ export class SelectSelectionsComponent implements OnInit {
             sectionName: 'Rooftop Bar'
         }
     ]
-    constructor(private router: Router) {
-
-    }
-    ngOnInit() {
-
-    }
+  
     public back() {
         this.router.navigateByUrl('/startservice');
     }
     public next() {
         this.router.navigateByUrl('/selectStaff');
     }
-    public select(section, index) {
-        this.selectedSection == index ? this.selectedSection = -1 : this.selectedSection = index;
+    public select(section, index) {     
+       
+
+        if (this.array.length) {
+            let index = this.array.findIndex(function (item) {
+                return item.id === section.id;
+            });
+
+            if (index >= 0) {
+                this.array[index] = section;
+            }
+            else {
+                this.array.push(section);
+            }
+
+        }
+
+        else {
+            this.array.push(section);
+        }        
+
+        console.log(this.array);        
+       
     }
 }
