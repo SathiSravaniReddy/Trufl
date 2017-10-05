@@ -18,16 +18,17 @@
     <span class="servicetext">Who's on the clock tonight?</span>
 
     <div class="selectstaff">
-        <ul>
-            <li>
-                <a class="selected" href="#">
-                    <img src="../../../../wwwroot/images/staff.png" alt="" />
+        <ul  >
+            <li *ngFor="let staffimage of staff_info">
+                <a class="selected" href="" (click)="showProfile(staffimage)">
+                    <img src="{{staffimage.img}}" alt="" />
                     <h3>
-                        John <br /> Addams
+                        <!--John <br /> Addams -->
+                        {{staffimage.firstname}}<br /> {{staffimage.lastname}}
                     </h3>
                 </a>
             </li>
-            <li>
+         <!--   <li>
                 <a href="#">
                     <img src="../../../../wwwroot/images/staff1.png" alt="" />
                     <h3>
@@ -96,11 +97,16 @@
                         Quincy <br /> Washington
                     </h3>
                 </a>
-            </li>
+            </li>  -->
 
         </ul>
 
     </div>
+
+
+   
+
+
 
 
 

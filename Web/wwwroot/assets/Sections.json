@@ -1,0 +1,40 @@
+﻿{
+  "data": [
+    {
+      "id": 1,
+      "name": "Main Dining Room"
+
+    },
+
+    {
+
+      "id": 2,
+      "name": "Bar Area"
+
+    },
+    {
+      "id": 3,
+      "name": "Patio"
+
+
+    },
+    {
+      "id": 4,
+      "name": "2nd Floor Dining"
+
+
+    },
+    {
+      "id": 5,
+      "name": "Mezzanine"
+
+
+    },
+    {
+      "id": 6,
+      "name": "Rooftop Bar"
+
+
+    }
+  ]
+}

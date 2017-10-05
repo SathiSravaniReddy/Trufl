@@ -82,17 +82,14 @@
 
 #profileSection {
     height: 100vh;
-    background: #394165;
+    background: #fff;
     position: fixed;
     right: 0px;
     top: 100px;
     overflow-y: auto;
     width: 300px;
-    z-index: 9999;
 }
 
 #close {
     cursor: pointer;
 }
-
-

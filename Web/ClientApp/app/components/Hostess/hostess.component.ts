@@ -346,7 +346,14 @@ export class HostessComponent {
         //this.router.navigateByUrl('');
     }
     settingsPage() {
-        this.router.navigateByUrl('/settings');
+        this.router.navigateByUrl('/defaultSettings');
+    }
+
+    Addguest() {     
+              
+        this.router.navigateByUrl('/addGuest');
+       
+
     }
 
 }
