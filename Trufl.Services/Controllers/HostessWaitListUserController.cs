@@ -108,7 +108,6 @@ namespace Trufl.Services.Controllers
         }
         #endregion
 
-        // Naresh Pittala on 2017-10-04
         [Route("GetRestaurantOpenSections")]
         [HttpGet]
         public object GetRestaurantOpenSections(int RestaurantID)
@@ -125,7 +124,6 @@ namespace Trufl.Services.Controllers
             }
         }
 
-        // Naresh Pittala on 2017-10-04
         [Route("UpdateRestaurantActiveSections")]
         [HttpPost]
         public object UpdateRestaurantActiveSections([FromBody]List<RestaurantActiveSectionsDTO> restaurantActiveSections)
@@ -141,7 +139,6 @@ namespace Trufl.Services.Controllers
             }
         }
 
-        // Naresh Pittala on 2017-10-04
         [Route("SaveRestaurantOpenSectionStaff")]
         [HttpPost]
         public object SaveRestaurantOpenSectionStaff([FromBody]List<RestaurantSectionStaffDTO> restaurantSectionStaff)
@@ -157,7 +154,6 @@ namespace Trufl.Services.Controllers
             }
         }
 
-        // Naresh Pittala on 2017-10-04
         [Route("GetRestaurantWaitTimeOpenSectionStaff")]
         [HttpGet]
         public object GetRestaurantWaitTimeOpenSectionStaff(int RestaurantID)
@@ -174,7 +170,20 @@ namespace Trufl.Services.Controllers
             }
         }
 
-
+        [Route("GetRestaurantWaitTimeOpenSectionStaff")]
+        [HttpPost]
+        public object SaveRestaurantOpenTime(int RestaurantID, string Time)
+        {
+            bool res = _hostessBL.SaveRestaurantOpenTime(RestaurantID, Time);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
 
 
 
