@@ -12,7 +12,7 @@ using TruflEmailService;
 
 namespace Trufl.Data_Access_Layer
 {
-   public class HostessDL
+    public class HostessDL
     {
         #region Db Connection 
         SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["TraflConnection"]);
@@ -65,7 +65,7 @@ namespace Trufl.Data_Access_Layer
                         userprofile.ReferTruflUserID = Convert.ToInt32(ds.Tables[0].Rows[i]["ReferTruflUserID"].ToString());
                         userprofile.ModifiedDate = ds.Tables[0].Rows[i]["ModifiedDate"].ToString();
                         userprofile.ModifiedBy = Convert.ToInt32(ds.Tables[0].Rows[i]["ModifiedBy"].ToString());
-                        
+
 
                         sourceapilist.Add(userprofile);
                     }
@@ -95,7 +95,7 @@ namespace Trufl.Data_Access_Layer
                     {
                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
                         cmd.CommandType = CommandType.StoredProcedure;
-                       
+
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(sendResponse);
@@ -116,7 +116,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="AcceptedWaitedUser"></param>
         /// <returns>Returns 1 if Success, 0 for failure</returns>
-        public DataTable AcceptedWaitedUser(int BookingID,int BookinStatus)
+        public DataTable AcceptedWaitedUser(int BookingID, int BookinStatus)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -126,7 +126,7 @@ namespace Trufl.Data_Access_Layer
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand("spUpdateBookingStatus", con))
                     {
-                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
                         cmd.CommandType = CommandType.StoredProcedure;
                         SqlParameter tvpParam = cmd.Parameters.AddWithValue("@BookingID", BookingID);
                         tvpParam.SqlDbType = SqlDbType.Int;
@@ -209,8 +209,8 @@ namespace Trufl.Data_Access_Layer
                 dtClient.Columns.Add("Quoted", typeof(DateTime));
                 dtClient.Columns.Add("PaymentStatus", typeof(string));
                 dtClient.Columns.Add("TableNumbers", typeof(string));
-                
-                
+
+
                 dtClient.Rows.Add(bookingTableInput.BookingID,
                                    bookingTableInput.TruflUserID,
                                    bookingTableInput.RestaurantID,
@@ -225,7 +225,7 @@ namespace Trufl.Data_Access_Layer
                                    bookingTableInput.ModifiedBy,
                                    bookingTableInput.Quoted,
                                    bookingTableInput.PaymentStatus,
-                                   bookingTableInput.TableNumbers                                   
+                                   bookingTableInput.TableNumbers
                                    );
 
                 string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
@@ -300,7 +300,7 @@ namespace Trufl.Data_Access_Layer
             }
             return sendResponse;
         }
-        
+
         #endregion
 
         #region Seated User
@@ -406,7 +406,7 @@ namespace Trufl.Data_Access_Layer
         /// This method 'GetUserTypes ' returns User type details
         /// </summary>
         /// <returns>user type list</returns>
-        public DataTable GetUserTypes(string UserType,int RestaurantID)
+        public DataTable GetUserTypes(string UserType, int RestaurantID)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -468,10 +468,10 @@ namespace Trufl.Data_Access_Layer
                 dtClient.Columns.Add("Waited", typeof(TimeSpan));
 
                 //dtClient.Columns.Add("LoggedInUserType", typeof(string));
-                
-               
-                
-                
+
+
+
+
 
                 dtClient.Rows.Add(
                                   DBNull.Value,
@@ -593,9 +593,9 @@ namespace Trufl.Data_Access_Layer
                             da.Fill(sendResponse);
                             ResetPasswordEmailDTO data = new ResetPasswordEmailDTO();
                             data.To = sendResponse.Rows[0]["To"].ToString();
-                            data.Subject = sendResponse.Rows[0]["Subject"].ToString(); 
+                            data.Subject = sendResponse.Rows[0]["Subject"].ToString();
                             data.Body = sendResponse.Rows[0]["Body"].ToString();
-                            data.BodyFormat = sendResponse.Rows[0]["BodyFormat"].ToString(); 
+                            data.BodyFormat = sendResponse.Rows[0]["BodyFormat"].ToString();
                             email.sendMail(data);
 
                         }
@@ -742,7 +742,7 @@ namespace Trufl.Data_Access_Layer
                         tvparam3.SqlDbType = SqlDbType.Int;
                         SqlParameter tvparam4 = cmd.Parameters.AddWithValue("@BioDesc", saveUserBioEvents.BioDesc);
                         tvparam4.SqlDbType = SqlDbType.Text;
-                        
+
 
                         SqlParameter pvNewId = new SqlParameter();
                         pvNewId.ParameterName = "@RetVal";
@@ -854,7 +854,7 @@ namespace Trufl.Data_Access_Layer
                         tvparam2.SqlDbType = SqlDbType.Int;
                         SqlParameter tvparam3 = cmd.Parameters.AddWithValue("@ActiveStatus", UpdateRestaurantHost.ActiveStatus);
                         tvparam3.SqlDbType = SqlDbType.Bit;
-                       
+
 
                         SqlParameter pvNewId = new SqlParameter();
                         pvNewId.ParameterName = "@RetVal";
@@ -900,7 +900,7 @@ namespace Trufl.Data_Access_Layer
                     using (SqlCommand cmd = new SqlCommand("spGetBioCategories", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                       
+
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
                             da.Fill(sendResponse);
@@ -986,7 +986,7 @@ namespace Trufl.Data_Access_Layer
             return sendResponse;
         }
 
-        
+
         /// <summary>
         /// This method 'spGetEmployeConfigration' will Get Employe Configration details
         /// </summary>
@@ -1037,11 +1037,291 @@ namespace Trufl.Data_Access_Layer
                 ExceptionLogger.WriteToErrorLogFile(ex);
                 return false;
             }
-           // return sendResponse;
+            // return sendResponse;
         }
 
 
         #endregion
+
+        /// This method GetRestaurantOpenSections ' returns RestaurantOpenSections details
+        /// </summary>
+        /// <param name="RestaurantID"> takes Restaurant ID as input</param>
+        /// <returns></returns>
+        public DataTable GetRestaurantOpenSections(int RestaurantID)
+        {
+            DataTable sendResponse = new DataTable();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    sqlcon.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantOpenSections", sqlcon))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(sendResponse);
+                        }
+                    }
+                }
+                // }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return sendResponse;
+        }
+
+        /// <summary>
+        /// This method UpdateRestaurantActiveSections updates RestaurantOpenSection isActive and isDeleted fields 
+        /// and sets the isActive fields of open floors to true and closed to false
+        /// </summary>
+        /// <param name="restaurantActiveSections">RestaurantActiveSectionsDTO restaurantActiveSections</param>
+        /// <returns></returns>
+        public bool UpdateRestaurantActiveSections(List<RestaurantActiveSectionsDTO> restaurantActiveSections)
+        {
+            try
+            {
+                var dtrestActiveSect = new DataTable();
+                dtrestActiveSect.Columns.Add("RestaurantID", typeof(Int32));
+                dtrestActiveSect.Columns.Add("FloorNumber", typeof(Int32));
+                dtrestActiveSect.Columns.Add("IsActive", typeof(Boolean));
+                dtrestActiveSect.Columns.Add("IsDelete", typeof(Boolean));
+
+                for (int i = 0; restaurantActiveSections.Count > i; i++)
+                {
+                    dtrestActiveSect.Rows.Add(restaurantActiveSections[i].RestaurantID,
+                                       restaurantActiveSections[i].FloorNumber,
+                                       restaurantActiveSections[i].IsActive,
+                                       restaurantActiveSections[i].IsDelete);
+                }
+               
+
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    sqlcon.Open();
+                    using (SqlCommand cmd = new SqlCommand("spUpdateRestaurantActiveSections", sqlcon))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantActiveSectionsTY", dtrestActiveSect);
+                        tvpParam.SqlDbType = SqlDbType.Structured;
+
+                        SqlParameter pvNewId = new SqlParameter();
+                        pvNewId.ParameterName = "@RetVal";
+                        pvNewId.DbType = DbType.Int32;
+                        pvNewId.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvNewId);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// This method UpdateRestaurantActiveSections updates RestaurantOpenSection isActive and isDeleted fields 
+        /// and sets the isActive fields of open floors to true and closed to false
+        /// </summary>
+        /// <param name="restaurantActiveSections">RestaurantActiveSectionsDTO restaurantActiveSections</param>
+        /// <returns></returns>
+        public bool SaveRestaurantOpenSectionStaff(List<RestaurantSectionStaffDTO> restaurantSectionStaff)
+        {
+            try
+            {
+                var dtrestSectStaff = new DataTable();
+                dtrestSectStaff.Columns.Add("RestaurantID", typeof(Int32));
+                dtrestSectStaff.Columns.Add("TruflUserID", typeof(Int32));
+                dtrestSectStaff.Columns.Add("RestaurantFloorNumber", typeof(Int32));
+
+
+                for (int i = 0; restaurantSectionStaff.Count > i; i++)
+                {
+                    dtrestSectStaff.Rows.Add(restaurantSectionStaff[i].RestaurantID,
+                                       restaurantSectionStaff[i].TruflUserID,
+                                       restaurantSectionStaff[i].RestaurantFloorNumber);
+                }
+               
+
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    sqlcon.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveRestaurantOpenSectionStaff", sqlcon))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantSectionStaffTY", dtrestSectStaff);
+                        tvpParam.SqlDbType = SqlDbType.Structured;
+
+                        SqlParameter pvRetVal = new SqlParameter();
+                        pvRetVal.ParameterName = "@RetVal";
+                        pvRetVal.DbType = DbType.Int32;
+                        pvRetVal.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvRetVal);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
+
+
+        public DataSet GetRestaurantWaitTimeOpenSectionStaff(int RestaurantID)
+        {
+            DataSet dssendResponse = new DataSet();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    sqlcon.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantWaitTimeOpenSectionStaff", sqlcon))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+
+                        SqlParameter pvRetVal = new SqlParameter();
+                        pvRetVal.ParameterName = "@RetVal";
+                        pvRetVal.DbType = DbType.Int32;
+                        pvRetVal.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvRetVal);
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dssendResponse);
+                        }
+                        dssendResponse.Tables[0].TableName = "RestaurantWaitListOpen";
+                        dssendResponse.Tables[1].TableName = "RestaurantOpenSectionStaff";
+                        dssendResponse.Tables[2].TableName = "RestaurantOpenSection";
+                    }
+                }
+                // }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return dssendResponse;
+        }
+
+
+
+        //////////////NOT IN USE
+        ///// <summary>
+        ///// This method SaveRestaurantOpenSectionStaff ' saves RestaurantWaitListOpen (Rest ID &Time), 
+        ///// updates RestaurantOpenSection isActive and isDeleted fields 
+        ///// and Inserts or Updates RestaurantOpenSectionStaff with Rest ID, User Id, Floorno
+        ///// </summary>
+        ///// <param name="restOpenSection"> Has the Values for Time(string), Model Class for table type
+        ///// restaurantSectionStaffDTO RestaurantSectionStaffDTO</param>
+        ///// restaurantActiveSectionsDTO RestaurantActiveSectionsDTO</param>
+        ///// <returns></returns>
+        //public bool SaveRestaurantOpenSectionStaff__NIU(RestaurantOpenSectionDTO restOpenSection)
+        //{
+
+        //    try
+        //    {
+
+        //        var dtrestSectStaff = new DataTable();
+        //        dtrestSectStaff.Columns.Add("RestaurantID", typeof(Int32));
+        //        dtrestSectStaff.Columns.Add("TruflUserID", typeof(Int32));
+        //        dtrestSectStaff.Columns.Add("RestaurantFloorNumber", typeof(Int32));
+
+        //        dtrestSectStaff.Rows.Add(restOpenSection.restaurantSectionStaffDTO.RestaurantID,
+        //                                restOpenSection.restaurantSectionStaffDTO.TruflUserID,
+        //                                restOpenSection.restaurantSectionStaffDTO.RestaurantFloorNumber);
+
+        //        var dtrestActvSect = new DataTable();
+        //        dtrestActvSect.Columns.Add("RestaurantID", typeof(Int32));
+        //        dtrestActvSect.Columns.Add("FloorNumber", typeof(Int32));
+        //        dtrestActvSect.Columns.Add("IsActive", typeof(Boolean));
+        //        dtrestActvSect.Columns.Add("IsDelete", typeof(Boolean));
+
+        //        dtrestActvSect.Rows.Add(restOpenSection.restaurantActiveSectionsDTO.RestaurantID,
+        //                                restOpenSection.restaurantActiveSectionsDTO.FloorNumber,
+        //                                restOpenSection.restaurantActiveSectionsDTO.IsActive,
+        //                                restOpenSection.restaurantActiveSectionsDTO.IsDelete);
+
+        //        string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+        //        using (SqlConnection sqlcon = new SqlConnection(connectionString))
+        //        {
+        //            sqlcon.Open();
+        //            using (SqlCommand cmd = new SqlCommand("spSaveRestaurantOpenSectionStaff", sqlcon))
+        //            {
+        //                cmd.CommandType = CommandType.StoredProcedure;
+        //                SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", restOpenSection.restaurantSectionStaffDTO.RestaurantID);
+        //                tvpParam.SqlDbType = SqlDbType.Int;
+        //                SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@Time", restOpenSection.time);
+        //                tvpParam1.SqlDbType = SqlDbType.VarChar;
+        //                SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@RestaurantSectionStaffTY", dtrestSectStaff);
+        //                tvpParam2.SqlDbType = SqlDbType.Structured;
+        //                SqlParameter tvpParam3 = cmd.Parameters.AddWithValue("@RestaurantActiveSectionsTY", dtrestActvSect);
+        //                tvpParam3.SqlDbType = SqlDbType.Structured;
+
+        //                SqlParameter pvNewId = new SqlParameter();
+        //                pvNewId.ParameterName = "@RetVal";
+        //                pvNewId.DbType = DbType.Int32;
+        //                pvNewId.Direction = ParameterDirection.Output;
+        //                cmd.Parameters.Add(pvNewId);
+
+        //                int status = cmd.ExecuteNonQuery();
+        //                if (status == 0)
+        //                {
+        //                    return false;
+        //                }
+        //                else
+        //                {
+        //                    return true;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var s = ex.Message;
+        //        ExceptionLogger.WriteToErrorLogFile(ex);
+        //        return false;
+        //    }
+        //}
+
+
 
     }
 }

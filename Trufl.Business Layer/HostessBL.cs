@@ -128,6 +128,26 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.spUpdateRestaurantEmployee(employeeConfigDTO);
         }
-            #endregion
+        #endregion
+
+        public DataTable GetRestaurantOpenSections(int RestaurantID)
+        {
+            return _hostessDL.GetRestaurantOpenSections(RestaurantID);
         }
+
+        public bool UpdateRestaurantActiveSections(List<RestaurantActiveSectionsDTO> restaurantActiveSections)
+        {
+            return _hostessDL.UpdateRestaurantActiveSections(restaurantActiveSections);
+        }
+
+        public bool SaveRestaurantOpenSectionStaff(List<RestaurantSectionStaffDTO> restaurantSectionStaff)
+        {
+            return _hostessDL.SaveRestaurantOpenSectionStaff(restaurantSectionStaff);
+        }
+
+        public DataSet GetRestaurantWaitTimeOpenSectionStaff(int RestaurantID)
+        {
+            return _hostessDL.GetRestaurantWaitTimeOpenSectionStaff(RestaurantID);
+        }
+    }
 }

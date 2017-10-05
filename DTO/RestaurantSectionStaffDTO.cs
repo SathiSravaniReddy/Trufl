@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class NotificationsDTO
+    public class RestaurantSectionStaffDTO
     {
         public int RestaurantID { get; set; }
-        public string Description { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public int TruflUserID { get; set; }
+        public int RestaurantFloorNumber { get; set; }
     }
 }

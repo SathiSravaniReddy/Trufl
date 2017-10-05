@@ -59,8 +59,11 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResetPasswordEmailDTO.cs" />
+    <Compile Include="RestaurantActiveSectionsDTO.cs" />
     <Compile Include="RestaurantSeatedUsers.cs" />
     <Compile Include="RestaurantSeatedUsersDTO.cs" />
+    <Compile Include="RestaurantOpenSectionDTO.cs" />
+    <Compile Include="RestaurantSectionStaffDTO.cs" />
     <Compile Include="RestPasswordDTO.cs" />
     <Compile Include="SaveRestaurantDTO.cs" />
     <Compile Include="SaveUserBioEventsDTO.cs" />
