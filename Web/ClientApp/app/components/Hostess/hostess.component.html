@@ -1,51 +1,76 @@
-﻿<shared-header></shared-header>
-<div class="col-md-9">
+﻿<div class="customheader">
 
-    <div class="col-md-12 tablemain">
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Trufl</th>
-                    <th>{{restaurantName}}</th>
-                    <th>Name</th>
-                    <th>Size</th>
-                    <th>Quoted</th>
-                    <th>Waited</th>
-                    <th>Offer</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of truflUserList|paginate: { itemsPerPage: 5, currentPage: p };let i=index;" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow">
-                    <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
-                    <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
-                    <td>{{item.UserName}}</td>
-                    <td>{{item.PartySize}}</td>
-                    <td>{{item.Quoted}}</td>
-                    <td>{{item.Waited}}</td>
-                    <td>${{item.OfferAmount}}</td>
-                    <td width="350">
-                        <div class="wait-btn" *ngIf="item.isShowLinks">
-                            <a [class]=classForAccept (click)="accept(item)">Accepted</a>
-                            <a data-toggle="modal" data-target="#SelectSeat" [class]=classForSeated (click)="seated(item)">Seated</a>
-                            <a (click)="remove(item)">Remove</a>
-                        </div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-
-      
-
-        <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
+    <div class="customheaderleft">
+        <h2>{{restaurantName}}</h2>
     </div>
-    <div class="col-md-12 seatmain" *ngIf="showTurnSeats">
-      
-        <div class="col-md-12" *ngIf="showSeated">
-            <div class="row">
-                <div class="col-md-9 tableselect">
+    <div class="customheaderright">
+        <ul>
+            <li style="float:left;padding-left:20px" (click)="waitlistPage()">Waitlist</li>
+            <li style="float:left;padding-left:20px" (click)="seatedPage()">Seated</li>
+            <li style="float:left;padding-left:20px" (click)="snapshotPage()">Snapshot</li>
+            <li style="float:left;padding-left:20px" (click)="settingsPage()">Settings</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="col-md-12 snapmain">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    TRUFL<br />
+                    STATUS
+                </th>
+                <th>{{restaurantName}}</th>
+                <th>Guset<br /> name</th>
+                <th>party<br /> size</th>
+                <th>wait<br /> quoted</th>
+                <th>time<br /> waited</th>
+                <th>trufl offer/<br /> reservation</th>
+                <th>accept<br /> offer</th>
+                <th>notify</th>
+                <th>print</th>
+                <th>remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of truflUserList|paginate: { itemsPerPage: 5, currentPage: p };let i=index;" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow">
+                <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
+                <td> <img alt="" src="../../../../wwwroot/images/tick1.png" /> </td>
+                <td>{{item.UserName}}</td>
+                <td>{{item.PartySize}}</td>
+                <td>{{item.Quoted}}</td>
+                <td>{{item.Waited}}</td>
+                <td>${{item.OfferAmount}}</td>
+                <td> <img alt="" src="../../../../wwwroot/images/ao.png" /> </td>
+                <td> <img alt="" src="../../../../wwwroot/images/notify.png" /> </td>
+                <td> <img alt="" src="../../../../wwwroot/images/print.png" /> </td>
+                <td> <img alt="" src="../../../../wwwroot/images/remove.png" /> </td>
+                <!--<td width="350">
+                    <div class="wait-btn" *ngIf="item.isShowLinks">
+                        <a [class]=classForAccept (click)="accept(item)">Accepted</a>
+                        <a data-toggle="modal" data-target="#SelectSeat" [class]=classForSeated (click)="seated(item)">Seated</a>
+                        <a (click)="remove(item)">Remove</a>
+                    </div>
+                </td>-->
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+    <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
+</div>
+<div class="col-md-12 seatmain" *ngIf="showTurnSeats">
+
+    <div class="col-md-12" *ngIf="showSeated">
+        <div class="row">
+            <div class="col-md-1 seattitle">Get<br /> Seated <br />Now</div>
+            <div class="col-md-11">
+                <div class="col-md-6 tableselect">
                     <label>Table Size : </label>
 
                     <ul>
@@ -59,88 +84,111 @@
                     <label>Price </label>
                     <span>{{priceOfTable}}</span>
 
+                </div> <div class="seat-btn">
+                    <a class="primary-btn" href="#">submit </a>
+
                 </div>
             </div>
-        </div>
-        <div class="col-md-12 booked" *ngIf="ActiveSeats">
-            <p>Get Seated Active Now For </p> <b><timer></timer></b> <span>{{sizeOfTable}} </span> <span>{{priceOfTable}}</span> <a class="secondary-btn" (click)="cancelSeats()">Cancel </a>
         </div>
     </div>
-
-    <!--User Profile  Right Side-->
-    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-
-
-
-
-        <a id="close" class="close" (click)="closeProile('right-section')"><span aria-hidden="true">×</span></a>
-
-
-
-        <div class="right-top">
-            <img alt="" src="../../../../wwwroot/images/no-img.png" />
-            <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
-            <p class="defaulttext"> Trufl Premier Member</p>
-            <p class="defaulttext">{{restaurantName}} Member</p>
-            <p><a class="print" (click)="print()">Print </a></p>
-
-        </div>
-
-
-        <!--Bio -->
-        <div>
-            <div class="right-btn">
-                <h5>
-                    Trufl Bio
-                    <a data-toggle="modal" data-target="#myModal" class="pull-right" href="#">ADD </a>
-                </h5>
-
-                <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
-
+    <div class="col-md-12 booked" *ngIf="ActiveSeats">
+        <div class="col-md-1 seattitle">Get<br /> Seated <br />Now</div> <div class="col-md-11">
+            <div class="bookrep">
+                <label>Table Size</label>
+                <span class="selected">{{sizeOfTable}} </span>
+            </div>
+            <div class="bookrep">
+                <label>Price</label>
+                <span class="selected">{{priceOfTable}} </span>
+            </div> <div class="bookrep">
+                <label>Active For</label>
+                <span class="selected"><timer></timer> </span>
             </div>
 
-            <!--Bio Events-->
-            <div class="right-rep" *ngIf="bioData.length>=1">
-                <h5>Visit</h5>
-                <div *ngFor="let bio of bioData">
-
-                    <div class="row" *ngIf="bio.BioID===1">
-                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                        <div class="col-md-7">{{bio.Description}} </div>
-                    </div>
-                </div>
-                <h5>Relationship</h5>
-                <div *ngFor="let bio of bioData">
-
-                    <div class="row" *ngIf="bio.BioID===2">
-                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                        <div class="col-md-7">{{bio.Description}} </div>
-                    </div>
-                </div>
-                <h5>Seating Preference</h5>
-                <div *ngFor="let bio of bioData">
-
-                    <div class="row" *ngIf="bio.BioID===3">
-                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                        <div class="col-md-7">{{bio.Description}} </div>
-                    </div>
-                </div>
-                <h5>Food/Drink Preference</h5>
-                <div *ngFor="let bio of bioData">
-
-                    <div class="row" *ngIf="bio.BioID===4">
-                        <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                        <div class="col-md-7">{{bio.Description}} </div>
-                    </div>
-                </div>
-
-            </div>
-
+            <a class="cancel-btn bookcan" (click)="cancelSeats()">Cancel </a>
         </div>
     </div>
-
-
 </div>
+
+<div class="col-md-12 bottombuttons">
+    <a class="primary-btn" href="#">Turn On Get Seated Now</a>
+    <a class="addbtn" href="#"> <img alt="" src="../../../../wwwroot/images/bigadd.png" /> </a>
+</div>
+
+
+<!--User Profile  Right Side-->
+<div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+
+
+
+
+    <a id="close" class="close" (click)="closeProile('right-section')"><span aria-hidden="true">×</span></a>
+
+
+
+    <div class="right-top">
+        <img alt="" src="../../../../wwwroot/images/no-img.png" />
+        <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
+        <p class="defaulttext"> Trufl Premier Member</p>
+        <p class="defaulttext">{{restaurantName}} Member</p>
+        <p><a class="print" (click)="print()">Print </a></p>
+
+    </div>
+
+
+    <!--Bio -->
+    <div>
+        <div class="right-btn">
+            <h5>
+                Trufl Bio
+                <a data-toggle="modal" data-target="#myModal" class="pull-right" href="#">ADD </a>
+            </h5>
+
+            <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
+
+        </div>
+
+        <!--Bio Events-->
+        <div class="right-rep" *ngIf="bioData.length>=1">
+            <h5>Visit</h5>
+            <div *ngFor="let bio of bioData">
+
+                <div class="row" *ngIf="bio.BioID===1">
+                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                    <div class="col-md-7">{{bio.Description}} </div>
+                </div>
+            </div>
+            <h5>Relationship</h5>
+            <div *ngFor="let bio of bioData">
+
+                <div class="row" *ngIf="bio.BioID===2">
+                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                    <div class="col-md-7">{{bio.Description}} </div>
+                </div>
+            </div>
+            <h5>Seating Preference</h5>
+            <div *ngFor="let bio of bioData">
+
+                <div class="row" *ngIf="bio.BioID===3">
+                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                    <div class="col-md-7">{{bio.Description}} </div>
+                </div>
+            </div>
+            <h5>Food/Drink Preference</h5>
+            <div *ngFor="let bio of bioData">
+
+                <div class="row" *ngIf="bio.BioID===4">
+                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
+                    <div class="col-md-7">{{bio.Description}} </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
 
 
 <div class="modal fade" id="SelectSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

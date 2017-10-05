@@ -1,10 +1,25 @@
-<shared-header></shared-header>
+<div class="customheader">
 
+    <div class="customheaderleft">
+        <h2>Start Service</h2>
+    </div>
+    <div class="customheaderright">
+        <a class="secondary-btn">
+            Back
+        </a>
+        <a (click)="next()" class="primary-btn">
+            Next
+        </a>
+    </div>
+
+</div>
 <div class="col-md-12 servicesmain">
 
     <span class="servicetext">How early can guests join the waitlist? </span>
 
-    <span class="servicetime"> <input type="text" value="05:00PM"> </span>
+    <span class="servicetime"> <input type="time" [(ngModel)]="time"> </span>
+
+
 
 
 
