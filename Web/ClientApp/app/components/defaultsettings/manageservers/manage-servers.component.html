@@ -14,21 +14,22 @@
     </div>
 
 </div>
-<div class="col-md-12 servicesmain msgap">
+<div class="col-md-12 servicesmain msgap" >
 
 
 
     <div class="selectstaff">
         <ul>
-            <li>
-                <a class="selected" href="#">
-                    <img src="../../../../../wwwroot/images/staff.png" alt="" />
+           <li *ngFor="let _manageserver of manageserverdetails">
+                <a class="selected" (click)="showProfile(_manageserver)">
+                    <img src="{{_manageserver.img}}" alt="" />
                     <h3>
-                        John <br /> Addams
+                        {{_manageserver.name}}
                     </h3>
                 </a>
+
             </li>
-            <li>
+            <!--<li>
                 <a href="#">
                     <img src="../../../../../wwwroot/images/staff1.png" alt="" />
                     <h3>
@@ -37,8 +38,8 @@
                         <br /> Fisher
                     </h3>
                 </a>
-            </li>
-            <li>
+            </li>-->
+            <!--<li>
                 <a class="selected" href="#">
                     <img src="../../../../../wwwroot/images/staff2.png" alt="" />
                     <h3>
@@ -96,11 +97,31 @@
             Quincy <br /> Washington
         </h3>
     </a>
-</li>
+</li>-->
         </ul>
 
     </div>
+ 
+
+    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
 
 
+
+
+        <a id="close" class="close" (click)="closeprofile()"><span>x</span></a>
+
+
+
+        <div class="right-top">
+            <img alt="" src="../../../../../wwwroot/images/no-img.png" class="profileimage" />
+            <h5 class="name">{{currentRow}}</h5>
+
+
+
+        </div>
+
+
+
+    </div>
 
 </div>

@@ -3,17 +3,25 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
+
 @Injectable()
-export class ManageServersService {
-    private results: any;
+export class EditGuestService {
     constructor(private http: Http) {
-    }
-
-    getManageServersDetails() {
-
-        return this.http.get("assets/managers.json").map(
-            (res) => res.json())
 
     }
+
+
+    editGuestDetails(guestInfo: any) {
+        console.log(guestInfo);
+        return this.http.post('', guestInfo).map(
+            (res) => res.json()
+        )
+    }
+
+
+
+
+
+
 
 }
