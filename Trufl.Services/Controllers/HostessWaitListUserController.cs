@@ -170,7 +170,7 @@ namespace Trufl.Services.Controllers
             }
         }
 
-        [Route("GetRestaurantWaitTimeOpenSectionStaff")]
+        [Route("SaveRestaurantOpenTime")]
         [HttpPost]
         public object SaveRestaurantOpenTime(int RestaurantID, string Time)
         {

@@ -1248,7 +1248,7 @@ namespace Trufl.Data_Access_Layer
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    using (SqlCommand cmd = new SqlCommand("spUpdateRestaurantEmployee", con))
+                    using (SqlCommand cmd = new SqlCommand("spSaveRestaurantOpenTime", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
