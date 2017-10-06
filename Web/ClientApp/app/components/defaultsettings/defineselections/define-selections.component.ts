@@ -49,14 +49,6 @@ export class DefineSelectionsComponent {
          console.log(this.defineselectionsdetails, "sfgdfgdfgf");
          this.currentRow = profile.name;
          this.arr = seatArr;
-         //this.currentsectionStartNumber = seatArr[0].sectionStartNumber;
-         //this.currentsectionsEndNumber = seatArr[0].sectionsEndNumber;
-         this.defineselectionsdetails.map(function (obj) {
-             obj.isShow = obj.name == _that.currentRow;
-             obj.definename = obj.name.split(" ");
-             console.log(obj.definename, "  obj.definename");
-         });
-
          this.isShow = true;
         
      }
@@ -71,6 +63,7 @@ export class DefineSelectionsComponent {
 
 
      addMore() {
+         console.log(this.arr, "this.arr");
          this.arr.push({
              name: 'sravani',
              type: 'text',

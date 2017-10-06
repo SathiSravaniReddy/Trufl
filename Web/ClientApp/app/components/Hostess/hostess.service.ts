@@ -1,6 +1,7 @@
 ﻿import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { constant } from '../shared/appsettings';
+
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -13,12 +14,16 @@ export class HostessService {
 
     //Service for Users List display
     public getTruflUserList() {
-   
+  
         return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetWaitListUsers')
 .map(res => res.json() || {})
             .catch(this.handleError);
     }
-
+    public getBioInformation(restaurantId,truflUid) {
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/GetRestaurantUserDetails/' + restaurantId + '/' + truflUid + '/' + 'TU')
+            .map(res => res.json() || {})
+            .catch(this.handleError);
+    }
     //Service for Accept and Remove
     public acceptedandremovedwaiteduser(bookingid, bookinstatus) {
         var headers = new Headers();

@@ -20,7 +20,7 @@
         <li *ngFor="let _defineserverdeatils of defineselectionsdetails;let i=index;">
             <a (click)="showProfile(_defineserverdeatils, _defineserverdeatils.seatNumbers, i)">
                 <h3>{{_defineserverdeatils.name}}</h3>
-                <p *ngFor="let obj of _defineserverdeatils.seatNumbers;let i=index;">{{obj.sectionStartNumber}}-{{obj.sectionsEndNumber}}</p>
+                <p *ngFor="let obj of _defineserverdeatils.seatNumbers;let i=index;">{{obj.sectionStartNumber}}-{{obj.sectionsEndNumber}},</p>
 
             </a>
         </li>
