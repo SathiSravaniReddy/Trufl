@@ -149,5 +149,10 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.GetRestaurantWaitTimeOpenSectionStaff(RestaurantID);
         }
+
+        public bool SaveRestaurantOpenTime(int RestaurantID, string Time)
+        {
+            return _hostessDL.SaveRestaurantOpenTime(RestaurantID, Time);
+        }
     }
 }

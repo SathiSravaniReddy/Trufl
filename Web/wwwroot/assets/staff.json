@@ -1,0 +1,54 @@
+﻿{
+
+
+  "_Data": [
+    {
+     
+      "firstname": "Jhon",
+      "lastname": "Addams",
+      "img": "/dist/53e89ef93fc9b360011d74684f3a4b24.png"
+    },
+    {     
+      "firstname": "Wanda",
+      "lastname": "Fisher",
+      "img": "/dist/53e89ef93fc9b360011d74684f3a4b24.png"
+
+    },
+    {
+      "firstname": "Qinncy ",
+      "lastname": "Washington",
+      "img": "/dist/53e89ef93fc9b360011d74684f3a4b24.png"
+
+    },
+    {     
+      "firstname": "Frank ",
+      "lastname": "Lu",
+      "img": "/dist/53e89ef93fc9b360011d74684f3a4b24.png"
+
+    },
+    {
+      
+      "firstname": "Brain",
+      "lastname": "jones",
+      "img": "/dist/53e89ef93fc9b360011d74684f3a4b24.png"
+    },
+    {
+      "firstname": "Ana",
+      "lastname": "Ng",   
+      "img": "/dist/53e89ef93fc9b360011d74684f3a4b24.png"
+    },
+
+    {
+      
+      "firstname": "Brain",
+      "lastname": "jones1",
+      "img": "/dist/53e89ef93fc9b360011d74684f3a4b24.png"
+    },
+    {
+      "firstname": "Ana",
+      "lastname": "Ng1",
+      "img": "/dist/53e89ef93fc9b360011d74684f3a4b24.png"
+    }
+
+  ]
+}
