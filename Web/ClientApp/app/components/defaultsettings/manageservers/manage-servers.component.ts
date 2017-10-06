@@ -9,6 +9,7 @@ import { ManageServersService } from '../manageservers/manage-servers.service';
 export class ManageServersComponent {
     private manageserverdetails;
     private currentRow;
+    private currentimage;
     public isShow:boolean=false;
     constructor(private router: Router, private _managerservice: ManageServersService) {
         this.getmanagerServer();
@@ -26,11 +27,11 @@ export class ManageServersComponent {
     }
 
     showProfile(manageserver) {
-        alert(manageserver.name);
         var _that = this;
         console.log(manageserver, "defineselectionsrwtert");
         console.log(this.manageserverdetails, "sfgdfgdfgf");
         this.currentRow = manageserver.name;
+        this.currentimage = manageserver.img
         this.manageserverdetails.map(function (obj) {
             obj.isShow = obj.name == _that.currentRow;
             obj.definename = obj.name.split(" ");
