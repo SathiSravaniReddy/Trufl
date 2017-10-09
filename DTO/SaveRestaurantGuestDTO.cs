@@ -16,5 +16,6 @@ namespace DTO
         public string ContactNumber { get; set; }
         public string UserType { get; set; }
         public UserBioEventsDTO UserBioEventsTY { get; set; }
+
     }
 }
