@@ -19,7 +19,7 @@ export class DefineSelectionsComponent {
         
 
     }
-
+    
     ngOnInit() {
         this.getDefineSelections();
        
