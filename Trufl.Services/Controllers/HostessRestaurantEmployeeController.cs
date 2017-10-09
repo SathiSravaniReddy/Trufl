@@ -87,5 +87,36 @@ namespace Trufl.Services.Controllers
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
             }
         }
+
+        [Route("SaveRestaurantGuest")]
+        [HttpPost]
+        public object SaveRestaurantGuest(SaveRestaurantGuestDTO SaveRestaurantGuest)
+        {
+            bool res = _hostessBL.SaveRestaurantGuest(SaveRestaurantGuest);
+            try
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeFailed, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
+
+        [Route("GetRestaurantGuest/{RestaurantID}/{UserID}/{UserType}")]
+        [HttpGet]
+        public object GetRestaurantGuest(int RestaurantID, int UserId, string UserType)
+        {
+            DataSet res = new DataSet();
+            try
+            {
+                res = _hostessBL.GetRestaurantGuest(RestaurantID, UserId, UserType);
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeFailed, _Data = ex.ToString(), _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageFailed });
+            }
+        }
     }
 }
