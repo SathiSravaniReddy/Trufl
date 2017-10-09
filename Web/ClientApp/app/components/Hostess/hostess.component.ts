@@ -18,6 +18,9 @@ import { Router } from "@angular/router";
 })
 export class HostessComponent {
     private username;
+    private pic;
+
+
     private restaurantName;
     private truflUserList;
     private selectedRow: Number;
@@ -105,6 +108,7 @@ export class HostessComponent {
         this.currentSelectedUser = data.Email;
         this.RestaurantId = data.RestaurantID;
         this.username = data.UserName;
+        this.pic = data.pic;
         this.showTurnSeats = true;
         this.showSeated = false;
         this.ActiveSeats = false;
@@ -112,6 +116,7 @@ export class HostessComponent {
         this.profile(data.TruflUserID);
         this.truflid = data.TruflUserID;
         this.restaurantid = data.RestaurantID;
+        this.usertype = data.TruflMemberType;
         console.log(this.truflid, " this.truflid");
         console.log(this.restaurantid, " this.restaurantid");
         this.profileData = data;
@@ -141,7 +146,7 @@ export class HostessComponent {
 
 
     getBioinformation() {
-        this.hostessService.getBioInformation(this.restaurantid, this.truflid).subscribe((res: any) => {
+        this.hostessService.getBioInformation(this.restaurantid, this.truflid, this.usertype).subscribe((res: any) => {
             this.bioinfo = res._Data;
             this.bioData = this.bioinfo.BioData;
             console.log(this.bioinfo.BioData, " this.bioinfo");

@@ -19,8 +19,8 @@ export class HostessService {
 .map(res => res.json() || {})
             .catch(this.handleError);
     }
-    public getBioInformation(restaurantId,truflUid) {
-        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/GetRestaurantUserDetails/' + restaurantId + '/' + truflUid + '/' + 'TU')
+    public getBioInformation(restaurantId,truflUid,usertype) {
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/GetRestaurantUserDetails/' + restaurantId + '/' + truflUid + '/' + usertype)
             .map(res => res.json() || {})
             .catch(this.handleError);
     }
