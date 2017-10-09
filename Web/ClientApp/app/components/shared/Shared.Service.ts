@@ -5,7 +5,8 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class SharedService {
 
-     private _guestDetails: object;
+    private _guestDetails: object;
+    public arraydata:any[] = [];
  
      get guestDetails(): object {
          return this._guestDetails;
@@ -16,20 +17,16 @@ export class SharedService {
          this._guestDetails = value;
      }
 
-  /*  private subject = new Subject<any>();
 
-    sendMessage(message: object) {
+     get arrayData(): any {
+         return this.arraydata;
+     }
 
-        this.subject.next({ text: message });
-    }
 
-    getMessage(): Observable<any> {
-        return this.subject.asObservable()
-    }
-
-    clearMessage() {
-        this.subject.next();
-    }
-    */
+     set arrayData(value: any) {
+         this.arraydata = value;
+     }
+  
+    
 }
 

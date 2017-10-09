@@ -20,20 +20,18 @@
             <table class="table" >
                 <thead>
                     <tr>
-                        <th>Trufl</th>
-                        <th>B.L</th>
-                        <th>Name</th>
-                        <th>Size</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                        <th>Table no</th>
-                        <th>Seated</th>
-                        <th>App Served</th>
-                        <th>Menu Served</th>
-                        <th>Desert Served</th>
-                        <th>Check Received</th>
-                        <th>Buzzing</th>
-                        <th>Empty</th>
+                        
+                        <th>GUESTNAME</th>
+                        <th>TRUFLPAYMENT</th>
+                        <th>PARTYSIZE</th>
+                        <th>TABELNUMBER</th>
+                        <th>TIMESEATED</th>
+                        <th>TIMEREMAINING</th>
+                        <th>SLOW +_5MIN</th>
+                        <th>JUMP 5MIN</th>
+                        <th>CHECKDROP</th>
+                        <th>EMPTYTABEL</th>
+                     
                     </tr>
                 </thead>
                 <tbody>
@@ -44,24 +42,19 @@
                       <!--  <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td>
                         <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td> -->
 
-                        <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
-                        <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
+                        <!--<td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
+                        <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>-->
 
                         <td>{{seatsinfo.TUserName}}</td>
-                        <td>{{seatsinfo.PartySize}}</td>
                         <td>{{seatsinfo.OfferAmount}}</td>
-                        <td>{{seatsinfo.Status}}</td>
+                        <td>{{seatsinfo.PartySize}}</td>
                         <td>{{seatsinfo.TableNumber}}</td>
-                        <td class="customcheckbox"><input type="checkbox"   [(ngModel)]="seatsinfo.Seated" name="seated"  (click)="get(seatsinfo,'Seated')" id="seat{{i}}" > <label for="seat{{i}}"></label> </td>
-                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.AppServed" name="appserved"  (click)="get(seatsinfo,'AppServed')" id="app{{i}}"><label for="app{{i}}"></label> </td>
-                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.MenuServed" name="menuserved" (click)="get(seatsinfo,'MenuServed')" id="menu{{i}}"><label for="menu{{i}}"></label></td>
-                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.DesertServed" name="dessertserved" (click)="get(seatsinfo,'DesertServed')" id="desert{{i}}"><label for="desert{{i}}"></label></td>
-                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.CheckReceived" name="checkreceived"(click)="get(seatsinfo,'CheckReceived')" id="check{{i}}"><label for="check{{i}}"></label></td>
-                        <td class="customcheckbox"><input type="checkbox" [(ngModel)]="seatsinfo.Boozing" name="boozing" (click)="get(seatsinfo,'Boozing')" id="buzz{{i}}"><label for="buzz{{i}}"></label></td>
-                        <td class="customcheckbox"><input type="checkbox"  [(ngModel)]="seatsinfo.Empty" name="empty" (click)="get(seatsinfo,'Empty')" id="empty{{i}}"><label for="empty{{i}}"></label></td>
-
-
-
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
 
 
@@ -73,11 +66,11 @@
            <div *ngIf="!hasData()">No Data Found</div> 
 
 
-            <div class="btn-main">
-                <button [disabled]="!isenabled" (click)="postSeatedDetails()">Submit</button>
+            <div>
+                <a class="primary-btn" href="#">Turn On Get Seated Now</a>
             </div>
 
-            <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
+           
 
 
 

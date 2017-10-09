@@ -62,7 +62,6 @@
 
 
 
-    <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
 </div>
 <div class="col-md-12 seatmain" *ngIf="showTurnSeats">
 
@@ -112,7 +111,7 @@
 
 <div class="col-md-12 bottombuttons">
     <a class="primary-btn" href="#">Turn On Get Seated Now</a>
-    <a class="addbtn" (click)="Addguest()" > <img   alt="" src="../../../../wwwroot/images/bigadd.png" /> </a>
+    <a class="addbtn" (click)="Addguest()"> <img alt="" src="../../../../wwwroot/images/bigadd.png" /> </a>
 </div>
 
 
@@ -122,75 +121,21 @@
 
 
 
-    <a id="close" class="close" (click)="closeProile('right-section')"><span aria-hidden="true">×</span></a>
+    <a id="close" class="close" (click)="closeProile()"><span>×</span></a>
 
 
 
-    <div class="right-top">
-        <img alt="" src="../../../../wwwroot/images/no-img.png" />
-        <h5 class="nameheader">{{profileData.UserProfileFullName}}</h5>
-        <p class="defaulttext"> Trufl Premier Member</p>
-        <p class="defaulttext">{{restaurantName}} Member</p>
-        <p><a class="print" (click)="print()">Print </a></p>
+    <div class="slidetop">
+        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
+
+        <h5 class="name">{{username}}</h5>
 
     </div>
-
-
-    <!--Bio -->
-    <div>
-        <div class="right-btn">
-            <h5>
-                Trufl Bio
-                <a data-toggle="modal" data-target="#myModal" class="pull-right" href="#">ADD </a>
-            </h5>
-
-            <p>I like to treat my clients to nice dinners when they are in town, Typically big drinkers. We like ordering bottles of red for the table </p>
-
-        </div>
-
-        <!--Bio Events-->
-        <div class="right-rep" *ngIf="bioData.length>=1">
-            <h5>Visit</h5>
-            <div *ngFor="let bio of bioData">
-
-                <div class="row" *ngIf="bio.BioID===1">
-                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                    <div class="col-md-7">{{bio.Description}} </div>
-                </div>
-            </div>
-            <h5>Relationship</h5>
-            <div *ngFor="let bio of bioData">
-
-                <div class="row" *ngIf="bio.BioID===2">
-                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                    <div class="col-md-7">{{bio.Description}} </div>
-                </div>
-            </div>
-            <h5>Seating Preference</h5>
-            <div *ngFor="let bio of bioData">
-
-                <div class="row" *ngIf="bio.BioID===3">
-                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                    <div class="col-md-7">{{bio.Description}} </div>
-                </div>
-            </div>
-            <h5>Food/Drink Preference</h5>
-            <div *ngFor="let bio of bioData">
-
-                <div class="row" *ngIf="bio.BioID===4">
-                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                    <div class="col-md-7">{{bio.Description}} </div>
-                </div>
-            </div>
-
-        </div>
-
+    <div *ngFor="let item of bioData">
+        <div class="slideform"><label>{{item.BioName}} </label> <label>{{item.Description}}</label> </div>
     </div>
+
 </div>
-
-
-
-
 <div class="modal fade" id="SelectSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

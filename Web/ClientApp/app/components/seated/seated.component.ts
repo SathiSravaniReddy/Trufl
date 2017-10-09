@@ -53,11 +53,11 @@ export class SeatedComponent implements OnInit {
                 return !obj['Empty']
             })
 
-          
-
+           console.log(this.seatedinfo, "this.seatedinfo");
+           
         })
 
-
+        
 
     }
 
@@ -139,7 +139,7 @@ export class SeatedComponent implements OnInit {
         //this.router.navigateByUrl('');
     }
     settingsPage() {
-        this.router.navigateByUrl('/settings');
+        this.router.navigateByUrl('/defaultSettings');
     }
 
     public hasData(): boolean {

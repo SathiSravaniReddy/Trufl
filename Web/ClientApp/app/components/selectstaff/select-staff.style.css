@@ -82,12 +82,13 @@
 
 #profileSection {
     height: 100vh;
-    background: #fff;
+    background: #394165;
     position: fixed;
     right: 0px;
     top: 100px;
     overflow-y: auto;
     width: 300px;
+    z-index: 9999;
 }
 
 #close {
