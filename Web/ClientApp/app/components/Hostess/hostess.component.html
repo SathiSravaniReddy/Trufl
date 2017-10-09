@@ -62,7 +62,6 @@
 
 
 
-    <pagination-controls class="pull-right" (pageChange)="p=$event"></pagination-controls>
 </div>
 <div class="col-md-12 seatmain" *ngIf="showTurnSeats">
 
@@ -112,7 +111,7 @@
 
 <div class="col-md-12 bottombuttons">
     <a class="primary-btn" href="#">Turn On Get Seated Now</a>
-    <a class="addbtn" (click)="Addguest()" > <img   alt="" src="../../../../wwwroot/images/bigadd.png" /> </a>
+    <a class="addbtn" (click)="Addguest()"> <img alt="" src="../../../../wwwroot/images/bigadd.png" /> </a>
 </div>
 
 
@@ -122,47 +121,36 @@
 
 
 
-    <a id="close" class="close" (click)="closeProile('right-section')"><span aria-hidden="true">×</span></a>
+    <a id="close" class="close" (click)="closeProile()"><span>×</span></a>
 
 
 
     <div class="slidetop">
-        <img alt="" src="/dist/53e89ef93fc9b360011d74684f3a4b24.png" />
-       
+        <img alt="" src="{{pic}}" />
+
         <h5 class="name">{{username}}</h5>
 
-                <div class="row" *ngIf="bio.BioID===3">
-                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                    <div class="col-md-7">{{bio.Description}} </div>
-                </div>
-            </div>
-            <h5>Food/Drink Preference</h5>
-            <div *ngFor="let bio of bioData">
 
-                <div class="row" *ngIf="bio.BioID===4">
-                    <div class="col-md-5"> <a>{{bio.BioEventName}} </a> </div>
-                    <div class="col-md-7">{{bio.Description}} </div>
-                </div>
-            </div>
 
-        </div>
 
     </div>
+    <div *ngFor="let item of bioData">
+        <div class="slideform"><label>{{item.BioName}} </label> <label>{{item.Description}}</label> </div>
+    </div>
+
 </div>
-
-    </div>
-        <div class="modal fade" id="SelectSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Choose the table for seating</h4>
-                    </div>
-                    <div class="modal-body" style="display:inline-block;">
-                        <div class="seatselection">
-                            <ul>
-                                <li *ngFor="let item of tableData"><a (click)="selectTable(item)">{{item.TableNo}}</a></li>
-                                <!--<li><a class="hold" href="#">2 </a> </li>-->
+<div class="modal fade" id="SelectSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Choose the table for seating</h4>
+            </div>
+            <div class="modal-body" style="display:inline-block;">
+                <div class="seatselection">
+                    <ul>
+                        <li *ngFor="let item of tableData"><a (click)="selectTable(item)">{{item.TableNo}}</a></li>
+                        <!--<li><a class="hold" href="#">2 </a> </li>-->
 
                     </ul>
                     <div class="popup-btn">

@@ -96,3 +96,20 @@
 }
 
 
+.slideform label {
+    float: left;
+    width: 100%;
+    margin: 0 0 5px 0;
+    color: #fff;
+}
+
+.slideform select{
+    float: left;
+    width: 100%;
+    padding: 5px;
+    height: 30px;
+    background: #4f5879;
+    color: #fff;
+    border: #4f5879 solid 1px;
+}
+

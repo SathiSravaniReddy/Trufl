@@ -11,12 +11,15 @@ export class DefineSelectionsComponent {
     private defineselectionsdetails;
     private selectionsname;
     private currentRow;
-    public isShow: boolean = false;;
+    public isShow: boolean = false;
+    private currentsectionStartNumber;
+    private currentsectionsEndNumber;
+    private arr = [];
     constructor(private _defineservice: DefineSelectionService, private router: Router) {
         
 
     }
-    
+
     ngOnInit() {
         this.getDefineSelections();
        
@@ -35,15 +38,19 @@ export class DefineSelectionsComponent {
          this.router.navigateByUrl('/defaultSettings');
     }
      saveclose() {
+         console.log(this.arr, "savedata");
          this.router.navigateByUrl('/defaultSettings');
      }
 
 
-     showProfile(defineselections) {
+     showProfile(profile, seatArr, index) {
          var _that = this;
-         console.log(defineselections, "defineselectionsrwtert");
+         console.log(profile, "defineselectionsrwtert");
          console.log(this.defineselectionsdetails, "sfgdfgdfgf");
-         this.currentRow =defineselections.name;
+         this.currentRow = profile.name;
+         this.arr = seatArr;
+         //this.currentsectionStartNumber = seatArr[0].sectionStartNumber;
+         //this.currentsectionsEndNumber = seatArr[0].sectionsEndNumber;
          this.defineselectionsdetails.map(function (obj) {
              obj.isShow = obj.name == _that.currentRow;
              obj.definename = obj.name.split(" ");
@@ -64,7 +71,6 @@ export class DefineSelectionsComponent {
 
 
      addMore() {
-         console.log(this.arr, "this.arr");
          this.arr.push({
              name: 'sravani',
              type: 'text',
