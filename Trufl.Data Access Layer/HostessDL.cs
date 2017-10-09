@@ -1241,6 +1241,46 @@ namespace Trufl.Data_Access_Layer
             return dssendResponse;
         }
 
+        public bool SaveRestaurantOpenTime(int RestaurantID, string Time)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveRestaurantOpenTime", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@OpenTime", Time);
+                        tvpParam1.SqlDbType = SqlDbType.Text;
+
+                        SqlParameter pvRetVal = new SqlParameter();
+                        pvRetVal.ParameterName = "@RetVal";
+                        pvRetVal.DbType = DbType.Int32;
+                        pvRetVal.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvRetVal);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+            // return sendResponse;
+        }
 
 
         //////////////NOT IN USE

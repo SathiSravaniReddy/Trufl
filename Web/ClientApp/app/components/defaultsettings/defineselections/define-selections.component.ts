@@ -11,7 +11,7 @@ export class DefineSelectionsComponent {
     private defineselectionsdetails;
     private selectionsname;
     private currentRow;
-    public isShow: boolean = false;
+    public isShow: boolean = false;;
     constructor(private _defineservice: DefineSelectionService, private router: Router) {
         
 
@@ -63,7 +63,17 @@ export class DefineSelectionsComponent {
      }
 
 
-
+     addMore() {
+         console.log(this.arr, "this.arr");
+         this.arr.push({
+             name: 'sravani',
+             type: 'text',
+             sectionStartNumber: '',
+             sectionsEndNumber: '',
+             labelName: 'Section Start Number'
+         })
+        
+     }
 
 
   
