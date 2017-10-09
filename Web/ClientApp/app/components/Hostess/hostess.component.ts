@@ -13,14 +13,11 @@ import { Router } from "@angular/router";
 @Component({
     selector: 'hostess',
     templateUrl: './hostess.component.html',
-    styleUrls: ['./hostess.component.css'],
+    styleUrls: ['../HostessSettings/settings.component.css'],
     providers: [ToastsManager, ToastOptions]
 })
 export class HostessComponent {
     private username;
-    private pic;
-
-
     private restaurantName;
     private truflUserList;
     private selectedRow: Number;
@@ -45,14 +42,14 @@ export class HostessComponent {
     showSeated: boolean = true;
     ActiveSeats: boolean = false;
     public currentSelectedUser: string;
-    private bioinfo;
+
 
     //Parameters to pass in Api
     private usertype: any;
     private truflid: any;
     private settingsData;
     private bioData: any = [];
-    private restaurantid: any;
+
     //add Bio
     private bioCategories: any = [];
     private bioEvents: any = [];
@@ -83,32 +80,20 @@ export class HostessComponent {
         this.classForAccept = "selected";
         this.classForSeated = "";
         this.restaurantName = this.loginService.getRestaurantName();
-       
-        
-
-
-        console.log(this.usertype, "  this.usertype");
-        console.log(this.truflid, " this.truflid");
-        console.log(this.restaurantid, " this.restaurantid");
         //Displaying trufl user's list
         this.hostessService.getTruflUserList().subscribe((res: any) => {
             this.truflUserList = res._Data;
-           
-            console.log(this.truflUserList, " this.truflUserList");
-            
         });
         
     }
 
     //Functinality for trufl user's list
-    watlistUserDetails(data, index) {
-       
+    watlistUserDetails(data,index) {
         this.selectedRow = index;
         var _that = this;
         this.currentSelectedUser = data.Email;
         this.RestaurantId = data.RestaurantID;
         this.username = data.UserName;
-        this.pic = data.pic;
         this.showTurnSeats = true;
         this.showSeated = false;
         this.ActiveSeats = false;
@@ -116,7 +101,6 @@ export class HostessComponent {
         this.profile(data.TruflUserID);
         this.truflid = data.TruflUserID;
         this.restaurantid = data.RestaurantID;
-        this.usertype = data.TruflMemberType;
         console.log(this.truflid, " this.truflid");
         console.log(this.restaurantid, " this.restaurantid");
         this.profileData = data;
@@ -138,15 +122,12 @@ export class HostessComponent {
         })
         this.classForAccept = "selected";
         this.classForSeated = "";
-
-
-        this.getBioinformation();
     }
-
+   
 
 
     getBioinformation() {
-        this.hostessService.getBioInformation(this.restaurantid, this.truflid, this.usertype).subscribe((res: any) => {
+        this.hostessService.getBioInformation(this.restaurantid, this.truflid).subscribe((res: any) => {
             this.bioinfo = res._Data;
             this.bioData = this.bioinfo.BioData;
             console.log(this.bioinfo.BioData, " this.bioinfo");
@@ -295,79 +276,79 @@ export class HostessComponent {
                 this.profileData = item;
             });
             //Bio Data
-            //this.bioData = this.settingsData.BioData;
+            this.bioData = this.settingsData.BioData;
 
             //History Data
 
             this.showProfile = true;
         });
 
-        //this.GetBioCategories();
+        this.GetBioCategories();
         //this.showProfile = true;
     }
 
-    //onCategoryChange(id) {
-    //    this.categoryId = id;
-    //    this.GetBioEvents(this.categoryId);
-    //    this.showEvents = true;
+    onCategoryChange(id) {
+        this.categoryId = id;
+        this.GetBioEvents(this.categoryId);
+        this.showEvents = true;
 
-    //}
-    //onEventChange(event) {
-    //    this.eventId = event;
+    }
+    onEventChange(event) {
+        this.eventId = event;
 
-    //}
+    }
 
-    ////AddBio
-    //addBio() {
-    //    this.bio.TruflUserID = this.truflid;
-    //    this.bio.RestaurantID = this.RestaurantId;
-    //    this.bio.BioID = this.categoryId;
-    //    this.bio.BioEventID = this.eventId;
-    //    this.bio.BioDesc = this.description;
+    //AddBio
+    addBio() {
+        this.bio.TruflUserID = this.truflid;
+        this.bio.RestaurantID = this.RestaurantId;
+        this.bio.BioID = this.categoryId;
+        this.bio.BioEventID = this.eventId;
+        this.bio.BioDesc = this.description;
 
-    //    console.log(this.bio);
-    //    this.AddBioEvents(this.bio);
-    //    this.bioModal.nativeElement.click();
-    //}
-    ////close ADD Bio
-    //close() {
-    //    this.bioModal.nativeElement.click();
-    //}
+        console.log(this.bio);
+        this.AddBioEvents(this.bio);
+        this.bioModal.nativeElement.click();
+    }
+    //close ADD Bio
+    close() {
+        this.bioModal.nativeElement.click();
+    }
 
-    ////for Bio categories
-    //GetBioCategories() {
-    //    this.settingsService.GetBioCategories().subscribe((res: any) => {
-    //        this.bioCategories = res._Data;
+    //for Bio categories
+    GetBioCategories() {
+        this.settingsService.GetBioCategories().subscribe((res: any) => {
+            this.bioCategories = res._Data;
 
-    //    }
-    //    );
-    //}
+        }
+        );
+    }
 
-    ////for Bio events based on categories
-    //GetBioEvents(categoryId) {
-    //    this.settingsService.GetBioEvents(categoryId).subscribe((res: any) => {
-    //        this.bioEvents = res._Data;
+    //for Bio events based on categories
+    GetBioEvents(categoryId) {
+        this.settingsService.GetBioEvents(categoryId).subscribe((res: any) => {
+            this.bioEvents = res._Data;
 
-    //    }
-    //    );
-    //}
+        }
+        );
+    }
 
-    ////for AddBio Event
-    //AddBioEvents(bio) {
-    //    this.settingsService.AddUserBioEvents(bio).subscribe((res: any) => {
+    //for AddBio Event
+    AddBioEvents(bio) {
+        this.settingsService.AddUserBioEvents(bio).subscribe((res: any) => {
 
-    //        window.setTimeout(() => {
-    //            this._toastr.success("Event Added");
+            window.setTimeout(() => {
+                this._toastr.success("Event Added");
 
-    //        }, 500);
-    //        window.setTimeout(() => {
-    //            this.bioModal.nativeElement.click();
+            }, 500);
+            window.setTimeout(() => {
+                this.bioModal.nativeElement.click();
 
 
-    //        }, 2000);
-    //    }
-    //    );
-    //}
+            }, 2000);
+        }
+        );
+    }
 
     //routing
     waitlistPage() {

@@ -8,17 +8,15 @@ import { Router } from '@angular/router';
 })
 export class OtherSettingsComponent {
     private othersettingsdetails;
-    private othersettinginfo:any= {};
-    
     constructor(private _otherservice: OtherSettingsService,private router: Router) {
 
-       
+        this.getOtherSelections();
     }
     getOtherSelections() {
 
-        this._otherservice.postOtherSettingsDetails(this.othersettinginfo).subscribe((res: any) => {
+        this._otherservice.getOtherSettingsDetails().subscribe((res: any) => {
             this.othersettingsdetails = res._Data;
-           
+            console.log(this.othersettingsdetails.name, "this.othersettingsdetails.name");
 
         });
     }
@@ -26,8 +24,6 @@ export class OtherSettingsComponent {
         this.router.navigateByUrl('/defaultSettings');
     }
     savenext() {
-        
-        console.log(this.othersettinginfo, "othersettinginfo");
         this.router.navigateByUrl('/defaultSettings');
     }
 }

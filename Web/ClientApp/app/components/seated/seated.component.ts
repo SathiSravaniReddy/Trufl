@@ -139,7 +139,7 @@ export class SeatedComponent implements OnInit {
         //this.router.navigateByUrl('');
     }
     settingsPage() {
-        this.router.navigateByUrl('/defaultSettings');
+        this.router.navigateByUrl('/settings');
     }
 
     public hasData(): boolean {

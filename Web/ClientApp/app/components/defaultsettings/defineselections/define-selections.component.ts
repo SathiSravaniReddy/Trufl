@@ -11,10 +11,7 @@ export class DefineSelectionsComponent {
     private defineselectionsdetails;
     private selectionsname;
     private currentRow;
-    public isShow: boolean = false;
-    private currentsectionStartNumber;
-    private currentsectionsEndNumber;
-    private arr = [];
+    public isShow: boolean = false;;
     constructor(private _defineservice: DefineSelectionService, private router: Router) {
         
 
@@ -38,17 +35,21 @@ export class DefineSelectionsComponent {
          this.router.navigateByUrl('/defaultSettings');
     }
      saveclose() {
-         console.log(this.arr, "savedata");
          this.router.navigateByUrl('/defaultSettings');
      }
 
 
-     showProfile(profile, seatArr, index) {
+     showProfile(defineselections) {
          var _that = this;
-         console.log(profile, "defineselectionsrwtert");
+         console.log(defineselections, "defineselectionsrwtert");
          console.log(this.defineselectionsdetails, "sfgdfgdfgf");
-         this.currentRow = profile.name;
-         this.arr = seatArr;
+         this.currentRow =defineselections.name;
+         this.defineselectionsdetails.map(function (obj) {
+             obj.isShow = obj.name == _that.currentRow;
+             obj.definename = obj.name.split(" ");
+             console.log(obj.definename, "  obj.definename");
+         });
+
          this.isShow = true;
         
      }

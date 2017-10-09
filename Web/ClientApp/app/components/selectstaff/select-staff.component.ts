@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { StaffService} from "./select-staff.service";
+import { StaffService } from "./select-staff.service";
+import { SharedService } from '../shared/Shared.Service';
 
 @Component({
     selector: 'selectStaff',
@@ -10,15 +11,39 @@ import { StaffService} from "./select-staff.service";
 })
 export class SelectStaffComponent implements OnInit {
     private staff_info: any;
-    private currentRow: any;
+    private firstname: any;
+    private lastname: any;
     private isShow: boolean = false;
-    constructor(private router: Router, private staffService: StaffService) {
+    private staffimage: any;
+    public array: any[] = [];
+    public selectstaff:any[]=[];
+    constructor(private router: Router, private staffService: StaffService,private sharedService:SharedService) {
 
     }
 
    
     ngOnInit() {
         this.getStaffDetails();
+        this.array = [{ id: 1, name: 'Main Dining' }, { id: 2, name: 'Bar Area' }, { id: 3, name: 'Mezzanine' }, { id: 4, name: 'Patio' }, { id: 5, name: 'Rooftop Bar' }]
+       /* this.selectstaff = this.sharedService.arraydata;*/
+        this.selectstaff.push(this.sharedService.arraydata);   
+
+        console.log(this.selectstaff);       
+
+
+       
+       var index= this.array.map(function (object,index,selectstaff:any) {
+            if(object.id==selectstaff.id)
+            {
+                return object.id;
+            }
+
+           })
+
+       
+
+
+
 
     }
 
@@ -44,7 +69,19 @@ export class SelectStaffComponent implements OnInit {
 
 
     showProfile(staffdetails: any) {
-        console.log(staffdetails);
+        this.isShow = true;
+        this.firstname = staffdetails.firstname;
+        this.lastname =staffdetails.lastname;
+        this.staffimage = staffdetails.img;
+
         
-     }
+        
+    }
+
+    closeProile() {
+
+        this.isShow = false;
+
+    }
+
 }

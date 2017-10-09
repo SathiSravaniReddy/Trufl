@@ -9,12 +9,11 @@ export class OtherSettingsService {
     constructor(private http: Http) {
     }
 
-  
-    postOtherSettingsDetails(othersettingsinfo: any) {
-        console.log(othersettingsinfo,"other settings info from service");
-        return this.http.post('', othersettingsinfo).map(
-            (res) => res.json()
-        )
+    getOtherSettingsDetails() {
+
+        return this.http.post("assets/othersettings.json",'').map(
+        (res) => res.json())
+
     }
 
 }
