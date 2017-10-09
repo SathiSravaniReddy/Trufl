@@ -109,6 +109,7 @@ export class HostessComponent {
         this.RestaurantId = data.RestaurantID;
         this.username = data.UserName;
         this.pic = data.pic;
+        console.log(this.pic, "  this.pic");
         this.showTurnSeats = true;
         this.showSeated = false;
         this.ActiveSeats = false;
