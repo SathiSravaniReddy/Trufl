@@ -55,7 +55,8 @@ import { EditGuestComponent } from "./components/EditGuest/editguest.component";
 import { GuestService } from "./components/addguest/addguest.service";
 import { SharedService } from "./components/shared/Shared.Service";
 import { EditGuestService } from "./components/EditGuest/editguest.service";
-import { StaffService} from "./components/selectstaff/select-staff.service"
+import { StaffService } from "./components/selectstaff/select-staff.service"
+import { SelectService } from "./components/selectselections/select-sections.service";
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -108,6 +109,7 @@ DefaultSettingsComponent,
         GuestService,
         SharedService,
         EditGuestService,
+        SelectService,
         StaffService,
         [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }]
     ],
