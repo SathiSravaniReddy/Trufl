@@ -16,4 +16,9 @@ export class ManageServersService {
 
     }
 
+    getFloorDetails() {
+        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantOpenSections/1').map(
+            (res) => res.json())
+
+    }
 }
