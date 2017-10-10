@@ -19,10 +19,11 @@
 
     <div class="selectfloor">
         <ul>
-            <li *ngFor="let section of data;let i=index" [ngStyle]="{ 'background-image': 'url(' + section.FloorImage + ')'}" (click)="select(section,i)" [class.selected]="i == selectedSection">
+            <li id="imm" *ngFor="let section of selectiondata;let i=index" [ngStyle]="{ 'background-image': 'url(' +x + section.FloorImage + ')'}" (click)="select(section,i)" >
 
-                <a>
-                    <h3>{{section.sectionName}}</h3>
+               
+                <a  >
+                    <h3>{{section.FloorName}}</h3>
                 </a>
             </li>
 
