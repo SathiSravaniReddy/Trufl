@@ -14,13 +14,16 @@ export class SelectSelectionsComponent implements OnInit {
     private selectedSection: Number;
     private array: any[] = [];
     public selections: any;
-   
+
     public records: any;
     public FloorImage: any;
     public data: any[] = [];
     public detailsofselections: any;
-    public finalarray: any[]=[];
+    public finalarray: any[] = [];
     public totalData: any[];
+
+    public selectiondata: any;
+    public x: any;
 
     constructor(private router: Router, private sharedService: SharedService, private selectService: SelectService, private _sanitizer: DomSanitizer) {
 
@@ -34,20 +37,22 @@ export class SelectSelectionsComponent implements OnInit {
     public getDetails() {
 
         this.selectService.getDetails().subscribe((res: any) => {
-           
-            this.selections = res._Data;
+
+            this.x = 'data:image/JPEG;base64,'
+            this.selectiondata = res._Data;
+            this.selections = Object.assign({}, this.selectiondata);
             console.log(this.selections);
-            
-            for (var i = 0; i < this.selections.length; i++) {
+
+         /*   for (var i = 0; i < this.selections.length; i++) {
                 this.FloorImage = 'data:image/jpeg;base64,'
                 this.records = this.FloorImage.concat(this.selections[i].FloorImage);
                 this.selections[i].FloorImage = this.records;
                 this.data.push(this.selections[i]);
-                
-            }
 
-          
-            console.log(this.data); 
+            } 
+
+
+            console.log(this.data);*/
 
 
 
@@ -56,35 +61,48 @@ export class SelectSelectionsComponent implements OnInit {
 
     }
 
-    
+
     public back() {
+       
         this.router.navigateByUrl('/startservice');
     }
     public next() {
         this.router.navigateByUrl('/selectStaff');
 
-        this.selectService.updateselection(this.totalData).subscribe((res: any) => {
+        this.selectService.updateselection(this.array).subscribe((res: any) => {
             console.log(res);
 
         })
 
-
-
-        
     }
+
+
+
+
+
+
+
+
     public select(section, index) {
+
+
+        this.sharedService.arraydata.push(section);
+
+        console.log(this.sharedService.arraydata); 
+
+
         var details = {
-            "RestaurantID":section['RestaurantID'],
+            "RestaurantID": section['RestaurantID'],
             "FloorNumber": section['FloorNumber'],
-            "IsActive":false,
-            "IsDelete":true
+            "IsActive": false,
+            "IsDelete": true
         }
         if (this.array.length) {
-            let index = this.array.findIndex(function(item) {
+            let index = this.array.findIndex(function (item) {
                 return item.FloorNumber === section.FloorNumber;
             })
             if (index >= 0) {
-                this.array[index]=details
+                this.array[index] = details
             }
             else {
                 this.array.push(details);
@@ -92,40 +110,39 @@ export class SelectSelectionsComponent implements OnInit {
         }
         else {
 
-             this.array.push(details)
+            this.array.push(details)
         }
 
 
-      /*  let x = this.selections.map((item, i) => {
-            if (i == index) {
-                return { "IsActive": false, "RestaurantID": item.RestaurantID, "FloorNumber": item.FloorNumber };
-            }
-            else {
-                return { "IsActive": true, "RestaurantID": item.RestaurantID, "FloorNumber": item.FloorNumber }
-            }
-        })*/
-        
 
-        //console.log(x)
+        console.log(this.array);
 
-
-
-
-
-
-       /* let indexes = this.array.findIndex(function (item) {
-            return item.FloorNumber === this.selections.FloorNumber;
-        }) */
+     
        
 
 
+       /* if (this.array.length) {
+            let index1 = this.selections.findIndex(function (item) {
+                return item.FloorNumber === section.FloorNumber;
+            })
+            if (index1 >= 0) {
+                this.selections[index1] = details;
+                console.log(this.selections);
+            }
 
-      /*  let indexes = this.array.findIndex(function (item) {
-            return item.FloorNumber === this.selections.FloorNumber;
-        })
-      */
+        }*/
+        
+       /* let index1 = this.array.findIndex(function (item) {
+            this.selections.map(function (itemdata) {
+                return item.FloorNumber === itemdata.FloorNumber;
+            })
+           
+        })*/
 
-       for (var i = 0; i < this.selections.length; i++) {
+
+
+
+      /*  for (var i = 0; i < this.selections.length; i++) {
 
             for (var j = 0; j < this.array.length; j++) {
 
@@ -135,44 +152,29 @@ export class SelectSelectionsComponent implements OnInit {
 
                 }
             }
-        } 
+        }*/
+
+ 
+     /*   this.selections.map(item => {
+            this.finalarray.push({
+                "RestaurantID": item['RestaurantID'],
+                "FloorNumber": item['FloorNumber'],
+                "IsActive": true,
+                "IsDelete": true
+            })
+        });
+
 
        
-        //this.selections.map(function(selectiondata) {
-        //    var detailsofselections = {
-        //        "RestaurantID": selectiondata['RestaurantID'],
-        //        "FloorNumber": selectiondata['FloorNumber'],
-        //        "IsActive": true,
-        //        "IsDelete": true
-        //    }
-          
-        //    console.log(detailsofselections);
-        //    this.finalarray.push(detailsofselections);
-
-        //})  
-       this.selections.map(item => {
-           this.finalarray.push({
-               "RestaurantID": item['RestaurantID'],
-               "FloorNumber": item['FloorNumber'],
-               "IsActive": true,
-               "IsDelete": true
-           })
-       });
-
-
-      // var totalData = []
-       this.totalData = this.finalarray.concat(this.array);     
-
+        this.totalData = this.finalarray.concat(this.array);
         console.log(this.finalarray);
-
         this.totalData.sort(function (a, b) { return a.FloorNumber - b.FloorNumber });
-        console.log(this.totalData);
+        console.log(this.totalData); */
 
-        
-        this.sharedService.arraydata = this.array;
-        console.log(this.sharedService.arraydata);
-       
+
+     
+
     }
 
-   
+
 }

@@ -16,36 +16,75 @@ export class SelectStaffComponent implements OnInit {
     private isShow: boolean = false;
     private staffimage: any;
     public array: any[] = [];
-    public selectstaff:any[]=[];
+    public selectstaff: any[] = [];
+    public status: boolean=false;
+    public serversstaff: any;
+    public getstaff_info: any;
+    public isDisabled;
+    public Floor_Number: any; 
+    public final_array: any[] = [];
+
     constructor(private router: Router, private staffService: StaffService,private sharedService:SharedService) {
 
     }
 
    
     ngOnInit() {
-        this.getStaffDetails();
-        this.array = [{ id: 1, name: 'Main Dining' }, { id: 2, name: 'Bar Area' }, { id: 3, name: 'Mezzanine' }, { id: 4, name: 'Patio' }, { id: 5, name: 'Rooftop Bar' }]
-       /* this.selectstaff = this.sharedService.arraydata;*/
-        this.selectstaff.push(this.sharedService.arraydata);   
-
-        console.log(this.selectstaff);       
-
-
        
-       var index= this.array.map(function (object,index,selectstaff:any) {
-            if(object.id==selectstaff.id)
-            {
-                return object.id;
-            }
+            this.staffService.getFloorNames().subscribe((res: any) => {
+                this.array = res._Data;
+                console.log(this.array);
 
-           })
 
+                this.selectstaff = this.sharedService.arraydata;
+                for (var i = 0; i < this.array.length; i++) {
+                    for (var j = 0; j < this.selectstaff.length; j++) {
+                        if (this.array[i].FloorName == this.selectstaff[j].FloorName) {
+                            this.array[i].isDisabled = true;
+                            break;
+                        }
+                        else {
+                            this.array[i].isDisabled = false;
+                        }
+                    }
+                }
+
+
+
+            })      
+
+           this.getStaffDetails();     
        
+         
 
+
+    
+
+    }
+
+
+
+
+    valueChange($event) {       
+        this.Floor_Number = $event.target.value;
+        console.log(this.Floor_Number);
+
+
+        var details = {
+            "RestaurantID": 1,
+            "TruflUserID": 2,
+            "RestaurantFloorNumber": this.Floor_Number
+
+        }
+
+        this.final_array.push(details);
+
+        console.log(this.final_array);
 
 
 
     }
+
 
     public getStaffDetails() {
       
@@ -61,20 +100,34 @@ export class SelectStaffComponent implements OnInit {
    
 
     back() {
+        this.sharedService.arraydata = [];
         this.router.navigateByUrl('/selectselections');
     }
     next() {
+
+        console.log(this.getstaff_info);      
+
+
+        this.staffService.postStaffDetails(this.final_array).subscribe((res: any) => {
+            console.log(res);
+
+        })
+
+       
+
         this.router.navigateByUrl('/reviewSelections');
     }
 
 
     showProfile(staffdetails: any) {
+
+        this.getstaff_info = staffdetails;
+
         this.isShow = true;
         this.firstname = staffdetails.firstname;
         this.lastname =staffdetails.lastname;
         this.staffimage = staffdetails.img;
-
-        
+       /* this.RestaurantFloorNumber = staffdetails.RestaurantFloorNumber */       
         
     }
 

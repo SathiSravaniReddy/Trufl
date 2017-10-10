@@ -129,8 +129,9 @@
 
 
             <div class="switch" style="color:red; margin:0 auto;display:block">
-                <select>                   
-                    <option *ngFor="let title of array" >{{title.name}}</option>
+                <select  (change)="valueChange($event)"  >  
+                    <option>---pleaseselect----</option>
+                    <option *ngFor="let title of array;let i = index"    value={{title.FloorNumber}}     [disabled]="title.isDisabled">{{title.FloorName}}</option>
                 </select>
 
             </div>
