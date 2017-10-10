@@ -83,7 +83,7 @@ namespace Trufl.Data_Access_Layer
             return sourceapilist;
         }
 
-        public DataTable GetWaitListUsers()
+        public DataTable GetWaitListUsers(int RestaurantID)
         {
             DataTable sendResponse = new DataTable();
             try
@@ -91,10 +91,13 @@ namespace Trufl.Data_Access_Layer
                 string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
                 using (SqlConnection sqlcon = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand("spGetTruflUser", sqlcon))
+                    using (SqlCommand cmd = new SqlCommand("spGetWaitListUsers", sqlcon))
                     {
                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
                         cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+
 
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
