@@ -20,3 +20,9 @@ D:\Projects-2017\Trufl_09-18-2017\Trufl.Logging\obj\Debug\Trufl.Logging.csprojRe
 D:\Projects-2017\Trufl_09-18-2017\Trufl.Logging\obj\Debug\Trufl.Logging.csproj.CoreCompileInputs.cache
 D:\Projects-2017\Trufl_09-18-2017\Trufl.Logging\obj\Debug\Trufl.Logging.dll
 D:\Projects-2017\Trufl_09-18-2017\Trufl.Logging\obj\Debug\Trufl.Logging.pdb
+D:\Trufl-Dev\Trufl.Logging\bin\Debug\Trufl.Logging.dll
+D:\Trufl-Dev\Trufl.Logging\bin\Debug\Trufl.Logging.pdb
+D:\Trufl-Dev\Trufl.Logging\obj\Debug\Trufl.Logging.csprojResolveAssemblyReference.cache
+D:\Trufl-Dev\Trufl.Logging\obj\Debug\Trufl.Logging.csproj.CoreCompileInputs.cache
+D:\Trufl-Dev\Trufl.Logging\obj\Debug\Trufl.Logging.dll
+D:\Trufl-Dev\Trufl.Logging\obj\Debug\Trufl.Logging.pdb

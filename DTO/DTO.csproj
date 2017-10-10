@@ -66,6 +66,7 @@
     <Compile Include="RestaurantSectionStaffDTO.cs" />
     <Compile Include="RestPasswordDTO.cs" />
     <Compile Include="SaveRestaurantDTO.cs" />
+    <Compile Include="SaveRestaurantGuestDTO.cs" />
     <Compile Include="SaveUserBioEventsDTO.cs" />
     <Compile Include="SettingsDTO.cs" />
     <Compile Include="SignDTO.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="TruflUserDTO.cs" />
     <Compile Include="UpdateBookingTableNumberDTO.cs" />
     <Compile Include="UpdateRestaurantHostStatusDTO.cs" />
+    <Compile Include="UserBioEventsDTO.cs" />
     <Compile Include="UserProfile.cs" />
   </ItemGroup>
   <ItemGroup>
