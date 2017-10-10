@@ -154,5 +154,25 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.SaveRestaurantOpenTime(RestaurantID, Time);
         }
+
+        public DataTable GetRestaurantHostessOpenSectionDetails(int RestaurantID, string UserType)
+        {
+            return _hostessDL.GetRestaurantHostessOpenSectionDetails(RestaurantID, UserType);
+        }
+
+        public DataSet GetRestaurantGuest(int RestaurantID, int UserId, string UserType)
+        {
+            return _hostessDL.GetRestaurantGuest(RestaurantID, UserId, UserType);
+        }
+        //public bool SaveRestaurantOpenSectionStaff(RestaurantSectionStaffDTO RestaurantSectionStaff)
+        //{
+        //    return _hostessDL.SaveRestaurantOpenSectionStaff(RestaurantSectionStaff);
+        //}
+
+        public bool SaveRestaurantGuest(SaveRestaurantGuestDTO SaveRestaurantGuest)
+        {
+            return _hostessDL.SaveRestaurantGuest(SaveRestaurantGuest);
+        }
+
     }
 }

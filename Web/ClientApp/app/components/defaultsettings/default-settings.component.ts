@@ -19,4 +19,16 @@ export class DefaultSettingsComponent {
     otherSettings() {
         this.router.navigateByUrl('/otherSettings');
     }
+    waitlistPage() {
+        this.router.navigateByUrl('/waitlist');
+    }
+    seatedPage() {
+        this.router.navigateByUrl('/seated');
+    }
+    snapshotPage() {
+        //this.router.navigateByUrl('');
+    }
+    settingsPage() {
+        this.router.navigateByUrl('/defaultSettings');
+    }
 }

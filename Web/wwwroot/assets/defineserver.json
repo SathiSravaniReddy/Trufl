@@ -4,33 +4,62 @@
   "_Data": [
     {
       "name": "main daining",
-      "sectionStartNumber": 15,
-      "sectionsEndNumber": 35
+      "seatNumbers": [
+        {
+          "sectionStartNumber": 15,
+          "sectionsEndNumber": 35
+        },
+        {
+          "sectionStartNumber": 15,
+          "sectionsEndNumber": 35
+        }
+      ]
+      
     },
     {
       "name": "Bar Area",
-      "sectionStartNumber": 1,
-      "sectionsEndNumber": 14
+      "seatNumbers": [
+        {
+          "sectionStartNumber": 15,
+          "sectionsEndNumber": 35
+        }
+      ]
     },
     {
       "name": "Patio",
-      "sectionStartNumber": 33,
-      "sectionsEndNumber": 49
+      "seatNumbers": [
+        {
+          "sectionStartNumber": 15,
+          "sectionsEndNumber": 35
+        }
+      ]
     },
     {
       "name": "2nd Floor Dining",
-      "sectionStartNumber": 50,
-      "sectionsEndNumber": 78
+      "seatNumbers": [
+        {
+          "sectionStartNumber": 15,
+          "sectionsEndNumber": 35
+        }
+      ]
     },
     {
       "name": "Mezzanine",
-      "sectionStartNumber": 79,
-      "sectionsEndNumber": 89
+      "seatNumbers": [
+        {
+          "sectionStartNumber": 15,
+          "sectionsEndNumber": 35
+        }
+      ]
     },
     {
       "name": "Roof TopBar",
-      "sectionStartNumber": 90,
-      "sectionsEndNumber": 100
+      "seatNumbers": [
+        {
+          "sectionStartNumber": 15,
+          "sectionsEndNumber": 35
+        }
+      ]
     }
   ]
 }

@@ -53,11 +53,11 @@ export class SeatedComponent implements OnInit {
                 return !obj['Empty']
             })
 
-          
-
+           console.log(this.seatedinfo, "this.seatedinfo");
+           
         })
 
-
+        
 
     }
 

@@ -1145,6 +1145,7 @@ namespace Trufl.Data_Access_Layer
         /// </summary>
         /// <param name="restaurantActiveSections">RestaurantActiveSectionsDTO restaurantActiveSections</param>
         /// <returns></returns>
+
         public bool SaveRestaurantOpenSectionStaff(List<RestaurantSectionStaffDTO> restaurantSectionStaff)
         {
             try
@@ -1199,8 +1200,6 @@ namespace Trufl.Data_Access_Layer
             }
         }
 
-
-
         public DataSet GetRestaurantWaitTimeOpenSectionStaff(int RestaurantID)
         {
             DataSet dssendResponse = new DataSet();
@@ -1245,6 +1244,7 @@ namespace Trufl.Data_Access_Layer
         {
             try
             {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
@@ -1279,9 +1279,191 @@ namespace Trufl.Data_Access_Layer
                 ExceptionLogger.WriteToErrorLogFile(ex);
                 return false;
             }
-            // return sendResponse;
         }
 
+        public DataTable GetRestaurantHostessOpenSectionDetails(int RestaurantID, string UserType)
+        {
+            DataTable dtsendResponse = new DataTable();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantHostesOpenSectionDetails", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserType", UserType);
+                        tvpParam1.SqlDbType = SqlDbType.Text;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dtsendResponse);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return dtsendResponse;
+        }
+
+       
+        public bool SaveRestaurantGuest(SaveRestaurantGuestDTO SaveRestaurantGuest)
+        {
+            try
+            {
+                var dtUserBioEvents = new DataTable();
+                dtUserBioEvents.Columns.Add("UserBioEventID", typeof(Int32));
+                dtUserBioEvents.Columns.Add("RestaurantID", typeof(Int32));
+                dtUserBioEvents.Columns.Add("TruflUserID", typeof(Int32));
+                dtUserBioEvents.Columns.Add("BioID", typeof(Int32));
+                dtUserBioEvents.Columns.Add("Description", typeof(string));
+
+                dtUserBioEvents.Rows.Add(SaveRestaurantGuest.UserBioEventsTY.UserBioEventID,
+                                      SaveRestaurantGuest.UserBioEventsTY.RestaurantID,
+                                      SaveRestaurantGuest.UserBioEventsTY.TruflUserID,
+                                      SaveRestaurantGuest.UserBioEventsTY.BioID,
+                                      SaveRestaurantGuest.UserBioEventsTY.Description);
+
+                //if (SaveRestaurantGuest.TruflUserID == 0)
+                //    SaveRestaurantGuest.TruflUserID = null;
+
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveRestaurantGuest", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", SaveRestaurantGuest.RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@TruflUserID", SaveRestaurantGuest.TruflUserID);
+                        tvpParam1.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@FullName", SaveRestaurantGuest.FullName);
+                        tvpParam2.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam3 = cmd.Parameters.AddWithValue("@Email", SaveRestaurantGuest.Email);
+                        tvpParam3.SqlDbType = SqlDbType.Text;
+                         SqlParameter tvpParam4 = cmd.Parameters.AddWithValue("@ContactNumber", SaveRestaurantGuest.ContactNumber);
+                        tvpParam4.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam5 = cmd.Parameters.AddWithValue("@UserType", SaveRestaurantGuest.UserType);
+                        tvpParam5.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam6 = cmd.Parameters.AddWithValue("@UserBioEventsTY", dtUserBioEvents);
+                        tvpParam6.SqlDbType = SqlDbType.Structured;
+                        //SqlParameter tvpParam7 = cmd.Parameters.AddWithValue("@Picture", SaveRestaurantGuest.Picture);
+                        //tvpParam7.SqlDbType = SqlDbType.Text;
+
+                        SqlParameter pvRetVal = new SqlParameter();
+                        pvRetVal.ParameterName = "@RetVal";
+                        pvRetVal.DbType = DbType.Int32;
+                        pvRetVal.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvRetVal);
+
+                        int status = cmd.ExecuteNonQuery();
+                        if (status == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
+        public DataSet GetRestaurantGuest(int RestaurantID, int UserId, string UserType)
+        {
+            DataSet dssendResponse = new DataSet();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantGuest", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@UserType", UserType);
+                        tvpParam1.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@TruflUserID", UserId);
+                        tvpParam2.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dssendResponse);
+                        }
+                        dssendResponse.Tables[0].TableName = "TruflUser";
+                        dssendResponse.Tables[1].TableName = "UserBioEvent";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return dssendResponse;
+        }
+
+        //public bool SaveRestaurantOpenSectionStaff(RestaurantSectionStaffDTO RestaurantSectionStaff)
+        //{
+        //    string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+        //    try
+        //    {
+        //        var dtrestSectStaff = new DataTable();
+        //        dtrestSectStaff.Columns.Add("RestaurantID", typeof(Int32));
+        //        dtrestSectStaff.Columns.Add("TruflUserID", typeof(Int32));
+        //        dtrestSectStaff.Columns.Add("RestaurantFloorNumber", typeof(Int32));
+
+        //        dtrestSectStaff.Rows.Add(RestaurantSectionStaff.RestaurantID,
+        //                              RestaurantSectionStaff.TruflUserID,
+        //                              RestaurantSectionStaff.RestaurantFloorNumber);
+
+        //        using (SqlConnection con = new SqlConnection(connectionString))
+        //        {
+        //            con.Open();
+        //            using (SqlCommand cmd = new SqlCommand("spSaveRestaurantOpenSectionStaff", con))
+        //            {
+        //                cmd.CommandType = CommandType.StoredProcedure;
+        //                SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantSectionStaffTY", RestaurantSectionStaff);
+        //                tvpParam.SqlDbType = SqlDbType.Structured;
+
+        //                SqlParameter pvRetVal = new SqlParameter();
+        //                pvRetVal.ParameterName = "@RetVal";
+        //                pvRetVal.DbType = DbType.Int32;
+        //                pvRetVal.Direction = ParameterDirection.Output;
+        //                cmd.Parameters.Add(pvRetVal);
+
+        //                int status = cmd.ExecuteNonQuery();
+        //                if (status == 0)
+        //                {
+        //                    return false;
+        //                }
+        //                else
+        //                {
+        //                    return true;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionLogger.WriteToErrorLogFile(ex);
+        //        return false;
+        //    }
+        //}
 
         //////////////NOT IN USE
         ///// <summary>
