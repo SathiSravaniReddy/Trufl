@@ -30,13 +30,13 @@ export class ManageServersComponent {
         var _that = this;
         console.log(manageserver, "defineselectionsrwtert");
         console.log(this.manageserverdetails, "sfgdfgdfgf");
-        this.currentRow = manageserver.name;
-        this.currentimage = manageserver.img
-        this.manageserverdetails.map(function (obj) {
-            obj.isShow = obj.name == _that.currentRow;
-            obj.definename = obj.name.split(" ");
-            console.log(obj.definename, "  obj.definename");
-        });
+        this.currentRow = manageserver.FullName;
+        this.currentimage = manageserver.pic
+        //this.manageserverdetails.map(function (obj) {
+        //    obj.isShow = obj.name == _that.currentRow;
+        //    obj.definename = obj.name.split(" ");
+        //    console.log(obj.definename, "  obj.definename");
+        //});
         this.isShow = true;
 
 
