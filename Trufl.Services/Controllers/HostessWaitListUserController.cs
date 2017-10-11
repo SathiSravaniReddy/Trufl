@@ -29,14 +29,14 @@ namespace Trufl.Services.Controllers
 
 
         #region WaitList
-        [Route("GetWaitListUsers/{RestaurantID}")]
+        [Route("GetWaitListUsers")]
         [HttpGet]
-        public object GetTruflUserList(int RestaurantID)
+        public object GetTruflUserList()
         {
             DataTable res = new DataTable();
             try
             {
-                res = _hostessBL.GetWaitListUsers(RestaurantID);
+                res = _hostessBL.GetWaitListUsers();
                 return Json(new JsonResponseResult { _ErrorCode = TruflConstants._ErrorCodeSuccess, _Data = res, _StatusCode = TruflConstants._StatusCodeOK, _StatusMessage = TruflConstants._StatusMessageSuccess });
             }
             catch (Exception ex)

@@ -21,9 +21,9 @@ namespace Trufl.Business_Layer
             return _hostessDL.RetrieveUser();
         }
 
-        public DataTable GetWaitListUsers(int RestaurantID)
+        public DataTable GetWaitListUsers()
         {
-            return _hostessDL.GetWaitListUsers(RestaurantID);
+            return _hostessDL.GetWaitListUsers();
         }
 
         public DataTable AcceptedWaitedUser(int BookingID, int BookinStatus)
