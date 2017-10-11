@@ -1,6 +1,6 @@
 ﻿import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
+import { constant } from '../../shared/appsettings';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -11,9 +11,14 @@ export class ManageServersService {
 
     getManageServersDetails() {
 
-        return this.http.get("assets/managers.json").map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantHostessOpenSectionDetails/1/RH').map(
             (res) => res.json())
 
     }
 
+    getFloorDetails() {
+        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantOpenSections/1').map(
+            (res) => res.json())
+
+    }
 }

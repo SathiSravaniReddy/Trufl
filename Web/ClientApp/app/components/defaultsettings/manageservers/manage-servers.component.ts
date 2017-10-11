@@ -8,8 +8,12 @@ import { ManageServersService } from '../manageservers/manage-servers.service';
 })
 export class ManageServersComponent {
     private manageserverdetails;
+    private floordetails
     private currentRow;
     private currentimage;
+    private currentfloorname;
+    private filterfloorname;
+    private selectedFloorName;
     public isShow:boolean=false;
     constructor(private router: Router, private _managerservice: ManageServersService) {
         this.getmanagerServer();
@@ -25,20 +29,33 @@ export class ManageServersComponent {
 
 
     }
+    getFloorDetails(manageserver) {
+        var _that = this;
+        this._managerservice.getFloorDetails().subscribe((res: any) => {
+            this.floordetails = res._Data;
+            console.log(this.floordetails, " this.floordetails ");
+
+            this.filterfloorname = _that.floordetails.filter(function (obj) {
+                return obj.FloorNumber === manageserver.RestaurantFloorNumber;
+            });
+
+            if (this.filterfloorname.length > 0) {
+                this.selectedFloorName = this.filterfloorname[0].FloorNumber;
+            }
+        })
+       
+        console.log(this.filterfloorname, "this.filterfloorname");
+    }
 
     showProfile(manageserver) {
         var _that = this;
         console.log(manageserver, "defineselectionsrwtert");
         console.log(this.manageserverdetails, "sfgdfgdfgf");
-        this.currentRow = manageserver.name;
-        this.currentimage = manageserver.img
-        this.manageserverdetails.map(function (obj) {
-            obj.isShow = obj.name == _that.currentRow;
-            obj.definename = obj.name.split(" ");
-            console.log(obj.definename, "  obj.definename");
-        });
+        this.currentRow = manageserver.FullName;
+        this.currentimage = manageserver.pic;
+        
         this.isShow = true;
-
+        this.getFloorDetails(manageserver);
 
     }
 

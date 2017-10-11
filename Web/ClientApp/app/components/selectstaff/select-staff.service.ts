@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class StaffService {
+    public RestaurentId = 1;
     constructor(private http: Http) {
 
     }
@@ -15,6 +16,26 @@ export class StaffService {
         )
     }
 
+
+    postStaffDetails(staff_info: any) {
+        console.log(staff_info);
+        return this.http.post('http://localhost:8679/api/WaitListUser/SaveRestaurantOpenSectionStaff',staff_info).map((res) => {
+            (res) => res.json();
+        })
+    }
+
+
+    
+
+
+
+
+
+    getFloorNames() {
+        this.RestaurentId = 1;
+        return this.http.get('http://localhost:8679/api/WaitListUser/GetRestaurantOpenSections?RestaurantID=' + this.RestaurentId).map(
+            (res) =>res.json())
+    }
     
 
 

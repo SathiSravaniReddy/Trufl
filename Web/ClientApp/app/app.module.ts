@@ -27,7 +27,7 @@ import { HostessSettingsService } from './components/HostessSettings/settings.se
 import { DashboardService } from './components/dashboard/dashboard.service';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
+
 import {ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { MyDatePickerModule } from 'mydatepicker';
@@ -121,7 +121,6 @@ DefaultSettingsComponent,
         ReactiveFormsModule,
         MyDateRangePickerModule,
         NgxPaginationModule,
-        Ng2SearchPipeModule,
         ToastModule,
         MyDatePickerModule, 
        

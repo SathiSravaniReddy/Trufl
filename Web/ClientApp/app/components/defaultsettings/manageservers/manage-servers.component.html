@@ -22,9 +22,9 @@
         <ul>
            <li *ngFor="let _manageserver of manageserverdetails">
                 <a class="selected" (click)="showProfile(_manageserver)">
-                    <img src="{{_manageserver.img}}" alt="" />
+                    <img src="data:image/JPEG;base64,{{_manageserver.pic}}" alt="" />
                     <h3>
-                        {{_manageserver.name}}
+                        {{_manageserver.FullName}}
                     </h3>
                 </a>
 
@@ -45,7 +45,7 @@
 
 
         <div class="slidetop">
-            <img alt="" src="{{currentimage}}" />
+            <img alt="" src="data:image/JPEG;base64,{{currentimage}}" />
             <h5 class="name">{{currentRow}}</h5>
 
 
@@ -67,14 +67,12 @@
                 </label>
             </div>
 
-            <div class="slideform"><label>Section Start Number </label> <select>
-    <option value="Main Dining">Main Dining</option>
-    <option value="Bar Area">Bar Area</option>
-    <option value="Patio">Patio</option>
-    <option value="2nd Floor Dining">2nd Floor Dining</option>
-    <option value="Mezzanine">Mezzanine</option>
-    <option value="Roof TopBar">Roof TopBar</option>                                                                                                                                              
-</select>  </div>
+            <div class="slideform"><label>Section Start Number </label> 
+            <select [(ngModel)]="selectedFloorName">
+                <option *ngFor="let _floordetails of floordetails;" value={{_floordetails.FloorNumber}}>{{_floordetails.FloorName}}</option>
+                                                                                                                                          
+            </select>  
+  </div>
 
         </div>
 
