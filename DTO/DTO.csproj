@@ -64,6 +64,7 @@
     <Compile Include="RestaurantSeatedUsersDTO.cs" />
     <Compile Include="RestaurantOpenSectionDTO.cs" />
     <Compile Include="RestaurantSectionStaffDTO.cs" />
+    <Compile Include="RestaurantSettingsDTO.cs" />
     <Compile Include="RestPasswordDTO.cs" />
     <Compile Include="SaveRestaurantDTO.cs" />
     <Compile Include="SaveRestaurantGuestDTO.cs" />
