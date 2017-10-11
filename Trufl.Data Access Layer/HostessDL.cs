@@ -91,7 +91,7 @@ namespace Trufl.Data_Access_Layer
                 string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
                 using (SqlConnection sqlcon = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand("spGetTruflUser", sqlcon))
+                    using (SqlCommand cmd = new SqlCommand("spGetWaitListUsers", sqlcon))
                     {
                         cmd.CommandTimeout = TruflConstants.DBResponseTime;
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -209,9 +209,11 @@ namespace Trufl.Data_Access_Layer
                 dtClient.Columns.Add("TruflTCID", typeof(Int32));
                 dtClient.Columns.Add("ModifiedDate", typeof(DateTime));
                 dtClient.Columns.Add("ModifiedBy", typeof(Int32));
-                dtClient.Columns.Add("Quoted", typeof(DateTime));
+                dtClient.Columns.Add("Quoted", typeof(Int32));
                 dtClient.Columns.Add("PaymentStatus", typeof(string));
                 dtClient.Columns.Add("TableNumbers", typeof(string));
+                dtClient.Columns.Add("WaitListTime", typeof(DateTime));
+                dtClient.Columns.Add("SeatedTime", typeof(DateTime));
 
 
                 dtClient.Rows.Add(bookingTableInput.BookingID,
@@ -228,8 +230,11 @@ namespace Trufl.Data_Access_Layer
                                    bookingTableInput.ModifiedBy,
                                    bookingTableInput.Quoted,
                                    bookingTableInput.PaymentStatus,
-                                   bookingTableInput.TableNumbers
+                                   bookingTableInput.TableNumbers,
+                                   bookingTableInput.WaitListTime,
+                                   bookingTableInput.SeatedTime
                                    );
+
 
                 string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -1357,8 +1362,12 @@ namespace Trufl.Data_Access_Layer
                         tvpParam5.SqlDbType = SqlDbType.Text;
                         SqlParameter tvpParam6 = cmd.Parameters.AddWithValue("@UserBioEventsTY", dtUserBioEvents);
                         tvpParam6.SqlDbType = SqlDbType.Structured;
-                        //SqlParameter tvpParam7 = cmd.Parameters.AddWithValue("@Picture", SaveRestaurantGuest.Picture);
-                        //tvpParam7.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam7 = cmd.Parameters.AddWithValue("@Picture", SaveRestaurantGuest.BookingStatus);
+                        tvpParam7.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam8 = cmd.Parameters.AddWithValue("@UserType", SaveRestaurantGuest.WaitListTime);
+                        tvpParam8.SqlDbType = SqlDbType.DateTime;
+                        SqlParameter tvpParam9 = cmd.Parameters.AddWithValue("@UserType", SaveRestaurantGuest.SeatedTime);
+                        tvpParam9.SqlDbType = SqlDbType.DateTime;
 
                         SqlParameter pvRetVal = new SqlParameter();
                         pvRetVal.ParameterName = "@RetVal";

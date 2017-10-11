@@ -9,7 +9,8 @@ export class GuestService {
     }
 
 
-    addGuestDetails(guestInfo: any) {
+    addGuestDetails(guestInfo: any, number: any) {
+        console.log(number);
         console.log(guestInfo);
         return this.http.post('', guestInfo).map(
             (res) => res.json()
