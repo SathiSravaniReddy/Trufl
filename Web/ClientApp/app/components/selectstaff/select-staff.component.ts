@@ -11,8 +11,8 @@ import { SharedService } from '../shared/Shared.Service';
 })
 export class SelectStaffComponent implements OnInit {
     private staff_info: any;
-    private firstname: any;
-    private lastname: any;
+    private FullName: any;
+   
     private isShow: boolean = false;
     private staffimage: any;
     public array: any[] = [];
@@ -24,12 +24,19 @@ export class SelectStaffComponent implements OnInit {
     public Floor_Number: any; 
     public final_array: any[] = [];
 
+    public FloorNumber: any;
+    public selectdFloorName: any;
+
     constructor(private router: Router, private staffService: StaffService,private sharedService:SharedService) {
 
     }
 
    
     ngOnInit() {
+
+
+             
+
        
             this.staffService.getFloorNames().subscribe((res: any) => {
                 this.array = res._Data;
@@ -72,14 +79,36 @@ export class SelectStaffComponent implements OnInit {
 
         var details = {
             "RestaurantID": 1,
-            "TruflUserID": 2,
-            "RestaurantFloorNumber": this.Floor_Number
+            "TruflUserID": this.getstaff_info.TruflUserID,
+            "RestaurantFloorNumber": JSON.parse(this.Floor_Number)
 
         }
+       
+        //this.final_array.push(details);
 
-        this.final_array.push(details);
+        if (this.final_array.length) {
+            let index = this.final_array.findIndex(function (item) {
+                return item.TruflUserID === details['TruflUserID']
+            })
+
+            if (index >= 0) {
+                this.final_array[index] = details;
+            }
+            else {
+                this.final_array.push(details)
+            }
+
+        } else {
+            this.final_array.push(details);
+        }
+
+
 
         console.log(this.final_array);
+
+
+
+       
 
 
 
@@ -105,7 +134,7 @@ export class SelectStaffComponent implements OnInit {
     }
     next() {
 
-        console.log(this.getstaff_info);      
+        console.log(this.final_array);      
 
 
         this.staffService.postStaffDetails(this.final_array).subscribe((res: any) => {
@@ -120,15 +149,15 @@ export class SelectStaffComponent implements OnInit {
 
 
     showProfile(staffdetails: any) {
+        this.getstaff_info = staffdetails; 
 
-        this.getstaff_info = staffdetails;
+        console.log(this.getstaff_info);
 
         this.isShow = true;
-        this.firstname = staffdetails.firstname;
-        this.lastname =staffdetails.lastname;
-        this.staffimage = staffdetails.img;
-       /* this.RestaurantFloorNumber = staffdetails.RestaurantFloorNumber */       
-        
+        this.FullName = staffdetails.FullName;      
+        this.staffimage = staffdetails.pic;
+        this.FloorNumber = this.getstaff_info.RestaurantFloorNumber;
+       
     }
 
     closeProile() {

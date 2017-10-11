@@ -20,11 +20,12 @@
     <div class="selectstaff">
         <ul  >
             <li *ngFor="let staffimage of staff_info">
-                <a class="selected"  (click)="showProfile(staffimage)">
-                    <img src="{{staffimage.img}}" alt="" />
+                <a class="selected"  (click)="showProfile(staffimage)">                   
+
+                    <img alt="" src="data:image/JPEG;base64,{{staffimage.pic}}" />
                     <h3>
                         <!--John <br /> Addams -->
-                        {{staffimage.firstname}}<br /> {{staffimage.lastname}}
+                        {{staffimage.FullName}}  
                     </h3>
                 </a>
             </li>
@@ -119,7 +120,7 @@
         <div class="slidetop">
           <!--  <img alt="" src="../../../../../wwwroot/images/restaurants1.jpg" /> -->
           
-            <img src="{{staffimage}}" alt="" /><h5 class="name">{{firstname}}<br /> {{lastname}}</h5>
+            <img src="data:image/JPEG;base64,{{staffimage}}" alt="" /><h5 class="name">{{FullName}}</h5>
           
              
 
@@ -130,8 +131,8 @@
 
             <div class="switch" style="color:red; margin:0 auto;display:block">
                 <select  (change)="valueChange($event)"  >  
-                    <option>---pleaseselect----</option>
-                    <option *ngFor="let title of array;let i = index"    value={{title.FloorNumber}}     [disabled]="title.isDisabled">{{title.FloorName}}</option>
+                    <option>---select section----</option>
+                    <option *ngFor="let title of array;let i = index"  [selected]="title.FloorNumber===FloorNumber"  value={{title.FloorNumber}}     [disabled]="title.isDisabled">{{title.FloorName}}</option>
                 </select>
 
             </div>
