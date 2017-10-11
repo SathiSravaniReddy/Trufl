@@ -20,9 +20,12 @@ namespace DTO
         public int TruflTCID { get; set; }
         public DateTime ModifiedDate { get; set; }
         public int ModifiedBy { get; set; }
-        public DateTime Quoted { get; set; }
+        public int Quoted { get; set; }
         public string PaymentStatus { get; set; }
         public string TableNumbers { get; set; }
         public int LoggedInUser { get; set; }
+        public DateTime? WaitListTime { get; set; }
+        public DateTime? SeatedTime { get; set; }
+
     }
 }
