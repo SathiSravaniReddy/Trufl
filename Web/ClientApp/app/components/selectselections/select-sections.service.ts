@@ -12,7 +12,7 @@ export class SelectService {
 
     getDetails() {
         this.RestaurentId = 1;
-        return this.http.get('http://localhost:8679/api/WaitListUser/GetRestaurantOpenSections?RestaurantID='+this.RestaurentId).map(
+        return this.http.get('http://localhost:8679/api/WaitListUser/GetRestaurantOpenSections/'+this.RestaurentId).map(
             (res) => res.json()
         )
     }
