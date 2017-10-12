@@ -19,7 +19,7 @@
     <div class="col-md-6">
 
         <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text"  [(ngModel)]="_othersettingsdetails.DiningTime" id="dining" #dining="ngModel" ng-pattern="^[0-1]{2,}$" required minlength="2">
+            <input class="input__field input__field--haruki" type="text"  [(ngModel)]="_othersettingsdetails.DiningTime" id="dining" #dining="ngModel" pattern="^[0-1]{2,}$" required minlength="2">
             <label *ngIf="dining.invalid && (dining.dirty || dining.touched)" class="alert alert-danger">
 
                 <label *ngIf="dining.errors.required">

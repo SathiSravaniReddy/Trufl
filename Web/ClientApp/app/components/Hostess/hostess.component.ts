@@ -113,7 +113,7 @@ export class HostessComponent {
         this.RestaurantId = data.RestaurantID;
         this.username = data.UserName;
         this.pic = data.pic;
-       
+        this.showProfile = true;
       
         //this.ActiveSeats = false;
         this.usertype = data.TruflMemberType;
