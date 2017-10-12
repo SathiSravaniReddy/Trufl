@@ -88,7 +88,7 @@
     top: 100px;
     overflow-y: auto;
     width: 300px;
-    z-index: 9999;
+    /*z-index: 9999;*/
 }
 
 #close {
@@ -107,9 +107,37 @@
     float: left;
     width: 100%;
     padding: 5px;
-    height: 30px;
+    height: 34px;
     background: #4f5879;
     color: #fff;
     border: #4f5879 solid 1px;
 }
 
+
+.modalBgColoor {
+    background-color: #424242;
+    padding: 3%;
+    width: 90%;
+}
+.fontColor {
+    color: #bdbdc1;
+}
+#serverCheckInOutModal select {
+    background-color: #1f2025;
+    width:100%;
+}
+#serverCheckInOutModal .modal-header, #serverCheckInOutModal .modal-footer {
+    border: none !important;
+}
+#serverCheckInOutModal .modal-header {
+    padding-bottom: 0px;
+}
+
+#serverCheckInOutModal .modal {
+    top: 25%;
+    left: 17%
+}
+
+.primary-btn:hover{
+    cursor:pointer;
+}

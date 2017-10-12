@@ -15,7 +15,7 @@ export class HostessService {
     //Service for Users List display
     public getTruflUserList() {
 
-        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetWaitListUsers')
+        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetWaitListUsers/1')
             .map(res => res.json() || {})
             .catch(this.handleError);
     }

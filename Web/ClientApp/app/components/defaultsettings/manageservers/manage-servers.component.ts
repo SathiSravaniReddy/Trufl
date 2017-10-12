@@ -15,6 +15,8 @@ export class ManageServersComponent {
     private filterfloorname;
     private selectedFloorName;
     public isShow:boolean=false;
+  
+    public isChecked: boolean = false;
     constructor(private router: Router, private _managerservice: ManageServersService) {
         this.getmanagerServer();
 
@@ -26,8 +28,6 @@ export class ManageServersComponent {
             console.log(this.manageserverdetails, "this.manageserverdetails");
 
         })
-
-
     }
     getFloorDetails(manageserver) {
         var _that = this;
@@ -56,6 +56,7 @@ export class ManageServersComponent {
         
         this.isShow = true;
         this.getFloorDetails(manageserver);
+        this.isChecked = false;
 
     }
 
