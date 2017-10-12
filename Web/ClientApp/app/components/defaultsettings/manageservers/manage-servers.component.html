@@ -5,83 +5,82 @@
         <h2>Manage Servers</h2>
     </div>
     <div class="customheaderright">
-        <a class="secondary-btn"(click)="cancel()">
+        <a class="secondary-btn" (click)="cancel()">
             cancel
         </a>
         <a class="primary-btn" (click)="saveclose()">
-            SaveandClose
+            Save and Close
         </a>
     </div>
 
 </div>
-<div class="col-md-12 servicesmain msgap" >
-
-
-
+<div class="col-md-12 servicesmain msgap">
     <div class="selectstaff">
         <ul>
-           <li *ngFor="let _manageserver of manageserverdetails">
+            <li *ngFor="let _manageserver of manageserverdetails">
                 <a class="selected" (click)="showProfile(_manageserver)">
                     <img src="data:image/JPEG;base64,{{_manageserver.pic}}" alt="" />
                     <h3>
                         {{_manageserver.FullName}}
                     </h3>
                 </a>
-
             </li>
-            
         </ul>
-
     </div>
- 
-
     <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
-
-
-
-
         <a id="close" class="close" (click)="closeprofile()"><span>x</span></a>
-
-
-
         <div class="slidetop">
             <img alt="" src="data:image/JPEG;base64,{{currentimage}}" />
             <h5 class="name">{{currentRow}}</h5>
-
-
-
-
         </div>
-
-
-
-
         <div class="slideformmain">
-
-            <div class="slidetoggle">
-                <label>Check In / Out</label>
-
-                <label class="switch">
-                    <input type="checkbox">
+            <div class="slidetoggle mrgBottom15">
+                <label class="lblmargin">Check In / Out</label>
+                <label class="switch mrfLeft42 mrgTop9">
+                    <input type="checkbox" [(ngModel)]="isChecked" data-toggle="modal" data-target="#serverCheckInOutModal">
                     <span class="slider round"></span>
                 </label>
             </div>
+            <div class="slideform">
+                <label>Section Start Number </label> <select>
+                    <option value="Main Dining">Main Dining</option>
+                    <option value="Bar Area">Bar Area</option>
+                    <option value="Patio">Patio</option>
+                    <option value="2nd Floor Dining">2nd Floor Dining</option>
+                    <option value="Mezzanine">Mezzanine</option>
+                    <option value="Roof TopBar">Roof TopBar</option>
+                </select>
+            </div>
+        </div>
+        <div class="slidetoggle"><label>Make Changes Permanent?</label> <input type="checkbox" />  </div>
+    </div>
+</div>
 
-            <div class="slideform"><label>Section Start Number </label> <select>
-    <option value="Main Dining">Main Dining</option>
-    <option value="Bar Area">Bar Area</option>
-    <option value="Patio">Patio</option>
-    <option value="2nd Floor Dining">2nd Floor Dining</option>
-    <option value="Mezzanine">Mezzanine</option>
-    <option value="Roof TopBar">Roof TopBar</option>                                                                                                                                              
-</select>  </div>
 
+<!--Server Check In/Out Modal-->
+<div id="serverCheckInOutModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content modalBgColoor fontColor">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Clock <span> {{currentRow}} </span> Out?</h4>
+            </div>
+            <div class="modal-body">
+                <p>Would you like to assign this section to another server?</p>
+                <div>
+                    <label style="color:#ececec">Main Dining </label><br />
+                    <select>
+                        <option *ngFor="let _manageserver of manageserverdetails">{{_manageserver.FullName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="primary-btn pull-right" data-dismiss="modal">SUBMIT</button>
+                <button type="button" class="secondary-btn pull-right" data-dismiss="modal">CLOSE</button>
+            </div>
         </div>
 
-        <div class="slidetoggle"><label>Make Changes Permanent?</label> <input type="checkbox" />  </div>
-
-
-
     </div>
-
 </div>

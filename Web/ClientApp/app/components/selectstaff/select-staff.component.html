@@ -124,39 +124,55 @@
              
 
         </div>
-
         <div class="slideformmain">
+            <div class="slidetoggle mrgBottom15">
+                <label class="lblmargin">Check In / Out</label>
+
+                <label class="switch mrfLeft42 mrgTop9">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="slideform">
+
+                <select>
+                    <option value="Main Dining">Main Dining</option>
+                    <option value="Bar Area">Bar Area</option>
+                    <option value="Mezzanine">Mezzanine</option>
+                    <option value="Patio">Patio</option>
+                    <option value="Roof TopBar">Roof TopBar</option>
+                </select>
 
 
-            <div class="switch" style="color:red; margin:0 auto;display:block">
-                <select  (change)="valueChange($event)"  >  
+                <!--<div class="switch" style="color:red; margin:0 auto;display:block">
+                <select  (change)="valueChange($event)"  >
                     <option>---pleaseselect----</option>
                     <option *ngFor="let title of array;let i = index"    value={{title.FloorNumber}}     [disabled]="title.isDisabled">{{title.FloorName}}</option>
                 </select>
 
+            </div>-->
+                <!-- <div class="slidetoggle">
+                  <label>Open / Close</label>
+
+                  <label class="switch">
+                      <input type="checkbox">
+                      <span class="slider round"></span>
+                  </label>
+              </div>
+
+              <div class="slideform"><label>Section Start Number </label> <input type="text" />  </div>
+
+              <div class="slideform"><label>Section End Number </label> <input type="text" />  </div>
+              <div class="slideform"><a href="#">+ Add More </a>  </div> -->
             </div>
-          <!-- <div class="slidetoggle">
-                <label>Open / Close</label>
 
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div> 
+            <!--<div class="slidetoggle"><label>Make Changes Permanent?</label> <input type="checkbox" />  </div> -->
 
-            <div class="slideform"><label>Section Start Number </label> <input type="text" />  </div>
+       </div>
 
-            <div class="slideform"><label>Section End Number </label> <input type="text" />  </div>
-            <div class="slideform"><a href="#">+ Add More </a>  </div> -->
+
+
         </div>
-
-        <!--<div class="slidetoggle"><label>Make Changes Permanent?</label> <input type="checkbox" />  </div> -->
-
-
-
-
-
-    </div>
 
 
 

@@ -10,7 +10,8 @@ export class ManageServersComponent {
     private manageserverdetails;
     private currentRow;
     private currentimage;
-    public isShow:boolean=false;
+    public isShow: boolean = false;
+    public isChecked: boolean = false;
     constructor(private router: Router, private _managerservice: ManageServersService) {
         this.getmanagerServer();
 
@@ -22,8 +23,6 @@ export class ManageServersComponent {
             console.log(this.manageserverdetails, "this.manageserverdetails");
 
         })
-
-
     }
 
     showProfile(manageserver) {
@@ -38,7 +37,7 @@ export class ManageServersComponent {
         //    console.log(obj.definename, "  obj.definename");
         //});
         this.isShow = true;
-
+        this.isChecked = false;
 
     }
 
