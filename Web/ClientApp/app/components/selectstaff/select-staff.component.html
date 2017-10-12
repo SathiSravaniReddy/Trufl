@@ -132,7 +132,7 @@
             <div class="switch" style="color:red; margin:0 auto;display:block">
                 <select  (change)="valueChange($event)"  >  
                     <option>---select section----</option>
-                    <option *ngFor="let title of array;let i = index"  [selected]="title.FloorNumber===FloorNumber"  value={{title.FloorNumber}}     [disabled]="title.isDisabled">{{title.FloorName}}</option>
+                    <option *ngFor="let title of array;let i = index"  [selected]="title.FloorNumber===FloorNumber"  value={{title.FloorNumber}}     [disabled]="title.IsActive==false">{{title.FloorName}}</option>
                 </select>
 
             </div>

@@ -39,11 +39,11 @@ export class StaffService {
         this.RestaurentId = 1;
         return this.http.get('http://localhost:8679/api/WaitListUser/GetRestaurantOpenSections/' + this.RestaurentId).map(
             (res) =>res.json())
-    }
-    
+    }   
 
 
 
+   
 
 
 }

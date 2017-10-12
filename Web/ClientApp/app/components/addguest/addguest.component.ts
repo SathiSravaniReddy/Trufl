@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
 
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { GuestService } from './addguest.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared/Shared.Service';
@@ -47,11 +48,12 @@ export class AddGuestComponent {
 
 
 
-    onSubmit(guestdetails: any) {
+    onSubmit(guestdetails: any, form: NgForm) {
         this.guestservice.addGuestDetails(guestdetails,this.number).subscribe((res: any) => {
             console.log(res);
         })
-       // this.data = '';
+        form.resetForm();
+      
 
     }
     get(number:any) {
