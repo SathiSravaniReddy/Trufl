@@ -19,31 +19,30 @@ import { Router } from "@angular/router";
 export class HostessComponent {
     private username;
     private pic;
-
-
     private restaurantName;
     private truflUserList;
     private selectedRow: Number;
-    private priceOfTable;
-    private classForAccept;
-    private sizeOfTable;
-    private accepted;
-    private classForSeated;
+    private currentDate: any;
+    //private priceOfTable;
+    //private classForAccept;
+    //private sizeOfTable;
+    //private accepted;
+    //private classForSeated;
     private RestaurantId;
-    private count = 0;
-    private tableData;
-    private restaurantTableData;
-    private dataOfTable;
-    private selectedTableNumber;
-    private multipleTables;
+    //private count = 0;
+    //private tableData;
+    //private restaurantTableData;
+    //private dataOfTable;
+    //private selectedTableNumber;
+    //private multipleTables;
     private showProfile: boolean = false;
     private profileData: any = [];
     private tablesSelected: any = [];
-    showSeatedButton: boolean = false;
-    hideSeatedButton: boolean = false;
-    showTurnSeats: boolean = false;
-    showSeated: boolean = true;
-    ActiveSeats: boolean = false;
+    //showSeatedButton: boolean = false;
+    //hideSeatedButton: boolean = false;
+    //showTurnSeats: boolean = false;
+    //showSeated: boolean = true;
+    //ActiveSeats: boolean = false;
     public currentSelectedUser: string;
     private bioinfo;
 
@@ -54,49 +53,54 @@ export class HostessComponent {
     private bioData: any = [];
     private restaurantid: any;
     //add Bio
-    private bioCategories: any = [];
-    private bioEvents: any = [];
-    private categoryId = 1;
-    private eventId = 1;
-    private showEvents: boolean = false;
-    private description;
-    private loginDetails;
-    private bio = new BioEvent();
-    @ViewChild('bioModal') bioModal;
+    //private bioCategories: any = [];
+    //private bioEvents: any = [];
+    //private categoryId = 1;
+    //private eventId = 1;
+    //private showEvents: boolean = false;
+    //private description;
+    //private loginDetails;
+    //private bio = new BioEvent();
+    //@ViewChild('bioModal') bioModal;
 
     //Array for Table size
-    TableSize = [
-        { 'size': 2 },
-        { 'size': 4 },
-        { 'size': 6 },
-        { 'size': 8 },
-        { 'size': 10 },
-        { 'size': 12 },
-        { 'size': 14 },
-        { 'size': 16 },
-        { 'size': 18 },
-        { 'size': 20 },
-    ];
+    //TableSize = [
+    //    { 'size': 2 },
+    //    { 'size': 4 },
+    //    { 'size': 6 },
+    //    { 'size': 8 },
+    //    { 'size': 10 },
+    //    { 'size': 12 },
+    //    { 'size': 14 },
+    //    { 'size': 16 },
+    //    { 'size': 18 },
+    //    { 'size': 20 },
+    //];
 
     constructor(private hostessService: HostessService, private settingsService: HostessSettingsService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router) {
         this._toastr.setRootViewContainerRef(vRef);
-        this.classForAccept = "selected";
-        this.classForSeated = "";
+        //this.classForAccept = "selected";
+        //this.classForSeated = "";
         this.restaurantName = this.loginService.getRestaurantName();
 
 
+ 
+        this.getWaitListData();
+      
+       
+
+    }
+   
+    getWaitListData() {
+    //Displaying trufl user's list
+    this.hostessService.getTruflUserList().subscribe((res: any) => {
+        this.truflUserList = res._Data;
 
 
-        console.log(this.usertype, "  this.usertype");
-        console.log(this.truflid, " this.truflid");
-        console.log(this.restaurantid, " this.restaurantid");
-        //Displaying trufl user's list
-        this.hostessService.getTruflUserList().subscribe((res: any) => {
-            this.truflUserList = res._Data;
-
-            console.log(this.truflUserList, " this.truflUserList");
 
         });
+
+    this.currentDate = new Date();
 
     }
 
@@ -109,36 +113,33 @@ export class HostessComponent {
         this.RestaurantId = data.RestaurantID;
         this.username = data.UserName;
         this.pic = data.pic;
-        console.log(this.pic, "  this.pic");
-        this.showTurnSeats = true;
-        this.showSeated = false;
-        this.ActiveSeats = false;
+       
+      
+        //this.ActiveSeats = false;
         this.usertype = data.TruflMemberType;
-        this.profile(data.TruflUserID);
+        //this.profile(data.TruflUserID);
         this.truflid = data.TruflUserID;
         this.restaurantid = data.RestaurantID;
         this.usertype = data.TruflMemberType;
-        console.log(this.truflid, " this.truflid");
-        console.log(this.restaurantid, " this.restaurantid");
+       
         this.profileData = data;
-        if (this.showSeatedButton == true) {
-            this.hideSeatedButton = false;
-            this.showSeatedButton = false;
-        }
-        if (this.count == 0) {
-            this.showTurnSeats = true;
-            this.showSeated = true;
-        } else {
-            this.showSeated = true;
-        }
+        //if (this.showSeatedButton == true) {
+        //    this.hideSeatedButton = false;
+        //    this.showSeatedButton = false;
+        //}
+        //if (this.count == 0) {
+          
+        //} else {
+           
+        //}
 
-        this.truflUserList.map(function (obj) {
-            if (obj.Email != data.Email) {
-                obj.isShowLinks = false;
-            }
-        })
-        this.classForAccept = "selected";
-        this.classForSeated = "";
+        //this.truflUserList.map(function (obj) {
+        //    if (obj.Email != data.Email) {
+        //        obj.isShowLinks = false;
+        //    }
+        //})
+        //this.classForAccept = "selected";
+        //this.classForSeated = "";
 
 
         this.getBioinformation();
@@ -150,7 +151,7 @@ export class HostessComponent {
         this.hostessService.getBioInformation(this.restaurantid, this.truflid, this.usertype).subscribe((res: any) => {
             this.bioinfo = res._Data;
             this.bioData = this.bioinfo.BioData;
-            console.log(this.bioinfo.BioData, " this.bioinfo");
+          
         });
 
     }
@@ -158,117 +159,117 @@ export class HostessComponent {
 
 
     //functionality for table size
-    OnTableSizeSelection(item) {
-        this.hostessService.getRestaurantTableAmount(this.RestaurantId, item.size).subscribe((res: any) => {
-            this.priceOfTable = "No Price Available";
-            if (res._Data[0].Amount) {
-                this.priceOfTable = res._Data[0].Amount;
-            }
-        });
-        var _that = this;
-        if (this.showSeatedButton == true) {
-            this.ActiveSeats = false;
-        }
-        else {
-            this.ActiveSeats = true;
-            this.sizeOfTable = item.size;
-            this.hideSeatedButton = false;
-            event.stopPropagation();
-        }
+    //OnTableSizeSelection(item) {
+    //    this.hostessService.getRestaurantTableAmount(this.RestaurantId, item.size).subscribe((res: any) => {
+    //        this.priceOfTable = "No Price Available";
+    //        if (res._Data[0].Amount) {
+    //            this.priceOfTable = res._Data[0].Amount;
+    //        }
+    //    });
+    //    var _that = this;
+    //    if (this.showSeatedButton == true) {
+    //        this.ActiveSeats = false;
+    //    }
+    //    else {
+    //        this.ActiveSeats = true;
+    //        this.sizeOfTable = item.size;
+    //        this.hideSeatedButton = false;
+    //        event.stopPropagation();
+    //    }
 
-        this.truflUserList.map(function (obj) {
-            obj.isShowLinks = obj.Email == _that.currentSelectedUser;
-        })
+    //    this.truflUserList.map(function (obj) {
+    //        obj.isShowLinks = obj.Email == _that.currentSelectedUser;
+    //    })
 
-    }
+    //}
 
     //Functionality for Accept
-    accept(item) {
-        this.hideSeatedButton = false;
-        this.ActiveSeats = false;
-        this.showSeatedButton = true;
-        this.count++;
-        this.accepted = 2;
-        event.stopPropagation();
-        this.hostessService.acceptedandremovedwaiteduser(item.RestaurantID, this.accepted).subscribe((res: any) => {
+    //accept(item) {
+    //    this.hideSeatedButton = false;
+    //    this.ActiveSeats = false;
+    //    this.showSeatedButton = true;
+    //    this.count++;
+    //    this.accepted = 2;
+    //    event.stopPropagation();
+    //    this.hostessService.acceptedandremovedwaiteduser(item.RestaurantID, this.accepted).subscribe((res: any) => {
 
-        });
-        this.classForAccept = "success";
-        this.classForSeated = "selected";
+    //    });
+    //    this.classForAccept = "success";
+    //    this.classForSeated = "selected";
 
-        window.setTimeout(() => {
-            this._toastr.success("search payment has been accepted she has been notified to come to the hostess stand to get started");
-        }, 200);
-    }
+    //    window.setTimeout(() => {
+    //        this._toastr.success("search payment has been accepted she has been notified to come to the hostess stand to get started");
+    //    }, 200);
+    //}
 
     //Functionality for Seated
-    seated(item) {
-        this.dataOfTable = item;
-        this.hostessService.getRestaurantTables(item.RestaurantID, 1).subscribe((res: any) => {
-            this.tableData = res._Data;
-        });
+    //seated(item) {
+    //    this.dataOfTable = item;
+    //    this.hostessService.getRestaurantTables(item.RestaurantID, 1).subscribe((res: any) => {
+    //        this.tableData = res._Data;
+    //    });
 
 
-    }
+    //}
 
     //Functionality for submitting reastuarnt table
-    submitRestaurantTable() {
-        this.restaurantTableData = { "BookingID": this.dataOfTable.BookingID, "UserID": this.dataOfTable.TruflUserID, "RestaurantID": this.dataOfTable.RestaurantID, "BStatus": 3, "TableNumbers": this.multipleTables }
-        this.hostessService.updateBooking(this.restaurantTableData).subscribe((res: any) => {
-            console.log(res);
-        })
-        window.setTimeout(() => {
-            this._toastr.success("submitRestaurantTable");
-        }, 200);
+    //submitRestaurantTable() {
+    //    this.restaurantTableData = { "BookingID": this.dataOfTable.BookingID, "UserID": this.dataOfTable.TruflUserID, "RestaurantID": this.dataOfTable.RestaurantID, "BStatus": 3, "TableNumbers": this.multipleTables }
+    //    this.hostessService.updateBooking(this.restaurantTableData).subscribe((res: any) => {
+    //        console.log(res);
+    //    })
+    //    window.setTimeout(() => {
+    //        this._toastr.success("submitRestaurantTable");
+    //    }, 200);
 
-    }
+    //}
 
     //Selecting table
-    selectTable(item) {
-        this.tablesSelected.push(item.TableNo);
-        var uniq = this.tablesSelected.filter(function (elem, index, self) {
-            return index == self.indexOf(elem);
-        });
-        this.multipleTables = uniq.join(',');
-    }
+    //selectTable(item) {
+    //    this.tablesSelected.push(item.TableNo);
+    //    var uniq = this.tablesSelected.filter(function (elem, index, self) {
+    //        return index == self.indexOf(elem);
+    //    });
+    //    this.multipleTables = uniq.join(',');
+    //}
 
     //Functinality for closing restaurant table
-    closeRestaurantTable() {
-        this.classForAccept = "success";
-        this.classForSeated = "selected";
-        window.setTimeout(() => {
-            this._toastr.success("closed restauranttabel");
-        }, 200);
+    //closeRestaurantTable() {
+    //    this.classForAccept = "success";
+    //    this.classForSeated = "selected";
+    //    window.setTimeout(() => {
+    //        this._toastr.success("closed restauranttabel");
+    //    }, 200);
 
-    }
+    //}
 
     //Functionality for Remove
-    remove(item) {
-        this.accepted = 5;
-        this.hostessService.acceptedandremovedwaiteduser(item.RestaurantID, this.accepted).subscribe((res: any) => {
+    //remove(item) {
+    //    this.accepted = 5;
+    //    this.hostessService.acceptedandremovedwaiteduser(item.RestaurantID, this.accepted).subscribe((res: any) => {
 
-        });
-        this.hostessService.getTruflUserList().subscribe((res: any) => {
-            this.truflUserList = res._Data;
-        });
-        window.setTimeout(() => {
-            this._toastr.success("removed successfully");
-        }, 200);
-    }
+    //    });
+    //    this.hostessService.getTruflUserList().subscribe((res: any) => {
+    //        this.truflUserList = res._Data;
+    //    });
+    //    window.setTimeout(() => {
+    //        this._toastr.success("removed successfully");
+    //    }, 200);
+    //}
 
     //Functionality for Cancel
-    cancelSeats() {
-        var _that = this;
-        this.showTurnSeats = false;
-        this.hideSeatedButton = false;
-        this.ActiveSeats = false;
-        this.showSeatedButton = true;
-        this.truflUserList.map(function (obj) {
-            obj.isShowLinks = false;
-        })
-        this.count++;
-        this.showProfile = false;
-    }
+    //cancelSeats() {
+    //    var _that = this;
+    //    this.showTurnSeats = false;
+    //    this.hideSeatedButton = false;
+    //    this.ActiveSeats = false;
+    //    this.showSeatedButton = true;
+    //    this.truflUserList.map(function (obj) {
+    //        obj.isShowLinks = false;
+    //    })
+    //    this.count++;
+    //    this.showProfile = false;
+    //}
 
 
     //Functionality for closing side nav
@@ -277,35 +278,35 @@ export class HostessComponent {
     }
 
     //print functionality
-    print(profileSection: string) {
-        let popupWinindow
-        let innerContents = document.getElementById('profileSection').innerHTML;
-        popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
-        popupWinindow.document.open();
-        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + innerContents + '</html>');
-        popupWinindow.document.close();
-    }
+    //print(profileSection: string) {
+    //    let popupWinindow
+    //    let innerContents = document.getElementById('profileSection').innerHTML;
+    //    popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+    //    popupWinindow.document.open();
+    //    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + innerContents + '</html>');
+    //    popupWinindow.document.close();
+    //}
 
     //show profile
-    profile(truflUserId) {
+    //profile(truflUserId) {
 
-        this.truflid = truflUserId;
-        this.settingsService.getUserDetails(this.usertype, truflUserId, this.RestaurantId).subscribe((res: any) => {
-            this.settingsData = res._Data;
-            this.settingsData.UserProfielFullName.map((item: any) => {
-                this.profileData = item;
-            });
+    //    this.truflid = truflUserId;
+    //    this.settingsService.getUserDetails(this.usertype, truflUserId, this.RestaurantId).subscribe((res: any) => {
+    //        this.settingsData = res._Data;
+    //        this.settingsData.UserProfielFullName.map((item: any) => {
+    //            this.profileData = item;
+    //        });
             //Bio Data
             //this.bioData = this.settingsData.BioData;
 
             //History Data
 
-            this.showProfile = true;
-        });
+        //    this.showProfile = true;
+        //});
 
         //this.GetBioCategories();
         //this.showProfile = true;
-    }
+    //}
 
     //onCategoryChange(id) {
     //    this.categoryId = id;

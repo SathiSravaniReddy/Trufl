@@ -17,7 +17,7 @@ export class OtherSettingsService {
     }
     postOtherSettingsDetails(othersettingsinfo: any) {
         console.log(othersettingsinfo,"other settings info from service");
-        return this.http.post('api/Admin/SaveRestaurant',othersettingsinfo).map(
+        return this.http.post('api/Admin/SaveRestaurant',othersettingsinfo[0]).map(
             (res) => res.json()
         )
     }

@@ -19,7 +19,7 @@
     <div class="col-md-6">
 
         <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text"  [(ngModel)]="_othersettingsdetails.DiningTime" id="dining" #dining="ngModel" pattern="^[0-1]{2,}$" required minlength="2">
+            <input class="input__field input__field--haruki" type="text"  [(ngModel)]="_othersettingsdetails.DiningTime" id="dining" #dining="ngModel" ng-pattern="^[0-1]{2,}$" required minlength="2">
             <label *ngIf="dining.invalid && (dining.dirty || dining.touched)" class="alert alert-danger">
 
                 <label *ngIf="dining.errors.required">
@@ -28,7 +28,7 @@
                 <label *ngIf="dining.errors.minlength">
                     dining time must be at least 2 characters long.
                 </label>
-                <label *ngIf="dining.errors.pattern">
+                <label *ngIf="!dining.errors.pattern">
                     dining experience in minutes only
                 </label>
 
@@ -51,14 +51,15 @@
                     Preffered words is required.
                 </label>
                 
-                <label *ngIf="preffered.errors.pattern">
+                <label *ngIf="!preffered.errors.pattern">
                     Preffered words should be letters only
                 </label>
 
-                <label class="input__label input__label--haruki" for="input-1">
-                    <span class="input__label-content input__label-content--haruki">Host,Hostess,Mitre',Podium,etc</span>
+              
                 </label>
-                </label>
+            <label class="input__label input__label--haruki" for="input-1">
+                <span class="input__label-content input__label-content--haruki">Host,Hostess,Mitre',Podium,etc</span>
+            </label>
 </div>
 
     </div>
@@ -74,7 +75,7 @@
                     Geofence is required.
                 </label>
 
-                <label *ngIf="waitlist.errors.pattern">
+                <label *ngIf="!waitlist.errors.pattern">
                     Geofence should be number only
                 </label>
 
@@ -97,7 +98,7 @@
                     seatedtime is required.
                 </label>
 
-                <label *ngIf="seatedtime.errors.pattern">
+                <label *ngIf="!seatedtime.errors.pattern">
                     seatedtime should be number only
                 </label>
 
@@ -122,7 +123,7 @@
                     capacity is required.
                 </label>
 
-                <label *ngIf="capacity.errors.pattern">
+                <label *ngIf="!capacity.errors.pattern">
                     capacity should be number only
                 </label>
 
@@ -145,13 +146,11 @@
                     price is required.
                 </label>
 
-                <label *ngIf="price.errors.pattern">
+                <label *ngIf="!price.errors.pattern">
                     price should be number only
                 </label>
 
-                <label class="input__label input__label--haruki" for="input-1">
-                    <span class="input__label-content input__label-content--haruki">Host,Hostess,Mitre',Podium,etc</span>
-                </label>
+               
             </label>
 
 
