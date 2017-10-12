@@ -21,9 +21,9 @@ namespace Trufl.Business_Layer
             return _hostessDL.RetrieveUser();
         }
 
-        public DataTable GetWaitListUsers()
+        public DataTable GetWaitListUsers(int RestaurantID)
         {
-            return _hostessDL.GetWaitListUsers();
+            return _hostessDL.GetWaitListUsers(RestaurantID);
         }
 
         public DataTable AcceptedWaitedUser(int BookingID, int BookinStatus)
@@ -164,11 +164,7 @@ namespace Trufl.Business_Layer
         {
             return _hostessDL.GetRestaurantGuest(RestaurantID, UserId, UserType);
         }
-        //public bool SaveRestaurantOpenSectionStaff(RestaurantSectionStaffDTO RestaurantSectionStaff)
-        //{
-        //    return _hostessDL.SaveRestaurantOpenSectionStaff(RestaurantSectionStaff);
-        //}
-
+       
         public bool SaveRestaurantGuest(SaveRestaurantGuestDTO SaveRestaurantGuest)
         {
             return _hostessDL.SaveRestaurantGuest(SaveRestaurantGuest);

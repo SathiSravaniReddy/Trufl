@@ -17,7 +17,7 @@ export class AddGuestComponent {
     public data: any = {};
     public guest_info: any;
     public record: any;
-
+    public number: any;
 
 
 
@@ -39,21 +39,24 @@ export class AddGuestComponent {
 
 
 
+    addtowaitlist(guestdetails: any) {
+        console.log(guestdetails);
+
+
+    }
 
 
 
     onSubmit(guestdetails: any) {
-
-
-        this.guestservice.addGuestDetails(guestdetails).subscribe((res: any) => {
-
-            console.log(res)
-
-
+        this.guestservice.addGuestDetails(guestdetails,this.number).subscribe((res: any) => {
+            console.log(res);
         })
+       // this.data = '';
 
-        this.data = '';
-
+    }
+    get(number:any) {
+        this.number = number;
+        console.log(this.number);
     }
 
     editguest(guestrecord: any) {

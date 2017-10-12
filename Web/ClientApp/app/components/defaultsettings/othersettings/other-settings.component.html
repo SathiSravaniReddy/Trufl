@@ -13,13 +13,26 @@
     </div>
 
 </div>
-<div class="col-md-12 newguestmain">
+<div class="col-md-12 newguestmain" *ngFor="let _othersettingsdetails of  getothersettingsinfo;">
     <h3> Dining Experience</h3>
 
     <div class="col-md-6">
 
         <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" [ngModel]="othersettinginfo.dining">
+            <input class="input__field input__field--haruki" type="text"  [(ngModel)]="_othersettingsdetails.DiningTime" id="dining" #dining="ngModel" pattern="^[0-1]{2,}$" required minlength="2">
+            <label *ngIf="dining.invalid && (dining.dirty || dining.touched)" class="alert alert-danger">
+
+                <label *ngIf="dining.errors.required">
+                    dining time is required.
+                </label>
+                <label *ngIf="dining.errors.minlength">
+                    dining time must be at least 2 characters long.
+                </label>
+                <label *ngIf="!dining.errors.pattern">
+                    dining experience in minutes only
+                </label>
+
+            </label>
             <label class="input__label input__label--haruki" for="input-1">
                 <span class="input__label-content input__label-content--haruki">Length of average Dinner Service(in minutes)</span>
             </label>
@@ -31,36 +44,116 @@
     <h3>Preferred Word</h3>
     <div class="col-md-6">
         <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" [(ngModel)]="othersettinginfo.preffered">
+            <input class="input__field input__field--haruki" type="text"  [(ngModel)]="_othersettingsdetails.PreferredWord" id="preffered" #preffered="ngModel" pattern="^[a-zA-Z]$"  >
+            <label *ngIf="preffered.invalid && (preffered.dirty || preffered.touched)" class="alert alert-danger">
+
+                <label *ngIf="preffered.errors.required">
+                    Preffered words is required.
+                </label>
+                
+                <label *ngIf="!preffered.errors.pattern">
+                    Preffered words should be letters only
+                </label>
+
+              
+                </label>
             <label class="input__label input__label--haruki" for="input-1">
                 <span class="input__label-content input__label-content--haruki">Host,Hostess,Mitre',Podium,etc</span>
             </label>
-        </div>
+</div>
 
     </div>
     <br style="clear:both;" />
     <h3>Waitlist & Get Seated Now</h3>
     <div class="col-md-6">
         <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" [(ngModel)]="othersettinginfo.miles">
+            <input class="input__field input__field--haruki" type="text"  [(ngModel)]="_othersettingsdetails.Geofence" id="waitlist" #waitlist="ngModel" pattern="^[0-1]{1,}$" required minlength="1">
+
+            <label *ngIf="waitlist.invalid && (waitlist.dirty || waitlist.touched)" class="alert alert-danger">
+
+                <label *ngIf="waitlist.errors.required">
+                    Geofence is required.
+                </label>
+
+                <label *ngIf="!waitlist.errors.pattern">
+                    Geofence should be number only
+                </label>
+
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki">Host,Hostess,Mitre',Podium,etc</span>
+                </label>
+            </label>
+
             <label class="input__label input__label--haruki" for="input-1">
                 <span class="input__label-content input__label-content--haruki">Geofence(in miles)</span>
             </label>
         </div>
         <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" [(ngModel)]="othersettinginfo.time">
+            <input class="input__field input__field--haruki" type="text"  [(ngModel)]="_othersettingsdetails.GetSeatedTime" id="seatedtime" #seatedtime="ngModel" pattern="^[0-1]{1,}$" required minlength="1">
+
+
+            <label *ngIf="seatedtime.invalid && (seatedtime.dirty || seatedtime.touched)" class="alert alert-danger">
+
+                <label *ngIf="seatedtime.errors.required">
+                    seatedtime is required.
+                </label>
+
+                <label *ngIf="!seatedtime.errors.pattern">
+                    seatedtime should be number only
+                </label>
+
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki">Host,Hostess,Mitre',Podium,etc</span>
+                </label>
+            </label>
+
+
             <label class="input__label input__label--haruki" for="input-1">
                 <span class="input__label-content input__label-content--haruki">How long get seated now remain active(in mnimutes-enter 0 to remove time limit)</span>
             </label>
         </div>
         <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" [(ngModel)]="othersettinginfo.capacity">
+            <input class="input__field input__field--haruki" type="text"  [(ngModel)]="_othersettingsdetails.TableNowCapacity" id="capacity" #capacity="ngModel" pattern="^[0-1]{1,}$" required minlength="1">
+
+
+
+            <label *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)" class="alert alert-danger">
+
+                <label *ngIf="capacity.errors.required">
+                    capacity is required.
+                </label>
+
+                <label *ngIf="!capacity.errors.pattern">
+                    capacity should be number only
+                </label>
+
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki">Host,Hostess,Mitre',Podium,etc</span>
+                </label>
+            </label>
+
             <label class="input__label input__label--haruki" for="input-1">
                 <span class="input__label-content input__label-content--haruki">Default Get A Table Now Capacity[2,4,5,6,8,or10]</span>
             </label>
         </div>
         <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" [(ngModel)]="othersettinginfo.price">
+            <input class="input__field input__field--haruki" type="text"  [(ngModel)]="_othersettingsdetails.TableNowPrice" id="price" #price="ngModel" pattern="^[0-1]{3,}$" required minlength="3">
+
+
+            <label *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+
+                <label *ngIf="price.errors.required">
+                    price is required.
+                </label>
+
+                <label *ngIf="!price.errors.pattern">
+                    price should be number only
+                </label>
+
+               
+            </label>
+
+
             <label class="input__label input__label--haruki" for="input-1">
                 <span class="input__label-content input__label-content--haruki">Default Get A Table Now Price(in USD)</span>
             </label>

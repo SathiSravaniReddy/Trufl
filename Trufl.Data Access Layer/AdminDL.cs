@@ -399,7 +399,93 @@ namespace Trufl.Data_Access_Layer
             }
         }
 
-
         #endregion
+
+        public bool SaveRestaurantSettings(RestaurantSettingsDTO RestaurantSettings)
+        {
+            try
+            {
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("spSaveRestaurantSettings", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantSettings.RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam1 = cmd.Parameters.AddWithValue("@DiningTime", RestaurantSettings.DiningTime);
+                        tvpParam1.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam2 = cmd.Parameters.AddWithValue("@PreferredWord", RestaurantSettings.PreferredWord);
+                        tvpParam2.SqlDbType = SqlDbType.Text;
+                        SqlParameter tvpParam3 = cmd.Parameters.AddWithValue("@Geofence", RestaurantSettings.Geofence);
+                        tvpParam3.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam4 = cmd.Parameters.AddWithValue("@GetSeatedTime", RestaurantSettings.GetSeatedTime);
+                        tvpParam4.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam5 = cmd.Parameters.AddWithValue("@TableNowCapacity", RestaurantSettings.TableNowCapacity);
+                        tvpParam5.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam6 = cmd.Parameters.AddWithValue("@TableNowPrice", RestaurantSettings.TableNowPrice);
+                        tvpParam6.SqlDbType = SqlDbType.Int;
+
+                        SqlParameter pvRetVal = new SqlParameter();
+                        pvRetVal.ParameterName = "@RetVal";
+                        pvRetVal.DbType = DbType.Int32;
+                        pvRetVal.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(pvRetVal);
+
+                        int status = cmd.ExecuteNonQuery();
+
+                        if (status == -1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string s = ex.ToString();
+                ExceptionLogger.WriteToErrorLogFile(ex);
+                return false;
+            }
+        }
+
+
+        public DataTable GetRestaurantSettings(int RestaurantID)
+        {
+            DataTable dtsendResponse = new DataTable();
+            try
+            {
+                string connectionString = ConfigurationManager.AppSettings["TraflConnection"];
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("spGetRestaurantSettings", sqlcon))
+                    {
+                        cmd.CommandTimeout = TruflConstants.DBResponseTime;
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@RestaurantID", RestaurantID);
+                        tvpParam.SqlDbType = SqlDbType.Int;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dtsendResponse);
+                        }
+                    }
+                }
+                // }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.WriteToErrorLogFile(ex);
+            }
+            return dtsendResponse;
+        }
+
     }
 }

@@ -63,7 +63,7 @@
 
 
 </div>
-<div class="col-md-12 seatmain" *ngIf="showTurnSeats">
+<!--<div class="col-md-12 seatmain" *ngIf="showTurnSeats">
 
     <div class="col-md-12" *ngIf="showSeated">
         <div class="row">
@@ -112,15 +112,11 @@
 <div class="col-md-12 bottombuttons">
     <a class="primary-btn" href="#">Turn On Get Seated Now</a>
     <a class="addbtn" (click)="Addguest()"> <img alt="" src="../../../../wwwroot/images/bigadd.png" /> </a>
-</div>
+</div>-->
 
 
 <!--User Profile  Right Side-->
 <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-
-
-
-
     <a id="close" class="close" (click)="closeProile()"><span>×</span></a>
 
 
@@ -136,7 +132,7 @@
     </div>
 
 </div>
-<div class="modal fade" id="SelectSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--<div class="modal fade" id="SelectSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -146,10 +142,10 @@
             <div class="modal-body" style="display:inline-block;">
                 <div class="seatselection">
                     <ul>
-                        <li *ngFor="let item of tableData"><a (click)="selectTable(item)">{{item.TableNo}}</a></li>
+                        <li *ngFor="let item of tableData"><a (click)="selectTable(item)">{{item.TableNo}}</a></li>-->
                         <!--<li><a class="hold" href="#">2 </a> </li>-->
 
-                    </ul>
+                    <!--</ul>
                     <div class="popup-btn">
                         <a class="primary-btn" data-dismiss="modal" (click)="submitRestaurantTable()">Submit</a>
                         <a data-dismiss="modal" class="secondary-btn" (click)="closeRestaurantTable()">Cancel</a>
@@ -167,20 +163,20 @@
 
         </div>
     </div>
-</div>
+</div>-->
 
 
 
 <!--Add Bio Modal-->
-<div class="container">
+<!--<div class="container">-->
 
 
     <!-- Modal -->
-    <div class="modal addBio-modal fade" id="myModal" #bioModal role="dialog">
-        <div class="modal-dialog addBio-dialog">
+    <!--<div class="modal addBio-modal fade" id="myModal" #bioModal role="dialog">
+        <div class="modal-dialog addBio-dialog">-->
 
             <!-- Modal content-->
-            <div class="modal-content">
+            <!--<div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
                     <h4 class="modal-title">Add Bio</h4>
@@ -227,4 +223,4 @@
 
         </div>
     </div>
-</div>
+</div>-->
