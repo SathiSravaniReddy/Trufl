@@ -79,7 +79,7 @@ export class SelectSelectionsComponent implements OnInit {
             this.x = 'data:image/JPEG;base64,'
 
             this.selections = Object.assign({}, this.selectiondata);
-            console.log(this.selections);     
+             
 
 
         })
@@ -112,13 +112,32 @@ export class SelectSelectionsComponent implements OnInit {
 
     public select(section, index) {
 
+       
+
+        for (var i = 0; i < this.selectiondata.length; i++) {
+
+            if (this.selectiondata[i].FloorNumber==section.FloorNumber && section.IsActive == false) {               
+                this.image_changes[i].IsActive = !this.image_changes[i].IsActive;
+                this.image_changes[i].image = this.selectiondata[i].FloorImage;
+                break;
+            }
+            else {
+                if (this.selectiondata[i].FloorNumber == section.FloorNumber && section.IsActive == true) {                    
+                    this.image_changes[i].IsActive = !this.image_changes[i].IsActive;
+                    this.image_changes[i].image = this.selectiondata[i].ClosedImage;                    
+                    break;
+                }
+                
+            }
+
+        }
 
        
 
         var details = {
             "RestaurantID": section['RestaurantID'],
             "FloorNumber": section['FloorNumber'],
-            "IsActive": !section['IsActive'],
+            "IsActive": section['IsActive'],
             "IsDelete": true
         }
 
@@ -138,9 +157,10 @@ export class SelectSelectionsComponent implements OnInit {
 
             this.array.push(details)
         }
-             
+               
 
     }
 
+   
 
 }
