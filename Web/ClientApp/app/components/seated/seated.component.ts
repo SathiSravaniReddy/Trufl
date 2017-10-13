@@ -64,7 +64,7 @@ export class SeatedComponent implements OnInit {
                     let totalremainingtime = totalcurrenttime-totalseatedtime;
                     console.log(totalremainingtime, "this.totalremainingtime");
                     user.totalremainingseatedtime = totalremainingtime;
-                    user.remainingtime = totalseatedtime - diningtime;
+                    user.remainingtime = diningtime - totalremainingtime;
                 }
             })
 
