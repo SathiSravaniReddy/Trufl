@@ -12,9 +12,21 @@ export class GuestService {
     addGuestDetails(guestInfo: any, number: any) {
         console.log(number);
         console.log(guestInfo);
-        return this.http.post('', guestInfo).map(
-            (res) => res.json()
-        )
+
+        if (number == 1) {
+
+            console.log("coming1");
+            return this.http.post('', guestInfo).map(
+                (res) => res.json()
+            )
+        }
+        else {
+            console.log("coming2");
+            return this.http.post('', guestInfo).map(
+                (res) => res.json()
+            )
+        }
+       
     }
 
     getguestsdetails() {
