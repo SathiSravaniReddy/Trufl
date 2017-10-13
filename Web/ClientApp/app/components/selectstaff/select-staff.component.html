@@ -29,12 +29,14 @@
         </ul>
 
     </div>
-    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
-        <a id="close" class="close" (click)="closeProile()"><span>x</span></a>
-        <div class="slidetop">
-            <img src="data:image/JPEG;base64,{{staffimage}}" alt="" /><h5 class="name">{{FullName}}</h5>
-        </div>
-        <div class="slideformmain">           
+        <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
+       <a id="close" class="close" (click)="closeProile()"><span>x</span></a>
+       <div class="slidetop">
+          <!--  <img alt="" src="../../../../../wwwroot/images/restaurants1.jpg" /> -->
+          <img src="data:image/JPEG;base64,{{staffimage}}" alt="" /><h5 class="name">{{FullName}}</h5>
+       </div>
+        <div class="slideformmain">
+           
             <div class="slideform">
                 <select (change)="valueChange($event)">
                     <option>---select section----</option>

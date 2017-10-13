@@ -23,6 +23,7 @@ export class HostessComponent {
     private truflUserList;
     private selectedRow: Number;
     private currentDate: any;
+    private remainingwaitedtime;
     //private priceOfTable;
     //private classForAccept;
     //private sizeOfTable;
@@ -45,13 +46,20 @@ export class HostessComponent {
     //ActiveSeats: boolean = false;
     public currentSelectedUser: string;
     private bioinfo;
-
+    private waitlisttime;
     //Parameters to pass in Api
     private usertype: any;
     private truflid: any;
     private settingsData;
     private bioData: any = [];
     private restaurantid: any;
+    private waitedtime;
+    private hours;
+    private minutes;
+    private currenthours;
+    private currentminutes;
+    private currenttime;
+    private totalremainingtime;
     //add Bio
     //private bioCategories: any = [];
     //private bioEvents: any = [];
@@ -90,17 +98,36 @@ export class HostessComponent {
        
 
     }
-   
+
     getWaitListData() {
     //Displaying trufl user's list
     this.hostessService.getTruflUserList().subscribe((res: any) => {
         this.truflUserList = res._Data;
+        console.log(this.truflUserList, "this.truflUserList");
+        this.truflUserList.map(function (user) {
+            var currentDate = new Date();
+            var currenthours = currentDate.getHours();
+            let currentminutes = currentDate.getMinutes();
+            let currenttime = (currenthours * 60) + currentminutes;
+            console.log(currentDate, " this.currentDate");
 
-
+            
+            if (user.WaitListTime != null) {
+                let waitedtime = new Date(user.WaitListTime);
+                console.log(waitedtime, " this.waitedtime");
+               let hours = waitedtime.getHours();
+                console.log(hours * 60, " this.hours");
+                let minutes = waitedtime.getMinutes();
+                let remainingwaitedtime = (hours * 60) + (minutes);
+                let totalremainingtime = currenttime - remainingwaitedtime;
+                console.log(totalremainingtime, "this.totalremainingtime");
+                user.totalremainingtime = totalremainingtime;
+            }
+        })
 
         });
 
-    this.currentDate = new Date();
+    
 
     }
 
@@ -114,7 +141,7 @@ export class HostessComponent {
         this.username = data.UserName;
         this.pic = data.pic;
         this.showProfile = true;
-      
+       
         //this.ActiveSeats = false;
         this.usertype = data.TruflMemberType;
         //this.profile(data.TruflUserID);

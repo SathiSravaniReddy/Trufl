@@ -40,11 +40,8 @@
                         <img src="../../../../wwwroot/images/error.jpg" />
                     </span>
                 </div>
-
                 <div class="input input--haruki">
                     <input class="input__field input__field--haruki" type="text" id="input-1" name="email" [(ngModel)]="data.email" #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
-
-
                     <label class="input__label input__label--haruki" for="input-1">
                         <span class="input__label-content input__label-content--haruki error-input">Email Address *</span>
                     </label>
@@ -61,9 +58,7 @@
                     <span style="float:right;" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)">
                         <img src="../../../../wwwroot/images/error.jpg" />
                     </span>
-                    <!--<span *ngIf="email.errors.pattern" style="float:right;">
-                        <img src="../../../../wwwroot/images/error.jpg" />
-                    </span>-->
+                   
 
                 </div>
                 <div class="input input--haruki">

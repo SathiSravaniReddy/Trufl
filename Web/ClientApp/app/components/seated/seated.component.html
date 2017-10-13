@@ -1,92 +1,61 @@
 ﻿<div class="customheader">
-
     <div class="customheaderleft">
         <h2>{{restaurantName}}</h2>
     </div>
     <div class="customheaderright">
         <ul>
-            <li style="float:left;padding-left:20px" (click)="waitlistPage()">Waitlist</li>
-            <li style="float:left;padding-left:20px" (click)="seatedPage()">Seated</li>
-            <li style="float:left;padding-left:20px" (click)="snapshotPage()">Snapshot</li>
-            <li style="float:left;padding-left:20px" (click)="settingsPage()">Settings</li>
+            <li class="TopOptions" (click)="waitlistPage()">Waitlist</li>
+            <li class="TopOptions" (click)="seatedPage()">Seated</li>
+            <li class="TopOptions" (click)="snapshotPage()">Snapshot</li>
+            <li class="TopOptions" (click)="settingsPage()">Settings</li>
         </ul>
     </div>
-
 </div>
     <div class="col-md-12">
-
         <div class="col-md-12 snapmain">
-
-            <table class="table" >
+            <table class="table table-responsive" id="GetSeatedTbl">
                 <thead>
                     <tr>
-                        
                         <th>GUESTNAME</th>
-                        <th>TRUFLPAYMENT</th>
-                        <th>PARTYSIZE</th>
-                        <th>TABELNUMBER</th>
-                        <th>TIMESEATED</th>
-                        <th>TIMEREMAINING</th>
-                        <th>SLOW +_5MIN</th>
-                        <th>JUMP 5MIN</th>
-                        <th>CHECKDROP</th>
-                        <th>EMPTYTABEL</th>
-                     
+                        <th class="alignCenter">TRUFLPAYMENT</th>
+                        <th class="alignCenter">PARTYSIZE</th>
+                        <th class="alignCenter">TABELNUMBER</th>
+                        <th class="alignCenter">TIMESEATED</th>
+                        <th class="alignCenter">TIMEREMAINING</th>
+                        <th class="alignCenter">SLOW +_5MIN</th>
+                        <th class="alignCenter">JUMP 5MIN</th>
+                        <th class="alignCenter">CHECKDROP</th>
+                        <th class="alignCenter">EMPTYTABEL</th>
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr  *ngFor="let seatsinfo of seatedinfo|paginate:{ itemsPerPage: 5, currentPage: p }; let i = index">
-                        
-
-                      <!--  <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td>
-                        <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td> -->
-
-                        <!--<td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>
-                        <td> <img alt="" src="../../../../wwwroot/images/icon.png" /> </td>-->
-
-                        <td>{{seatsinfo.TUserName}}</td>
-                        <td>{{seatsinfo.OfferAmount}}</td>
-                        <td>{{seatsinfo.PartySize}}</td>
-                        <td>{{seatsinfo.TableNumber}}</td>
-                        <td>5</td>
-                        <td>10</td>
-                        <td>
-                            <a href="#"><img class="selected" alt="" src="../../../../wwwroot/images/slow.png" /> </a>
+                        <td style="width:16%;">{{seatsinfo.TUserName}}</td>
+                        <td class="fontSize alignCenter">{{seatsinfo.OfferAmount}}</td>
+                        <td class="fontSize alignCenter">{{seatsinfo.PartySize}}</td>
+                        <td class="fontSize alignCenter">{{seatsinfo.TableNumber}}</td>
+                        <td class="fontSize alignCenter">{{seatsinfo.totalremainingseatedtime}}</td>
+                        <td class="fontSize alignCenter">{{seatsinfo.remainingtime}}</td>
+                        <td class="alignCenter">
+                            <a href="#"><img class="selected imgWidth30" alt="" src="../../../../wwwroot/images/slow.png" /> </a>
                         </td>
-                        <td>
-                            <a href="#"><img alt="" src="../../../../wwwroot/images/jump.png" /> </a>
+                        <td class="alignCenter">
+                            <a href="#"><img alt="" class="imgWidth30" src="../../../../wwwroot/images/jump.png" /> </a>
                         </td>
-                        <td>
-                            <a href="#"><img alt="" src="../../../../wwwroot/images/check.png" /> </a>
+                        <td class="alignCenter">
+                            <a href="#"><img alt="" class="imgWidth28" src="../../../../wwwroot/images/check.png" /> </a>
                         </td>
-                        <td>
-                            <a href="#"><img alt="" src="../../../../wwwroot/images/empty.png" /> </a>
+                        <td class="alignCenter">
+                            <a href="#"><img alt="" class="imgWidth25" src="../../../../wwwroot/images/empty.png" /> </a>
                         </td>
                     </tr>
-
-
-
-
             </table>
-
-
            <div *ngIf="!hasData()">No Data Found</div> 
-
-
             <div>
                 <a class="primary-btn" href="#">Turn On Get Seated Now</a>
             </div>
+      </div>
+ </div>
 
-           
-
-
-
-        </div>
-
-
-
-    </div>
-
-<div class="loader"   *ngIf="load"></div>
+<div class="loader" *ngIf="load"></div>
 

@@ -14,8 +14,8 @@ export class ManageServersComponent {
     private currentfloorname;
     private filterfloorname;
     private selectedFloorName;
-    public isShow:boolean=false;
-  
+    public isShow: boolean = false;
+    private visible: boolean = false;
     public isChecked: boolean = false;
     constructor(private router: Router, private _managerservice: ManageServersService) {
         this.getmanagerServer();
@@ -25,37 +25,44 @@ export class ManageServersComponent {
         var that = this;
         this._managerservice.getManageServersDetails().subscribe((res: any) => {
             this.manageserverdetails = res._Data;
-            console.log(this.manageserverdetails, "this.manageserverdetails");
-
+          
         })
     }
     getFloorDetails(manageserver) {
         var _that = this;
+       
         this._managerservice.getFloorDetails().subscribe((res: any) => {
             this.floordetails = res._Data;
-            console.log(this.floordetails, " this.floordetails ");
-
+          
             this.filterfloorname = _that.floordetails.filter(function (obj) {
+               
                 return obj.FloorNumber === manageserver.RestaurantFloorNumber;
             });
-
             if (this.filterfloorname.length > 0) {
                 this.selectedFloorName = this.filterfloorname[0].FloorNumber;
+                
+            }
+            if (manageserver.RestaurantFloorNumber == null) {
+                this.selectedFloorName = '';
             }
         })
+
        
-        console.log(this.filterfloorname, "this.filterfloorname");
+
+       
+       
     }
 
     showProfile(manageserver) {
         var _that = this;
-        console.log(manageserver, "defineselectionsrwtert");
-        console.log(this.manageserverdetails, "sfgdfgdfgf");
+        this.getFloorDetails(manageserver);
+        
+       
         this.currentRow = manageserver.FullName;
         this.currentimage = manageserver.pic;
         
         this.isShow = true;
-        this.getFloorDetails(manageserver);
+       
         this.isChecked = false;
 
     }

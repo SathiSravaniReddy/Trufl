@@ -446,21 +446,23 @@ ul {
     .primary-btn:hover,
     .primary-btn:focus {
         color: #fff;
+        cursor: pointer;
     }
-
-.secondary-btn {
-    float: left;
-    width: auto;
-    padding: 5px 10px;
-    border: 1px solid #fff;
-    font-size: 15px;
-    text-transform: uppercase;
-    margin: 0 20px 0 0;
-    cursor: pointer;
-    background: none;
-    text-align: center;
-    color: #fff;
-}
+    
+    
+    .secondary-btn {
+        float: left;
+        width: auto;
+        padding: 5px 10px;
+        border: 1px solid #fff;
+        font-size: 15px;
+        text-transform: uppercase;
+        margin: 0 20px 0 0;
+        cursor: pointer;
+        background: none;
+        text-align: center;
+        color: #fff;
+    }
 
     .secondary-btn:hover,
     .secondary-btn:focus {
@@ -1534,10 +1536,10 @@ input[type=time]::-webkit-outer-spin-button {
      border-bottom: #cacacb solid 1px;
      font-family: 'Roboto Slab', serif;
      color: #fff;
-     padding: 15px 10px;
+     /*padding: 15px 10px;*/
 }
 .fontSize{
-    font-size:46px;
+    font-size:37px;
 }
 
             .snapmain table tr td img {
@@ -1810,18 +1812,18 @@ input:checked + .slider:before {
     border-radius: 34px;
 }
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 19px;
-    width: 19px;
-    left: 0px;
-    bottom: -2px;
-    background-color: #c19c59;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 50%;
-}
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 19px;
+        left: 0px;
+        bottom: -2px;
+        background-color: #c19c59;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 50%;
+    }
 
 input:checked + .slider {
     background-color: #ecc57d;
@@ -1832,11 +1834,10 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-   -webkit-transform: translateX(30px);
-   -ms-transform: translateX(30px);
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
     transform: translateX(18px);
 }
-
 .slidetoggle {
     float: left;
     width: 100%;
@@ -1858,3 +1859,33 @@ input:checked + .slider:before {
 .mrgTop9 {
     margin-top: 9px;
 }
+.alignCenter {
+    text-align: center;
+}
+#GetSeatedTbl tbody tr td, #WaitlistTbl tbody tr td{
+    vertical-align: middle !important;
+}
+#WaitlistTbl tbody tr:hover{
+    cursor:pointer;
+}
+    .imgWidth30 {
+    width: 30px;
+}
+.imgWidth28 {
+    width: 28px;
+}
+.imgWidth25 {
+    width: 25px;
+}
+.imgwidth48 {
+    width: 48px;
+}
+
+.TopOptions {
+    float: left;
+    padding-left: 20px;
+}
+.TopOptions:hover, #settingOptions li a{
+    cursor: pointer;
+}
+
