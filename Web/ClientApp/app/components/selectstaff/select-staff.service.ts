@@ -8,18 +8,12 @@ export class StaffService {
     constructor(private http: Http) {
 
     }
-
-
     getStaffDetails() {
-
         this.RestaurentId = 1;
         return this.http.get('http://localhost:8679/api/WaitListUser/GetRestaurantHostessOpenSectionDetails/1/RH').map(
             (res) => res.json()
         )
-    }
-
-
-   
+    } 
 
     postStaffDetails(staff_info:any) {
         console.log(staff_info);
@@ -27,23 +21,9 @@ export class StaffService {
             (res) => res.json();
         })
     }
-
-
-    
-
-
-
-
-
     getFloorNames() {
         this.RestaurentId = 1;
         return this.http.get('http://localhost:8679/api/WaitListUser/GetRestaurantOpenSections/' + this.RestaurentId).map(
             (res) =>res.json())
-    }   
-
-
-
-   
-
-
+    }     
 }

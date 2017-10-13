@@ -67,6 +67,9 @@ export class AddGuestComponent {
 
     }
 
+     cancel() {
+         this.router.navigate(['waitlist']);        
+      }
 
 
 

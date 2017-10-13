@@ -145,3 +145,7 @@
 .blur {
     filter: blur(3px);
 }
+}
+#staffInfiLi a:hover {
+    cursor:pointer;
+}

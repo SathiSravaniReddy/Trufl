@@ -1,5 +1,4 @@
 <div class="customheader">
-
     <div class="customheaderleft">
         <h2>Select Sections</h2>
     </div>
@@ -14,34 +13,15 @@
 
 </div>
 <div class="col-md-12 servicesmain">
-
     <span class="servicetext">Tap to close or open sections for tonight's service. </span>
-
     <div class="selectfloor">
         <ul>
-            <li id="imm" *ngFor="let section of image_changes;let i=index" [ngStyle]="{ 'background-image': 'url('+x+section.image+')'}" (click)="select(section,i)" >
-
-               
+            <li id="imm" *ngFor="let section of image_changes;let i=index" [ngStyle]="{ 'background-image': 'url('+imageIterate+section.image+')'}" (click)="select(section,i)" >
+              
                 <a>
                     <h3>{{section.FloorName}}</h3>
                 </a>
-            </li>
-
-            <!--<li style="background-image:url(section.image)">
-                <img [src]="section.image">
-                <a href="#">
-                    <h3>Main Dinning Room</h3>
-                </a>
-            </li>
-            <li style="background-image:url(images/restaurants1.jpg)">
-                <a href="#" class="selected">
-                    <h3>Main Dinning Room</h3>
-                </a>
-            </li>-->
+            </li>           
         </ul>
-
     </div>
-
-
-
 </div>

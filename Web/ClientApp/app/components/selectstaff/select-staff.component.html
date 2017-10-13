@@ -1,5 +1,4 @@
 <div class="customheader">
-
     <div class="customheaderleft">
         <h2>Select Staff</h2>
     </div>
@@ -14,17 +13,14 @@
 
 </div>
 <div class="col-md-12 servicesmain">
-
     <span class="servicetext">Who's on the clock tonight?</span>
-
     <div class="selectstaff">
         <ul>
             <li *ngFor="let staffimage of staff_info">
                 <a class="selected" (click)="showProfile(staffimage)">
 
                     <img alt="" src="data:image/JPEG;base64,{{staffimage.pic}}" />
-                    <h3>
-                       
+                    <h3>                       
                         {{staffimage.FullName}}
                     </h3>
                 </a>
@@ -33,53 +29,22 @@
         </ul>
 
     </div>
-
-
-
-
-
-    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
-
-
-
-
-        <a id="close" class="close" (click)="closeProile()"><span>x</span></a>
-
-
-
-        <div class="slidetop">
-         
-
-            <img src="data:image/JPEG;base64,{{staffimage}}" alt="" /><h5 class="name">{{FullName}}</h5>
-
-
-
-        </div>
+        <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
+       <a id="close" class="close" (click)="closeProile()"><span>x</span></a>
+       <div class="slidetop">
+          <!--  <img alt="" src="../../../../../wwwroot/images/restaurants1.jpg" /> -->
+          <img src="data:image/JPEG;base64,{{staffimage}}" alt="" /><h5 class="name">{{FullName}}</h5>
+       </div>
         <div class="slideformmain">
            
             <div class="slideform">
-
                 <select (change)="valueChange($event)">
                     <option>---select section----</option>
                     <option *ngFor="let title of array;let i = index" [selected]="title.FloorNumber===FloorNumber"  value={{title.FloorNumber}}     [disabled]="title.IsActive==false">{{title.FloorName}}</option>
                 </select>
-
-
-            </div>
-
-          
+            </div>        
 
         </div>
-
-
-
     </div>
-
-
-
-
-
-
-
 
 </div>

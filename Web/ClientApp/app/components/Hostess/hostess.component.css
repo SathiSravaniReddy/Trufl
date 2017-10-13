@@ -112,3 +112,15 @@
     color: #fff !important;
     border: #4f5879 solid 1px !important;
 }
+/* White Stripped Image Div*/
+.ImgBorder {
+    border-right: 2px solid #40486B;
+    padding: 6px 15px;
+}
+.divImgbanner {
+    background-color: #4f5879;
+    margin-left: -30px;
+    width: 117%;
+    margin-bottom: 20px;
+    display: inline-flex;
+}

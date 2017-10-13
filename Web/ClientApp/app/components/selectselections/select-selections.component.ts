@@ -10,129 +10,82 @@ import { DomSanitizer } from '@angular/platform-browser';
     templateUrl: './select-selections.component.html',
 
 })
-export class SelectSelectionsComponent implements OnInit {
-    private selectedSection: Number;
+export class SelectSelectionsComponent implements OnInit {   
     private array: any[] = [];
     public selections: any;
-
     public records: any;
     public FloorImage: any;
     public data: any[] = [];
     public detailsofselections: any;
     public finalarray: any[] = [];
     public totalData: any[];
-
     public selectiondata: any;
-    public x: any;
-   
+    public imageIterate: any;   
     public image_changes: any[] = [];
-
     constructor(private router: Router, private sharedService: SharedService, private selectService: SelectService, private _sanitizer: DomSanitizer) {
-
     }
     ngOnInit() {
         this.getDetails();
     }
-
-
-
+    
     public getDetails() {
+        this.selectService.getDetails().subscribe((res: any) => {           
+            this.selectiondata = res._Data;        
+            this.sharedService.arraydata.push(this.selectiondata);                      
 
-        this.selectService.getDetails().subscribe((res: any) => {
-
-           
-            this.selectiondata = res._Data;
-                       
-
-            this.sharedService.arraydata.push(this.selectiondata);          
-
-            for (var i = 0; i < this.selectiondata.length; i++) {
-
-                if (this.selectiondata[i].IsActive == false) {
+            this.selectiondata.forEach((itemdata, index) => {
+                if (itemdata.IsActive == false) {
                     var obj = {
-                             "RestaurantID": this.selectiondata[i].RestaurantID,
-                             "FloorNumber": this.selectiondata[i].FloorNumber,
-                             "FloorName": this.selectiondata[i].FloorName,
-                             "image": this.selectiondata[i].ClosedImage,
-                             "IsActive": this.selectiondata[i].IsActive                          
+                             "RestaurantID": itemdata.RestaurantID,
+                             "FloorNumber": itemdata.FloorNumber,
+                             "FloorName": itemdata.FloorName,
+                             "image":itemdata.ClosedImage,
+                             "IsActive":itemdata.IsActive                          
                       }
-                    this.image_changes.push(obj);
-                   
-
+                     this.image_changes.push(obj);
                 }
                 else {
                     var obj = {
-                        "RestaurantID": this.selectiondata[i].RestaurantID,
-                        "FloorNumber": this.selectiondata[i].FloorNumber,
-                        "FloorName": this.selectiondata[i].FloorName,
-                        "image": this.selectiondata[i].FloorImage,
-                        "IsActive": this.selectiondata[i].IsActive
-                    } 
+                        "RestaurantID":itemdata.RestaurantID,
+                        "FloorNumber":itemdata.FloorNumber,
+                        "FloorName":itemdata.FloorName,
+                        "image":itemdata.FloorImage,
+                        "IsActive":itemdata.IsActive
+                   } 
                     this.image_changes.push(obj);
-                   
-
-                }
-
-            } 
-
-
-            this.x = 'data:image/JPEG;base64,'
-
-            this.selections = Object.assign({}, this.selectiondata);
-             
-
-
+                }             
+                                
+            })
+            this.imageIterate = 'data:image/JPEG;base64,'
+            this.selections = Object.assign({}, this.selectiondata);          
         })
+    } 
 
-
-    }
-
-
- 
-
-    public back() {
-       
+    public back() {       
         this.router.navigateByUrl('/startservice');
     }
     public next() {
         this.router.navigateByUrl('/selectStaff');
-
-        this.selectService.updateselection(this.array).subscribe((res: any) => {           
-
+        this.selectService.updateselection(this.array).subscribe((res: any) => {         
         })
-
-    }
-
-
-
-
-
-
-
-
-    public select(section, index) {
-
-       
-
-        for (var i = 0; i < this.selectiondata.length; i++) {
-
-            if (this.selectiondata[i].FloorNumber==section.FloorNumber && section.IsActive == false) {               
-                this.image_changes[i].IsActive = !this.image_changes[i].IsActive;
-                this.image_changes[i].image = this.selectiondata[i].FloorImage;
-                break;
+    }    
+    public select(section, index) {            
+        this.selectiondata.forEach((item, index) => {
+            if (item.FloorNumber == section.FloorNumber && section.IsActive == false) {
+                this.image_changes[index].IsActive = !this.image_changes[index].IsActive;
+                this.image_changes[index].image = this.selectiondata[index].FloorImage;
+                return;
             }
+
             else {
-                if (this.selectiondata[i].FloorNumber == section.FloorNumber && section.IsActive == true) {                    
-                    this.image_changes[i].IsActive = !this.image_changes[i].IsActive;
-                    this.image_changes[i].image = this.selectiondata[i].ClosedImage;                    
-                    break;
+                if (item.FloorNumber == section.FloorNumber && section.IsActive == true) {
+                    this.image_changes[index].IsActive = !this.image_changes[index].IsActive;
+                    this.image_changes[index].image = this.selectiondata[index].ClosedImage;
+                    return;
                 }
-                
+
             }
-
-        }
-
-       
+        })      
 
         var details = {
             "RestaurantID": section['RestaurantID'],
@@ -140,7 +93,6 @@ export class SelectSelectionsComponent implements OnInit {
             "IsActive": section['IsActive'],
             "IsDelete": true
         }
-
 
         if (this.array.length) {
             let index = this.array.findIndex(function (item) {
@@ -154,13 +106,9 @@ export class SelectSelectionsComponent implements OnInit {
             }
         }
         else {
-
             this.array.push(details)
-        }
-               
-
+        }         
+      
     }
-
-   
 
 }

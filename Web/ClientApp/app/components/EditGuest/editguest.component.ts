@@ -1,6 +1,8 @@
 ﻿import { Component, Input, Output, EventEmitter, SimpleChange, OnChanges } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { SharedService } from '../shared/Shared.Service';
 import { EditGuestService } from './editguest.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app_edit',
@@ -12,8 +14,9 @@ export class EditGuestComponent {
 
     public data: any = {};
     public message: any;
+    public number: any;
 
-    constructor(private sharedService: SharedService, public editGuestService: EditGuestService) {
+    constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router) {
 
         //  this.message = this.messageService.getMessage().subscribe(message => {
         //  this.data = message;
@@ -34,16 +37,28 @@ export class EditGuestComponent {
 
     }
 
-    onSubmit(guestdetails: any) {
+    onSubmit(guestdetails: any,form: NgForm) {
 
-        this.editGuestService.editGuestDetails(guestdetails).subscribe((res: any) => {
+        this.editGuestService.editGuestDetails(guestdetails, this.number).subscribe((res: any) => {
 
             console.log(res);
         })
 
-        this.data = '';
+        form.resetForm();
 
 
     }
+
+
+    get(number: any) {
+        this.number = number;
+        console.log(this.number);
+    }
+
+    EditCancel() {
+
+        this.router.navigate(['waitlist']);
+    }
+
 
 }

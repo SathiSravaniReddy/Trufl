@@ -11,11 +11,24 @@ export class EditGuestService {
     }
 
 
-    editGuestDetails(guestInfo: any) {
-        console.log(guestInfo);
-        return this.http.post('', guestInfo).map(
-            (res) => res.json()
-        )
+    editGuestDetails(guestInfo: any, number: any) {
+
+        if (number == 1) {
+
+            console.log("coming1");
+            return this.http.post('', guestInfo).map(
+                (res) => res.json()
+            )
+        }
+        else {
+            console.log("coming2");
+            return this.http.post('', guestInfo).map(
+                (res) => res.json()
+            )
+        }
+
+
+
     }
 
 
