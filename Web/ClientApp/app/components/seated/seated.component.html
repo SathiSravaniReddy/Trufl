@@ -21,22 +21,22 @@
                 <thead>
                     <tr>
                         
-                        <th>GUESTNAME</th>
-                        <th>TRUFLPAYMENT</th>
-                        <th>PARTYSIZE</th>
-                        <th>TABELNUMBER</th>
-                        <th>TIMESEATED</th>
-                        <th>TIMEREMAINING</th>
-                        <th>SLOW +_5MIN</th>
-                        <th>JUMP 5MIN</th>
-                        <th>CHECKDROP</th>
-                        <th>EMPTYTABEL</th>
+                        <th>GUEST<br />NAME</th>
+                        <th>TRUFL<br />PAYMENT</th>
+                        <th>PARTY<br />SIZE</th>
+                        <th>TABEL<br />NUMBER</th>
+                        <th>TIME<br />SEATED</th>
+                        <th>TIME<br />REMAINING</th>
+                        <th>SLOW <br />+_5MIN</th>
+                        <th>JUMP<br /> 5MIN</th>
+                        <th>CHECK<br />DROP</th>
+                        <th>EMPTY<br />TABEL</th>
                      
                     </tr>
                 </thead>
                 <tbody>
 
-                    <tr  *ngFor="let seatsinfo of seatedinfo|paginate:{ itemsPerPage: 5, currentPage: p }; let i = index">
+                    <tr  *ngFor="let seatsinfo of   seatedinfo; let i = index">
                         
 
                       <!--  <td><img alt="" src="../../../../wwwroot/images/tick.png" /></td>

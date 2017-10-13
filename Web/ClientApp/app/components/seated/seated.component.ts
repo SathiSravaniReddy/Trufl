@@ -44,55 +44,32 @@ export class SeatedComponent implements OnInit {
         console.log(this.diningtime, " this.diningtimefjygjgjgjgj");
         this.seatedService.getSeatedDetails().subscribe((res: any) => {
             this.seatedinfo = res._Data;
-
+            
             this.seatedinfo.map(function (user) {
                 var currentDate = new Date();
                 var currenthours = currentDate.getHours();
                 let currentminutes = currentDate.getMinutes();
                 let totalcurrenttime = (currenthours * 60) + currentminutes;
                 console.log(currentDate, " this.currentDate");
-             
+
 
                 if (user.SeatedTime != null) {
                     let seatedtime = new Date(user.SeatedTime);
                     console.log(seatedtime, " this.waitedtime");
-                    
+
                     let hours = seatedtime.getHours();
                     console.log(hours * 60, " this.hours");
                     let minutes = seatedtime.getMinutes();
                     let totalseatedtime = (hours * 60) + (minutes);
-                    let totalremainingtime = totalcurrenttime-totalseatedtime;
+                    let totalremainingtime = totalcurrenttime - totalseatedtime;
                     console.log(totalremainingtime, "this.totalremainingtime");
                     user.totalremainingseatedtime = totalremainingtime;
                     user.remainingtime = diningtime - totalremainingtime;
                 }
             })
-
-
-
-
-
-
-
-
-
-
-            this.seatedinfo.map(function (obj) {
-                Object.keys(obj).map(function (keyName) {
-                    if (that.arr.indexOf(keyName) >= 0) {
-                        obj[keyName] = (obj[keyName] == 1) ? true : false;
-                    }
-                })
             });          
 
-           this.seatedinfo = this.seatedinfo.filter(function (obj) {
-                return !obj['Empty']
-            })
-
-           console.log(this.seatedinfo, "this.seatedinfo");
-           
-        })
-
+        
       
 
     }

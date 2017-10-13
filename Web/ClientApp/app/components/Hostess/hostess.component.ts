@@ -103,7 +103,7 @@ export class HostessComponent {
     //Displaying trufl user's list
     this.hostessService.getTruflUserList().subscribe((res: any) => {
         this.truflUserList = res._Data;
-        console.log(this.truflUserList, "this.truflUserList");
+      
         this.truflUserList.map(function (user) {
             var currentDate = new Date();
             var currenthours = currentDate.getHours();
