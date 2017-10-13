@@ -26,14 +26,10 @@ export class HeaderComponent {
         //Keep these load headers in a service-----
         this.loadHeaders = {
             "RA": [
-                {
-                    "name": "HostessDashboard",
-                    "active": true,
-                    "route": '/hostessdashboard'
-                },
+               
             {
                 "name": "Waitlist",
-                "active": false,
+                "active": true,
                 "route": '/waitlist'
             },
             {
@@ -42,10 +38,16 @@ export class HeaderComponent {
                 "route": '/seated'
             },
             {
+
+                "name": "SnapShot",
+                "active": false,
+                "route": '/snapshot'
+            },
+            {
                
                 "name": "Settings",
                 "active": true,
-                "route": '/hostesssettings'
+                "route": '/defaultSettings'
             }
         ],
            "TA": [

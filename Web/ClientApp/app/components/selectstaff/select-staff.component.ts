@@ -11,8 +11,7 @@ import { SharedService } from '../shared/Shared.Service';
 })
 export class SelectStaffComponent implements OnInit {
     private staff_info: any;
-    private FullName: any;
-   
+    private FullName: any;   
     private isShow: boolean = false;
     private staffimage: any;
     public array: any[] = [];
@@ -23,74 +22,36 @@ export class SelectStaffComponent implements OnInit {
     public isDisabled;
     public Floor_Number: any; 
     public final_array: any[] = [];
-
     public FloorNumber: any;
     public selectdFloorName: any;
-
     constructor(private router: Router, private staffService: StaffService,private sharedService:SharedService) {
 
+    }   
+    ngOnInit() {   
+           this.getStaffDetails();       
+           this.getInActiveFloors();    
     }
-
-   
-    ngOnInit() {
-
-
-             
-
-       
-            this.staffService.getFloorNames().subscribe((res: any) => {
-                this.array = res._Data;
-                console.log(this.array);
-
-
-                this.selectstaff = this.sharedService.arraydata;
-                for (var i = 0; i < this.array.length; i++) {
-                    for (var j = 0; j < this.selectstaff.length; j++) {
-                        if (this.array[i].FloorName == this.selectstaff[j].FloorName) {
-                            this.array[i].isDisabled = true;
-                            break;
-                        }
-                        else {
-                            this.array[i].isDisabled = false;
-                        }
-                    }
-                }
-
-
-
-            })      
-
-           this.getStaffDetails();     
-       
-         
-
-
-    
+    public getInActiveFloors() {
+        this.staffService.getFloorNames().subscribe((res: any) => {
+            this.array = res._Data;            
+            this.selectstaff = this.sharedService.arraydata;   
+            
+        })        
 
     }
-
-
-
 
     valueChange($event) {       
-        this.Floor_Number = $event.target.value;
-        console.log(this.Floor_Number);
-
-
+        this.Floor_Number = $event.target.value;          
         var details = {
-            "RestaurantID": 1,
+            "RestaurantID": this.getstaff_info.RestaurantID,
             "TruflUserID": this.getstaff_info.TruflUserID,
             "RestaurantFloorNumber": JSON.parse(this.Floor_Number)
 
         }
-       
-        //this.final_array.push(details);
-
         if (this.final_array.length) {
             let index = this.final_array.findIndex(function (item) {
                 return item.TruflUserID === details['TruflUserID']
             })
-
             if (index >= 0) {
                 this.final_array[index] = details;
             }
@@ -100,70 +61,38 @@ export class SelectStaffComponent implements OnInit {
 
         } else {
             this.final_array.push(details);
-        }
-
-
-
-        console.log(this.final_array);
-
-
-
-       
-
-
-
+        }   
+        
     }
-
-
-    public getStaffDetails() {
-      
+    public getStaffDetails() {      
         this.staffService.getStaffDetails().subscribe((res: any) => {
-            this.staff_info = res._Data;
-            console.log(this.staff_info);
+            this.staff_info = res._Data;           
 
         }) 
 
-
-    }
-
-   
+    }     
 
     back() {
         this.sharedService.arraydata = [];
         this.router.navigateByUrl('/selectselections');
     }
     next() {
+        this.staffService.postStaffDetails(this.final_array).subscribe((res: any) => {           
 
-        console.log(this.final_array);      
-
-
-        this.staffService.postStaffDetails(this.final_array).subscribe((res: any) => {
-            console.log(res);
-
-        })
-
-       
-
+        })        
         this.router.navigateByUrl('/reviewSelections');
     }
-
-
+    
     showProfile(staffdetails: any) {
         this.getstaff_info = staffdetails; 
-
-        console.log(this.getstaff_info);
-
+        this.getInActiveFloors(); 
         this.isShow = true;
         this.FullName = staffdetails.FullName;      
         this.staffimage = staffdetails.pic;
-        this.FloorNumber = this.getstaff_info.RestaurantFloorNumber;
-       
+        this.FloorNumber = this.getstaff_info.RestaurantFloorNumber;       
     }
 
     closeProile() {
-
         this.isShow = false;
-
     }
-
 }

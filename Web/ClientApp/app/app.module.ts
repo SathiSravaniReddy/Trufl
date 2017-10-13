@@ -57,7 +57,7 @@ import { SharedService } from "./components/shared/Shared.Service";
 import { EditGuestService } from "./components/EditGuest/editguest.service";
 import { StaffService } from "./components/selectstaff/select-staff.service"
 import { SelectService } from "./components/selectselections/select-sections.service";
-
+import { SnapShotComponent } from "./components/snapshot/snapshot.component"
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [
@@ -85,7 +85,7 @@ DefaultSettingsComponent,
  ManageServersComponent ,
  DefineSelectionsComponent,
  SeataGuestComponent ,
-
+        SnapShotComponent,
         AddGuestComponent,
         EditGuestComponent,
 
@@ -160,7 +160,7 @@ DefaultSettingsComponent,
             { path: 'seataGuest', component: SeataGuestComponent },   
             { path: 'addGuest', component: AddGuestComponent }, 
             { path: 'editguest', component: EditGuestComponent },   
-            
+            { path: 'snapshot', component: SnapShotComponent },  
             { path: '**', redirectTo: 'login' },
 
            

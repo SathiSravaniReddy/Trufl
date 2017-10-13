@@ -1,53 +1,39 @@
-﻿<div class="customheader">
+﻿<shared-header></shared-header>
 
-    <div class="customheaderleft">
-        <h2>{{restaurantName}}</h2>
-    </div>
-    <div class="customheaderright">
-        <ul>
-            <li style="float:left;padding-left:20px" (click)="waitlistPage()">Waitlist</li>
-            <li style="float:left;padding-left:20px" (click)="seatedPage()">Seated</li>
-            <li style="float:left;padding-left:20px" (click)="snapshotPage()">Snapshot</li>
-            <li style="float:left;padding-left:20px" (click)="settingsPage()">Settings</li>
-        </ul>
-    </div>
+<div class="col-md-12 col-sm-12 snapmain ">
 
-</div>
-
-<div class="col-md-12 snapmain">
-
-    <table class="table">
+    <table class="table table-responsive" id="WaitlistTbl">
         <thead>
             <tr>
-                <th>
+                <th class="alignCenter">
                     TRUFL<br />
                     STATUS
                 </th>
-                <th>{{restaurantName}}</th>
+                <th class="alignCenter">{{restaurantName}}</th>
                 <th>Guset<br /> name</th>
-                <th>party<br /> size</th>
-                <th>wait<br /> quoted</th>
-                <th>time<br /> waited</th>
-                <th>trufl offer/<br /> reservation</th>
-                <th>accept<br /> offer</th>
-                <th>notify</th>
-                <th>print</th>
-                <th>remove</th>
+                <th class="alignCenter">party<br /> size</th>
+                <th class="alignCenter">wait<br /> quoted</th>
+                <th class="alignCenter">time<br /> waited</th>
+                <th class="alignCenter">trufl offer/<br /> reservation</th>
+                <th class="alignCenter">accept<br /> offer</th>
+                <th class="alignCenter">notify</th>
+                <th class="alignCenter">print</th>
+                <th class="alignCenter">remove</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of truflUserList|paginate: { itemsPerPage: 5, currentPage: p };let i=index;" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow">
-                <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
-                <td> <img alt="" src="../../../../wwwroot/images/tick1.png" /> </td>
+            <tr *ngFor="let item of truflUserList; let i=index;" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow">
+                <td class="alignCenter"> <img alt="" class="imgwidth48" src="../../../../wwwroot/images/tick.png" /> </td>
+                <td class="alignCenter"> <img alt="" class="imgwidth48" src="../../../../wwwroot/images/tick1.png" /> </td>
                 <td>{{item.UserName}}</td>
-                <td>{{item.PartySize}}</td>
-                <td>{{item.Quoted}}</td>
-                <td>{{item.Waited}}</td>
-                <td>${{item.OfferAmount}}</td>
-                <td> <img alt="" src="../../../../wwwroot/images/ao.png" /> </td>
-                <td> <img alt="" src="../../../../wwwroot/images/notify.png" /> </td>
-                <td> <img alt="" src="../../../../wwwroot/images/print.png" /> </td>
-                <td> <img alt="" src="../../../../wwwroot/images/remove.png" /> </td>
+                <td class="fontSize alignCenter">{{item.PartySize}}</td>
+                <td class="fontSize alignCenter">{{item.Quoted}}</td>
+                <td class="fontSize alignCenter">{{item.totalremainingtime}}</td>
+                <td class="fontSize alignCenter">${{item.OfferAmount}}</td>
+                <td class="alignCenter"> <img alt="" src="../../../../wwwroot/images/DollerSmall.png" /> </td>
+                <td class="alignCenter"> <img alt="" class="imgWidth25" src="../../../../wwwroot/images/BellSmall.png" /> </td>
+                <td class="alignCenter"> <img alt="" src="../../../../wwwroot/images/Printersmall.png" /> </td>
+                <td class="alignCenter"> <img alt="" src="../../../../wwwroot/images/removeSmall.png" /> </td>
                 <!--<td width="350">
                     <div class="wait-btn" *ngIf="item.isShowLinks">
                         <a [class]=classForAccept (click)="accept(item)">Accepted</a>
@@ -63,7 +49,7 @@
 
 
 </div>
-<div class="col-md-12 seatmain" *ngIf="showTurnSeats">
+<!--<div class="col-md-12 seatmain" *ngIf="showTurnSeats">
 
     <div class="col-md-12" *ngIf="showSeated">
         <div class="row">
@@ -112,31 +98,38 @@
 <div class="col-md-12 bottombuttons">
     <a class="primary-btn" href="#">Turn On Get Seated Now</a>
     <a class="addbtn" (click)="Addguest()"> <img alt="" src="../../../../wwwroot/images/bigadd.png" /> </a>
-</div>
+</div>-->
 
 
 <!--User Profile  Right Side-->
 <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-
-
-
-
     <a id="close" class="close" (click)="closeProile()"><span>×</span></a>
-
-
-
-    <div class="slidetop">
+    <div class="slidetop col-md-12">
         <img alt="" src="data:image/JPEG;base64,{{pic}}" />
-
         <h5 class="name">{{username}}</h5>
-
     </div>
-    <div *ngFor="let item of bioData">
-        <div class="slideform"><label>{{item.BioName}} </label> <label>{{item.Description}}</label> </div>
+    <div class="col-md-12 clearfix divImgbanner">
+        <!--<div class="col-md-2 ImgBorder"><img src="../../../../wwwroot/images/DollerSmall.png" /></div>
+        <div class="col-md-2 ImgBorder"><img src="../../../../wwwroot/images/seatSmall.png" /></div>
+        <div class="col-md-2 ImgBorder"><img src="../../../../wwwroot/images/removeSmall.png" /></div>
+        <div class="col-md-2 ImgBorder"><img src="../../../../wwwroot/images/editSmall.png" /></div>
+        <div class="col-md-2 ImgBorder"><img src="../../../../wwwroot/images/Printersmall.png" /></div>
+        <div class="clearfix"></div>-->
+        <span class="ImgBorder"><img src="../../../../wwwroot/images/DollerSmall.png" /></span>
+        <span class="ImgBorder"><img src="../../../../wwwroot/images/seatSmall.png" /></span>
+        <span class="ImgBorder"><img src="../../../../wwwroot/images/removeSmall.png" /></span>
+        <span class="ImgBorder"><a (click)="editguest()"><img src="../../../../wwwroot/images/editSmall.png" /></a></span>
+        <span class="ImgBorder"><img src="../../../../wwwroot/images/Printersmall.png" /></span>
+   </div>
+    
+    <div class="col-md-12" *ngFor="let item of bioData">
+        <div class="slideform">
+            <label>{{item.BioName}} </label>
+            <label>{{item.Description}}</label> 
+        </div>
     </div>
-
 </div>
-<div class="modal fade" id="SelectSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--<div class="modal fade" id="SelectSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -146,10 +139,10 @@
             <div class="modal-body" style="display:inline-block;">
                 <div class="seatselection">
                     <ul>
-                        <li *ngFor="let item of tableData"><a (click)="selectTable(item)">{{item.TableNo}}</a></li>
+                        <li *ngFor="let item of tableData"><a (click)="selectTable(item)">{{item.TableNo}}</a></li>-->
                         <!--<li><a class="hold" href="#">2 </a> </li>-->
 
-                    </ul>
+                    <!--</ul>
                     <div class="popup-btn">
                         <a class="primary-btn" data-dismiss="modal" (click)="submitRestaurantTable()">Submit</a>
                         <a data-dismiss="modal" class="secondary-btn" (click)="closeRestaurantTable()">Cancel</a>
@@ -167,20 +160,17 @@
 
         </div>
     </div>
-</div>
-
-
-
+</div>-->
 <!--Add Bio Modal-->
-<div class="container">
+<!--<div class="container">-->
 
 
     <!-- Modal -->
-    <div class="modal addBio-modal fade" id="myModal" #bioModal role="dialog">
-        <div class="modal-dialog addBio-dialog">
+    <!--<div class="modal addBio-modal fade" id="myModal" #bioModal role="dialog">
+        <div class="modal-dialog addBio-dialog">-->
 
             <!-- Modal content-->
-            <div class="modal-content">
+            <!--<div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
                     <h4 class="modal-title">Add Bio</h4>
@@ -224,7 +214,6 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
+</div>-->

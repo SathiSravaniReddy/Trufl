@@ -113,14 +113,14 @@
     transform: translate3d(0, -90%, 0);
 }
 
-.input__field--haruki:focus + .input__label--haruki::before,
+/*.input__field--haruki:focus + .input__label--haruki::before,
 .input--filled .input__label--haruki::before {
     -webkit-transform: translate3d(0, -0.5em, 0);
     transform: translate3d(0, -0.5em, 0);
-}
+}*/
 
-.input__field--haruki:focus + .input__label--haruki::after,
+/*.input__field--haruki:focus + .input__label--haruki::after,
 .input--filled .input__label--haruki::after {
     -webkit-transform: translate3d(0, 0.5em, 0);
     transform: translate3d(0, 0.5em, 0);
-}
+}*/

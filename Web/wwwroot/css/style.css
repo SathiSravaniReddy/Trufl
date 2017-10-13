@@ -354,7 +354,7 @@ ul {
             }
 
 .tablerowselect {
-    background: #4E4E4E;
+    background: #394165;
     color: #fff;
 }
 
@@ -446,21 +446,23 @@ ul {
     .primary-btn:hover,
     .primary-btn:focus {
         color: #fff;
+        cursor: pointer;
     }
-
-.secondary-btn {
-    float: left;
-    width: auto;
-    padding: 5px 10px;
-    border: 1px solid #fff;
-    font-size: 15px;
-    text-transform: uppercase;
-    margin: 0 20px 0 0;
-    cursor: pointer;
-    background: none;
-    text-align: center;
-    color: #fff;
-}
+    
+    
+    .secondary-btn {
+        float: left;
+        width: auto;
+        padding: 5px 10px;
+        border: 1px solid #fff;
+        font-size: 15px;
+        text-transform: uppercase;
+        margin: 0 20px 0 0;
+        cursor: pointer;
+        background: none;
+        text-align: center;
+        color: #fff;
+    }
 
     .secondary-btn:hover,
     .secondary-btn:focus {
@@ -1436,7 +1438,7 @@ input[type=time]::-webkit-outer-spin-button {
         color: #fff;
         font-family: 'AvenirNextCondensed' !important;
         font-size: 30px;
-        margin-bottom:50px;
+        margin-bottom: 50px;
     }
 
 .guestform {
@@ -1517,26 +1519,28 @@ input[type=time]::-webkit-outer-spin-button {
     margin: 20px 0;
 }
 
-    .snapmain table {
-        width: 100%;
-    }
+.snapmain table {
+    width: 100%;
+}
 
-        .snapmain table tr th {
-            border-bottom: #cacacb solid 1px;
-            font-family: 'Avenir' !important;
-            font-size: 14px;
-            color: #cacacb;
-            padding: 10px;
-            text-transform: uppercase;
-        }
+.snapmain table tr th {
+     border-bottom: #cacacb solid 1px;
+     font-family: 'Avenir' !important;
+     font-size: 14px;
+     color: #cacacb;
+     padding: 10px;
+     text-transform: uppercase;
+}
 
-        .snapmain table tr td {
-            border-bottom: #cacacb solid 1px;
-            font-family: 'Roboto Slab', serif;
-            color: #fff;
-            padding: 15px 10px;
-            font-size: 46px;
-        }
+.snapmain table tr td {
+     border-bottom: #cacacb solid 1px;
+     font-family: 'Roboto Slab', serif;
+     color: #fff;
+     /*padding: 15px 10px;*/
+}
+.fontSize{
+    font-size:37px;
+}
 
             .snapmain table tr td img {
                 opacity: .6;
@@ -1607,12 +1611,12 @@ input[type=time]::-webkit-outer-spin-button {
             margin: 0 20px;
             font-size: 20px;
             text-transform: uppercase;
-            color: #fff;
+            color: #b9b9b9;
             opacity: .6;
         }
 
     .headertbas .selected {
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid #ffffff;
         opacity: 1;
     }
 
@@ -1726,7 +1730,7 @@ input [type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-oute
 
 
 
-.switch {
+/*.switch {
     position: relative;
     display: inline-block;
     width: 60px;
@@ -1776,20 +1780,115 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-.slider.round {
+/*.slider.round {
     border-radius: 34px;
 }
 
     .slider.round:before {
         border-radius: 50%;
+    }*/
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 15px;
+}
+
+    .switch input {
+        display: none;
     }
 
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #94929a;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 19px;
+        left: 0px;
+        bottom: -2px;
+        background-color: #c19c59;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+input:checked + .slider {
+    background-color: #ecc57d;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #c19c59;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    transform: translateX(18px);
+}
 .slidetoggle {
     float: left;
     width: 100%;
 }
 
-    .slidetoggle label {
-        float: left;
-        margin: 5px 5px 0 0;
-    }
+.lblmargin {
+    float: left;
+    margin: 5px 5px 0 0;
+}
+
+.mrgBottom15 {
+    margin-bottom: 15px;
+}
+
+.mrfLeft42 {
+    margin-left: 42%;
+}
+
+.mrgTop9 {
+    margin-top: 9px;
+}
+.alignCenter {
+    text-align: center;
+}
+#GetSeatedTbl tbody tr td, #WaitlistTbl tbody tr td{
+    vertical-align: middle !important;
+}
+#WaitlistTbl tbody tr:hover{
+    cursor:pointer;
+}
+    .imgWidth30 {
+    width: 30px;
+}
+.imgWidth28 {
+    width: 28px;
+}
+.imgWidth25 {
+    width: 25px;
+}
+.imgwidth48 {
+    width: 48px;
+}
+
+.TopOptions {
+    float: left;
+    padding-left: 20px;
+}
+.TopOptions:hover, #settingOptions li a{
+    cursor: pointer;
+}
+
+.active{
+
+}
