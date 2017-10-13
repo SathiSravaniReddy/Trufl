@@ -18,7 +18,7 @@ namespace DTO
         public int BookingStatus { get; set; }
         public DateTime? WaitListTime { get; set; }
         public DateTime? SeatedTime { get; set; }
-        public UserBioEventsDTO UserBioEventsTY { get; set; }
+        public List<UserBioEventsDTO> UserBioEventsTY { get; set; }
 
     }
 }

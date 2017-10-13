@@ -1332,11 +1332,15 @@ namespace Trufl.Data_Access_Layer
                 dtUserBioEvents.Columns.Add("BioID", typeof(Int32));
                 dtUserBioEvents.Columns.Add("Description", typeof(string));
 
-                dtUserBioEvents.Rows.Add(SaveRestaurantGuest.UserBioEventsTY.UserBioEventID,
-                                      SaveRestaurantGuest.UserBioEventsTY.RestaurantID,
-                                      SaveRestaurantGuest.UserBioEventsTY.TruflUserID,
-                                      SaveRestaurantGuest.UserBioEventsTY.BioID,
-                                      SaveRestaurantGuest.UserBioEventsTY.Description);
+                for (int i = 0; SaveRestaurantGuest.UserBioEventsTY.Count > i; i++)
+                {
+                    dtUserBioEvents.Rows.Add(SaveRestaurantGuest.UserBioEventsTY[i].UserBioEventID,
+                                      SaveRestaurantGuest.UserBioEventsTY[i].RestaurantID,
+                                      SaveRestaurantGuest.UserBioEventsTY[i].TruflUserID,
+                                      SaveRestaurantGuest.UserBioEventsTY[i].BioID,
+                                      SaveRestaurantGuest.UserBioEventsTY[i].Description);
+
+                }
 
                 //if (SaveRestaurantGuest.TruflUserID == 0)
                 //    SaveRestaurantGuest.TruflUserID = null;
@@ -1360,14 +1364,14 @@ namespace Trufl.Data_Access_Layer
                         tvpParam4.SqlDbType = SqlDbType.Text;
                         SqlParameter tvpParam5 = cmd.Parameters.AddWithValue("@UserType", SaveRestaurantGuest.UserType);
                         tvpParam5.SqlDbType = SqlDbType.Text;
-                        SqlParameter tvpParam6 = cmd.Parameters.AddWithValue("@UserBioEventsTY", dtUserBioEvents);
-                        tvpParam6.SqlDbType = SqlDbType.Structured;
-                        SqlParameter tvpParam7 = cmd.Parameters.AddWithValue("@Picture", SaveRestaurantGuest.BookingStatus);
-                        tvpParam7.SqlDbType = SqlDbType.Int;
-                        SqlParameter tvpParam8 = cmd.Parameters.AddWithValue("@UserType", SaveRestaurantGuest.WaitListTime);
+                        SqlParameter tvpParam6 = cmd.Parameters.AddWithValue("@BookingStatus", SaveRestaurantGuest.BookingStatus);
+                        tvpParam6.SqlDbType = SqlDbType.Int;
+                        SqlParameter tvpParam7 = cmd.Parameters.AddWithValue("@WaitListTime", SaveRestaurantGuest.WaitListTime);
+                        tvpParam7.SqlDbType = SqlDbType.DateTime;
+                        SqlParameter tvpParam8 = cmd.Parameters.AddWithValue("@SeatedTime", SaveRestaurantGuest.SeatedTime);
                         tvpParam8.SqlDbType = SqlDbType.DateTime;
-                        SqlParameter tvpParam9 = cmd.Parameters.AddWithValue("@UserType", SaveRestaurantGuest.SeatedTime);
-                        tvpParam9.SqlDbType = SqlDbType.DateTime;
+                        SqlParameter tvpParam9 = cmd.Parameters.AddWithValue("@UserBioEventsTY", dtUserBioEvents);
+                        tvpParam9.SqlDbType = SqlDbType.Structured;
 
                         SqlParameter pvRetVal = new SqlParameter();
                         pvRetVal.ParameterName = "@RetVal";
