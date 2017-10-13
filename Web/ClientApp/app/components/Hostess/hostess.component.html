@@ -36,13 +36,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of truflUserList|paginate: { itemsPerPage: 5, currentPage: p };let i=index;" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow">
+            <tr *ngFor="let item of truflUserList;let i=index;" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow">
                 <td> <img alt="" src="../../../../wwwroot/images/tick.png" /> </td>
                 <td> <img alt="" src="../../../../wwwroot/images/tick1.png" /> </td>
                 <td>{{item.UserName}}</td>
                 <td>{{item.PartySize}}</td>
                 <td>{{item.Quoted}}</td>
-                <td>{{item.Waited}}</td>
+                <td>{{item.totalremainingtime}}</td>
                 <td>${{item.OfferAmount}}</td>
                 <td> <img alt="" src="../../../../wwwroot/images/ao.png" /> </td>
                 <td> <img alt="" src="../../../../wwwroot/images/notify.png" /> </td>
@@ -127,6 +127,7 @@
         <h5 class="name">{{username}}</h5>
 
     </div>
+
     <div *ngFor="let item of bioData">
         <div class="slideform"><label>{{item.BioName}} </label> <label>{{item.Description}}</label> </div>
     </div>

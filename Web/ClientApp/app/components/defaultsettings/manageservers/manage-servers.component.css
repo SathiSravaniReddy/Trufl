@@ -141,3 +141,7 @@
 .primary-btn:hover{
     cursor:pointer;
 }
+
+.blur {
+    filter: blur(3px);
+}

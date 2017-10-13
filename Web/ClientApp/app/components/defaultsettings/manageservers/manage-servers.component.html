@@ -19,7 +19,7 @@
         <ul>
             <li *ngFor="let _manageserver of manageserverdetails">
                 <a class="selected" (click)="showProfile(_manageserver)">
-                    <img src="data:image/JPEG;base64,{{_manageserver.pic}}" alt="" />
+                    <img src="data:image/JPEG;base64,{{_manageserver.pic}}" alt=""  [ngClass]="_manageserver.RestaurantFloorNumber === null ? 'blur' : ''"/>
                     <h3>
                         {{_manageserver.FullName}}
                     </h3>
