@@ -1,4 +1,4 @@
-﻿<div class="header dn" >
+﻿<!--div class="header dn" >
     <div class="col-md-5 headerleft">
         <h1>
             <a (click)="showHeaders()" *ngIf="this.userType==='RA'">Hostess</a>
@@ -47,6 +47,24 @@
         <a href="#" class="primary-btn">
             Next
         </a>
+    </div>
+
+</div>-->
+
+
+
+<div class="customheader">
+
+    <div class="customheaderleft">
+        <h2>{{restaurantName}}</h2>
+    </div>
+    <div class="customheaderright">
+        <ul>
+            <li *ngFor="let header of headers let i=index" class="TopOptions">
+            <a *ngIf="header.isShow" [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
+            </li>
+            
+        </ul>
     </div>
 
 </div>

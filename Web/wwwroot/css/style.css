@@ -1611,12 +1611,12 @@ input[type=time]::-webkit-outer-spin-button {
             margin: 0 20px;
             font-size: 20px;
             text-transform: uppercase;
-            color: #fff;
+            color: #b9b9b9;
             opacity: .6;
         }
 
     .headertbas .selected {
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid #ffffff;
         opacity: 1;
     }
 
@@ -1889,3 +1889,6 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
+.active{
+
+}

@@ -418,5 +418,8 @@ export class HostessComponent {
 
 
     }
+    editguest() {
+        this.router.navigateByUrl('/editguest');
+    }
 
 }

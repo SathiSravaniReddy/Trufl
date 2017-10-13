@@ -27,7 +27,7 @@ export class OtherSettingsService {
     }
     postOtherSettingsDetails(othersettingsinfo: any) {
         console.log(othersettingsinfo,"other settings info from service");
-        return this.http.post('http://localhost:8679/api/Admin/SaveRestaurantSettings',othersettingsinfo).map(
+        return this.http.post(constant.truflAPI + constant.truflBase +'Admin/SaveRestaurantSettings',othersettingsinfo).map(
             (res) => res.json()
         )
     }
