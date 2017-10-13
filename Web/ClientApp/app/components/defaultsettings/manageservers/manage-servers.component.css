@@ -141,3 +141,6 @@
 .primary-btn:hover{
     cursor:pointer;
 }
+#staffInfiLi a:hover {
+    cursor:pointer;
+}

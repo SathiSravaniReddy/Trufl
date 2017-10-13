@@ -34,14 +34,10 @@
                         <label *ngIf="guest.errors.required ">
                             name is required.
                         </label>
-                    </label>
-
+                   </label>
                 </div>
-
                 <div class="input input--haruki">
                     <input class="input__field input__field--haruki" type="text" id="input-1" name="email" [(ngModel)]="data.email" #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
-
-
                     <label class="input__label input__label--haruki" for="input-1">
                         <span class="input__label-content input__label-content--haruki error-input">Email Address *</span>
                     </label>
@@ -53,12 +49,7 @@
                         <label *ngIf="email.errors.pattern">
                             please enter avalid email address
                         </label>
-
-
-
                     </label>
-
-
                 </div>
                 <div class="input input--haruki">
                     <input class="input__field input__field--haruki" type="text" id="input-1" name="mobile" [(ngModel)]="data.mobile" #mobile="ngModel" required>
