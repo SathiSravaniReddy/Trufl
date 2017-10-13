@@ -1,12 +1,4 @@
 
-<!--<style>
-
-
-    .input__label--haruki::after {
-        border:1px solid red;
-    }
-
-</style>  -->
 
 <div>
     <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)"   >
@@ -44,7 +36,9 @@
                             name is required.
                         </label>
                     </label>
-
+                    <span style="float:right;" *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)">
+                        <img src="../../../../wwwroot/images/error.jpg" />
+                    </span>
                 </div>
 
                 <div class="input input--haruki">
@@ -55,16 +49,21 @@
                         <span class="input__label-content input__label-content--haruki error-input">Email Address *</span>
                     </label>
 
-                    <label *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}" [ngClass]="{'input__label--haruki::after':email.errors}" >
+                    <label *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}"  >
                         <label *ngIf="email.errors.required ">
                             email is required.
                         </label>
                         <label *ngIf="email.errors.pattern">
                             please enter avalid email address
                         </label>
-
+                        
                     </label>
-
+                    <span style="float:right;" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)">
+                        <img src="../../../../wwwroot/images/error.jpg" />
+                    </span>
+                    <!--<span *ngIf="email.errors.pattern" style="float:right;">
+                        <img src="../../../../wwwroot/images/error.jpg" />
+                    </span>-->
 
                 </div>
                 <div class="input input--haruki">
@@ -78,9 +77,12 @@
                             mobile number is required.
                         </label>
 
-
-
+                       
                     </label>
+
+                    <span style="float:right;" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)">
+                        <img src="../../../../wwwroot/images/error.jpg" />
+                    </span>
 
 
                 </div>
@@ -131,7 +133,7 @@
 
 <div class="col-md-12 bottombuttons">
     <a class="secondary-btn" href="#">Make A Reservation</a>
-    <a class="cancel-btn" href="#"><!--<img alt="" src="images/cancel.png" /> -->Cancel</a>
+    <a class="cancel-btn"  (click)="cancel()" style="float: right;margin-right: 3%;color:#fff;">x Cancel</a>
 </div>
 
 
