@@ -170,7 +170,7 @@ namespace Trufl.Services.Controllers
             }
         }
 
-        [Route("SaveRestaurantOpenTime/{RestaurantID}/{Time}")]
+        [Route("SaveRestaurantOpenTime")]
         [HttpPost]
         public object SaveRestaurantOpenTime(int RestaurantID, string Time)
         {
