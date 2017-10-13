@@ -61,7 +61,7 @@
     <div class="customheaderright">
         <ul>
             <li *ngFor="let header of headers let i=index" class="TopOptions">
-            <a *ngIf="header.isShow" [routerLink]="[header.route]" [routerLinkActive]="['selected']">{{header.name}}</a>
+            <a *ngIf="header.isShow" [routerLink]="[header.route]" [routerLinkActive]="['active']">{{header.name}}</a>
             </li>
             
         </ul>
