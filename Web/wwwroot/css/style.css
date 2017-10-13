@@ -1812,18 +1812,18 @@ input:checked + .slider:before {
     border-radius: 34px;
 }
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 19px;
-    width: 19px;
-    left: 0px;
-    bottom: -2px;
-    background-color: #c19c59;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 50%;
-}
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 19px;
+        left: 0px;
+        bottom: -2px;
+        background-color: #c19c59;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 50%;
+    }
 
 input:checked + .slider {
     background-color: #ecc57d;
@@ -1834,11 +1834,10 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-   -webkit-transform: translateX(30px);
-   -ms-transform: translateX(30px);
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
     transform: translateX(18px);
 }
-
 .slidetoggle {
     float: left;
     width: 100%;

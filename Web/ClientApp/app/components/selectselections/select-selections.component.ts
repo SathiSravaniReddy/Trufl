@@ -24,6 +24,8 @@ export class SelectSelectionsComponent implements OnInit {
 
     public selectiondata: any;
     public x: any;
+   
+    public image_changes: any[] = [];
 
     constructor(private router: Router, private sharedService: SharedService, private selectService: SelectService, private _sanitizer: DomSanitizer) {
 
@@ -38,22 +40,46 @@ export class SelectSelectionsComponent implements OnInit {
 
         this.selectService.getDetails().subscribe((res: any) => {
 
-            this.x = 'data:image/JPEG;base64,'
+           
             this.selectiondata = res._Data;
-            this.selections = Object.assign({}, this.selectiondata);
-            console.log(this.selections);
+                       
 
-         /*   for (var i = 0; i < this.selections.length; i++) {
-                this.FloorImage = 'data:image/jpeg;base64,'
-                this.records = this.FloorImage.concat(this.selections[i].FloorImage);
-                this.selections[i].FloorImage = this.records;
-                this.data.push(this.selections[i]);
+            this.sharedService.arraydata.push(this.selectiondata);          
+
+            for (var i = 0; i < this.selectiondata.length; i++) {
+
+                if (this.selectiondata[i].IsActive == false) {
+                    var obj = {
+                             "RestaurantID": this.selectiondata[i].RestaurantID,
+                             "FloorNumber": this.selectiondata[i].FloorNumber,
+                             "FloorName": this.selectiondata[i].FloorName,
+                             "image": this.selectiondata[i].ClosedImage,
+                             "IsActive": this.selectiondata[i].IsActive                          
+                      }
+                    this.image_changes.push(obj);
+                   
+
+                }
+                else {
+                    var obj = {
+                        "RestaurantID": this.selectiondata[i].RestaurantID,
+                        "FloorNumber": this.selectiondata[i].FloorNumber,
+                        "FloorName": this.selectiondata[i].FloorName,
+                        "image": this.selectiondata[i].FloorImage,
+                        "IsActive": this.selectiondata[i].IsActive
+                    } 
+                    this.image_changes.push(obj);
+                   
+
+                }
 
             } 
 
 
-            console.log(this.data);*/
+            this.x = 'data:image/JPEG;base64,'
 
+            this.selections = Object.assign({}, this.selectiondata);
+             
 
 
         })
@@ -62,6 +88,8 @@ export class SelectSelectionsComponent implements OnInit {
     }
 
 
+ 
+
     public back() {
        
         this.router.navigateByUrl('/startservice');
@@ -69,8 +97,7 @@ export class SelectSelectionsComponent implements OnInit {
     public next() {
         this.router.navigateByUrl('/selectStaff');
 
-        this.selectService.updateselection(this.array).subscribe((res: any) => {
-            console.log(res);
+        this.selectService.updateselection(this.array).subscribe((res: any) => {           
 
         })
 
@@ -85,18 +112,36 @@ export class SelectSelectionsComponent implements OnInit {
 
     public select(section, index) {
 
+       
 
-        this.sharedService.arraydata.push(section);
+        for (var i = 0; i < this.selectiondata.length; i++) {
 
-        console.log(this.sharedService.arraydata); 
+            if (this.selectiondata[i].FloorNumber==section.FloorNumber && section.IsActive == false) {               
+                this.image_changes[i].IsActive = !this.image_changes[i].IsActive;
+                this.image_changes[i].image = this.selectiondata[i].FloorImage;
+                break;
+            }
+            else {
+                if (this.selectiondata[i].FloorNumber == section.FloorNumber && section.IsActive == true) {                    
+                    this.image_changes[i].IsActive = !this.image_changes[i].IsActive;
+                    this.image_changes[i].image = this.selectiondata[i].ClosedImage;                    
+                    break;
+                }
+                
+            }
 
+        }
+
+       
 
         var details = {
             "RestaurantID": section['RestaurantID'],
             "FloorNumber": section['FloorNumber'],
-            "IsActive": false,
+            "IsActive": section['IsActive'],
             "IsDelete": true
         }
+
+
         if (this.array.length) {
             let index = this.array.findIndex(function (item) {
                 return item.FloorNumber === section.FloorNumber;
@@ -112,69 +157,10 @@ export class SelectSelectionsComponent implements OnInit {
 
             this.array.push(details)
         }
-
-
-
-        console.log(this.array);
-
-     
-       
-
-
-       /* if (this.array.length) {
-            let index1 = this.selections.findIndex(function (item) {
-                return item.FloorNumber === section.FloorNumber;
-            })
-            if (index1 >= 0) {
-                this.selections[index1] = details;
-                console.log(this.selections);
-            }
-
-        }*/
-        
-       /* let index1 = this.array.findIndex(function (item) {
-            this.selections.map(function (itemdata) {
-                return item.FloorNumber === itemdata.FloorNumber;
-            })
-           
-        })*/
-
-
-
-
-      /*  for (var i = 0; i < this.selections.length; i++) {
-
-            for (var j = 0; j < this.array.length; j++) {
-
-                if (this.selections[i].FloorNumber == this.array[j].FloorNumber) {
-                    this.selections.splice(i, 1);
-                    this.finalarray = [];
-
-                }
-            }
-        }*/
-
- 
-     /*   this.selections.map(item => {
-            this.finalarray.push({
-                "RestaurantID": item['RestaurantID'],
-                "FloorNumber": item['FloorNumber'],
-                "IsActive": true,
-                "IsDelete": true
-            })
-        });
-
-
-       
-        this.totalData = this.finalarray.concat(this.array);
-        console.log(this.finalarray);
-        this.totalData.sort(function (a, b) { return a.FloorNumber - b.FloorNumber });
-        console.log(this.totalData); */
-
-
-     
+               
 
     }
 
+   
 
 }

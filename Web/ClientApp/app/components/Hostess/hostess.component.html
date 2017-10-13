@@ -36,13 +36,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of truflUserList|paginate: { itemsPerPage: 5, currentPage: p };let i=index;" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow">
+            <tr *ngFor="let item of truflUserList; let i=index;" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow">
                 <td class="alignCenter"> <img alt="" class="imgwidth48" src="../../../../wwwroot/images/tick.png" /> </td>
                 <td class="alignCenter"> <img alt="" class="imgwidth48" src="../../../../wwwroot/images/tick1.png" /> </td>
                 <td>{{item.UserName}}</td>
                 <td class="fontSize alignCenter">{{item.PartySize}}</td>
                 <td class="fontSize alignCenter">{{item.Quoted}}</td>
-                <td class="fontSize alignCenter">{{item.Waited}}</td>
+                <td class="fontSize alignCenter">{{item.totalremainingtime}}</td>
                 <td class="fontSize alignCenter">${{item.OfferAmount}}</td>
                 <td class="alignCenter"> <img alt="" src="../../../../wwwroot/images/DollerSmall.png" /> </td>
                 <td class="alignCenter"> <img alt="" class="imgWidth25" src="../../../../wwwroot/images/BellSmall.png" /> </td>
